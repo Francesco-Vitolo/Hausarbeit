@@ -1,0 +1,93 @@
+﻿<Window x:Class="Verwaltungsprogramm_Vinothek.Window_StartUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek"
+        mc:Ignorable="d"
+        Title="Window_StartUp" Height="900" Width="1600">
+
+    <Grid Name="MainGrid">
+        <local:Default/>
+
+        <Grid Name="Grid_Menu">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="80"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+        <!--<Image Grid.Row="2" Grid.Column="2" Source="unnamed.png"/>-->
+            <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3">
+                <UniformGrid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
+                </UniformGrid.Resources>
+                <Button Name="ListeProdukte" Content="Produkte" Click="Button_MainMenu"/>
+                <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
+                <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
+            </UniformGrid>
+        </Grid>
+
+        <Grid x:Name="Grid_ListeProdukte" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="42"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+
+            <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="50" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" />
+
+            <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+                <Button Height="70" Width="70" Background="White" Style="{StaticResource Button_Default}">
+                    <Image Source="Lupe.png"  Margin="5"/>
+                </Button>
+                <Button x:Name="Add" Content="+"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Add_Click" />
+            </WrapPanel>
+
+            <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" Grid.ColumnSpan="2">
+                <DataGrid  Name="data"
+                    ItemsSource="{Binding }"
+                    AutoGenerateColumns="False"
+                    IsSynchronizedWithCurrentItem="True">
+                    <!--<DataGrid.Columns>
+                        <DataGridTextColumn Header="Moin" />
+                        <DataGridTextColumn Header="Moin"/>
+                        <DataGridTextColumn Header="Moin"/>
+                        <DataGridTextColumn Header="Moin"/>
+                        <DataGridTextColumn Header="Moin"/>
+                        <DataGridTextColumn Header="Moin"/>
+                    </DataGrid.Columns>-->
+                </DataGrid>
+            </Border>
+
+            <StackPanel Grid.Column="2" Grid.Row="2">
+   
+            </StackPanel>
+            
+        </Grid>
+
+
+        <Grid x:Name="Grid_ListeProduzenten" Visibility="Hidden">
+
+        </Grid>
+
+        <Grid x:Name="Grid_ListeEvents" Visibility="Hidden">
+
+        </Grid>
+    </Grid>
+</Window>
