@@ -8,6 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("lupe.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("vinothek.context.tt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("vinothek.tt")]
 
 

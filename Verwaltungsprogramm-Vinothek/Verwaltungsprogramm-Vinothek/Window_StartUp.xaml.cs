@@ -1,4 +1,5 @@
-﻿using System.Windows;
+﻿using System.Data.Entity;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 
@@ -11,6 +12,8 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private BrushConverter bc = new BrushConverter();
         private string location;
+        Vinothek ctx = new Vinothek();
+
         public Window_StartUp()
         {
             InitializeComponent();
@@ -28,6 +31,9 @@ namespace Verwaltungsprogramm_Vinothek
                 case "ListeProdukte":
                     Grid_ListeProdukte.Visibility = Visibility.Visible;
                     location = "ListeProdukte";
+                    ctx.Produkt.Load();
+                    MainGrid.DataContext = ctx.Produkt.Local;
+                    //data.Children.Add(CreateDataGrid.Produkt());
                     data = CreateDataGrid.Produkt(data);
                     break;
 

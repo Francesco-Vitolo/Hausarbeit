@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID_Veransatultung" />
+          </Key>
+          <Property Name="ID_Veransatultung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="AnzahlPersonen" Type="int" />
+          <Property Name="Datum" Type="date" />
+        </EntityType>
+        <EntityType Name="EventPos">
+          <Key>
+            <PropertyRef Name="ID_Veransatultung" />
+            <PropertyRef Name="ID_Produkt" />
+          </Key>
+          <Property Name="ID_Veransatultung" Type="int" Nullable="false" />
+          <Property Name="ID_Produkt" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="ID_Produkt" />
+          </Key>
+          <Property Name="ID_Produkt" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Art" Type="nvarchar" MaxLength="50" />
+          <Property Name="Qualitätssiegel" Type="nvarchar" MaxLength="20" />
+          <Property Name="Rebsorten" Type="nvarchar" MaxLength="50" />
+          <Property Name="Geschmack" Type="nvarchar" MaxLength="20" />
+          <Property Name="Alkoholgehalt" Type="int" />
+          <Property Name="Jahrgang" Type="int" />
+          <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
+          <Property Name="ID_Produzent" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produzent">
+          <Key>
+            <PropertyRef Name="ID_Produzent" />
+          </Key>
+          <Property Name="ID_Produzent" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Land" Type="nvarchar" MaxLength="50" />
+          <Property Name="Region" Type="nvarchar" MaxLength="50" />
+          <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
+          <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="Hektar" Type="int" />
+        </EntityType>
+        <Association Name="fk_Produzent">
+          <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
+          <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produzent">
+              <PropertyRef Name="ID_Produzent" />
+            </Principal>
+            <Dependent Role="Produkt">
+              <PropertyRef Name="ID_Produzent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventPos" EntityType="Self.EventPos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Produzent" EntityType="Self.Produzent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
+            <End Role="Produzent" EntitySet="Produzent" />
+            <End Role="Produkt" EntitySet="Produkt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="ID_Veransatultung" />
+          </Key>
+          <Property Name="ID_Veransatultung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AnzahlPersonen" Type="Int32" />
+          <Property Name="Datum" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityType Name="EventPos">
+          <Key>
+            <PropertyRef Name="ID_Veransatultung" />
+            <PropertyRef Name="ID_Produkt" />
+          </Key>
+          <Property Name="ID_Veransatultung" Type="Int32" Nullable="false" />
+          <Property Name="ID_Produkt" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Produkt">
+          <Key>
+            <PropertyRef Name="ID_Produkt" />
+          </Key>
+          <Property Name="ID_Produkt" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Art" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Qualitätssiegel" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Rebsorten" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Geschmack" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Alkoholgehalt" Type="Int32" />
+          <Property Name="Jahrgang" Type="Int32" />
+          <Property Name="Beschreibung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="ID_Produzent" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Produzent" Relationship="Self.fk_Produzent" FromRole="Produkt" ToRole="Produzent" />
+        </EntityType>
+        <EntityType Name="Produzent">
+          <Key>
+            <PropertyRef Name="ID_Produzent" />
+          </Key>
+          <Property Name="ID_Produzent" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Land" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Hektar" Type="Int32" />
+          <NavigationProperty Name="Produkt" Relationship="Self.fk_Produzent" FromRole="Produzent" ToRole="Produkt" />
+        </EntityType>
+        <Association Name="fk_Produzent">
+          <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
+          <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Produzent">
+              <PropertyRef Name="ID_Produzent" />
+            </Principal>
+            <Dependent Role="Produkt">
+              <PropertyRef Name="ID_Produzent" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Vinothek" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Event" EntityType="Self.Event" />
+          <EntitySet Name="EventPos" EntityType="Self.EventPos" />
+          <EntitySet Name="Produkt" EntityType="Self.Produkt" />
+          <EntitySet Name="Produzent" EntityType="Self.Produzent" />
+          <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
+            <End Role="Produzent" EntitySet="Produzent" />
+            <End Role="Produkt" EntitySet="Produkt" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="Vinothek">
+          <EntitySetMapping Name="Event">
+            <EntityTypeMapping TypeName="testModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="ID_Veransatultung" ColumnName="ID_Veransatultung" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="AnzahlPersonen" ColumnName="AnzahlPersonen" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventPos">
+            <EntityTypeMapping TypeName="testModel.EventPos">
+              <MappingFragment StoreEntitySet="EventPos">
+                <ScalarProperty Name="ID_Veransatultung" ColumnName="ID_Veransatultung" />
+                <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produkt">
+            <EntityTypeMapping TypeName="testModel.Produkt">
+              <MappingFragment StoreEntitySet="Produkt">
+                <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Art" ColumnName="Art" />
+                <ScalarProperty Name="Qualitätssiegel" ColumnName="Qualitätssiegel" />
+                <ScalarProperty Name="Rebsorten" ColumnName="Rebsorten" />
+                <ScalarProperty Name="Geschmack" ColumnName="Geschmack" />
+                <ScalarProperty Name="Alkoholgehalt" ColumnName="Alkoholgehalt" />
+                <ScalarProperty Name="Jahrgang" ColumnName="Jahrgang" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="ID_Produzent" ColumnName="ID_Produzent" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Produzent">
+            <EntityTypeMapping TypeName="testModel.Produzent">
+              <MappingFragment StoreEntitySet="Produzent">
+                <ScalarProperty Name="ID_Produzent" ColumnName="ID_Produzent" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Land" ColumnName="Land" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Hektar" ColumnName="Hektar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Kein" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

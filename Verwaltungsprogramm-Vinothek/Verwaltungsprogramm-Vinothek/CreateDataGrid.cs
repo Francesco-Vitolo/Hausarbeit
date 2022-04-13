@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,22 +17,29 @@ namespace Verwaltungsprogramm_Vinothek
         //    IsSynchronizedWithCurrentItem = true,
         //    //ItemsSource = 
         //};
-
         static Dictionary<string,string> Prod = new Dictionary<string, string>()
         {
-           { "Name","name" },
-           {"Typ",          "dada" } ,
-           {"Bezeichnung",  "dada"}  ,
-           {"Jahrgang",     "dada"}  ,
-           {"Rebsorte(n)",  "dada"}  ,
-           {"Produzent",    "dada"}  ,
-           {"Geschmack",    "dada"}  ,
-           {"Region",       "dada"}  ,
-           {"Alkoholgehalt", "dada"} ,
+           { "Name","Name" },
+           {"Typ",          "Art" } ,
+           {"Bezeichnung",  "Qualitätssiegel"}  ,
+           {"Jahrgang",     "Jahrgang"}  ,
+           {"Rebsorte(n)",  "Rebsorten"}  ,
+           {"Produzent",    "Produzent.Name"}  ,
+           {"Geschmack",    "Geschmack"}  ,
+           {"Region",       "Produzent.Region"}  ,
+           {"Alkoholgehalt", "Alkoholgehalt"} ,
         };
 
         public static DataGrid Produkt(DataGrid dg)
         {
+            //ctx.Produkt.Load();
+            //DataGrid dg = new DataGrid()
+            //{
+            //    AutoGenerateColumns = false,
+            //    IsSynchronizedWithCurrentItem = true,
+            //    ItemsSource = 
+            //};
+
             foreach (var v in Prod)
             {
                 DataGridTextColumn column = new DataGridTextColumn()
