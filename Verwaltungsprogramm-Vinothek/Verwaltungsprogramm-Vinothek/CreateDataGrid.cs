@@ -11,53 +11,63 @@ namespace Verwaltungsprogramm_Vinothek
 {
     static class CreateDataGrid
     {
-        //static DataGrid dg = new DataGrid()
-        //{
-        //    AutoGenerateColumns = false,
-        //    IsSynchronizedWithCurrentItem = true,
-        //    //ItemsSource = 
-        //};
-        static Dictionary<string,string> Prod = new Dictionary<string, string>()
+        static Dictionary<string,string> Produkte = new Dictionary<string, string>() //Header und Rows(SQL)
         {
-           { "Name","Name" },
-           {"Typ",          "Art" } ,
-           {"Bezeichnung",  "Qualitätssiegel"}  ,
-           {"Jahrgang",     "Jahrgang"}  ,
-           {"Rebsorte(n)",  "Rebsorten"}  ,
-           {"Produzent",    "Produzent.Name"}  ,
-           {"Geschmack",    "Geschmack"}  ,
-           {"Region",       "Produzent.Region"}  ,
+           { "Name",         "Name" },
+           {"Typ",           "Art" } ,
+           {"Bezeichnung",   "Qualitätssiegel"}  ,
+           {"Jahrgang",      "Jahrgang"}  ,
+           {"Rebsorte(n)",   "Rebsorten"}  ,
+           {"Produzent",     "Produzent.Name"}  ,
+           {"Geschmack",     "Geschmack"}  ,
+           {"Region",        "Produzent.Region"}  ,
            {"Alkoholgehalt", "Alkoholgehalt"} ,
+           {"Beschreibung",  "Beschreibung"} ,
+        };
+
+        static Dictionary<string, string> Produzenten = new Dictionary<string, string>()
+        {
+           { "Name",        "Name" },
+           {"Land",         "Land" } ,
+           {"Region",       "Region"}  ,
+           {"Adresse",      "Adresse"}  ,
+           {"Hektar",       "Hektar"}  ,
+           {"Beschreibung", "Beschreibung"}  ,
+        };
+        static Dictionary<string, string> Events = new Dictionary<string, string>()
+        {
+           { "Name",       "Name" },
+           {"Anzahl",      "AnzahlPersonen" } ,
+           {"Datum",       "Datum"}  ,
+
         };
 
         public static DataGrid Produkt(DataGrid dg)
         {
-            //ctx.Produkt.Load();
-            //DataGrid dg = new DataGrid()
-            //{
-            //    AutoGenerateColumns = false,
-            //    IsSynchronizedWithCurrentItem = true,
-            //    ItemsSource = 
-            //};
+           return Rest(dg, Produkte);
+        }
+        public static DataGrid Produzent(DataGrid dg)
+        {
+            return Rest(dg, Produzenten);
 
-            foreach (var v in Prod)
+        }
+        public static DataGrid Event(DataGrid dg)
+        {
+            return Rest(dg, Events);
+        }
+
+        public static DataGrid Rest(DataGrid dg, Dictionary<string,string> list  )
+        {
+            foreach (var v in list)
             {
                 DataGridTextColumn column = new DataGridTextColumn()
                 {
                     Header = v.Key,
                     Binding = new Binding(v.Value),
                 };
-                dg.Columns.Add(column);               
+                dg.Columns.Add(column);
             }
             return dg;
-        }
-        public static DataGrid Produzenten()
-        {
-            return new DataGrid();
-        }
-        public static DataGrid Events()
-        {
-            return new DataGrid();
         }
     }
 }

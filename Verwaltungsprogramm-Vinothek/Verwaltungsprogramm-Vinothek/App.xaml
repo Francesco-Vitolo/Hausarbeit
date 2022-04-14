@@ -12,6 +12,7 @@
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Icon" Value="favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>
+            <Setter Property="FontSize" Value="18"/>
             <!--<Setter Property="Background" Value="#FF97A2AC"/>-->
             <Setter Property="WindowStyle" Value="None"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -66,8 +67,29 @@
             </Style.Resources>
         </Style>
 
-        <Style x:Key="Datagrid" TargetType="Border">
-            
+        <Style TargetType="TextBox">
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Border.Style>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden">
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
     </Application.Resources>
 </Application>

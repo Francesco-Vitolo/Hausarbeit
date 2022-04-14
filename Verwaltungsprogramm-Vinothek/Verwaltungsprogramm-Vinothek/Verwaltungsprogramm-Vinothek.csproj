@@ -99,6 +99,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vinothek.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Window_Abfrage.xaml.cs">
+      <DependentUpon>Window_Abfrage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window_Add_Product.xaml.cs">
       <DependentUpon>Window_Add_Product.xaml</DependentUpon>
     </Compile>
@@ -106,6 +109,10 @@
       <DependentUpon>Window_StartUp.xaml</DependentUpon>
     </Compile>
     <Page Include="Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Abfrage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -163,6 +170,9 @@
     </Resource>
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="unnamed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Content Include="Vinothek.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Vinothek.Context.cs</LastGenOutput>

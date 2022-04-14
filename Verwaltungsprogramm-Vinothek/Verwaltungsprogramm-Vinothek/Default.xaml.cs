@@ -14,7 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
         public Default()
         {
             InitializeComponent();
-            currentWindow = Application.Current.Windows.OfType<Window>().Last(); //aktuelles Fenster
+            currentWindow = Application.Current.Windows.OfType<Window>().LastOrDefault(); //aktuelles Fenster
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -38,12 +38,29 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            if(Application.Current.Windows.Count == 1) //Wenn Hauptmenü, dann App schließen
-            Application.Current.Shutdown();
+            if (Application.Current.Windows.Count == 1) //Wenn Hauptmenü, dann App schließen
+            {
+                Window_Abfrage w = new Window_Abfrage("Anwendung schließen?");
+                w.ShowDialog();
+            }
             else
             {
-                currentWindow.Close(); 
-                Application.Current.Windows.OfType<Window>().Last().Show(); //sonst Fenster schließen
+                Window_Abfrage w = new Window_Abfrage("Fenster schließen?");
+                w.ShowDialog();
+            }
+        }
+
+        private void btn_prev(object sender, RoutedEventArgs e)
+        {
+            if (Application.Current.Windows.Count > 1)
+            {
+                Application.Current.Windows.OfType<Window>().LastOrDefault().Close();
+                Application.Current.MainWindow.Show();
+            }
+            else
+            {
+                Application.Current.Shutdown();
+                System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
             }
         }
     }

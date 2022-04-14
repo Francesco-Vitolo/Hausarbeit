@@ -47,3 +47,5 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.CopyComplete
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.exe
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.pdb
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Abfrage.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Abfrage.baml

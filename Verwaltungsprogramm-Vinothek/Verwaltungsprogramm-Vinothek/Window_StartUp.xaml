@@ -24,7 +24,7 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
-        <!--<Image Grid.Row="2" Grid.Column="2" Source="unnamed.png"/>-->
+            <Image Source="unnamed.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
             <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3">
                 <UniformGrid.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
@@ -35,7 +35,7 @@
             </UniformGrid>
         </Grid>
 
-        <Grid x:Name="Grid_ListeProdukte" Visibility="Hidden">
+        <Grid x:Name="Grid_Liste" Visibility="Hidden">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="8*"/>
@@ -50,45 +50,29 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="50" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" />
+            <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="75" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" Name="tbSearch"/>
 
             <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
-                <Button Height="70" Width="70" Background="White" Style="{StaticResource Button_Default}">
+                <Button Height="70" Width="70" Background="White" Style="{StaticResource Button_Default}" Click="btn_Search_Click">
                     <Image Source="Lupe.png"  Margin="5"/>
                 </Button>
                 <Button x:Name="Add" Content="+"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Add_Click" />
             </WrapPanel>
 
             <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" Grid.ColumnSpan="2">
-                <!--<Grid x:Name="data">-->
-                    <DataGrid  Name="data"
+                <DataGrid  Name="data"
                     ItemsSource="{Binding }"
                     AutoGenerateColumns="False"
-                    IsSynchronizedWithCurrentItem="True">
-                    <!--<DataGrid.Columns>
-                        <DataGridTextColumn Header="Moin" />
-                        <DataGridTextColumn Header="Moin"/>
-                        <DataGridTextColumn Header="Moin"/>
-                        <DataGridTextColumn Header="Moin"/>
-                        <DataGridTextColumn Header="Moin"/>
-                        <DataGridTextColumn Header="Moin"/>
-                    </DataGrid.Columns>-->
-                    </DataGrid>
-                <!--</Grid>-->
+                    IsSynchronizedWithCurrentItem="True"
+                    CanUserAddRows="False"
+                    CanUserDeleteRows="False" 
+                    IsReadOnly="True" 
+                    MouseDoubleClick="SelectItem_DoubleClick"/>
             </Border>
 
             <StackPanel Grid.Column="2" Grid.Row="2">
-   
+
             </StackPanel>
-            
-        </Grid>
-
-
-        <Grid x:Name="Grid_ListeProduzenten" Visibility="Hidden">
-
-        </Grid>
-
-        <Grid x:Name="Grid_ListeEvents" Visibility="Hidden">
 
         </Grid>
     </Grid>
