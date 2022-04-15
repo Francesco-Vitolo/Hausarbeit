@@ -13,6 +13,8 @@
             <Setter Property="Icon" Value="favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="18"/>
+            <Setter Property="Height" Value="900"/>
+            <Setter Property="Width" Value="1600"/>
             <!--<Setter Property="Background" Value="#FF97A2AC"/>-->
             <Setter Property="WindowStyle" Value="None"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -27,12 +29,14 @@
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FontSize" Value="22" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
 
                         <Border BorderThickness="1" BorderBrush="Black" Margin="10">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>

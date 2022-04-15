@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek"
         mc:Ignorable="d"
-        Title="Window_StartUp" Height="900" Width="1600">
+        Title="Window_StartUp">
 
     <Grid Name="MainGrid">
         <local:Default/>
+            <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF464646" Name="hidebackbutton" Width="32" Height="32"/>
 
         <Grid Name="Grid_Menu">
             <Grid.RowDefinitions>

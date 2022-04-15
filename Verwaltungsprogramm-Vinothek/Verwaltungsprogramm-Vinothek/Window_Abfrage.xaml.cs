@@ -36,7 +36,7 @@ namespace Verwaltungsprogramm_Vinothek
             }
             else
             {
-                Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //Abfagre Fenster
+                Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //Abfrage Fenster
                 Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //aktuelles Fenster
                 Application.Current.Windows.OfType<Window>().LastOrDefault().Show();
             }

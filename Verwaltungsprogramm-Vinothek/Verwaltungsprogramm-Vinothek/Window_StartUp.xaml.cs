@@ -33,6 +33,7 @@ namespace Verwaltungsprogramm_Vinothek
             string grid = b.Name;
             Grid_Menu.Visibility = Visibility.Hidden;
             Grid_Liste.Visibility = Visibility.Visible;
+            hidebackbutton.Visibility = Visibility.Hidden;
             switch (grid)
             {
                 case "ListeProdukte":                   
@@ -106,8 +107,25 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            MessageBox.Show(data.SelectedItem.ToString());
-            // new Window Wein bearbeiten/anschauen
+            ItemInfos.Show(collectionView.CurrentItem,location);
+
+            //class ItemInfos
+            //switch(location)
+            //{
+            //    case "ListeProdukte":
+            //        Produkt selected_produkt = (Produkt)collectionView.CurrentItem;
+            //        Window_Wein WW = new Window_Wein(selected_produkt);
+            //        WW.ShowDialog();
+            //        break;
+            //    case "ListeProduzenten":
+            //        Produzent selected_produzent = (Produzent)collectionView.CurrentItem;
+            //        Window_Produzent WP = new Window_Produzent(selected_produzent);
+            //        WP.ShowDialog();
+            //        break;
+            //    case "ListeEvents":
+
+            //        break;                    
+            //}
         }
     }
 }

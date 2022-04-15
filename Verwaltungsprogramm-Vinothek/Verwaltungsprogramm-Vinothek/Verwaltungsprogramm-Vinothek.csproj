@@ -78,11 +78,15 @@
     <Compile Include="EventPos.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemInfos.cs" />
     <Compile Include="Produkt.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="Produzent.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Uc_Produkt.xaml.cs">
+      <DependentUpon>Uc_Produkt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vinothek.Context.cs">
       <AutoGen>True</AutoGen>
@@ -105,10 +109,23 @@
     <Compile Include="Window_Add_Product.xaml.cs">
       <DependentUpon>Window_Add_Product.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_PDF-Viewer.xaml.cs">
+      <DependentUpon>Window_PDF-Viewer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window_Produzent.xaml.cs">
+      <DependentUpon>Window_Produzent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window_StartUp.xaml.cs">
       <DependentUpon>Window_StartUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_Wein.xaml.cs">
+      <DependentUpon>Window_Wein.xaml</DependentUpon>
+    </Compile>
     <Page Include="Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Uc_Produkt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -120,7 +137,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Window_PDF-Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Produzent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window_StartUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Wein.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

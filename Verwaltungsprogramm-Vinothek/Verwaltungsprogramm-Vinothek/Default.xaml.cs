@@ -11,10 +11,20 @@ namespace Verwaltungsprogramm_Vinothek
     public partial class Default : UserControl
     {
         Window currentWindow;
+        private Window MainWindow = Application.Current.MainWindow;
         public Default()
         {
             InitializeComponent();
             currentWindow = Application.Current.Windows.OfType<Window>().LastOrDefault(); //aktuelles Fenster
+            if (Application.Current.Windows.Count > 1)
+            {
+                MainWindow.Hide();
+                currentWindow.Focus();
+                if (MainWindow.WindowState == WindowState.Maximized)
+                    currentWindow.WindowState = WindowState.Maximized;
+            }
+            //else
+            //    MainWindow.Show();
         }
 
         private void Minimize_Click(object sender, RoutedEventArgs e)
@@ -52,10 +62,18 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void btn_prev(object sender, RoutedEventArgs e)
         {
+            currentWindow = Application.Current.Windows.OfType<Window>().LastOrDefault();
             if (Application.Current.Windows.Count > 1)
             {
-                Application.Current.Windows.OfType<Window>().LastOrDefault().Close();
-                Application.Current.MainWindow.Show();
+                bool max = false;
+                if (currentWindow.WindowState == WindowState.Maximized)
+                {
+                    max = true;
+                }
+                currentWindow.Close();
+                MainWindow.Show();
+                if (max)
+                currentWindow.WindowState = WindowState.Maximized;
             }
             else
             {
