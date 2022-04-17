@@ -14,7 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
     
     public partial class EventPos
     {
-        public int ID_Veransatultung { get; set; }
+        public int ID_Veranstaltung { get; set; }
         public int ID_Produkt { get; set; }
     }
 }

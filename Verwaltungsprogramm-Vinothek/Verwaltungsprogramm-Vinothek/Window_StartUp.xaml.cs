@@ -107,7 +107,7 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ItemInfos.Show(collectionView.CurrentItem,location);
+            ItemInfos.Show(collectionView.CurrentItem, location);
 
             //class ItemInfos
             //switch(location)

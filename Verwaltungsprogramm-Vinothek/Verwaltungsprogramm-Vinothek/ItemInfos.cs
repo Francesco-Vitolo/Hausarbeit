@@ -10,21 +10,26 @@ namespace Verwaltungsprogramm_Vinothek
     {
         public static void Show(object o, string location)
         {
-            switch (location)
+            if (o != null)
             {
-                case "ListeProdukte":
-                    Produkt selected_produkt = (Produkt)o;
-                    Window_Wein WW = new Window_Wein(selected_produkt);
-                    WW.ShowDialog();
-                    break;
-                case "ListeProduzenten":
-                    Produzent selected_produzent = (Produzent)o;
-                    Window_Produzent WP = new Window_Produzent(selected_produzent);
-                    WP.ShowDialog();
-                    break;
-                case "ListeEvents":
-                    //...
-                    break;
+                switch (location)
+                {
+                    case "ListeProdukte":
+                        Produkt selected_produkt = (Produkt)o;
+                        Window_Wein WW = new Window_Wein(selected_produkt);
+                        WW.ShowDialog();
+                        break;
+                    case "ListeProduzenten":
+                        Produzent selected_produzent = (Produzent)o;
+                        Window_Produzent WP = new Window_Produzent(selected_produzent);
+                        WP.ShowDialog();
+                        break;
+                    case "ListeEvents":
+                        Event selected_event = (Event)o;
+                        Window_Veranstaltung WV = new Window_Veranstaltung(selected_event);
+                        WV.ShowDialog();
+                        break;
+                }
             }
         }
     }

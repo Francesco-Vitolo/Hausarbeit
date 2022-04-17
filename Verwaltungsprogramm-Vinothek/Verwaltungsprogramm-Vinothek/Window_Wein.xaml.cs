@@ -24,14 +24,29 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            Background = Brushes.Gray;
             prod = p;
-            t.Text = prod.Name;            
+            DataContext = prod;
         }
 
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
         {
             Window_PDF_Viewer WPDF = new Window_PDF_Viewer(@"C:\Users\Francesco\Desktop\Docs\Moin_12_1.pdf");
             WPDF.ShowDialog();
+        }
+
+        private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
+        {
+            if (felder.IsEnabled == false)
+            {
+                felder.IsEnabled = true;
+                Background = Brushes.White;
+            }
+            else
+            {
+                felder.IsEnabled = false;
+                Background = Brushes.Gray;
+            }
         }
     }
 }

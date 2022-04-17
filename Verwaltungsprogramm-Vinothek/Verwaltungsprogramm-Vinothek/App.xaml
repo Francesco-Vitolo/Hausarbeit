@@ -10,11 +10,11 @@
         </Style>                
         
         <Style x:Key="Window_Default" TargetType="Window">
-            <Setter Property="Icon" Value="favicon.ico"/>
+            <Setter Property="Icon" Value="Pictures\favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Height" Value="900"/>
-            <Setter Property="Width" Value="1600"/>
+            <Setter Property="Width" Value="1800"/>
             <!--<Setter Property="Background" Value="#FF97A2AC"/>-->
             <Setter Property="WindowStyle" Value="None"/>
             <Setter Property="BorderBrush" Value="Black"/>
@@ -34,9 +34,9 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-
-                        <Border BorderThickness="1" BorderBrush="Black" Margin="10">
-                            <ContentPresenter HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+                        <Border >
+                            <!--BorderThickness="1" BorderBrush="Black" Margin="10" Height="150" Width="250">-->
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>

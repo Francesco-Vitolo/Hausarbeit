@@ -36,10 +36,9 @@ namespace Verwaltungsprogramm_Vinothek
         };
         static Dictionary<string, string> Events = new Dictionary<string, string>()
         {
+           {"Datum",       "Datum"}  ,
            { "Name",       "Name" },
            {"Anzahl",      "AnzahlPersonen" } ,
-           {"Datum",       "Datum"}  ,
-
         };
 
         public static DataGrid Produkt(DataGrid dg)
@@ -56,9 +55,9 @@ namespace Verwaltungsprogramm_Vinothek
             return Rest(dg, Events);
         }
 
-        public static DataGrid Rest(DataGrid dg, Dictionary<string,string> list  )
+        public static DataGrid Rest(DataGrid dg, Dictionary<string,string> dict  )
         {
-            foreach (var v in list)
+            foreach (var v in dict)
             {
                 DataGridTextColumn column = new DataGridTextColumn()
                 {

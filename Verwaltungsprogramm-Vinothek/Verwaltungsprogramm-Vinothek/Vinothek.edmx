@@ -87,10 +87,10 @@
         </EntityType>
         <EntityType Name="EventPos">
           <Key>
-            <PropertyRef Name="ID_Veransatultung" />
+            <PropertyRef Name="ID_Veranstaltung" />
             <PropertyRef Name="ID_Produkt" />
           </Key>
-          <Property Name="ID_Veransatultung" Type="Int32" Nullable="false" />
+          <Property Name="ID_Veranstaltung" Type="Int32" Nullable="false" />
           <Property Name="ID_Produkt" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Produkt">
@@ -163,7 +163,7 @@
           <EntitySetMapping Name="EventPos">
             <EntityTypeMapping TypeName="testModel.EventPos">
               <MappingFragment StoreEntitySet="EventPos">
-                <ScalarProperty Name="ID_Veransatultung" ColumnName="ID_Veransatultung" />
+                <ScalarProperty Name="ID_Veranstaltung" ColumnName="ID_Veransatultung" />
                 <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
               </MappingFragment>
             </EntityTypeMapping>

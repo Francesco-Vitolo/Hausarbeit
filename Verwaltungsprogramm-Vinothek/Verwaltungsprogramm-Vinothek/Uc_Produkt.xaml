@@ -36,15 +36,15 @@
             <TextBlock Text="Alkoholgehalt"/>
 
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Width="564">
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
-            <TextBox/>
+        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch">
+            <TextBox Text="{Binding Name}"/>
+            <TextBox Text="{Binding Art}"/>
+            <TextBox Text="{Binding Qualitätssiegel}"/>
+            <TextBox Text="{Binding Jahrgang}"/>
+            <TextBox Text="{Binding Rebsorten}"/>
+            <TextBox Text="{Binding Produzent.Name}"/>
+            <TextBox Text="{Binding Geschmack}"/>
+            <TextBox Text="{Binding Alkoholgehalt}"/>
         </StackPanel>
     </Grid>
 </UserControl>

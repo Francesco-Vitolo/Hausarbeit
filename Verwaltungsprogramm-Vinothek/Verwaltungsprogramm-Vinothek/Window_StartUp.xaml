@@ -11,7 +11,7 @@
         <local:Default/>
             <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF464646" Name="hidebackbutton" Width="32" Height="32"/>
 
-        <Grid Name="Grid_Menu">
+        <Grid Name="Grid_Menu" d:IsHidden="True">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
@@ -25,18 +25,18 @@
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
 
-            <Image Source="unnamed.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
+            <Image Source="Pictures\unnamed.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
             <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3">
                 <UniformGrid.Resources>
                     <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
                 </UniformGrid.Resources>
-                <Button Name="ListeProdukte" Content="Produkte" Click="Button_MainMenu"/>
-                <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
-                <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
+                <Button Name="ListeProdukte" Content="   Produkte   " Click="Button_MainMenu"/>
+                <Button Name="ListeProduzenten" Content="   Produzenten   " Click="Button_MainMenu"/>
+                <Button Name="ListeEvents"  Content="   Events   " Click="Button_MainMenu"/>
             </UniformGrid>
         </Grid>
 
-        <Grid x:Name="Grid_Liste" Visibility="Hidden">
+        <Grid x:Name="Grid_Liste" Visibility="Hidden" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="8*"/>
@@ -54,8 +54,8 @@
             <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="75" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" Name="tbSearch"/>
 
             <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
-                <Button Height="70" Width="70" Background="White" Style="{StaticResource Button_Default}" Click="btn_Search_Click">
-                    <Image Source="Lupe.png"  Margin="5"/>
+                <Button Height="70" Width="70" Background="White" Click="btn_Search_Click">
+                    <Image Source="Pictures\Lupe.png"  Margin="1"/>
                 </Button>
                 <Button x:Name="Add" Content="+"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Add_Click" />
             </WrapPanel>

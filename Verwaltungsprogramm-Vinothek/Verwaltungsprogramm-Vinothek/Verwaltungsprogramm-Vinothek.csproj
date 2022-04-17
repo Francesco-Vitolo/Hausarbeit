@@ -118,6 +118,9 @@
     <Compile Include="Window_StartUp.xaml.cs">
       <DependentUpon>Window_StartUp.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_Veranstaltung.xaml.cs">
+      <DependentUpon>Window_Veranstaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window_Wein.xaml.cs">
       <DependentUpon>Window_Wein.xaml</DependentUpon>
     </Compile>
@@ -146,6 +149,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window_StartUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Veranstaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,17 +196,20 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="favicon.ico">
+    <Resource Include="Pictures\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Lupe.png">
+    <Resource Include="Pictures\Lupe.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="unnamed.png">
+    <Resource Include="Pictures\unnamed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Pictures\umschalten.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
     <Content Include="Vinothek.Context.tt">
@@ -215,6 +225,9 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="User-Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
