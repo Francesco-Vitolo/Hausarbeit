@@ -28,11 +28,12 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            data = CreateDataGrid.Produkt(data);
+            prodz.DataContext = produzent;
+            CreateDataGrid.Produkt(data);
             ctx.Produkt.Load();
             Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList();
             collectionView = CollectionViewSource.GetDefaultView(Produkte);
-            DataContext = collectionView;
+            data.DataContext = collectionView;
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)

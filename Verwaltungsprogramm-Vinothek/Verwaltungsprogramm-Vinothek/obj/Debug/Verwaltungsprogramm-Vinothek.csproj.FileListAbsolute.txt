@@ -27,7 +27,6 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.xml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\EntityFramework.resources.dll
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.AssemblyReference.cache
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Default.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Uc_Produkt.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Abfrage.g.cs
@@ -36,7 +35,7 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Produzent.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_StartUp.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Veranstaltung.g.cs
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Wein.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Produkt.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\App.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek_Content.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\GeneratedInternalTypeHelper.g.cs
@@ -51,7 +50,7 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Produzent.baml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_StartUp.baml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Veranstaltung.baml
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Wein.baml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Produkt.baml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.g.resources
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm_Vinothek.Properties.Resources.resources
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.GenerateResource.cache
@@ -59,3 +58,11 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.CopyComplete
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.exe
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.pdb
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Uc_Produzent.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Uc_Produzent.baml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Uc_Veranstaltung.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Uc_Veranstaltung.baml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Add_Produzent.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Add_Produzent.baml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Add_Veranstaltung.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Window_Add_Veranstaltung.baml

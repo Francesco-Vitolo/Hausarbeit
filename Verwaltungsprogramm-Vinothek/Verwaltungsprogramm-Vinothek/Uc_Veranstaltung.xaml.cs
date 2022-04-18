@@ -16,27 +16,13 @@ using System.Windows.Shapes;
 namespace Verwaltungsprogramm_Vinothek
 {
     /// <summary>
-    /// Interaktionslogik für Uc_Produkt.xaml
+    /// Interaktionslogik für Uc_Veranstaltung.xaml
     /// </summary>
-    public partial class Uc_Produkt : UserControl
+    public partial class Uc_Veranstaltung : UserControl
     {
-        private List<TextBox> tbs = new List<TextBox>();
-        public Uc_Produkt()
+        public Uc_Veranstaltung()
         {
             InitializeComponent();
-            foreach (var v in stackpanel.Children)
-            {
-                if (v.GetType() == typeof(TextBox))
-                {
-                    tbs.Add((TextBox)v);
-                }
-            }
         }
-
-        public List<TextBox> GetTbs()
-        {
-            return tbs;
-        }
-
     }
 }

@@ -26,18 +26,19 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            data = CreateDataGrid.Produkt(data);
-            EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veransatultung).ToList();
+            DataContext = veranstaltung;
+            CreateDataGrid.Produkt(data);
+            EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList();
             foreach (var v in EVNT_POS)
             {
                 PRODS.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == v.ID_Produkt));
             }
-            DataContext = PRODS;
+            data.DataContext = PRODS;
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ItemInfos.Show(data.SelectedItem, "ListeEvents");
+            ItemInfos.Show(data.SelectedItem, "ListeProdukte");
         }
     }
 }

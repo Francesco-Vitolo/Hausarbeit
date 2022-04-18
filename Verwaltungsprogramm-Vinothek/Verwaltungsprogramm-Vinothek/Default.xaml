@@ -25,7 +25,7 @@
     <Grid x:Name="Titlebar" VerticalAlignment="Top" Background="#FF464646" Height="32" MouseDown="MoveWindow">
         <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left">
             <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Click="btn_prev" />
-            <Button x:Name="Vor" Background="#FF6990B8" Content="🢣" IsEnabled="False"/>
+            <!--<Button x:Name="Vor" Background="#FF6990B8" Content="🢣" IsEnabled="False"/>-->
         </WrapPanel>
 
 
@@ -54,7 +54,7 @@
             <Button x:Name="Exit" Content="X" Click="Exit_Click" Background="#FFA85D5D" />
         </WrapPanel>
 
-        <Image Source="unnamed.png" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="75"/>
+        <!--<Image Source="Pictures\unnamed.png" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="75"/>-->
 
     </Grid>
 </UserControl>

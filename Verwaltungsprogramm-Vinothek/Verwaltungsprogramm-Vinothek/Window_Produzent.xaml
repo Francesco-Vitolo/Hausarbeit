@@ -8,7 +8,7 @@
         Title="Window_Produzent">
     <Grid>
         <local:Default/>
-        <Grid Margin="0,32,0,0">
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
@@ -16,11 +16,11 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="10*"/>
+                <RowDefinition Height="9*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-
+            <local:Uc_Produzent Grid.Row="1" Grid.Column="1" x:Name="prodz"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"
                     ItemsSource="{Binding }"
                     AutoGenerateColumns="False"

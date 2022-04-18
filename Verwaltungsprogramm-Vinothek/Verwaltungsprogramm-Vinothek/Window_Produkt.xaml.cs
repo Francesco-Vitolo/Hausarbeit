@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,18 +16,21 @@ using System.Windows.Shapes;
 namespace Verwaltungsprogramm_Vinothek
 {
     /// <summary>
-    /// Interaktionslogik für Window_Wein.xaml
+    /// Interaktionslogik für Window_Produkt.xaml
     /// </summary>
-    public partial class Window_Wein : Window
+    public partial class Window_Produkt : Window
     {
         private Produkt prod;
-        public Window_Wein(Produkt p)
+        private Vinothek ctx = new Vinothek();
+        public Window_Produkt(Produkt p)
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             Background = Brushes.Gray;
             prod = p;
-            DataContext = prod;
+            ctx.Produkt.Load();
+            DataContext = ctx.Produkt.Local;
+            felder.DataContext = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);            
         }
 
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
@@ -47,6 +51,11 @@ namespace Verwaltungsprogramm_Vinothek
                 felder.IsEnabled = false;
                 Background = Brushes.Gray;
             }
+        }
+
+        private void saveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            ctx.SaveChanges();
         }
     }
 }

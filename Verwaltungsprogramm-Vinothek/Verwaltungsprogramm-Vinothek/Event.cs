@@ -14,7 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
     
     public partial class Event
     {
-        public int ID_Veransatultung { get; set; }
+        public int ID_Veranstaltung { get; set; }
         public string Name { get; set; }
         public Nullable<int> AnzahlPersonen { get; set; }
         public Nullable<System.DateTime> Datum { get; set; }

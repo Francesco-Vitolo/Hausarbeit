@@ -88,6 +88,12 @@
     <Compile Include="Uc_Produkt.xaml.cs">
       <DependentUpon>Uc_Produkt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Uc_Produzent.xaml.cs">
+      <DependentUpon>Uc_Produzent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Uc_Veranstaltung.xaml.cs">
+      <DependentUpon>Uc_Veranstaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vinothek.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -109,6 +115,12 @@
     <Compile Include="Window_Add_Product.xaml.cs">
       <DependentUpon>Window_Add_Product.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Window_Add_Produzent.xaml.cs">
+      <DependentUpon>Window_Add_Produzent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Window_Add_Veranstaltung.xaml.cs">
+      <DependentUpon>Window_Add_Veranstaltung.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Window_PDF-Viewer.xaml.cs">
       <DependentUpon>Window_PDF-Viewer.xaml</DependentUpon>
     </Compile>
@@ -121,8 +133,8 @@
     <Compile Include="Window_Veranstaltung.xaml.cs">
       <DependentUpon>Window_Veranstaltung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Window_Wein.xaml.cs">
-      <DependentUpon>Window_Wein.xaml</DependentUpon>
+    <Compile Include="Window_Produkt.xaml.cs">
+      <DependentUpon>Window_Produkt.xaml</DependentUpon>
     </Compile>
     <Page Include="Default.xaml">
       <SubType>Designer</SubType>
@@ -132,11 +144,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Uc_Produzent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Uc_Veranstaltung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window_Abfrage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Window_Add_Product.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Add_Produzent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Window_Add_Veranstaltung.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -156,7 +184,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Window_Wein.xaml">
+    <Page Include="Window_Produkt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

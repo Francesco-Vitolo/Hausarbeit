@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,27 +18,14 @@ using System.Windows.Shapes;
 namespace Verwaltungsprogramm_Vinothek
 {
     /// <summary>
-    /// Interaktionslogik für Uc_Produkt.xaml
+    /// Interaktionslogik für Uc_DG_Produkte.xaml
     /// </summary>
-    public partial class Uc_Produkt : UserControl
+    public partial class Uc_DG_Produkte : UserControl
     {
-        private List<TextBox> tbs = new List<TextBox>();
-        public Uc_Produkt()
+        public Uc_DG_Produkte()
         {
             InitializeComponent();
-            foreach (var v in stackpanel.Children)
-            {
-                if (v.GetType() == typeof(TextBox))
-                {
-                    tbs.Add((TextBox)v);
-                }
-            }
-        }
 
-        public List<TextBox> GetTbs()
-        {
-            return tbs;
         }
-
     }
 }

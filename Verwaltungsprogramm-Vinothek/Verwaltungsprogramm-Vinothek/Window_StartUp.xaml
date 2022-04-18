@@ -9,7 +9,7 @@
 
     <Grid Name="MainGrid">
         <local:Default/>
-            <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF464646" Name="hidebackbutton" Width="32" Height="32"/>
+         <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF464646" Name="hidebackbutton" Width="32" Height="32"/>
 
         <Grid Name="Grid_Menu" d:IsHidden="True">
             <Grid.RowDefinitions>
@@ -34,6 +34,9 @@
                 <Button Name="ListeProduzenten" Content="   Produzenten   " Click="Button_MainMenu"/>
                 <Button Name="ListeEvents"  Content="   Events   " Click="Button_MainMenu"/>
             </UniformGrid>
+            <Viewbox Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <Calendar Background="AliceBlue" />
+            </Viewbox>
         </Grid>
 
         <Grid x:Name="Grid_Liste" Visibility="Hidden" >
@@ -52,15 +55,17 @@
             </Grid.RowDefinitions>
 
             <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="75" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" Name="tbSearch"/>
-
-            <WrapPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
-                <Button Height="70" Width="70" Background="White" Click="btn_Search_Click">
+            <Button Height="70" Width="70" Background="White" Click="btn_Search_Click" Grid.Column="2" Grid.Row="1">
                     <Image Source="Pictures\Lupe.png"  Margin="1"/>
                 </Button>
+            <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center">
                 <Button x:Name="Add" Content="+"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Add_Click" />
-            </WrapPanel>
+                <Button x:Name="Refresh" Content="Refresh"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Refresh_Click" />
+                <Button x:Name="Delete" Content="Del"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Delete_Click" />
+                <Button x:Name="Duplicate" Content="Copy"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Duplicate_Click" />
+            </StackPanel>
 
-            <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" Grid.ColumnSpan="2">
+            <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" >
                 <DataGrid  Name="data"
                     ItemsSource="{Binding }"
                     AutoGenerateColumns="False"
@@ -70,11 +75,6 @@
                     IsReadOnly="True" 
                     MouseDoubleClick="SelectItem_DoubleClick"/>
             </Border>
-
-            <StackPanel Grid.Column="2" Grid.Row="2">
-
-            </StackPanel>
-
         </Grid>
     </Grid>
 </Window>

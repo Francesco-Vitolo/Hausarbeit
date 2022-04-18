@@ -16,7 +16,7 @@ namespace Verwaltungsprogramm_Vinothek
                 {
                     case "ListeProdukte":
                         Produkt selected_produkt = (Produkt)o;
-                        Window_Wein WW = new Window_Wein(selected_produkt);
+                        Window_Produkt WW = new Window_Produkt(selected_produkt);
                         WW.ShowDialog();
                         break;
                     case "ListeProduzenten":

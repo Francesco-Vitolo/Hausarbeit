@@ -5,8 +5,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="800" d:DesignWidth="800">
     <Grid>
+        <Grid.Resources>
+            <Style TargetType="TextBlock">
+                <Setter Property="Margin" Value="8"/>
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+        </Grid.Resources>
         <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
@@ -15,17 +21,12 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="4*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <StackPanel Grid.Column="1" Grid.Row="1">
-            <StackPanel.Resources>
-                <Style TargetType="TextBlock">
-                    <Setter Property="Margin" Value="8"/>
-                    <Setter Property="FontSize" Value="24"/>
-                </Style>
-            </StackPanel.Resources>
+        <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Name"/>
             <TextBlock Text="Typ"/>
             <TextBlock Text="Bezeichnung"/>
@@ -36,7 +37,7 @@
             <TextBlock Text="Alkoholgehalt"/>
 
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch">
+        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Name="stackpanel">
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding Art}"/>
             <TextBox Text="{Binding Qualitätssiegel}"/>
@@ -45,6 +46,10 @@
             <TextBox Text="{Binding Produzent.Name}"/>
             <TextBox Text="{Binding Geschmack}"/>
             <TextBox Text="{Binding Alkoholgehalt}"/>
+        </StackPanel>
+        <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1">
+            <TextBlock Text="Beschreibung" />
+            <TextBox Text="{Binding Beschreibung}"  Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
         </StackPanel>
     </Grid>
 </UserControl>
