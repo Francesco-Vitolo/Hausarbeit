@@ -49,6 +49,9 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="FontWeight" Value="ExtraBold"/>
                             </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="Blue"/>
+                            </Trigger>
                         </ControlTemplate.Triggers>
 
                     </ControlTemplate>

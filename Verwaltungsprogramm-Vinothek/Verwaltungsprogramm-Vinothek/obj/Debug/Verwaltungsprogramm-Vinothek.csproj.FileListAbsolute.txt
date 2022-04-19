@@ -69,3 +69,10 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.CopyComplete
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.exe
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.pdb
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\PdfSharp.Charting.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\PdfSharp.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\PdfSharp.xml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\PdfSharp.Charting.xml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\EntityFramework.SqlServer.resources.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\PdfSharp.resources.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\PdfSharp.Charting.resources.dll

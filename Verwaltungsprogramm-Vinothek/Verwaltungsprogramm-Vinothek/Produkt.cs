@@ -24,9 +24,8 @@ namespace Verwaltungsprogramm_Vinothek
         public Nullable<int> Jahrgang { get; set; }
         public string Beschreibung { get; set; }
         public int ID_Produzent { get; set; }
-        public Nullable<int> ID_Picture { get; set; }
+        public byte[] Picture { get; set; }
     
         public virtual Produzent Produzent { get; set; }
-        public virtual Pictures Pictures { get; set; }
     }
 }

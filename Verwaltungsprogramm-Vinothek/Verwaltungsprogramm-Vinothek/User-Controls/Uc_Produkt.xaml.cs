@@ -23,7 +23,7 @@ namespace Verwaltungsprogramm_Vinothek
         private List<TextBox> tbs = new List<TextBox>();
         public Uc_Produkt()
         {
-            InitializeComponent();
+            InitializeComponent();            
             foreach (var v in stackpanel.Children)
             {
                 if (v.GetType() == typeof(TextBox))

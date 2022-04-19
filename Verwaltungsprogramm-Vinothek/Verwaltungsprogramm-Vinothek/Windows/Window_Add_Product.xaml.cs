@@ -16,7 +16,6 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private Vinothek ctx = new Vinothek();
         private Produkt newProd = new Produkt();
-        private Pictures newPic = new Pictures();
         public Window_Add_Product()
         {
             InitializeComponent();
@@ -75,12 +74,6 @@ namespace Verwaltungsprogramm_Vinothek
                     ctx.SaveChanges();
                     newProd.Produzent = produzent;
                 }
-
-                if (newPic.Picture != null)
-                {
-                    ctx.SaveChanges();
-                    newProd.ID_Picture = newPic.ID_Picture;
-                }
                 ctx.Produkt.Add(newProd);
                 ctx.SaveChanges();
                 System.Windows.Application.Current.MainWindow.Show();
@@ -95,8 +88,7 @@ namespace Verwaltungsprogramm_Vinothek
             {
                 ImgSrc.Content = imgPath;
                 byte[] b = ImageConverter.ConvertImageToByteArray(imgPath);
-                newPic.Picture = b;
-                ctx.Pictures.Add(newPic);
+                newProd.Picture = b;
             }
 
         }

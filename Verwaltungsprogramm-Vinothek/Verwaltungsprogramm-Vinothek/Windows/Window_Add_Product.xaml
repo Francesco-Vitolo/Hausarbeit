@@ -25,13 +25,6 @@
                 <RowDefinition Height="3*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-
-            <!--<Button Name="btnSave" Width="100" Height="100" Click="btnSave_Click">
-            <TextBlock Text="Save"/>
-            
-            --><!--<Image ... />--><!--
-            
-        </Button>-->
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <WrapPanel>
                     <Button Content="Bild hochladen" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildAuswählen"/>

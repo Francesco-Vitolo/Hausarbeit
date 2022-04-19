@@ -25,19 +25,17 @@ namespace Verwaltungsprogramm_Vinothek
         public Window_Produkt(Produkt p)
         {
             InitializeComponent();
+            ctx.Produkt.Load();
+            ctx.Produzent.Load();            
             prod = p;
             Style = FindResource("Window_Default") as Style;
-            Background = Brushes.Gray;
-            ctx.Produkt.Load();
-            ctx.Produzent.Load();
-            ctx.Pictures.Load();
-            DataContext = ctx.Produkt.Local;
-            felder.DataContext = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            pic.DataContext = ctx.Pictures.FirstOrDefault(x => x.ID_Picture == p.ID_Picture);
+            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            DataContext = prod;
         }
 
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
         {
+            //Ändern in byte[], weil in DB gespeichert
             Window_PDF_Viewer WPDF = new Window_PDF_Viewer(@"C:\Users\Francesco\Desktop\Docs\Moin_12_1.pdf");
             WPDF.ShowDialog();
         }
@@ -47,12 +45,12 @@ namespace Verwaltungsprogramm_Vinothek
             if (felder.IsEnabled == false)
             {
                 felder.IsEnabled = true;
-                Background = Brushes.White;
+                modus.Text = "anschauen";
             }
             else
             {
                 felder.IsEnabled = false;
-                Background = Brushes.Gray;
+                modus.Text = "bearbeiten";
             }
         }
 
@@ -61,6 +59,26 @@ namespace Verwaltungsprogramm_Vinothek
             ctx.SaveChanges();
             Close();
             Application.Current.MainWindow.Show();
+        }
+
+        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e)
+        {
+            string imgPath = SelectFile.Image();
+
+            if (imgPath != null)
+            {
+                byte[] b = ImageConverter.ConvertImageToByteArray(imgPath);
+                path.Content = imgPath;
+                prod.Picture = b;
+                pic.DataContext = null;
+                pic.DataContext = prod;
+            }
+
+        }
+
+        private void Button_Click_PDF(object sender, RoutedEventArgs e)
+        {
+            PDF.Create(prod);
         }
     }
 }

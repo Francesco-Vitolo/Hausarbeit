@@ -29,6 +29,5 @@ namespace Verwaltungsprogramm_Vinothek
         public virtual DbSet<EventPos> EventPos { get; set; }
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<Produzent> Produzent { get; set; }
-        public virtual DbSet<Pictures> Pictures { get; set; }
     }
 }

@@ -41,6 +41,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="PdfSharp, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=1.50.5147.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -72,9 +78,7 @@
     </Compile>
     <Compile Include="CreateDataGrid.cs" />
     <Compile Include="ImageConverter.cs" />
-    <Compile Include="Pictures.cs">
-      <DependentUpon>Vinothek.tt</DependentUpon>
-    </Compile>
+    <Compile Include="PDF.cs" />
     <Compile Include="SelectFile.cs" />
     <Compile Include="User-Controls\Default.xaml.cs">
       <DependentUpon>Default.xaml</DependentUpon>
