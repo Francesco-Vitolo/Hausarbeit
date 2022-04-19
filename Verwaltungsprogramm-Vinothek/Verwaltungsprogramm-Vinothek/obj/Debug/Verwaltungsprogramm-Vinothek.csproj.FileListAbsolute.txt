@@ -19,14 +19,7 @@ C:\Users\Francesco\Desktop\VisualStudioNeueProjekte\Verwaltungsprogramm-Vinothek
 C:\Users\Francesco\Desktop\VisualStudioNeueProjekte\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.CoreCompileInputs.cache
 C:\Users\Francesco\Desktop\VisualStudioNeueProjekte\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.exe
 C:\Users\Francesco\Desktop\VisualStudioNeueProjekte\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.pdb
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.exe.config
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.exe
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.pdb
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.dll
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.SqlServer.dll
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.xml
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.SqlServer.xml
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\EntityFramework.resources.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.AssemblyReference.cache
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\User-Controls\Default.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\User-Controls\Uc_Produkt.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\User-Controls\Uc_Produzent.g.cs
@@ -46,6 +39,14 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek_MarkupCompile.cache
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek_MarkupCompile.lref
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.exe.config
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.exe
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\Verwaltungsprogramm-Vinothek.pdb
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.xml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\EntityFramework.resources.dll
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\App.baml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\User-Controls\Default.baml
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\User-Controls\Uc_Produkt.baml
@@ -68,4 +69,3 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.CopyComplete
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.exe
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.pdb
-C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Verwaltungsprogramm-Vinothek.csproj.AssemblyReference.cache

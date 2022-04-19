@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing.Imaging;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -13,12 +16,14 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private Vinothek ctx = new Vinothek();
         private Produkt newProd = new Produkt();
+        private Pictures newPic = new Pictures();
         public Window_Add_Product()
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             ctx.Produkt.Load();
             ctx.Produzent.Load();
+            //ImgSrc.DataContext = img;
             //ComboBox v = test.GetComboBox();
             //var list = ctx.Produzent.ToList();
             //foreach (var i in list)
@@ -47,7 +52,7 @@ namespace Verwaltungsprogramm_Vinothek
 
             if (produzentName == "" || tbs[0].Text == "")
             {
-                MessageBox.Show("Bitte eingeben du HUND");
+                System.Windows.MessageBox.Show("Bitte eingeben du HUND");
                 return;
             }
             else
@@ -61,7 +66,7 @@ namespace Verwaltungsprogramm_Vinothek
                 }
                 else
                 {
-                    MessageBox.Show("Noch kein Produzent mit dem Namen vorhanden");
+                    System.Windows.MessageBox.Show("Noch kein Produzent mit dem Namen vorhanden");
                     Produzent produzent = new Produzent()
                     {
                         Name = produzentName
@@ -71,11 +76,53 @@ namespace Verwaltungsprogramm_Vinothek
                     newProd.Produzent = produzent;
                 }
 
+                if (newPic.Picture != null)
+                {
+                    ctx.SaveChanges();
+                    newProd.ID_Picture = newPic.ID_Picture;
+                }
                 ctx.Produkt.Add(newProd);
                 ctx.SaveChanges();
-                Application.Current.MainWindow.Show();
+                System.Windows.Application.Current.MainWindow.Show();
                 Close();
             }
         }
+        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e)
+        {
+            string imgPath = SelectFile.Image();
+            
+            if (imgPath != null)
+            {
+                ImgSrc.Content = imgPath;
+                byte[] b = ImageConverter.ConvertImageToByteArray(imgPath);
+                newPic.Picture = b;
+                ctx.Pictures.Add(newPic);
+            }
+
+        }
+
+        //private void Button_Click_BildausZwischenablage(object sender, RoutedEventArgs e)
+        //{
+        //    if (System.Windows.Clipboard.ContainsImage())
+        //    {
+        //        var image = System.Windows.Forms.Clipboard.GetImage();
+        //        newPic.Picture = ImageConverter.ImageToByteArray(image);
+        //        ctx.Pictures.Add(newPic);
+        //        ctx.SaveChanges();
+        //        //var saveFileDialog = new SaveFileDialog();
+        //        //saveFileDialog.Filter = "Portable Network Graphics (*.png)|*.png|JPEG-Image (*.jpg)|*.jpg";
+        //        //saveFileDialog.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+        //        //saveFileDialog.FileName = "test";
+        //        //if (saveFileDialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+        //        //{
+        //        //    ImageFormat format = imageFormats[saveFileDialog.FilterIndex - 1];
+        //        //    try //sonst allgemeiner Fehler in GDI+ bei 2 mal Methode hintereinander
+        //        //    {
+        //        //        image.Save(saveFileDialog.FileName, format);
+        //        //    }
+        //        //    catch { }
+        //    //    }
+        //    }
+        //}
     }
 }

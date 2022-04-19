@@ -44,8 +44,10 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -69,6 +71,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CreateDataGrid.cs" />
+    <Compile Include="ImageConverter.cs" />
+    <Compile Include="Pictures.cs">
+      <DependentUpon>Vinothek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SelectFile.cs" />
     <Compile Include="User-Controls\Default.xaml.cs">
       <DependentUpon>Default.xaml</DependentUpon>
     </Compile>

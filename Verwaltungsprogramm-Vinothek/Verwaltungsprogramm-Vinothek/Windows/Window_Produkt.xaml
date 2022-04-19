@@ -11,6 +11,7 @@
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
@@ -27,6 +28,7 @@
                 <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF" Style="{StaticResource Button_Default}"/>
                 <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" Style="{StaticResource Button_Default}"/>
             </UniformGrid>
+            <Image Grid.Row="0" Grid.Column="2" Source="{Binding Picture}" Name="pic" MaxHeight="720" VerticalAlignment="Top" Margin="0,100"/>
         </Grid>
     </Grid>
 </Window>

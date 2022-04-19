@@ -33,7 +33,12 @@
             
         </Button>-->
             <StackPanel Grid.Column="1" Grid.Row="1">
-                <TextBlock Text="Bild hochladen" FontSize="24" TextAlignment="Center"/>
+                <WrapPanel>
+                    <Button Content="Bild hochladen" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildAuswählen"/>
+                    <!--<Button Content="Aus Zwischenablage" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildausZwischenablage"/>-->
+                    <Label Name="ImgSrc" Width="500" Margin="5"/>
+                </WrapPanel>
+
                 <local:Uc_Produkt x:Name="test"/>
                 <Button  Content="Save" FontSize="24" Click="Button_Click" />
 

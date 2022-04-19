@@ -23,6 +23,13 @@
           <Property Name="ID_Veranstaltung" Type="int" Nullable="false" />
           <Property Name="ID_Produkt" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="ID_Picture" />
+          </Key>
+          <Property Name="ID_Picture" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Picture" Type="varbinary(max)" />
+        </EntityType>
         <EntityType Name="Produkt">
           <Key>
             <PropertyRef Name="ID_Produkt" />
@@ -37,6 +44,7 @@
           <Property Name="Jahrgang" Type="int" />
           <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
           <Property Name="ID_Produzent" Type="int" Nullable="false" />
+          <Property Name="ID_Picture" Type="int" />
         </EntityType>
         <EntityType Name="Produzent">
           <Key>
@@ -50,6 +58,18 @@
           <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
           <Property Name="Hektar" Type="int" />
         </EntityType>
+        <Association Name="fk_bild">
+          <End Role="Pictures" Type="Self.Pictures" Multiplicity="0..1" />
+          <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="ID_Picture" />
+            </Principal>
+            <Dependent Role="Produkt">
+              <PropertyRef Name="ID_Picture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Produzent">
           <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
           <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
@@ -65,8 +85,13 @@
         <EntityContainer Name="testModelStoreContainer">
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventPos" EntityType="Self.EventPos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pictures" EntityType="Self.Pictures" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produzent" EntityType="Self.Produzent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_bild" Association="Self.fk_bild">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Produkt" EntitySet="Produkt" />
+          </AssociationSet>
           <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
@@ -109,6 +134,8 @@
           <Property Name="Beschreibung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="ID_Produzent" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Produzent" Relationship="Self.fk_Produzent" FromRole="Produkt" ToRole="Produzent" />
+          <Property Name="ID_Picture" Type="Int32" />
+          <NavigationProperty Name="Pictures" Relationship="testModel.fk_bild" FromRole="Produkt" ToRole="Pictures" />
         </EntityType>
         <EntityType Name="Produzent">
           <Key>
@@ -144,7 +171,32 @@
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
+          <EntitySet Name="Pictures" EntityType="testModel.Pictures" />
+          <AssociationSet Name="fk_bild" Association="testModel.fk_bild">
+            <End Role="Pictures" EntitySet="Pictures" />
+            <End Role="Produkt" EntitySet="Produkt" />
+          </AssociationSet>
         </EntityContainer>
+        <EntityType Name="Pictures">
+          <Key>
+            <PropertyRef Name="ID_Picture" />
+          </Key>
+          <Property Name="ID_Picture" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Produkt" Relationship="testModel.fk_bild" FromRole="Pictures" ToRole="Produkt" />
+        </EntityType>
+        <Association Name="fk_bild">
+          <End Type="testModel.Pictures" Role="Pictures" Multiplicity="0..1" />
+          <End Type="testModel.Produkt" Role="Produkt" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pictures">
+              <PropertyRef Name="ID_Picture" />
+            </Principal>
+            <Dependent Role="Produkt">
+              <PropertyRef Name="ID_Picture" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -173,6 +225,7 @@
           <EntitySetMapping Name="Produkt">
             <EntityTypeMapping TypeName="testModel.Produkt">
               <MappingFragment StoreEntitySet="Produkt">
+                <ScalarProperty Name="ID_Picture" ColumnName="ID_Picture" />
                 <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Art" ColumnName="Art" />
@@ -196,6 +249,14 @@
                 <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
                 <ScalarProperty Name="Hektar" ColumnName="Hektar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pictures">
+            <EntityTypeMapping TypeName="testModel.Pictures">
+              <MappingFragment StoreEntitySet="Pictures">
+                <ScalarProperty Name="Picture" ColumnName="Picture" />
+                <ScalarProperty Name="ID_Picture" ColumnName="ID_Picture" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -25,20 +25,15 @@ namespace Verwaltungsprogramm_Vinothek
         public Window_Produkt(Produkt p)
         {
             InitializeComponent();
+            prod = p;
             Style = FindResource("Window_Default") as Style;
             Background = Brushes.Gray;
-            prod = p;
             ctx.Produkt.Load();
+            ctx.Produzent.Load();
+            ctx.Pictures.Load();
             DataContext = ctx.Produkt.Local;
             felder.DataContext = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            ctx.Produzent.Load();
-            //var list = ctx.Produzent.ToList();
-            //foreach (var i in list)
-            //{
-            //    ComboBoxItem CBI = new ComboBoxItem();
-            //    CBI.Content = i.Name;
-            //    v.Items.Add(CBI);
-            //}
+            pic.DataContext = ctx.Pictures.FirstOrDefault(x => x.ID_Picture == p.ID_Picture);
         }
 
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
