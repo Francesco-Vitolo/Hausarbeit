@@ -30,7 +30,15 @@ namespace Verwaltungsprogramm_Vinothek
             prod = p;
             ctx.Produkt.Load();
             DataContext = ctx.Produkt.Local;
-            felder.DataContext = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);            
+            felder.DataContext = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            ctx.Produzent.Load();
+            //var list = ctx.Produzent.ToList();
+            //foreach (var i in list)
+            //{
+            //    ComboBoxItem CBI = new ComboBoxItem();
+            //    CBI.Content = i.Name;
+            //    v.Items.Add(CBI);
+            //}
         }
 
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
@@ -56,6 +64,8 @@ namespace Verwaltungsprogramm_Vinothek
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
             ctx.SaveChanges();
+            Close();
+            Application.Current.MainWindow.Show();
         }
     }
 }

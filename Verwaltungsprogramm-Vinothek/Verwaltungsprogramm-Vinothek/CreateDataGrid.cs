@@ -37,6 +37,7 @@ namespace Verwaltungsprogramm_Vinothek
         static Dictionary<string, string> Events = new Dictionary<string, string>()
         {
            {"Datum",       "Datum"}  ,
+           {"Zeit",       "Zeit"}  ,
            { "Name",       "Name" },
            {"Anzahl",      "AnzahlPersonen" } ,
         };

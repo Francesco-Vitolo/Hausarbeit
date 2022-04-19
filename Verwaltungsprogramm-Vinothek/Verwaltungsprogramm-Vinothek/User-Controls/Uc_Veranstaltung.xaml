@@ -28,13 +28,15 @@
         <StackPanel Grid.Column="1" Grid.Row="1">
             <TextBlock Text="Name"/>
             <TextBlock Text="Teilnehmer"/>
+            <TextBlock Text="Zeit"/>
             <TextBlock Text="Datum"/>
 
         </StackPanel>
         <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Name="stackpanel">
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding AnzahlPersonen}"/>
-            <DatePicker Text="{Binding Datum}" Background="Transparent" BorderThickness="1" BorderBrush="Black" Margin="4">
+            <TextBox Text="{Binding Zeit}"/>
+            <DatePicker Text="{Binding Datum}" Background="Transparent" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker">
                 <DatePicker.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>

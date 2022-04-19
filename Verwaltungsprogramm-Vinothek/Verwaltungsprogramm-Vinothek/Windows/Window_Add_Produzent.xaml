@@ -8,6 +8,7 @@
         Title="Window_Add_Produzent">
     <Grid>
         <local:Default/>
-        <local:Uc_Produzent/>
+        <local:Uc_Produzent x:Name="felder"/>
+        <Button  Content="Save" FontSize="24" Click="Button_Click_Save" VerticalAlignment="Bottom" Margin="25" Width="75"/>
     </Grid>
 </Window>

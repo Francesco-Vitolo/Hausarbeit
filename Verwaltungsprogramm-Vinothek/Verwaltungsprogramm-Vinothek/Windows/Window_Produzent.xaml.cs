@@ -28,8 +28,10 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            prodz.DataContext = produzent;
             CreateDataGrid.Produkt(data);
+            ctx.Produzent.Load();
+            Produzent p = ctx.Produzent.Find(produzent.ID_Produzent);
+            prodz.DataContext = p;
             ctx.Produkt.Load();
             Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList();
             collectionView = CollectionViewSource.GetDefaultView(Produkte);
@@ -39,6 +41,27 @@ namespace Verwaltungsprogramm_Vinothek
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             ItemInfos.Show(collectionView.CurrentItem, "ListeProdukte");
+        }
+
+        private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
+        {
+            if (prodz.IsEnabled == false)
+            {
+                prodz.IsEnabled = true;
+                Background = Brushes.White;
+            }
+            else
+            {
+                prodz.IsEnabled = false;
+                Background = Brushes.Gray;
+            }
+        }
+
+        private void saveChanges_Click(object sender, RoutedEventArgs e)
+        {
+            ctx.SaveChanges();
+            Close();
+            Application.Current.MainWindow.Show();
         }
     }
 }

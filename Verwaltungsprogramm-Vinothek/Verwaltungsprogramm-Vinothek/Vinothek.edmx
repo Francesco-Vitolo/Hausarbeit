@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID_Veranstaltung" />
@@ -12,7 +12,8 @@
           <Property Name="ID_Veranstaltung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="AnzahlPersonen" Type="int" />
-          <Property Name="Datum" Type="date" />
+          <Property Name="Datum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Zeit" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="EventPos">
           <Key>
@@ -71,8 +72,7 @@
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -83,7 +83,8 @@
           <Property Name="ID_Veranstaltung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnzahlPersonen" Type="Int32" />
-          <Property Name="Datum" Type="DateTime" Precision="0" />
+          <Property Name="Datum" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="Zeit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EventPos">
           <Key>
@@ -153,6 +154,7 @@
           <EntitySetMapping Name="Event">
             <EntityTypeMapping TypeName="testModel.Event">
               <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="Zeit" ColumnName="Zeit" />
                 <ScalarProperty Name="ID_Veranstaltung" ColumnName="ID_Veranstaltung" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="AnzahlPersonen" ColumnName="AnzahlPersonen" />

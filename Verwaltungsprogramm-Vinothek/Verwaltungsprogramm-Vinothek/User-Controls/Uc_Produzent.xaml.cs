@@ -20,9 +20,22 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Uc_Produzent : UserControl
     {
+        private List<TextBox> tbs = new List<TextBox>();
         public Uc_Produzent()
         {
             InitializeComponent();
+            foreach (var v in stackpanel.Children)
+            {
+                if (v.GetType() == typeof(TextBox))
+                {
+                    tbs.Add((TextBox)v);
+                }
+            }
+            tbs.Add(tb);
+        }
+        public List<TextBox> GetTbs()
+        {
+            return tbs;
         }
     }
 }

@@ -43,13 +43,14 @@
             <TextBox Text="{Binding Qualitätssiegel}"/>
             <TextBox Text="{Binding Jahrgang}"/>
             <TextBox Text="{Binding Rebsorten}"/>
-            <TextBox Text="{Binding Produzent.Name}"/>
+            <!--<ComboBox Margin="5" Height="40" BorderBrush="Black" BorderThickness="1" Background="Transparent" SelectedIndex="{Binding tb.Text}"/>-->
+            <TextBox Text="{Binding Produzent.Name}" Name="tb"/>
             <TextBox Text="{Binding Geschmack}"/>
             <TextBox Text="{Binding Alkoholgehalt}"/>
         </StackPanel>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1">
             <TextBlock Text="Beschreibung" />
-            <TextBox Text="{Binding Beschreibung}"  Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
+            <TextBox Text="{Binding Beschreibung}"  Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top" x:Name="tb_desc"/>
         </StackPanel>
     </Grid>
 </UserControl>

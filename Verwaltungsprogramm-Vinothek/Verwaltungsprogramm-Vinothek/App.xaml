@@ -2,7 +2,7 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek"
-             StartupUri="Window_StartUp.xaml">
+             StartupUri="\Windows\Window_StartUp.xaml">
     <Application.Resources>
 
         <Style TargetType="Border" x:Key="Border">
@@ -10,13 +10,14 @@
         </Style>                
         
         <Style x:Key="Window_Default" TargetType="Window">
-            <Setter Property="Icon" Value="Pictures\favicon.ico"/>
+            <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Height" Value="900"/>
             <Setter Property="Width" Value="1800"/>
             <!--<Setter Property="Background" Value="#FF97A2AC"/>-->
             <Setter Property="WindowStyle" Value="None"/>
+            <Setter Property="WindowState" Value="Maximized"/>
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="WindowChrome.GlassFrameThickness" Value="0"/>

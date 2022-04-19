@@ -20,9 +20,27 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Uc_Veranstaltung : UserControl
     {
+        private List<TextBox> listObj = new List<TextBox>();
         public Uc_Veranstaltung()
         {
             InitializeComponent();
+            foreach (var v in stackpanel.Children)
+            {
+                if (v.GetType() == typeof(TextBox))
+                {
+                    listObj.Add((TextBox)v);
+                }
+            }
+        }
+
+        public List<TextBox> GetTbs()
+        {
+            return listObj;
+        }
+
+        public DatePicker GetDP()
+        {
+            return datepicker;
         }
     }
 }

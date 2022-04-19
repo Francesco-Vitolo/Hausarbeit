@@ -32,10 +32,14 @@ namespace Verwaltungsprogramm_Vinothek
                 }
             }
         }
-
         public List<TextBox> GetTbs()
         {
             return tbs;
+        }
+
+        public TextBox GetDesc()
+        {
+            return tb_desc;
         }
 
     }

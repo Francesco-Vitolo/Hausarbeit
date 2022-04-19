@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\App.xaml
-13-1546638303
+14565147325
 21870038449
-261579894288
+271664361935
 181009424853
-Default.xaml;Uc_Produkt.xaml;Uc_Produzent.xaml;Uc_Veranstaltung.xaml;Window_Abfrage.xaml;Window_Add_Product.xaml;Window_Add_Produzent.xaml;Window_Add_Veranstaltung.xaml;Window_PDF-Viewer.xaml;Window_Produzent.xaml;Window_StartUp.xaml;Window_Veranstaltung.xaml;Window_Produkt.xaml;
+User-Controls\Default.xaml;User-Controls\Uc_Produkt.xaml;User-Controls\Uc_Produzent.xaml;User-Controls\Uc_Veranstaltung.xaml;Windows\Window_Abfrage.xaml;Windows\Window_Add_Product.xaml;Windows\Window_Add_Produzent.xaml;Windows\Window_Add_Veranstaltung.xaml;Windows\Window_Add_Veranstaltung_Add_Produkt.xaml;Windows\Window_PDF-Viewer.xaml;Windows\Window_Produzent.xaml;Windows\Window_StartUp.xaml;Windows\Window_Veranstaltung.xaml;Windows\Window_Produkt.xaml;
 
 False
 
