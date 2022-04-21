@@ -11,7 +11,7 @@
         <local:Default/>
          <WrapPanel VerticalAlignment="Top" HorizontalAlignment="Left" Background="#FF464646" Name="hidebackbutton" Width="32" Height="32"/>
 
-        <Grid Name="Grid_Menu" d:IsHidden="True">
+        <Grid Name="Grid_Menu">
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="*"/>
