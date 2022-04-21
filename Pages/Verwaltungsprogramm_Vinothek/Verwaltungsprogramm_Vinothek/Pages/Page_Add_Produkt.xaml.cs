@@ -85,5 +85,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
 
         }
+        private void Button_Previous_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

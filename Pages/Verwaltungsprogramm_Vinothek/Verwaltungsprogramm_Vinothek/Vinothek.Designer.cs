@@ -1,4 +1,4 @@
-﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\Francesco\Desktop\Verwaltungsprogramm_PAges\Verwaltungsprogramm_Vinothek\Verwaltungsprogramm_Vinothek\Vinothek.edmx' aktiviert. 
+﻿// Die T4-Codegenerierung ist für Modell 'C:\Users\Francesco\Desktop\git\Hausarbeit\Pages\Verwaltungsprogramm_Vinothek\Verwaltungsprogramm_Vinothek\Vinothek.edmx' aktiviert. 
 // Um die Generierung von Legacycode zu aktivieren, ändern Sie den Wert der Designer-Eigenschaft 'Code Generation Strategy'
 // in 'Legacy ObjectContext'. Diese Eigenschaft wird im Eigenschaftenfenster angezeigt, wenn das Modell
 // im Designer geöffnet ist.

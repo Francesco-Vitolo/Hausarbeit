@@ -53,5 +53,9 @@ namespace Verwaltungsprogramm_Vinothek
             ctx.SaveChanges();
             NavigationService.GoBack();
         }
+        private void Button_Previous_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
+        }
     }
 }

@@ -20,6 +20,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
+            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
             <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">

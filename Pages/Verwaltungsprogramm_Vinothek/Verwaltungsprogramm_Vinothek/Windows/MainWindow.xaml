@@ -9,7 +9,7 @@
     <Grid>
         <local:Uc_Default/>
         <Frame Name="Frame_Main"/>
-        <Expander x:Name="expander" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" Background="LightGray" VerticalAlignment="Stretch" BorderBrush="Black">
+        <Expander x:Name="expander"  HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" Background="LightGray" BorderBrush="Black" Height="300">
             <Expander.Resources>
                 <Style TargetType="Border">
                     <Setter Property="CornerRadius" Value="5"/>

@@ -10,6 +10,7 @@
       Title="Page_Add_Produzent">
     <Grid>
         <local1:Uc_Default/>
+        <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
         <local1:Uc_Produzent x:Name="felder"/>
         <Button  Content="Save" FontSize="24" Click="Button_Click_Save" VerticalAlignment="Bottom" Margin="25" Width="75"/>
     </Grid>

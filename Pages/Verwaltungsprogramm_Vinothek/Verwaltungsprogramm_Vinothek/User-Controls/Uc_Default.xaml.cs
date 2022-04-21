@@ -48,7 +48,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
-           Application.Current.Shutdown();
+            currentWindow.Close();
         }
 
         private void btn_prev(object sender, RoutedEventArgs e)

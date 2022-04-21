@@ -23,6 +23,7 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
+            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.ColumnSpan="2" Grid.RowSpan="2" Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
             <local1:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"/>
 

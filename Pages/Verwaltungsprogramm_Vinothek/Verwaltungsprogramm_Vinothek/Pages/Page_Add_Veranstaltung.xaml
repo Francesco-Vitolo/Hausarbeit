@@ -13,6 +13,7 @@
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <StackPanel>
+            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
             <local1:Uc_Veranstaltung x:Name="felder"/>
             <WrapPanel HorizontalAlignment="Right">
                 <Button x:Name="AddProd" Content="+" Click="AddProd_Click"/>

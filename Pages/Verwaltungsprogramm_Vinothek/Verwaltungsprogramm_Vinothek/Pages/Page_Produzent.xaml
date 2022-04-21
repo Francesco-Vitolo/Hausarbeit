@@ -23,6 +23,7 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
+            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.ColumnSpan="2"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
             <local1:Uc_Produzent Grid.Row="1" Grid.Column="1" x:Name="prodz" IsEnabled="False"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"
                        MouseDoubleClick="Item_MouseDoubleClick" />

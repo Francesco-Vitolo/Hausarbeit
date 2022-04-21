@@ -71,11 +71,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void Button_Click_PDF(object sender, RoutedEventArgs e)
         {
-            //PDF pdf = new PDF(prod);
-            //byte[] b = pdf.Create();
-            //var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            //v.PDF_file = b;
-            //ctx.SaveChanges();
+            PDF pdf = new PDF(prod);
+            byte[] b = pdf.Create();
+            var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            v.PDF_file = b;
+            ctx.SaveChanges();
 
         }
         private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
@@ -83,8 +83,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             string filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Moin.pdf";
             File.WriteAllBytes(filename, v.PDF_file);
-            //Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
-            //WPDF.Show();
+            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+            WPDF.Show();
         }
 
         private void Add_Produzent_Click(object sender, RoutedEventArgs e)
@@ -97,6 +97,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             DataContext = prod;
             prod.Produzent = null;
             prod.ID_Produzent = p.ID_Produzent;
+        }
+
+        private void Button_Previous_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService.GoBack();
         }
     }
 }

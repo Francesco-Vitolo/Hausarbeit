@@ -13,7 +13,9 @@
             <Setter Property="FontSize" Value="24"/>
         </Style>
     </Page.Resources>
+
     <Grid x:Name="MainGrid">
+    <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>

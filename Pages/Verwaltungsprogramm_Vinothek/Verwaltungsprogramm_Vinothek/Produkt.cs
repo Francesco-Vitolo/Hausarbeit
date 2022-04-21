@@ -20,7 +20,7 @@ namespace Verwaltungsprogramm_Vinothek
         public string Qualitätssiegel { get; set; }
         public string Rebsorten { get; set; }
         public string Geschmack { get; set; }
-        public Nullable<int> Alkoholgehalt { get; set; }
+        public Nullable<double> Alkoholgehalt { get; set; }
         public Nullable<int> Jahrgang { get; set; }
         public string Beschreibung { get; set; }
         public byte[] Picture { get; set; }
