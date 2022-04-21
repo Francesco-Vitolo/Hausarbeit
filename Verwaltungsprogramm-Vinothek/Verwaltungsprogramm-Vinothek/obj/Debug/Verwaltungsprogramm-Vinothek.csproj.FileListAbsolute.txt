@@ -76,3 +76,5 @@ C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltun
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\EntityFramework.SqlServer.resources.dll
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\PdfSharp.resources.dll
 C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\bin\Debug\de\PdfSharp.Charting.resources.dll
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Windows\Window_Produkt_Select_Produzent.g.cs
+C:\Users\Francesco\Desktop\git\Hausarbeit\Verwaltungsprogramm-Vinothek\Verwaltungsprogramm-Vinothek\obj\Debug\Windows\Window_Produkt_Select_Produzent.baml

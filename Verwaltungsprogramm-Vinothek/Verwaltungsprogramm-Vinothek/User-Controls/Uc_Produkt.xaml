@@ -17,8 +17,8 @@
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
-                <ColumnDefinition Width="20"/>
-            </Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="80"/>
                 <RowDefinition Height="5*"/>
@@ -44,7 +44,7 @@
             <TextBox Text="{Binding Jahrgang}"/>
             <TextBox Text="{Binding Rebsorten}"/>
             <!--<ComboBox Margin="5" Height="40" BorderBrush="Black" BorderThickness="1" Background="Transparent" SelectedIndex="{Binding tb.Text}"/>-->
-            <TextBox Text="{Binding Produzent.Name}" Name="tb"/>
+            <TextBox Text="{Binding Produzent.Name}" IsEnabled="False" x:Name="tb_prod"/>
             <TextBox Text="{Binding Geschmack}"/>
             <TextBox Text="{Binding Alkoholgehalt}"/>
         </StackPanel>

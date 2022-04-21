@@ -150,6 +150,9 @@
     <Compile Include="Windows\Window_Produkt.xaml.cs">
       <DependentUpon>Window_Produkt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Window_Produkt_Select_Produzent.xaml.cs">
+      <DependentUpon>Window_Produkt_Select_Produzent.xaml</DependentUpon>
+    </Compile>
     <Page Include="User-Controls\Default.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +206,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Window_Produkt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Window_Produkt_Select_Produzent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

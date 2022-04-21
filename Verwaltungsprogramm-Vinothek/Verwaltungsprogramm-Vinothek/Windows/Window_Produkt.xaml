@@ -10,7 +10,7 @@
         <local:Default/>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="2*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
@@ -29,13 +29,13 @@
                 <TextBlock Text="Modus: " />
                 <TextBlock Name="modus" Text="anschauen" Foreground="Red"/>
             </StackPanel>
-
             <local:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0"/>
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
+                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF download" Style="{StaticResource Button_Default}"/>
                 <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" Style="{StaticResource Button_Default}">
                     <!--<Image Source="umschalten.png"/>-->
                 </Button>
-                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF" Style="{StaticResource Button_Default}"/>
+                <Button  Content="Add Produzent" Click="Add_Produzent_Click" Style="{StaticResource Button_Default}"/>
                 <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" Style="{StaticResource Button_Default}"/>
             </UniformGrid>
             <StackPanel Grid.Column="2" >
@@ -43,9 +43,7 @@
                 <Button  Content="Bild hochladen/ändern" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildAuswählen"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
                 <Button  Content="PDF erstellen" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_PDF"/>
-                
             </StackPanel>
-
         </Grid>
     </Grid>
 </Window>

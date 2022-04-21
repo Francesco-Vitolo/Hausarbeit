@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -52,11 +53,16 @@ namespace Verwaltungsprogramm_Vinothek
             {
                 Window_Abfrage w = new Window_Abfrage("Anwendung schließen?");
                 w.ShowDialog();
+                if (w.GetOption())
+                    Application.Current.Shutdown();
             }
             else
             {
                 Window_Abfrage w = new Window_Abfrage("Fenster schließen?");
                 w.ShowDialog();
+                if (w.GetOption())
+                    Application.Current.Windows.OfType<Window>().LastOrDefault().Close();
+                Application.Current.Windows.OfType<Window>().LastOrDefault().Show();
             }
         }
 

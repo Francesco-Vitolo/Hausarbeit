@@ -200,5 +200,18 @@ namespace Verwaltungsprogramm_Vinothek
             ctx.SaveChanges();
             Refresh_Click(null, null);
         }
+
+        private void datagrid_keyUp(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+                Delete_Click(null, null);
+        }
+
+        private void Searchbar_Enter(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+                btn_Search_Click(null,null);
+
+        }
     }
 }

@@ -7,8 +7,26 @@
 
         <Style TargetType="Border" x:Key="Border">
             <Setter Property="CornerRadius" Value="5"/>
-        </Style>                
-        
+        </Style>
+
+        <Style TargetType="DataGridColumnHeader">
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="SeparatorBrush" Value="Black" />
+            <Setter Property="FontWeight" Value="Bold" />
+        </Style>
+
+        <Style TargetType="DataGridCell">
+            <Setter Property="Cursor" Value="Hand" />
+        </Style>
+
+        <Style TargetType="DataGrid">
+            <Setter Property="Background" Value="LightGray" />
+            <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+        </Style>
+
+
+
+
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>

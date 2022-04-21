@@ -1,6 +1,7 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
+using PdfSharp.Pdf.IO;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,36 +14,59 @@ using System.Windows;
 
 namespace Verwaltungsprogramm_Vinothek
 {
-    public static class PDF
+    public class PDF
     {
-        public static void Create(Produkt prod)
+        PdfDocument doc = new PdfDocument();
+        PdfPage page;
+        XGraphics gfx;
+        XTextFormatter tf; //für Absatz
+        XFont ueberschrift = new XFont("Arial", 40, XFontStyle.Underline);
+        XFont font = new XFont("Arial", 20);
+        int pos = 120;
+        Produkt prod;
+        Random r;
+        string filename;
+
+        public PDF(Produkt prod)
         {
-            int pos = 120;
-            string hersteller = prod.Produzent.Name;
-            string jahr = Convert.ToString(prod.Jahrgang);
-            PdfDocument doc = new PdfDocument();
-            PdfPage page = doc.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-            XFont ueberschrift = new XFont("Arial", 40, XFontStyle.Underline);
-            XTextFormatter tf = new XTextFormatter(gfx);
-            XFont font = new XFont("Arial", 20);
-            XImage image = GetImg(prod.Picture);
+            this.prod = prod;
+            doc = new PdfDocument();
+            page = doc.AddPage();
+            gfx = XGraphics.FromPdfPage(page);
+            tf = new XTextFormatter(gfx); //für Absatz
+            font = new XFont("Arial", 20);
+            r = new Random();
+        }
+        public byte[] Create()
+        {
+            if(prod.Picture != null)
+            {
+                XImage image = GetImg(prod.Picture);
+                gfx.DrawImage(image, 460, 100, 100, 300);
+            }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
-            gfx.DrawString($"Bezeichnung: {prod.Qualitätssiegel}", font, XBrushes.Black, new XRect(40, pos + 30, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Region:{prod.Produzent.Region}", font, XBrushes.Black, new XRect(40, pos + 60, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Hersteller: {prod.Produzent.Name}", font, XBrushes.Black, new XRect(40, pos + 90, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Jahr: {prod.Jahrgang}", font, XBrushes.Black, new XRect(40, pos + 120, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Rebsorte(n): {prod.Rebsorten}", font, XBrushes.Black, new XRect(40, pos + 150, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Geschmack: {prod.Geschmack}", font, XBrushes.Black, new XRect(40, pos + 180, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Alkoholgehalt: {prod.Alkoholgehalt} % vol.", font, XBrushes.Black, new XRect(40, pos + 210, page.Width, page.Height), XStringFormats.TopLeft);
-            gfx.DrawString($"Beschreibung:", font, XBrushes.Black, new XRect(40, pos + 340, page.Width, page.Height), XStringFormats.TopLeft);
-            tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, pos + 420, page.Width-120, page.Height), XStringFormats.TopLeft);
-            gfx.DrawImage(image, 460, 100, 100, 300);
-            string filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{prod.Name}_{DateTime.Now.Day}_{DateTime.Now.Month}.pdf";
+            Drawing($"Bezeichnung: {prod.Qualitätssiegel}");
+            Drawing($"Region: { prod.Produzent.Region}");
+            Drawing($"Hersteller: {prod.Produzent.Name}");
+            Drawing($"Jahrgang: {prod.Jahrgang}");
+            Drawing($"Rebsorte(n): {prod.Rebsorten}");
+            Drawing($"Geschmack: {prod.Geschmack}");
+            Drawing($"Alkoholgehalt: {prod.Alkoholgehalt} % vol.");           
+            gfx.DrawString($"Beschreibung:", font, XBrushes.Black, new XRect(40, pos + 100, page.Width, page.Height), XStringFormats.TopLeft);
+            tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, pos + 160, page.Width-100, page.Height), XStringFormats.TopLeft);
+            filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{prod.Name}_{DateTime.Now.Day}_{DateTime.Now.Month}_{r.Next(0, 1000)}.pdf"; //Während Laufzeit geht überschreiben nicht, dehalb provisorisch r.Next
             doc.Save(filename);
             Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
             WPDF.Show();
+            return File.ReadAllBytes(filename);
         }
+
+        private void Drawing(string s)
+        {
+            pos = pos + 30;
+            gfx.DrawString(s, font, XBrushes.Black, new XRect(40, pos, page.Width, page.Height), XStringFormats.TopLeft);
+        }
+
         private static XImage GetImg(byte[] b)
         {
             var img = ImageConverter.BinaryToImage(b);

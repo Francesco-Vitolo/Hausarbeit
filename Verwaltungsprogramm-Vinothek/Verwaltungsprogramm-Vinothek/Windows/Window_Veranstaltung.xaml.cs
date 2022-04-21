@@ -35,8 +35,8 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            this.veranstaltung = veranstaltung;
-            DataContext = veranstaltung;
+            this.veranstaltung = veranstaltung;            
+            DataContext = ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
             CreateDataGrid.Produkt(data);
             ctx.EventPos.Load();
             EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList();

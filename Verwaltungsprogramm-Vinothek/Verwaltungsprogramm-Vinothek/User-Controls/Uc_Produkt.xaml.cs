@@ -42,5 +42,10 @@ namespace Verwaltungsprogramm_Vinothek
             return tb_desc;
         }
 
+        public TextBox GetProd()
+        {
+            return tb_prod;
+        }
+
     }
 }

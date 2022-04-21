@@ -22,6 +22,8 @@ namespace Verwaltungsprogramm_Vinothek
             Style = FindResource("Window_Default") as Style;
             ctx.Produkt.Load();
             ctx.Produzent.Load();
+            System.Windows.Controls.TextBox tb_prod = test.GetProd();
+            tb_prod.IsEnabled = true;
             //ImgSrc.DataContext = img;
             //ComboBox v = test.GetComboBox();
             //var list = ctx.Produzent.ToList();

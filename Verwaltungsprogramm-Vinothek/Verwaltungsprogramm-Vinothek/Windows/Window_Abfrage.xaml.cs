@@ -19,6 +19,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Abfrage : Window
     {
+        bool option;
         public Window_Abfrage(string text)
         {
             InitializeComponent();
@@ -30,21 +31,30 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click_Ja(object sender, RoutedEventArgs e)
         {
-            if (Application.Current.Windows.Count == 2)
-            {
-                Application.Current.Shutdown();
-            }
-            else
-            {
-                Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //Abfrage Fenster
-                Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //aktuelles Fenster
-                Application.Current.Windows.OfType<Window>().LastOrDefault().Show();
-            }
+            option = true;
+            Close();
+            //if (Application.Current.Windows.Count == 2)
+            //{
+            //    Application.Current.Shutdown();
+            //}
+            //else
+            //{
+            //    Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //Abfrage Fenster
+            //    Application.Current.Windows.OfType<Window>().LastOrDefault().Close(); //aktuelles Fenster
+            //    Application.Current.Windows.OfType<Window>().LastOrDefault().Show();
+            //}
         }
 
         private void Button_Click_Nein(object sender, RoutedEventArgs e)
         {
-            Application.Current.Windows.OfType<Window>().LastOrDefault().Close();
+            //Application.Current.Windows.OfType<Window>().LastOrDefault().Close();
+            option = false;
+            Close();
+        }
+
+        public bool GetOption()
+        {
+            return option;
         }
     }
 }

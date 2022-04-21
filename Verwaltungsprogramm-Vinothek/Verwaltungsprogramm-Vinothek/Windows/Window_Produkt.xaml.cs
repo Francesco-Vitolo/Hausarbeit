@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -33,24 +34,18 @@ namespace Verwaltungsprogramm_Vinothek
             DataContext = prod;
         }
 
-        private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
-        {
-            //Ändern in byte[], weil in DB gespeichert
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(@"C:\Users\Francesco\Desktop\Docs\Moin_12_1.pdf");
-            WPDF.ShowDialog();
-        }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
         {
             if (felder.IsEnabled == false)
             {
                 felder.IsEnabled = true;
-                modus.Text = "anschauen";
+                modus.Text = "bearbeiten";
             }
             else
             {
                 felder.IsEnabled = false;
-                modus.Text = "bearbeiten";
+                modus.Text = "anschauen";
             }
         }
 
@@ -73,12 +68,34 @@ namespace Verwaltungsprogramm_Vinothek
                 pic.DataContext = null;
                 pic.DataContext = prod;
             }
-
         }
 
         private void Button_Click_PDF(object sender, RoutedEventArgs e)
         {
-            PDF.Create(prod);
+            PDF pdf = new PDF(prod);
+            byte[] b = pdf.Create();
+            var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            v.PDF_file = b;
+            ctx.SaveChanges();
+
+        }
+        private void btn_show_pdf_Click(object sender, RoutedEventArgs e)
+        {
+            var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            string filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Moin.pdf";
+            File.WriteAllBytes(filename, v.PDF_file);
+            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+            WPDF.Show();
+        }
+
+        private void Add_Produzent_Click(object sender, RoutedEventArgs e)
+        {
+            Window_Produkt_Select_Produzent WPSP = new Window_Produkt_Select_Produzent();
+            WPSP.ShowDialog();
+            Produzent p = WPSP.GetObj();
+            prod.ID_Produzent = p.ID_Produzent;
+            DataContext = null;
+            DataContext = prod;
         }
     }
 }
