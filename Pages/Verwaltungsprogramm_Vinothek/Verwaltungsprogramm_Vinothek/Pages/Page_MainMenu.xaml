@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d"     
-      Title="Page_MainMenu" >
+      Title="Page_MainMenu" Width="1800" Height="900">
     
     <Grid Name="Grid_Menu">
         <Grid.RowDefinitions>
@@ -17,22 +17,23 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <local1:Uc_Default Grid.ColumnSpan="10" />
+        <Image Source="..\Pictures\Logo.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
         <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
         <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3">
-            <UniformGrid.Resources>
-                <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
-            </UniformGrid.Resources>
-            <Button Name="ListeProdukte" Content="   Produkte   " Click="Button_MainMenu"/>
-            <Button Name="ListeProduzenten" Content="   Produzenten   " Click="Button_MainMenu"/>
-            <Button Name="ListeEvents"  Content="   Events   " Click="Button_MainMenu"/>
+            <!--<UniformGrid.Resources>
+                <Style TargetType="Button" >
+                    <Setter Property="FontSize" Value="42"/>
+                </Style>
+            </UniformGrid.Resources>-->
+            <Button Name="ListeProdukte" Content="Produkte" Click="Button_MainMenu"/>
+            <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
+            <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
         </UniformGrid>
-        <Viewbox Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-            <Calendar Background="AliceBlue" />
+        <Viewbox Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="450" MaxWidth="450">
+            <Calendar Background="AliceBlue"/>
         </Viewbox>
-
     </Grid>
 </Page>

@@ -7,7 +7,7 @@ namespace Verwaltungsprogramm_Vinothek
     public static class Imageconverter
     {
         public static Image BinaryToImage(byte[] binaryData)
-        {
+        {            
             MemoryStream ms = new MemoryStream(binaryData);
             Image img = Image.FromStream(ms);
             return img;

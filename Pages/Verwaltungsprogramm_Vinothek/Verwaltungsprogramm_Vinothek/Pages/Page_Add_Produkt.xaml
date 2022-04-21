@@ -14,7 +14,6 @@
         </Style>
     </Page.Resources>
     <Grid x:Name="MainGrid">
-        <local1:Uc_Default/>
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -28,8 +27,8 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="1" Grid.Row="1">
                 <WrapPanel>
-                    <Button Content="Bild hochladen" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildAuswählen"/>
-                    <!--<Button Content="Aus Zwischenablage" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildausZwischenablage"/>-->
+                    <Button Content="Bild hochladen" FontSize="24"  Click="Button_Click_BildAuswählen"/>
+                    <!--<Button Content="Aus Zwischenablage" FontSize="24"  Click="Button_Click_BildausZwischenablage"/>-->
                     <Label Name="ImgSrc" Width="500" Margin="5"/>
                 </WrapPanel>
 

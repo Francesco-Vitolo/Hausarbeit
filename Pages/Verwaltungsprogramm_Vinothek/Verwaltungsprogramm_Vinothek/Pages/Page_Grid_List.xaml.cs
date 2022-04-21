@@ -18,6 +18,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         VinothekContext ctx = new VinothekContext();
         private ICollectionView collectionView;
         private string gridType;
+        Window_Abfrage WA;
+        Window_Messagebox WM;
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
@@ -69,6 +71,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 NavigationService.Navigate(newPage);
             }
         }
+
         private void btn_Search_Click(object sender, RoutedEventArgs e) //filter
         {
             string filterStr = tbSearch.Text.ToLower();
@@ -122,8 +125,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            Window_Abfrage WA;
-            Window_Messagebox WM;
+
             switch (gridType)
             {
                 case "ListeProdukte":

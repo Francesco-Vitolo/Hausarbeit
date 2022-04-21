@@ -9,5 +9,25 @@
     <Grid>
         <local:Uc_Default/>
         <Frame Name="Frame_Main"/>
+        <Expander x:Name="expander" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" Background="LightGray" VerticalAlignment="Stretch" BorderBrush="Black">
+            <Expander.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Expander.Resources>
+            <StackPanel Margin="10,0,-10,0">
+                <StackPanel.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+                        <Setter Property="Width" Value="auto"/>
+                    </Style>
+                </StackPanel.Resources>
+                <Button x:Name="_1" Content="Übersicht Produkte" Click="Button_Click_Expander"/>
+                <Button x:Name="_2" Content="Übersicht Produzenten" Click="Button_Click_Expander"/>
+                <Button x:Name="_3" Content="Übersicht Events" Click="Button_Click_Expander"/>
+                <Button x:Name="_4" Content="Produkt hinzufügen" Click="Button_Click_Expander"/>
+                <Button x:Name="_5" Content="Produzent hinzufügen" Click="Button_Click_Expander"/>
+                <Button x:Name="_6" Content="Event hinzufügen" Click="Button_Click_Expander"/>
+            </StackPanel>
+        </Expander>
     </Grid>
 </Window>

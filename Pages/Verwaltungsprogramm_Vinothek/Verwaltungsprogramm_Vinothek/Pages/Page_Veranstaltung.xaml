@@ -27,12 +27,12 @@
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"/>
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1" >
-                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" Style="{StaticResource Button_Default}">
+                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" >
                     <!--<Image Source="umschalten.png"/>-->
                 </Button>
-                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" Style="{StaticResource Button_Default}"/>
-                <Button x:Name="DelProd" Content="X" Click="DelProd_Click" Style="{StaticResource Button_Default}"/>
-                <Button x:Name="AddProd" Content="+" Click="AddProd_Click" Style="{StaticResource Button_Default}"/>
+                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
+                <Button x:Name="DelProd" Content="X" Click="DelProd_Click" />
+                <Button x:Name="AddProd" Content="+" Click="AddProd_Click" />
                 <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">

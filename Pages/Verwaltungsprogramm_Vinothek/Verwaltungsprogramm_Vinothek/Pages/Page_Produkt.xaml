@@ -31,18 +31,18 @@
             </StackPanel>
             <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0"/>
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
-                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF download" Style="{StaticResource Button_Default}"/>
-                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" Style="{StaticResource Button_Default}">
+                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF download" />
+                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" >
                     <!--<Image Source="umschalten.png"/>-->
                 </Button>
-                <Button  Content="Add Produzent" Click="Add_Produzent_Click" Style="{StaticResource Button_Default}"/>
-                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" Style="{StaticResource Button_Default}"/>
+                <Button  Content="Add Produzent" Click="Add_Produzent_Click" />
+                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
             </UniformGrid>
             <StackPanel Grid.Column="2" >
                 <Image Source="{Binding Picture}" Name="pic" MaxHeight="620" VerticalAlignment="Top" Margin="0,100"/>
-                <Button  Content="Bild hochladen/ändern" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_BildAuswählen"/>
+                <Button  Content="Bild hochladen/ändern" FontSize="24"  Click="Button_Click_BildAuswählen"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
-                <Button  Content="PDF erstellen" FontSize="24" Style="{StaticResource Button_Default}" Click="Button_Click_PDF"/>
+                <Button  Content="PDF erstellen" FontSize="24"  Click="Button_Click_PDF"/>
             </StackPanel>
         </Grid>
     </Grid>

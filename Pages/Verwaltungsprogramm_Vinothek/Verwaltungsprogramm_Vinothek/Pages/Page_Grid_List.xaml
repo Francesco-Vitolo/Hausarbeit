@@ -12,6 +12,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="8*"/>
+            <ColumnDefinition Width="0.4*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
@@ -22,16 +23,17 @@
             <RowDefinition Height="6*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        <!--<local:Uc_Default Grid.Column="1"/>-->
         <TextBox BorderBrush="Black" Grid.Column="1" Grid.Row="1" Height="75" TextAlignment="Center" VerticalContentAlignment="Center" FontSize="20"  Margin="10"  BorderThickness="1" Name="tbSearch"/>
-        <Button Height="70" Width="70" Background="White" Grid.Column="2" Grid.Row="1">
-            <!--<Image Source="..\Pictures\Lupe.png"  Margin="1"/>-->
+        <Button Height="60" Width="60" Background="Transparent" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Left" Style="{StaticResource Button_Style2}">
+            <Image Source="..\Pictures\magnifier.png"  Margin="1" />
         </Button>
-        <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center">
-            <Button x:Name="Add" Content="+"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Add_Click" />
-            <Button x:Name="Refresh" Content="Refresh"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Refresh_Click" />
-            <Button x:Name="Delete" Content="Del"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Delete_Click" />
-            <Button x:Name="Duplicate" Content="Copy"  Height="50" Width="50" FontSize="24" FontWeight="Bold" Click="Duplicate_Click" />
-        </StackPanel>
-        <DataGrid x:Name="datagrid" Grid.Row="2" Grid.Column="1" KeyUp="Datagrid_KeyDel" MouseDoubleClick="SelectItem_DoubleClick" />
+        <UniformGrid Grid.Column="3" Grid.Row="2" Columns="1">
+            <Button x:Name="Add" Content="+" Click="Add_Click" FontSize="42" />
+            <Button x:Name="Refresh" Content="Refresh" Click="Refresh_Click"/>
+            <Button x:Name="Delete" Content="Del" Click="Delete_Click" />
+            <Button x:Name="Duplicate" Content="Copy" Click="Duplicate_Click" />
+        </UniformGrid>
+        <DataGrid x:Name="datagrid" Grid.Row="2" Grid.Column="1" KeyUp="Datagrid_KeyDel" MouseDoubleClick="SelectItem_DoubleClick" Grid.ColumnSpan="2" />
     </Grid>
 </Page>
