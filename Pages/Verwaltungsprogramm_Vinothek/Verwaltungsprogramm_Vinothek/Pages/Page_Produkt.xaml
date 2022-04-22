@@ -20,7 +20,6 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
             <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
@@ -32,11 +31,20 @@
             </StackPanel>
             <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0"/>
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
+                <UniformGrid.Resources>
+                    <Style TargetType="Button" BasedOn="{StaticResource Button_Titlebar}">
+                        <Setter Property="HorizontalAlignment" Value="Center"/>
+                        <Setter Property="Height" Value="75"/>
+                        <Setter Property="Width" Value="75"/>
+                    </Style>
+                </UniformGrid.Resources>
                 <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF download" />
-                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" >
-                    <!--<Image Source="umschalten.png"/>-->
+                <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
+                    <Image Source="..\Pictures\edit.png"/>
                 </Button>
-                <Button  Content="Add Produzent" Click="Add_Produzent_Click" />
+                <Button Click="Add_Produzent_Click">
+                    <!--<Image/--><!-->-->
+                </Button>
                 <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
             </UniformGrid>
             <StackPanel Grid.Column="2" >

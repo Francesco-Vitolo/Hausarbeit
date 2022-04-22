@@ -5,25 +5,29 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.Pages" xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="800" d:DesignWidth="1900"
       Title="Page_Add_Veranstaltung">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
         <StackPanel>
-            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
+           
             <local1:Uc_Veranstaltung x:Name="felder"/>
-            <WrapPanel HorizontalAlignment="Right">
-                <Button x:Name="AddProd" Content="+" Click="AddProd_Click"/>
-                <Button x:Name="SaveEvent" Content="Save" Click="SaveEvent_Click"/>
-                <Button x:Name="DelProd" Content="X" Click="DelProd_Click"/>
-            </WrapPanel>
         </StackPanel>
-        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" >
-            <DataGrid  Name="data" />
-        </Border>
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+            <Button x:Name="AddProd" Click="AddProd_Click"  Style="{StaticResource Button_Style2}">
+                <Image Source="..\Pictures\Add_Wein.png" MaxHeight="60" />
+            </Button>
+            <Button x:Name="SaveEvent" Content="Save" Click="SaveEvent_Click"/>
+                <Button x:Name="DelProd" Content="X" Click="DelProd_Click"/>
+            </StackPanel>
+        <DataGrid  Name="data" Grid.ColumnSpan="2" Grid.Row="1"/>
     </Grid>
 </Page>
 

@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
         mc:Ignorable="d"
-        Title="MainWindow">
+        Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
     <Grid>
         <local:Uc_Default/>
+        <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
         <Frame Name="Frame_Main"/>
         <Expander x:Name="expander"  HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" Background="LightGray" BorderBrush="Black" Height="300">
             <Expander.Resources>
@@ -21,6 +22,7 @@
                         <Setter Property="Width" Value="auto"/>
                     </Style>
                 </StackPanel.Resources>
+                <Button x:Name="_0" Content="Home" Click="Button_Click_Expander"/>
                 <Button x:Name="_1" Content="Übersicht Produkte" Click="Button_Click_Expander"/>
                 <Button x:Name="_2" Content="Übersicht Produzenten" Click="Button_Click_Expander"/>
                 <Button x:Name="_3" Content="Übersicht Events" Click="Button_Click_Expander"/>
@@ -29,5 +31,7 @@
                 <Button x:Name="_6" Content="Event hinzufügen" Click="Button_Click_Expander"/>
             </StackPanel>
         </Expander>
+
+        <Label Name="label_zoom" Content="{Binding }" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
     </Grid>
 </Window>

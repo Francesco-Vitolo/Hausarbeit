@@ -21,12 +21,10 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
     public partial class Uc_Default : UserControl
     {
         Window currentWindow;
-        NavigationService n;
         public Uc_Default()
         {
             InitializeComponent();
             currentWindow = Application.Current.Windows.OfType<Window>().LastOrDefault(); //aktuelles Fenster
-            n = NavigationService.GetNavigationService(this);
         }
         private void Minimize_Click(object sender, RoutedEventArgs e)
         {
@@ -48,14 +46,10 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         private void Exit_Click(object sender, RoutedEventArgs e)
         {
+            Window_Abfrage WA = new Window_Abfrage("Fenster schließen");
+            WA.ShowDialog();
+            if(WA.GetOption())
             currentWindow.Close();
-        }
-
-        private void btn_prev(object sender, RoutedEventArgs e)
-        {
-            n.GoBack();
-            //Application.Current.Shutdown();
-            //System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
         }
     }
 }

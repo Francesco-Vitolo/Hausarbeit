@@ -222,10 +222,5 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 btn_Search_Click(null, null);
 
         }
-
-        private void Button_Previous_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }

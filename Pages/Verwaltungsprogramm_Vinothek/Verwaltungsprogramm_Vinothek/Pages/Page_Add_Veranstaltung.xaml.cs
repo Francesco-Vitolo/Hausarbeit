@@ -75,10 +75,5 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             data.DataContext = null;
             data.DataContext = listProd;
         }
-
-        private void Button_Previous_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }

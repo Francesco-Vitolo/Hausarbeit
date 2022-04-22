@@ -97,9 +97,5 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 WM.ShowDialog();
             }
         }
-        private void Button_Previous_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }

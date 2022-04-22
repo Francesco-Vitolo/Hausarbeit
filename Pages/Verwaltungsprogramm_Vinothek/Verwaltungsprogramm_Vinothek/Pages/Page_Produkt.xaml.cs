@@ -98,11 +98,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             prod.Produzent = null;
             prod.ID_Produzent = p.ID_Produzent;
         }
-
-        private void Button_Previous_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
-        }
     }
 }
 

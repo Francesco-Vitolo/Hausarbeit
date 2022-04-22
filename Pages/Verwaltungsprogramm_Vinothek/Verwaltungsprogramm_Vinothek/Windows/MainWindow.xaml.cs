@@ -22,6 +22,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class MainWindow : Window
     {
+        private double scale = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,6 +36,9 @@ namespace Verwaltungsprogramm_Vinothek
             string name = b.Name;
             switch (name)
             {
+                case "_0":
+                    Frame_Main.Content = new Page_MainMenu();
+                    break;
                 case "_1":
                     Frame_Main.Content = new Page_Grid_List("ListeProdukte");
                     break;
@@ -55,6 +59,25 @@ namespace Verwaltungsprogramm_Vinothek
                     break;
             }
             expander.IsExpanded = false;
+        }
+
+        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        {
+            if (Keyboard.Modifiers != ModifierKeys.Control) //Key STRG
+                return;
+            if (e.Delta < 0 && scale > 0.7) //Mousewheel runter
+                scale -= 0.1;
+            else if (e.Delta > 0 && scale < 1.5) //Mousewheel hoch
+                scale += 0.1;
+            Frame_Main.LayoutTransform = new ScaleTransform(scale, scale);
+            label_zoom.Content = Math.Round(scale * 100 ,0) + " %";
+        }
+
+        private void Button_Previous_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService n = NavigationService.GetNavigationService((DependencyObject)Frame_Main.Content);
+            if(Frame_Main.Content.GetType() != typeof(Page_MainMenu))
+            n.GoBack();
         }
     }
 }
