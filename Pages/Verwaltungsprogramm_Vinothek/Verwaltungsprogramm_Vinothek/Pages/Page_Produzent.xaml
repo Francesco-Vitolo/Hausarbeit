@@ -3,13 +3,11 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek" 
-      xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Produzent">
     <Grid>
-        <local1:Uc_Default/>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
@@ -23,7 +21,7 @@
                 <RowDefinition Height="0.5*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <local1:Uc_Produzent Grid.Row="1" Grid.Column="1" x:Name="prodz" IsEnabled="False"/>
+            <local:Uc_Produzent Grid.Row="1" Grid.Column="1" x:Name="prodz" IsEnabled="False"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"
                        MouseDoubleClick="Item_MouseDoubleClick" />
 

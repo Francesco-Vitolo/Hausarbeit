@@ -53,6 +53,10 @@ namespace Verwaltungsprogramm_Vinothek
             return File.ReadAllBytes(filename);
         }
 
+        public string GetPath()
+        {
+            return filename;
+        }
         private void Drawing(string s)
         {
             pos = pos + 30;

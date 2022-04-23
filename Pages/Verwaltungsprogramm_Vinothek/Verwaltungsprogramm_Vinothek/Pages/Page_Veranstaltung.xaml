@@ -9,7 +9,6 @@
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Veranstaltung">
     <Grid>
-        <local1:Uc_Default/>
         <Grid Margin="0,32,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -61,7 +62,7 @@ namespace Verwaltungsprogramm_Vinothek
             expander.IsExpanded = false;
         }
 
-        private void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
+        private async void Window_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
             if (Keyboard.Modifiers != ModifierKeys.Control) //Key STRG
                 return;
@@ -71,6 +72,7 @@ namespace Verwaltungsprogramm_Vinothek
                 scale += 0.1;
             Frame_Main.LayoutTransform = new ScaleTransform(scale, scale);
             label_zoom.Content = Math.Round(scale * 100 ,0) + " %";
+            await Timer(4000);
         }
 
         private void Button_Previous_Click(object sender, RoutedEventArgs e)
@@ -79,5 +81,15 @@ namespace Verwaltungsprogramm_Vinothek
             if(Frame_Main.Content.GetType() != typeof(Page_MainMenu))
             n.GoBack();
         }
+
+        private Task Timer(int i)
+        {
+            return Task.Run(() =>
+            {
+                Thread.Sleep(i);
+                Dispatcher.Invoke(() => { label_zoom.Content = null; });
+            });
+        }
+
     }
 }

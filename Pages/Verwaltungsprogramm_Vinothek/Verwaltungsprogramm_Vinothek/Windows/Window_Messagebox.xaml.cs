@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,11 +27,26 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             ResizeMode = ResizeMode.NoResize;
             TextBlock t = new TextBlock() { Text = text, HorizontalAlignment = HorizontalAlignment.Center };
             Text.Children.Add(t);
+            CloseAuto();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private async void CloseAuto()
+        {
+            if (await Timer(5000))
+                Close();
+        }
+        private Task<bool> Timer(int i)
+        {
+            return Task.Run(() =>
+            {
+                Thread.Sleep(i);
+                return true;
+            });
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +26,12 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             pdfWebViewer.Navigate(path);
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            pdfWebViewer.Navigate("about:blank");
+            Close();
         }
     }
 }
