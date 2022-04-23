@@ -2,6 +2,8 @@
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -25,6 +27,23 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             InitializeComponent();
             this.gridType = gridType;
             CreateDG();
+            //test();
+
+        }
+
+        //private async void test()
+        //{
+        //    while (true)
+        //    {
+        //        await Timer(5000);
+        //    }
+        //}
+        private Task Timer(int i)
+        {
+            return Task.Run(() => {
+                Thread.Sleep(i);
+                Dispatcher.Invoke(() => Refresh_Click(null, null));
+            });
         }
         private void CreateDG()
         {
@@ -70,7 +89,11 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 Page_Add_Veranstaltung newPage = new Page_Add_Veranstaltung();
                 NavigationService.Navigate(newPage);
             }
+
         }
+
+
+
 
         private void btn_Search_Click(object sender, RoutedEventArgs e) //filter
         {

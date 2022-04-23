@@ -53,6 +53,7 @@
                 <Button  Content="Bild hochladen/ändern" FontSize="24"  Click="Button_Click_BildAuswählen"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
                 <Button  Content="PDF erstellen" FontSize="24"  Click="btn_create_pdf_Click"/>
+                <Button  Content="Bild aus Zwischenablage" FontSize="24"  Click="btn_zwischenablage_Click"/>
             </StackPanel>
         </Grid>
     </Grid>

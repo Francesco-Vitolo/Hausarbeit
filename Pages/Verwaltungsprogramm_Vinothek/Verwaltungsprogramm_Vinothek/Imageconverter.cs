@@ -24,5 +24,12 @@ namespace Verwaltungsprogramm_Vinothek
                 return ms.ToArray();
             }
         }
+
+        public static byte[] ConvertImageFromClipboard(Image img)
+        {
+            MemoryStream ms = new MemoryStream();
+            img.Save(ms, ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
     }
 }

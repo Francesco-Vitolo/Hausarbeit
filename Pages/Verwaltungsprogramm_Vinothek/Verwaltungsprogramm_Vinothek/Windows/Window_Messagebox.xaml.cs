@@ -25,7 +25,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             ResizeMode = ResizeMode.NoResize;
-            TextBlock t = new TextBlock() { Text = text, HorizontalAlignment = HorizontalAlignment.Center };
+            TextBlock t = new TextBlock() { Text = text, HorizontalAlignment = HorizontalAlignment.Center, TextWrapping = TextWrapping.Wrap };
             Text.Children.Add(t);
             CloseAuto();
         }
@@ -37,7 +37,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private async void CloseAuto()
         {
-            if (await Timer(5000))
+            if (await Timer(3000))
                 Close();
         }
         private Task<bool> Timer(int i)

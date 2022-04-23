@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -37,7 +39,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt);
             DataContext = prod;
         }
-
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
         {
@@ -78,7 +79,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
             WSP.ShowDialog();
-            Produzent p = (Produzent)WSP.GetObj();            
+            Produzent p = (Produzent)WSP.GetObj();
             prod.Produzent = p;
             DataContext = null;
             DataContext = prod;
@@ -91,10 +92,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             if (prod.PDF_file != null)
             {
                 var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-                string filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Moin.pdf";
-                File.WriteAllBytes(filename, v.PDF_file);
-                WPDF = new Window_PDF_Viewer(filename);
-                WPDF.Show();
+                SelectFile.SavePDF(v.PDF_file, prod.Name + ".pdf");
+            }
+            else
+            {
+                WM = new Window_Messagebox("Bitte erst eine PDF - Datei erstellen");
+                WM.Show();
             }
         }
 
@@ -129,6 +132,19 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Task Timer(int i)
         {
             return Task.Run(() => { Thread.Sleep(i); });
+        }
+
+        private void btn_zwischenablage_Click(object sender, RoutedEventArgs e)
+        {
+
+            var img = SelectFile.SelectImgfromClipboard();
+            if (img != null)
+            {
+                var v = Imageconverter.ConvertImageFromClipboard(img);
+                prod.Picture = v;
+                pic.DataContext = null;
+                pic.DataContext = prod;
+            }
         }
     }
 }
