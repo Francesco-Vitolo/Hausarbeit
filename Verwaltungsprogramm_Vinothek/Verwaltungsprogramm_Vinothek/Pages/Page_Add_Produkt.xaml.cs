@@ -89,5 +89,23 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             NavigationService.GoBack();
         }
+
+        private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)
+        {
+            newProd.Picture = null;
+            newProd.Picture = null;
+            ImgSrc.Content = null;
+        }
+
+        private void Button_Click_BildausZwischenablage(object sender, RoutedEventArgs e)
+        {
+            var img = SelectFile.SelectImgfromClipboard();
+            if (img != null)
+            {
+                var v = Imageconverter.ConvertImageFromClipboard(img);
+                newProd.Picture = v;
+                ImgSrc.Content = "Aus Zwischenablage";
+            }
+        }
     }
 }

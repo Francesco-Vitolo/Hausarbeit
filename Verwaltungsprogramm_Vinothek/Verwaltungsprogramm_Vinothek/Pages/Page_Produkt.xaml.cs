@@ -1,22 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -28,8 +19,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     {
         private Produkt prod;
         private VinothekContext ctx = new VinothekContext();
-        Window_PDF_Viewer WPDF;
-        Window_Messagebox WM;
+        private Window_PDF_Viewer WPDF;
+        private Window_Messagebox WM;
         //string filename überarbeiten
         public Page_Produkt(Produkt p)
         {
@@ -144,6 +135,27 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 prod.Picture = v;
                 pic.DataContext = null;
                 pic.DataContext = prod;
+            }
+        }
+
+        private void MoveNext_Click(object sender, RoutedEventArgs e)
+        {
+            if(ctx.Produkt.Any(x => x.ID_Produkt == prod.ID_Produkt + 1))
+            {
+                prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt + 1);
+                DataContext = null;
+                DataContext = prod;
+            }
+
+        }
+
+        private void MovePrev_Click(object sender, RoutedEventArgs e)
+        {
+            if (ctx.Produkt.Any(x => x.ID_Produkt == prod.ID_Produkt - 1))
+            {
+                prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt - 1);
+                DataContext = null;
+                DataContext = prod;
             }
         }
     }

@@ -7,6 +7,8 @@
 
         <Style TargetType="Border" x:Key="Border">
             <Setter Property="CornerRadius" Value="5"/>
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
         <Style TargetType="DataGrid">
@@ -30,6 +32,20 @@
             <Setter Property="FontWeight" Value="Bold" />
         </Style>
 
+
+        <Style TargetType="ComboBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="5"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+        <Style TargetType="ComboBox">
+            <Setter Property="BorderThickness" Value="0">
+               
+            </Setter>
+        </Style>
 
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>

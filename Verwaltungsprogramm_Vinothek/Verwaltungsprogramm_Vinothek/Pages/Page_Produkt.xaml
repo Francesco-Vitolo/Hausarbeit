@@ -44,15 +44,17 @@
                     <Image Source="..\Pictures\edit.png"/>
                 </Button>
                 <Button Click="Add_Produzent_Click">
-                    <!--<Image/--><!-->-->
+                    <Image Source="..\Pictures\Add_haus.png"/>
                 </Button>
                 <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
             </UniformGrid>
             <StackPanel Grid.Column="2" >
+                <Button x:Name="MoveNext" Content="NEXT" Click="MoveNext_Click"/>
+                <Button x:Name="MovePrev" Content="Previous" Click="MovePrev_Click"/>
                 <Image Source="{Binding Picture}" Name="pic" MaxHeight="620" VerticalAlignment="Top" Margin="0,100"/>
+                <Button  Content="PDF erstellen" FontSize="24"  Click="btn_create_pdf_Click"/>
                 <Button  Content="Bild hochladen/ändern" FontSize="24"  Click="Button_Click_BildAuswählen"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
-                <Button  Content="PDF erstellen" FontSize="24"  Click="btn_create_pdf_Click"/>
                 <Button  Content="Bild aus Zwischenablage" FontSize="24"  Click="btn_zwischenablage_Click"/>
             </StackPanel>
         </Grid>

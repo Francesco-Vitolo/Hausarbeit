@@ -76,24 +76,17 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         {
             if (gridType == "ListeProdukte")
             {
-                Page_Add_Produkt newPage = new Page_Add_Produkt();
-                NavigationService.Navigate(newPage);
+                NavigationService.Navigate(new Page_Add_Produkt());
             }
             else if (gridType == "ListeProduzenten")
             {
-                Page_Add_Produzent newPage = new Page_Add_Produzent();
-                NavigationService.Navigate(newPage);
+                NavigationService.Navigate(new Page_Add_Produzent());
             }
             else if (gridType == "ListeEvents")
             {
-                Page_Add_Veranstaltung newPage = new Page_Add_Veranstaltung();
-                NavigationService.Navigate(newPage);
+                NavigationService.Navigate(new Page_Add_Veranstaltung());
             }
-
         }
-
-
-
 
         private void btn_Search_Click(object sender, RoutedEventArgs e) //filter
         {
@@ -110,19 +103,21 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     collectionView.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
                     break;
             }
-            //search
-            //string searchStr = tbSearch.Text;
-            //collectionView.Filter = null;
-            //// Typumwandlung der Liste mit der Cast() Methode
-            //var list = collectionView.Cast<Produkt>();
-            //Produkt p = list.FirstOrDefault(x => x.Name.Contains(searchStr));
-            //collectionView.MoveCurrentTo(p);
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            btn_Search_Click(null, null);
         }
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             Page p = ItemInfos.Show(datagrid.CurrentItem, gridType);
+            if(p != null)
             NavigationService.Navigate(p);
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
+            //GC.Collect();
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -243,7 +238,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         {
             if (e.Key == Key.Enter)
                 btn_Search_Click(null, null);
-
         }
     }
 }

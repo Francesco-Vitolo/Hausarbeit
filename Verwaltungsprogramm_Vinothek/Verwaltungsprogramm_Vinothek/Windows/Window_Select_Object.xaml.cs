@@ -26,13 +26,13 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            if(gridType == "ListeProdukte")
+            if (gridType == "ListeProdukte")
             {
                 CreateDataGrid.Produkt(data);
                 ctx.Produkt.Load();
                 DataContext = ctx.Produkt.Local;
             }
-            else if(gridType == "ListeProduzenten")
+            else if (gridType == "ListeProduzenten")
             {
                 CreateDataGrid.Produzent(data);
                 ctx.Produzent.Load();

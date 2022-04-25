@@ -35,7 +35,21 @@
         <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch" Name="stackpanel">
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding AnzahlPersonen}"/>
-            <TextBox Text="{Binding Zeit}"/>
+            <!--="{Binding Zeit}"/>-->
+            <UniformGrid Rows="1">
+                <WrapPanel>
+
+                    <Border Style="{StaticResource Border}">
+                        <ComboBox Name="TimeHours" Margin="1"/>
+                    </Border>
+                    <TextBlock Text=" : "/>
+                    <Border Style="{StaticResource Border}">
+                        <ComboBox Name="TimeMinutes" Margin="1" />
+                    </Border>
+                </WrapPanel>
+                <Button Content="übernehmen" FontSize="24" Click="Button_Click"/>
+                <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>
+            </UniformGrid>
             <DatePicker Text="{Binding Datum}" Background="Transparent" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker">
                 <DatePicker.Resources>
                     <Style TargetType="Border">

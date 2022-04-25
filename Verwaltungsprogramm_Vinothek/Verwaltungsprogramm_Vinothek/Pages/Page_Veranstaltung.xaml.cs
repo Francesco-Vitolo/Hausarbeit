@@ -33,8 +33,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Veranstaltung(Event veranstaltung)
         {
             InitializeComponent();
-            this.veranstaltung = veranstaltung;
-            DataContext = ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
+            this.veranstaltung = ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
+            DataContext = this.veranstaltung;
             CreateDataGrid.Produkt(data);
             ctx.EventPos.Load();
             EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList();
@@ -63,6 +63,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             del_EVNT_POS.ForEach(x => ctx.EventPos.Remove(x));
             added_EVNT_POS.ForEach(x => ctx.EventPos.Add(x));
+            veranstaltung.Zeit = felder.GetTime();
+            veranstaltung.Datum = felder.GetDate();
             ctx.SaveChanges();
             NavigationService.GoBack();
         }

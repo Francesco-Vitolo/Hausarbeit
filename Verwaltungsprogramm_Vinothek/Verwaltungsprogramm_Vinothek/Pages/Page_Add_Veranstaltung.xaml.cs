@@ -51,9 +51,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             E.Name = tbs[0].Text;
             if (int.TryParse(tbs[1].Text, out int i))
                 E.AnzahlPersonen = i;
-            E.Zeit = tbs[2].Text;
-            DateTime date = (DateTime)felder.GetDP().SelectedDate;
-            E.Datum = date.ToString("dddd, dd MMMM yyyy");
+
+            E.Datum = felder.GetDate();
+            E.Zeit = felder.GetTime();
             ctx.Event.Add(E);
             ctx.SaveChanges();
             //}

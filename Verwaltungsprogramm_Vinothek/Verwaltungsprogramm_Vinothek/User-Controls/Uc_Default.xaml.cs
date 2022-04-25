@@ -33,6 +33,14 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         private void MoveWindow(object sender, MouseButtonEventArgs e)
         {
+            var res = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            if (currentWindow.WindowState == WindowState.Maximized)
+            {
+                currentWindow.WindowState = WindowState.Normal;
+                //currentWindow.Left = res.X / 2;
+                currentWindow.Top = res.Y;
+            }
+            currentWindow.WindowState = WindowState.Normal;
             currentWindow.DragMove();
         }
 
