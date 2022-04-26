@@ -18,6 +18,8 @@ namespace Verwaltungsprogramm_Vinothek
         public VinothekContext()
             : base("name=VinothekContext")
         {
+            //this.Configuration.ProxyCreationEnabled = true;
+            //this.Configuration.LazyLoadingEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

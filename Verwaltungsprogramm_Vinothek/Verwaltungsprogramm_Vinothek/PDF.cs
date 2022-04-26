@@ -46,7 +46,8 @@ namespace Verwaltungsprogramm_Vinothek
             Drawing($"Alkoholgehalt: {prod.Alkoholgehalt} % vol.");
             gfx.DrawString($"Beschreibung:", font, XBrushes.Black, new XRect(40, pos + 100, page.Width, page.Height), XStringFormats.TopLeft);
             tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, pos + 160, page.Width - 100, page.Height), XStringFormats.TopLeft);
-            filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{prod.Name}_{DateTime.Now.Day}_{DateTime.Now.Month}_{r.Next(0, 1000)}.pdf"; //Während Laufzeit geht überschreiben nicht, dehalb provisorisch r.Next
+            //filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\{prod.Name}_{DateTime.Now.Day}_{DateTime.Now.Month}_{r.Next(0, 1000)}.pdf"; //Während Laufzeit geht überschreiben nicht, dehalb provisorisch r.Next
+            filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{r.Next(0, 1000)}.pdf";
             doc.Save(filename);
             Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
             WPDF.Show();

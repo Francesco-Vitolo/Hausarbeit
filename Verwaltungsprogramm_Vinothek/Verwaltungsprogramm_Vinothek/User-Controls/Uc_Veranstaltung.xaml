@@ -36,24 +36,29 @@
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding AnzahlPersonen}"/>
             <!--="{Binding Zeit}"/>-->
-            <UniformGrid Rows="1">
+            <UniformGrid Rows="1" Width="440" HorizontalAlignment="Left" Margin="4">
                 <WrapPanel>
-
-                    <Border Style="{StaticResource Border}">
-                        <ComboBox Name="TimeHours" Margin="1"/>
+                    <Border Style="{StaticResource Border}"  >
+                        <ComboBox Name="TimeHours" Margin="1" FontSize="24"/>
                     </Border>
                     <TextBlock Text=" : "/>
                     <Border Style="{StaticResource Border}">
-                        <ComboBox Name="TimeMinutes" Margin="1" />
+                        <ComboBox Name="TimeMinutes" Margin="1" FontSize="24"/>
                     </Border>
-                </WrapPanel>
-                <Button Content="übernehmen" FontSize="24" Click="Button_Click"/>
+                <Button Content="übernehmen" FontSize="24" Click="Button_Click" Margin="5"/>
                 <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>
+                </WrapPanel>
             </UniformGrid>
-            <DatePicker Text="{Binding Datum}" Background="Transparent" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker">
+            <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
                 <DatePicker.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>
+                    </Style>
+                    <Style TargetType="DatePickerTextBox">
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="Height" Value="40"/>
+                        <Setter Property="FontSize" Value="24"/>
+                        <Setter Property="IsEnabled" Value="False"/>
                     </Style>
                 </DatePicker.Resources>
             </DatePicker>

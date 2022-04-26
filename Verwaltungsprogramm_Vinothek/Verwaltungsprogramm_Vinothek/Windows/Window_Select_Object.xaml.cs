@@ -21,7 +21,7 @@ namespace Verwaltungsprogramm_Vinothek
     public partial class Window_Select_Object : Window
     {
         private VinothekContext ctx = new VinothekContext();
-        private object obj = new object();
+        private object obj = null;
         public Window_Select_Object(string gridType)
         {
             InitializeComponent();
@@ -42,7 +42,6 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-
             obj = data.SelectedItem;
             Close();
         }

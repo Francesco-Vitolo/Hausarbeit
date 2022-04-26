@@ -32,8 +32,21 @@
             <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
             <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
         </UniformGrid>
-        <Viewbox Grid.Row="2" Grid.Column="2" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="450" MaxWidth="450">
+        <StackPanel Grid.Row="2" Grid.Column="2">
+            <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="200" MaxWidth="200">
             <Calendar Background="AliceBlue"/>
         </Viewbox>
+            <UniformGrid x:Name="Options">
+                <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click">
+                    <Image Source="..\Pictures\dir.png"/>
+                </Button>
+                <WrapPanel VerticalAlignment="Center">
+                    <TextBlock Text="Hintergrund: " VerticalAlignment="Center" FontSize="24"/>
+                    <TextBox x:Name="tb_background" Text="#FFFFFF"/>
+                    <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100"/>
+                </WrapPanel>
+                <Label Content="https://www.flaticon.com/free-icons/duplicate"/>
+            </UniformGrid>
+        </StackPanel>
     </Grid>
 </Page>

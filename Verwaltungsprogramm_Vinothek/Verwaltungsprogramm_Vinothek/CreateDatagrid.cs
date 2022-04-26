@@ -6,36 +6,36 @@ namespace Verwaltungsprogramm_Vinothek
 {
     static class CreateDataGrid
     {
-        static Dictionary<string, string> Produkte = new Dictionary<string, string>() //Header und Rows(SQL)
+        private static Dictionary<string, string> Produkte = new Dictionary<string, string>() //Header und Rows(SQL)
         {
-           { "Name",         "Name" },
            {"Typ",           "Art" } ,
+           { "Name",         "Name" },
            {"Bezeichnung",   "Qualitätssiegel"}  ,
-           {"Jahrgang",      "Jahrgang"}  ,
            {"Rebsorte(n)",   "Rebsorten"}  ,
+           {"Region",        "Produzent.Region"}  ,
+           {"Jahrgang",      "Jahrgang"}  ,
            {"Produzent",     "Produzent.Name"}  ,
            {"Geschmack",     "Geschmack"}  ,
-           {"Region",        "Produzent.Region"}  ,
            {"Alkoholgehalt", "Alkoholgehalt"} ,
-           {"Beschreibung",  "Beschreibung"} ,
+           //{"Beschreibung",  "Beschreibung"} ,
         };
 
-        static Dictionary<string, string> Produzenten = new Dictionary<string, string>()
+        private static Dictionary<string, string> Produzenten = new Dictionary<string, string>()
         {
            { "Name",        "Name" },
            {"Land",         "Land" } ,
            {"Region",       "Region"}  ,
            {"Adresse",      "Adresse"}  ,
            {"Hektar",       "Hektar"}  ,
-           {"Beschreibung", "Beschreibung"}  ,
+           //{"Beschreibung", "Beschreibung"}  ,
         };
-        static Dictionary<string, string> Events = new Dictionary<string, string>()
+        private static Dictionary<string, string> Events = new Dictionary<string, string>()
         {
            {"Datum",       "Datum"}  ,
            {"Zeit",       "Zeit"}  ,
            { "Name",       "Name" },
            {"Anzahl",      "AnzahlPersonen" } ,
-        };
+        };       
 
         public static DataGrid Produkt(DataGrid dg)
         {
@@ -63,6 +63,52 @@ namespace Verwaltungsprogramm_Vinothek
                 dg.Columns.Add(column);
             }
             return dg;
+        }
+
+        public static ComboBox ProduktFilter(ComboBox c)
+        {
+            foreach (var v in Produkte)
+            {
+                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+            }
+            return c;
+        }
+        public static ComboBox ProduzentFilter(ComboBox c)
+        {
+            foreach (var v in Produzenten)
+            {
+                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+            }
+            return c;
+        }
+        public static ComboBox EventFilter(ComboBox c)
+        {
+            foreach (var v in Events)
+            {
+                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+            }
+            return c;
+        }
+
+        public static string[] GetFilterNamesProdukte()
+        {
+            string[] s = new string[9];
+            Produkte.Values.CopyTo(s, 0);
+            return s;
+        }
+
+        public static string[] GetFilterNamesProduzenten()
+        {
+            string[] s = new string[5];
+            Produzenten.Values.CopyTo(s, 0);
+            return s;
+        }
+
+        public static string[] GetFilterNamesEvents()
+        {
+            string[] s = new string[4];
+            Events.Values.CopyTo(s, 0);
+            return s;
         }
     }
 }

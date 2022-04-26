@@ -28,7 +28,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             this.gridType = gridType;
             CreateDG();
             //test();
-
         }
 
         //private async void test()
@@ -40,7 +39,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         //}
         private Task Timer(int i)
         {
-            return Task.Run(() => {
+            return Task.Run(() =>
+            {
                 Thread.Sleep(i);
                 Dispatcher.Invoke(() => Refresh_Click(null, null));
             });
@@ -52,22 +52,27 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 case "ListeProdukte":
                     CreateDataGrid.Produkt(datagrid);
                     ctx.Produkt.Load();
+                    //collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.OrderBy(x => x.Name).ToList());
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
-                    DataContext = collectionView;
+                    datagrid.DataContext = collectionView;
+                    cb_filter = CreateDataGrid.ProduktFilter(cb_filter);
                     break;
 
                 case "ListeProduzenten":
                     CreateDataGrid.Produzent(datagrid);
                     ctx.Produzent.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local);
-                    DataContext = collectionView;
+                    datagrid.DataContext = collectionView;
+                    cb_filter = CreateDataGrid.ProduzentFilter(cb_filter);
+
                     break;
 
                 case "ListeEvents":
                     CreateDataGrid.Event(datagrid);
                     ctx.Event.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local);
-                    DataContext = collectionView;
+                    datagrid.DataContext = collectionView;
+                    cb_filter = CreateDataGrid.EventFilter(cb_filter);
                     break;
             }
         }
@@ -86,6 +91,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 NavigationService.Navigate(new Page_Add_Veranstaltung());
             }
+            collectionView.Refresh();
         }
 
         private void btn_Search_Click(object sender, RoutedEventArgs e) //filter
@@ -113,8 +119,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             Page p = ItemInfos.Show(datagrid.CurrentItem, gridType);
-            if(p != null)
-            NavigationService.Navigate(p);
+            if (p != null)
+                NavigationService.Navigate(p);
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
             //GC.Collect();
@@ -138,7 +144,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local);
                     break;
             }
-            DataContext = collectionView;
+            datagrid.DataContext = collectionView;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -177,6 +183,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                         }
                     }
                     break;
+
                 case "ListeEvents":
                     Event deleted_Event = (Event)collectionView.CurrentItem;
                     WA = new Window_Abfrage($"Soll {deleted_Event.Name} gelöscht werden");
@@ -197,6 +204,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
             }
             ctx.SaveChanges();
+            Refresh_Click(null, null);
         }
 
         private void Duplicate_Click(object sender, RoutedEventArgs e)
@@ -226,6 +234,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             }
             ctx.SaveChanges();
             Refresh_Click(null, null);
+            collectionView.MoveCurrentToLast();
+            datagrid.ScrollIntoView(collectionView.CurrentItem);
         }
 
         private void Datagrid_KeyDel(object sender, KeyEventArgs e)
@@ -238,6 +248,59 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         {
             if (e.Key == Key.Enter)
                 btn_Search_Click(null, null);
+        }
+
+        private void cb_filter_DropDownClosed(object sender, EventArgs e)
+        {
+            string[] filteroptions = new string[9];
+            switch (gridType)
+            {
+                case "ListeProdukte":
+                    filteroptions = CreateDataGrid.GetFilterNamesProdukte();
+                    break;
+                case "ListeProduzenten":
+                    filteroptions = CreateDataGrid.GetFilterNamesProduzenten();
+                    break;
+                case "ListeEvents":
+                    filteroptions = CreateDataGrid.GetFilterNamesEvents();
+                    break;
+            }
+            collectionView.SortDescriptions.Clear();
+            switch (cb_filter.SelectedIndex)
+            {
+                default:
+                    collectionView.Refresh();
+                    break;
+                case 1:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[0], ListSortDirection.Ascending));
+                    break;
+                case 2:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[1], ListSortDirection.Ascending));
+                    break;
+                case 3:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[2], ListSortDirection.Ascending));
+                    break;
+                case 4:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[3], ListSortDirection.Ascending));
+                    break;
+                case 5:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[4], ListSortDirection.Ascending));
+                    break;
+                case 6:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[5], ListSortDirection.Ascending));
+                    break;
+                case 7:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[6], ListSortDirection.Ascending));
+                    break;
+                case 8:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[7], ListSortDirection.Ascending));
+                    break;
+                case 9:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[8], ListSortDirection.Ascending));
+                    break;                    
+            }
+            //collectionView.SortDescriptions.
+            //collectionView.Refresh();
         }
     }
 }

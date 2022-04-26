@@ -22,6 +22,16 @@ namespace Verwaltungsprogramm_Vinothek
             return null;
         }
 
+
+        public static string PdfDir(string path)
+        {
+            FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+            folderDlg.SelectedPath = path;
+            folderDlg.ShowDialog();
+            return folderDlg.SelectedPath;
+        }
+
+
         public static void SavePDF(byte[] b, string name)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();

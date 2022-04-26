@@ -44,18 +44,25 @@
                     <Image Source="..\Pictures\edit.png"/>
                 </Button>
                 <Button Click="Add_Produzent_Click">
-                    <Image Source="..\Pictures\Add_haus.png"/>
+                    <Image Source="..\Pictures\haus.png"/>
                 </Button>
                 <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
             </UniformGrid>
             <StackPanel Grid.Column="2" >
-                <Button x:Name="MoveNext" Content="NEXT" Click="MoveNext_Click"/>
-                <Button x:Name="MovePrev" Content="Previous" Click="MovePrev_Click"/>
-                <Image Source="{Binding Picture}" Name="pic" MaxHeight="620" VerticalAlignment="Top" Margin="0,100"/>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <Button x:Name="MoveNext" Click="MovePrev_Click" Style="{StaticResource Button_Titlebar}" Height="50" Width="75" Margin="0,20,0,0">
+                        <Image Source="..\Pictures\arrow_left.png" />
+                    </Button>
+                    <Button x:Name="MovePrev" Click="MoveNext_Click" Style="{StaticResource Button_Titlebar}" Height="50" Width="75" Margin="75,20,0,0">
+                        <Image Source="..\Pictures\arrow_right.png" MaxHeight="100"/>
+                    </Button>
+                </StackPanel>
+                <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" Margin="0,100"/>
                 <Button  Content="PDF erstellen" FontSize="24"  Click="btn_create_pdf_Click"/>
+                <Button  Content="Bild aus Zwischenablage" FontSize="24"  Click="btn_zwischenablage_Click"/>
                 <Button  Content="Bild hochladen/ändern" FontSize="24"  Click="Button_Click_BildAuswählen"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
-                <Button  Content="Bild aus Zwischenablage" FontSize="24"  Click="btn_zwischenablage_Click"/>
+                <Button  Content="Bild entfernen" FontSize="24"  Click="Button_Click_BildEntfernen"/>
             </StackPanel>
         </Grid>
     </Grid>

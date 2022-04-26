@@ -1,7 +1,12 @@
 ﻿<?xml version='1.0' encoding='utf-8'?>
-<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
-  <Profiles>
-    <Profile Name="(Default)" />
-  </Profiles>
-  <Settings />
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="Verwaltungsprogramm_Vinothek.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="PDF_Directory" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Environment.GetFolderPath(Environment.SpecialFolder.Desktop)</Value>
+    </Setting>
+    <Setting Name="Background" Type="System.Windows.Media.SolidColorBrush" Scope="User">
+      <Value Profile="(Default)">#FF4B6676</Value>
+    </Setting>
+  </Settings>
 </SettingsFile>

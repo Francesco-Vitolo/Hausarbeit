@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -69,13 +70,17 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Add_Produzent_Click(object sender, RoutedEventArgs e)
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
-            WSP.ShowDialog();
+            WSP.ShowDialog();            
             Produzent p = (Produzent)WSP.GetObj();
-            prod.Produzent = p;
-            DataContext = null;
-            DataContext = prod;
-            prod.Produzent = null;
-            prod.ID_Produzent = p.ID_Produzent;
+            if(p != null)
+            {
+                prod.Produzent = p;
+                DataContext = null;
+                DataContext = prod;
+                prod.Produzent = null;
+                prod.ID_Produzent = p.ID_Produzent;
+            }
+
         }
 
         private void btn_download_pdf_Click(object sender, RoutedEventArgs e)
@@ -107,7 +112,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             if (prod.PDF_file != null)
             {
-                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\Moin.pdf";
+                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf";
                 File.WriteAllBytes(tempfile, prod.PDF_file);
                 WPDF = new Window_PDF_Viewer(tempfile);
                 WPDF.ShowDialog();
@@ -137,26 +142,57 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 pic.DataContext = prod;
             }
         }
-
+        //ändern
         private void MoveNext_Click(object sender, RoutedEventArgs e)
         {
-            if(ctx.Produkt.Any(x => x.ID_Produkt == prod.ID_Produkt + 1))
+            int i = prod.ID_Produkt + 1;
+            while (i <= ctx.Produkt.ToList().Last().ID_Produkt)
             {
-                prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt + 1);
-                DataContext = null;
-                DataContext = prod;
+                if (ctx.Produkt.Any(x => x.ID_Produkt == i))
+                {
+                    prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == i);
+                    DataContext = null;
+                    DataContext = prod;
+                    break;
+                }
+                else
+                    i++;
             }
+            pic.DataContext = null;
+            pic.DataContext = prod;
 
+
+            //var p = new SqlParameter("@result", System.Data.SqlDbType.Int);
+            //p.Direction = System.Data.ParameterDirection.Output;
+            //ctx.Database.ExecuteSqlCommand("SELECT @result = (NEXT VALUE FOR dbo.test)", p);
+            //var nextVal = (int)p.Value;
+            //MessageBox.Show(nextVal.ToString());
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e)
         {
-            if (ctx.Produkt.Any(x => x.ID_Produkt == prod.ID_Produkt - 1))
+            //Provisorisch            
+            int i = prod.ID_Produkt - 1;
+            while (i >= 1000)
             {
-                prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt - 1);
-                DataContext = null;
-                DataContext = prod;
+                if (ctx.Produkt.Any(x => x.ID_Produkt == i))
+                {
+                    prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == i);
+                    DataContext = null;
+                    DataContext = prod;
+                    break;
+                }
+                else
+                    i--;
             }
+            pic.DataContext = null;
+            pic.DataContext = prod;
+        }
+
+        private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)
+        {
+            prod.Picture = null;
+            pic.DataContext = null;
         }
     }
 }

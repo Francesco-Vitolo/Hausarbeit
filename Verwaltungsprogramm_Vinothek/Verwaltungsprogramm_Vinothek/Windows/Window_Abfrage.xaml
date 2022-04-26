@@ -7,6 +7,11 @@
         mc:Ignorable="d"
          Title="Window_Abfrage" Height="340" Width="340"  WindowStartupLocation="CenterScreen">
     <Grid>
+        <Grid>
+            <Grid.Resources>
+                <Style TargetType="Border" BasedOn="{StaticResource Border}"/>
+            </Grid.Resources>
+        </Grid>
         <StackPanel x:Name="stackpanel" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="..\Pictures\Logo.png" Margin="20" VerticalAlignment="Top" MaxHeight="75"/>
             <WrapPanel x:Name="Text" HorizontalAlignment="Center"/>

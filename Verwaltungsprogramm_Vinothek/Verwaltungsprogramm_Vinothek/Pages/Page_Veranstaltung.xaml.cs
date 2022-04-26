@@ -80,23 +80,29 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void AddProd_Click(object sender, RoutedEventArgs e)
         {
+            Produkt p = null;
             Window_Select_Object WSO = new Window_Select_Object("ListeProdukte");
             WSO.ShowDialog();
-            Produkt p = (Produkt)WSO.GetObj();
-            if (PRODS.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null)
+            var v = WSO.GetObj();
+            if (v != null)
             {
-                EventPos EP = new EventPos();
-                EP.ID_Veranstaltung = veranstaltung.ID_Veranstaltung;
-                EP.ID_Produkt = p.ID_Produkt;
-                PRODS.Add(p);
-                added_EVNT_POS.Add(EP);
-                data.DataContext = null;
-                data.DataContext = PRODS;
-            }
-            else
-            {
-                Window_Messagebox WM = new Window_Messagebox("Produkt bereits vorhanden");
-                WM.ShowDialog();
+                p = (Produkt)v;
+
+                if (PRODS.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null)
+                {
+                    EventPos EP = new EventPos();
+                    EP.ID_Veranstaltung = veranstaltung.ID_Veranstaltung;
+                    EP.ID_Produkt = p.ID_Produkt;
+                    PRODS.Add(p);
+                    added_EVNT_POS.Add(EP);
+                    data.DataContext = null;
+                    data.DataContext = PRODS;
+                }
+                else
+                {
+                    Window_Messagebox WM = new Window_Messagebox("Produkt bereits vorhanden");
+                    WM.ShowDialog();
+                }
             }
         }
     }

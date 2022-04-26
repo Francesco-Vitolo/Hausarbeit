@@ -33,5 +33,22 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Page_Grid_List newPage = new Page_Grid_List(grid);
             NavigationService.Navigate(newPage);
         }
+
+        private void PdfDir_Click(object sender, RoutedEventArgs e)
+        {
+            Properties.Settings.Default.PDF_Directory = SelectFile.PdfDir(Properties.Settings.Default.PDF_Directory);
+            Properties.Settings.Default.Save();
+        }
+
+        private void Background_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Properties.Settings.Default.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_background.Text);
+                Properties.Settings.Default.Save();
+            }
+            catch { }
+           
+        }
     }
 }
