@@ -70,7 +70,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Add_Produzent_Click(object sender, RoutedEventArgs e)
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
-            WSP.ShowDialog();            
+            WSP.ShowDialog();
             Produzent p = (Produzent)WSP.GetObj();
             if(p != null)
             {
@@ -99,8 +99,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void btn_create_pdf_Click(object sender, RoutedEventArgs e)
         {
-            PDF pdf = new PDF(prod);
-            byte[] b = pdf.Create();
+            PDF pdf = new PDF();
+            byte[] b = pdf.CreateFromProd(prod);
             var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             v.PDF_file = b;
             ctx.SaveChanges();
@@ -142,7 +142,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 pic.DataContext = prod;
             }
         }
-        //ändern
         private void MoveNext_Click(object sender, RoutedEventArgs e)
         {
             int i = prod.ID_Produkt + 1;
@@ -160,18 +159,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
             pic.DataContext = null;
             pic.DataContext = prod;
-
-
-            //var p = new SqlParameter("@result", System.Data.SqlDbType.Int);
-            //p.Direction = System.Data.ParameterDirection.Output;
-            //ctx.Database.ExecuteSqlCommand("SELECT @result = (NEXT VALUE FOR dbo.test)", p);
-            //var nextVal = (int)p.Value;
-            //MessageBox.Show(nextVal.ToString());
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e)
-        {
-            //Provisorisch            
+        {          
             int i = prod.ID_Produkt - 1;
             while (i >= 1000)
             {

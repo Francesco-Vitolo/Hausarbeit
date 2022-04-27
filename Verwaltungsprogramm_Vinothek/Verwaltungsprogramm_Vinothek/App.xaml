@@ -12,6 +12,10 @@
             <Setter Property="BorderThickness" Value="1"/>
         </Style>
 
+        <Style TargetType="Image">
+            <Setter Property="MaxHeight" Value="50"/>
+        </Style>
+        
         <Style TargetType="DataGrid">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>

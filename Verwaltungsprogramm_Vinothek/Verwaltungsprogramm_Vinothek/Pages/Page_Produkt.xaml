@@ -6,7 +6,13 @@
       xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d"
       Title="Page_Produkt">
-
+    <Page.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Height" Value="75"/>
+            <Setter Property="Width" Value="75"/>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -20,36 +26,39 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
-            <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
-                <StackPanel.Resources>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="FontSize" Value="32"/>
-                    </Style>
-                </StackPanel.Resources>
-                <TextBlock Text="Modus: " />
-                <TextBlock Name="modus" Text="anschauen" Foreground="Red"/>
-            </StackPanel>
+
             <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0"/>
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
-                <UniformGrid.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource Button_Titlebar}">
-                        <Setter Property="HorizontalAlignment" Value="Center"/>
-                        <Setter Property="Height" Value="75"/>
-                        <Setter Property="Width" Value="75"/>
-                    </Style>
-                </UniformGrid.Resources>
-                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" Content="PDF anschauen" />
-                <Button x:Name="btn_download_pdf" Click="btn_download_pdf_Click" Content="PDF downloaden" />
+                <Button  Click="btn_create_pdf_Click">
+                    <Image Source="..\Pictures\new_file.png" Margin="4,2,0,0"/>
+                </Button>
+                <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click">
+                    <Image Source="..\Pictures\file.png"/>
+                </Button>
+                <Button x:Name="btn_download_pdf" Click="btn_download_pdf_Click" >
+                    <Image Source="..\Pictures\download.png"/>
+                </Button>
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
-                    <Image Source="..\Pictures\edit.png"/>
+                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
                 <Button Click="Add_Produzent_Click">
                     <Image Source="..\Pictures\haus.png"/>
                 </Button>
-                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
+                <Button x:Name="saveChanges" Click="saveChanges_Click">
+                    <Image Source="..\Pictures\save.png"/>
+                </Button>
             </UniformGrid>
             <StackPanel Grid.Column="2" >
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal" >
+                    <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
+                        <StackPanel.Resources>
+                            <Style TargetType="TextBlock">
+                                <Setter Property="FontSize" Value="32"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="Modus: " />
+                        <TextBlock Name="modus" Text="anschauen" Foreground="Red"/>
+                    </StackPanel>
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
                     <Button x:Name="MoveNext" Click="MovePrev_Click" Style="{StaticResource Button_Titlebar}" Height="50" Width="75" Margin="0,20,0,0">
                         <Image Source="..\Pictures\arrow_left.png" />
                     </Button>
@@ -57,13 +66,31 @@
                         <Image Source="..\Pictures\arrow_right.png" MaxHeight="100"/>
                     </Button>
                 </StackPanel>
-                <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" Margin="0,100"/>
-                <Button  Content="PDF erstellen" FontSize="24"  Click="btn_create_pdf_Click"/>
-                <Button  Content="Bild aus Zwischenablage" FontSize="24"  Click="btn_zwischenablage_Click"/>
-                <Button  Content="Bild hochladen/ändern" FontSize="24"  Click="Button_Click_BildAuswählen"/>
+                <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" Margin="0,20"/>
                 <Label Name="path" HorizontalAlignment="Center"/>
-                <Button  Content="Bild entfernen" FontSize="24"  Click="Button_Click_BildEntfernen"/>
             </StackPanel>
+
+
+            <Separator HorizontalAlignment="Left" Grid.Column="2" Grid.Row="1">
+                <Separator.LayoutTransform>
+                    <RotateTransform Angle="90" />
+                </Separator.LayoutTransform>
+            </Separator>
+
+            <UniformGrid Rows="1" Grid.Column="2" Grid.Row="1">
+
+                <Button Click="btn_zwischenablage_Click">
+                    <Image Source="..\Pictures\clipboard.png"/>
+                </Button>
+
+                <Button Click="Button_Click_BildAuswählen">
+                    <Image Source="..\Pictures\bild.png"/>
+                </Button>
+
+                <Button Click="Button_Click_BildEntfernen">
+                    <Image Source="..\Pictures\cross.png"/>
+                </Button>
+            </UniformGrid>
         </Grid>
     </Grid>
 </Page>

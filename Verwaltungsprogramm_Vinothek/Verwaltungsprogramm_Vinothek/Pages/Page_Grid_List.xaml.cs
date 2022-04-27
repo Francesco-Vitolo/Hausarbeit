@@ -145,11 +145,11 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
             }
             datagrid.DataContext = collectionView;
+            cb_filter.SelectedIndex = 0;
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-
             switch (gridType)
             {
                 case "ListeProdukte":
@@ -190,16 +190,14 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     WA.ShowDialog();
                     if (WA.GetOption())
                     {
-                        if (Convert.ToDateTime(deleted_Event.Datum) < DateTime.Now)
-                        {
-                            WM = new Window_Messagebox("Das Datum liegt in der Vergangenheit");
-                        }
-                        else
-                        {
-                            ctx.Event.Remove(deleted_Event);
-                            ctx.EventPos.Where(x => x.ID_Veranstaltung == deleted_Event.ID_Veranstaltung).ToList().ForEach(x => ctx.EventPos.Remove(x));
-                            WM = new Window_Messagebox(deleted_Event.Name + " wurde gelöscht.");
-                        }
+                        //if (Convert.ToDateTime(deleted_Event.Datum) < DateTime.Now)
+                        //{
+                        //    WM = new Window_Messagebox("Das Datum liegt in der Vergangenheit");
+                        //    WM.Show();
+                        //}
+                        ctx.Event.Remove(deleted_Event);
+                        ctx.EventPos.Where(x => x.ID_Veranstaltung == deleted_Event.ID_Veranstaltung).ToList().ForEach(x => ctx.EventPos.Remove(x));
+                        WM = new Window_Messagebox(deleted_Event.Name + " wurde gelöscht.");
                     }
                     break;
             }
@@ -297,7 +295,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
                 case 9:
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[8], ListSortDirection.Ascending));
-                    break;                    
+                    break;
             }
             //collectionView.SortDescriptions.
             //collectionView.Refresh();

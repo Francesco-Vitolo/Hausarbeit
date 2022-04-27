@@ -23,7 +23,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             tb_prod.IsEnabled = true;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)
         {
             Window_Messagebox WM;
             var tbs = test.GetTbs();
@@ -79,7 +79,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             if (imgPath != null)
             {
-                ImgSrc.Content = imgPath;
+                ImgSrc.Text = imgPath;
                 byte[] b = Imageconverter.ConvertImageToByteArray(imgPath);
                 newProd.Picture = b;
             }
@@ -94,7 +94,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             newProd.Picture = null;
             newProd.Picture = null;
-            ImgSrc.Content = null;
+            ImgSrc.Text = null;
         }
 
         private void Button_Click_BildausZwischenablage(object sender, RoutedEventArgs e)
@@ -104,7 +104,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             {
                 var v = Imageconverter.ConvertImageFromClipboard(img);
                 newProd.Picture = v;
-                ImgSrc.Content = "Aus Zwischenablage";
+                ImgSrc.Text = "Aus Zwischenablage";
             }
         }
     }
