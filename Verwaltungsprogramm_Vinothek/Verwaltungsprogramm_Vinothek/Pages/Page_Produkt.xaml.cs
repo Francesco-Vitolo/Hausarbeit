@@ -143,7 +143,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e)
-        {
+        {//ctx to list und dann
             int i = prod.ID_Produkt + 1;
             while (i <= ctx.Produkt.ToList().Last().ID_Produkt)
             {
@@ -157,6 +157,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 else
                     i++;
             }
+            path.Content = null;
             pic.DataContext = null;
             pic.DataContext = prod;
         }
@@ -176,6 +177,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 else
                     i--;
             }
+            path.Content = null;
             pic.DataContext = null;
             pic.DataContext = prod;
         }

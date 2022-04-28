@@ -91,6 +91,9 @@
     <Compile Include="Pages\Page_Add_Veranstaltung.xaml.cs">
       <DependentUpon>Page_Add_Veranstaltung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\Page_Kundensicht.xaml.cs">
+      <DependentUpon>Page_Kundensicht.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\Page_Produkt.xaml.cs">
       <DependentUpon>Page_Produkt.xaml</DependentUpon>
     </Compile>
@@ -144,6 +147,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Pages\Page_Add_Veranstaltung.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\Page_Kundensicht.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

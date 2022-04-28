@@ -50,5 +50,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             catch { }
            
         }
+
+        private void Button_Kundensicht(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Page_Kundensicht());
+        }
     }
 }

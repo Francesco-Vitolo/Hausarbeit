@@ -14,7 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
        private XGraphics gfx;
        private XTextFormatter tf; //für Absatz
        private XFont ueberschrift = new XFont("Arial", 40, XFontStyle.Underline);
-       private XFont font = new XFont("Arial", 20);
+       private XFont font = new XFont("Garamond", 20);
        private Produkt prod;
        private Random r;
        private int posY = 120;
@@ -53,10 +53,10 @@ namespace Verwaltungsprogramm_Vinothek
         {
             page = doc.AddPage();
             gfx = XGraphics.FromPdfPage(page);
-            font = new XFont("Arial", 44, (XFontStyle)4);
+            font = new XFont("Garamond", 44, (XFontStyle)4);
             posY = 300;
             gfx.DrawString(ev.Name, font, XBrushes.Black, new XRect(0, 340, page.Width, page.Height), XStringFormats.TopCenter);
-            font = new XFont("Arial", 24);
+            font = new XFont("Garamond", 24);
             gfx.DrawString(ev.Datum, font, XBrushes.Black, new XRect(0, 400, page.Width, page.Height), XStringFormats.TopCenter);
             gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 200, 460, 200, 80);
         }
@@ -66,7 +66,6 @@ namespace Verwaltungsprogramm_Vinothek
             page = doc.AddPage();
             gfx = XGraphics.FromPdfPage(page);
             tf = new XTextFormatter(gfx); //für Absatz
-            font = new XFont("Arial", 20);
             posY = 120;
             if (prod.Picture != null)
             {

@@ -22,7 +22,7 @@
         </Grid.ColumnDefinitions>
         <Image Source="..\Pictures\Logo.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
         <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
-        <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3">
+        <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3" Columns="1">
             <!--<UniformGrid.Resources>
                 <Style TargetType="Button" >
                     <Setter Property="FontSize" Value="42"/>
@@ -46,6 +46,7 @@
                     <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100"/>
                 </WrapPanel>
                 <Label Content="https://www.flaticon.com/free-icons/duplicate"/>
+                <Button Name="Lite"  Content="Lite" Click="Button_Kundensicht"/>
             </UniformGrid>
         </StackPanel>
     </Grid>

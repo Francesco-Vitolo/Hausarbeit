@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.User_Controls
 {
@@ -36,8 +37,8 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
             {
                 if (i < 10)
                 {
-                    TimeHours.Items.Add(new ComboBoxItem() { Content = "0" + i});
-                    TimeMinutes.Items.Add(new ComboBoxItem() { Content = "0" + i});
+                    TimeHours.Items.Add(new ComboBoxItem() { Content = "0" + i });
+                    TimeMinutes.Items.Add(new ComboBoxItem() { Content = "0" + i });
                 }
                 else
                 {
@@ -50,11 +51,8 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
             for (int i = 25; i <= 59; i++)
             {
-                TimeMinutes.Items.Add(new ComboBoxItem() { Content = i});
+                TimeMinutes.Items.Add(new ComboBoxItem() { Content = i });
             }
-
-
-
         }
 
         public List<TextBox> GetTbs()
@@ -76,13 +74,21 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            DateTime t;
-            ComboBoxItem cbiHours = (ComboBoxItem)TimeHours.SelectedItem;
-            ComboBoxItem cbiMinutes = (ComboBoxItem)TimeMinutes.SelectedItem;            
-            string time = cbiHours.Content + ":" + cbiMinutes.Content;
-            CultureInfo german = new CultureInfo("de-DE");
-            t = DateTime.ParseExact(time, "HH':'mm", german);
-            tb_time.Text = t.ToString("HH':'mm");
+            if (TimeHours.SelectedItem != null && TimeMinutes.SelectedItem != null)
+            {
+                DateTime t;
+                ComboBoxItem cbiHours = (ComboBoxItem)TimeHours.SelectedItem;
+                ComboBoxItem cbiMinutes = (ComboBoxItem)TimeMinutes.SelectedItem;
+                string time = cbiHours.Content + ":" + cbiMinutes.Content;
+                CultureInfo german = new CultureInfo("de-DE");
+                t = DateTime.ParseExact(time, "HH':'mm", german);
+                tb_time.Text = t.ToString("HH':'mm");
+            }
+            else
+            {
+                Window_Messagebox WM = new Window_Messagebox("Bitte beide Felder ausfüllen");
+                WM.Show();
+            }
         }
     }
 }

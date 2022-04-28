@@ -8,6 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Veranstaltung">
+    <Page.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
+    </Page.Resources>
     <Grid>
         <Grid Margin="0,32,0,0">
             <Grid.ColumnDefinitions>
@@ -26,15 +29,21 @@
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1"/>
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1" >
-                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" >
-                    <!--<Image Source="umschalten.png"/>-->
+                <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
+                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
-                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
-                <Button x:Name="DelProd" Content="X" Click="DelProd_Click" />
-                <Button x:Name="AddProd" Click="AddProd_Click" Style="{StaticResource Button_Style2}">
+                <Button x:Name="saveChanges" Click="saveChanges_Click">
+                    <Image Source="..\Pictures\save.png"/>
+                </Button>
+                <Button x:Name="DelProd" Click="DelProd_Click" >
+                    <Image Source="..\Pictures\cross.png"/>
+                </Button>
+                <Button x:Name="AddProd" Click="AddProd_Click">
                     <Image Source="..\Pictures\Add_Wein.png" MaxHeight="60"/>
                 </Button>
-                <Button x:Name="CreatePDF" Content="CreatePDF" Click="CreatePDF_Click" />
+                <Button  Click="CreatePDF_Click">
+                    <Image Source="..\Pictures\new_file.png" Margin="4,2,0,0"/>
+                </Button>
                 <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">

@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Produzent">
+    <Page.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
+    </Page.Resources>
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -26,10 +29,12 @@
                        MouseDoubleClick="Item_MouseDoubleClick" />
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1" >
-                <Button x:Name="UmschaltenBearbeiten" Content="Toggle" Click="UmschaltenBearbeiten_Click" >
-                    <!--<Image Source="umschalten.png"/>-->
+                <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
+                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
-                <Button x:Name="saveChanges" Content="save" Click="saveChanges_Click" />
+                <Button x:Name="saveChanges" Click="saveChanges_Click">
+                    <Image Source="..\Pictures\save.png"/>
+                </Button>
                 <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
