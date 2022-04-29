@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -19,6 +13,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Anmelden : Window
     {
+        VinothekContext ctx = new VinothekContext();
         public Window_Anmelden()
         {
             InitializeComponent();
@@ -27,9 +22,37 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MainWindow main = new MainWindow();
-            main.Show();
-            Close();
+            string username = tb_username.Text;
+            string pw = Encrypt.getHash(tb_pw.Password);
+            ctx.Benutzer.Load();           
+            if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
+            {
+                MainWindow main = new MainWindow();
+                main.Show();
+                Close();
+            }
+            else
+                Alert.Visibility = Visibility.Visible;
         }
+
+        private void Window_KeyUp_Enter(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Enter)
+                Button_Click(null,null);
+        }
+
+        //private void Button_Click_2(object sender, RoutedEventArgs e)
+        //{
+        //    string username = tb_username.Text;
+        //    string pw = tb_pw.Password;
+        //    ctx.Benutzer.Load();
+        //    Benutzer b = new Benutzer();
+        //    b.username = username;
+        //    b.Passwort = Encrypt.getHash(pw);
+        //    b.Salt = "aa";
+        //    ctx.Benutzer.Add(b);
+        //    ctx.SaveChanges();
+        //}
+
     }
 }

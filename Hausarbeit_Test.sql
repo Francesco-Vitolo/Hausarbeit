@@ -28,6 +28,11 @@ IF OBJECT_ID('Pictures') IS NOT NULL
   DROP TABLE Pictures;
 GO
 
+IF OBJECT_ID('Benutzer') IS NOT NULL
+  DROP TABLE Benutzer;
+GO
+
+
 CREATE TABLE Produzent (
   ID_Produzent int PRIMARY KEY IDENTITY(2000,1), 
   Name nvarchar(50),
@@ -82,8 +87,15 @@ CREATE TABLE EventPos (
 	Constraint PK_Person PRIMARY KEY (ID_Veranstaltung,ID_produkt)
 );
 
+CREATE TABLE Benutzer (
+	ID_Benutzer int PRIMARY KEY IDENTITY(1,1),
+	username nvarchar(50),
+	Passwort nvarchar(64),
+	Salt  nvarchar(50),
+);
 
-
+Insert into Benutzer values('admin' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt');
+-- PW:admin
 
 
 Insert into Produzent values 

@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="ID_Benutzer" />
+          </Key>
+          <Property Name="ID_Benutzer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Passwort" Type="nvarchar" MaxLength="64" />
+          <Property Name="Salt" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID_Veranstaltung" />
@@ -65,6 +74,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="testModelStoreContainer">
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventPos" EntityType="Self.EventPos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
@@ -148,7 +158,17 @@
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
+          <EntitySet Name="Benutzer" EntityType="testModel.Benutzer" />
         </EntityContainer>
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="ID_Benutzer" />
+          </Key>
+          <Property Name="ID_Benutzer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passwort" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -202,6 +222,16 @@
                 <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
                 <ScalarProperty Name="Hektar" ColumnName="Hektar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Benutzer">
+            <EntityTypeMapping TypeName="testModel.Benutzer">
+              <MappingFragment StoreEntitySet="Benutzer">
+                <ScalarProperty Name="Salt" ColumnName="Salt" />
+                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

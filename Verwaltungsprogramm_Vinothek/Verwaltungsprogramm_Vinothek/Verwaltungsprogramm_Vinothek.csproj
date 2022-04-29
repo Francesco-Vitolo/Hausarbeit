@@ -73,7 +73,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Benutzer.cs">
+      <DependentUpon>Vinothek.tt</DependentUpon>
+    </Compile>
     <Compile Include="CreateDatagrid.cs" />
+    <Compile Include="Encrypt.cs" />
     <Compile Include="Event.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>

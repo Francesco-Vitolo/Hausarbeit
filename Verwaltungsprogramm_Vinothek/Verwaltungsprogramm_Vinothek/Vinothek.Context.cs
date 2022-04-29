@@ -18,8 +18,6 @@ namespace Verwaltungsprogramm_Vinothek
         public VinothekContext()
             : base("name=VinothekContext")
         {
-            //this.Configuration.ProxyCreationEnabled = true;
-            //this.Configuration.LazyLoadingEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -31,5 +29,6 @@ namespace Verwaltungsprogramm_Vinothek
         public virtual DbSet<EventPos> EventPos { get; set; }
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<Produzent> Produzent { get; set; }
+        public virtual DbSet<Benutzer> Benutzer { get; set; }
     }
 }
