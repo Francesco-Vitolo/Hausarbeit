@@ -3,21 +3,29 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.Pages"
+      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.Pages" 
+      xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Kundensicht" >
-   
-    <ScrollViewer >
-        <UniformGrid x:Name="maingrid" Margin="50">
-            <UniformGrid.LayoutTransform>
-                <ScaleTransform ScaleX="10" ScaleY="10"/>
-            </UniformGrid.LayoutTransform>
-            <UniformGrid.Resources>
-                <Style TargetType="Image">
-                    <Setter Property="Margin" Value="14"/>
-                </Style>
-            </UniformGrid.Resources>
-        </UniformGrid>
-    </ScrollViewer>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="1.75*"/>
+        </Grid.ColumnDefinitions>
+        <Button Content="PDF" VerticalAlignment="Top" Margin="0,50,0,0" Click="Button_Click" Name="pdf" />
+        <local1:Uc_Produkt Grid.Column="0" x:Name="Infos" VerticalAlignment="Center"/>
+        <ScrollViewer Grid.Column="1" >
+            <UniformGrid x:Name="maingrid" Margin="50">
+                <UniformGrid.LayoutTransform>
+                    <ScaleTransform ScaleX="3" ScaleY="3"/>
+                </UniformGrid.LayoutTransform>
+                <UniformGrid.Resources>
+                    <Style TargetType="Image">
+                        <Setter Property="Margin" Value="14"/>
+                    </Style>
+                </UniformGrid.Resources>
+            </UniformGrid>
+        </ScrollViewer>
+    </Grid>
 </Page>

@@ -138,6 +138,9 @@
     <Compile Include="Windows\Window_PDF_Viewer.xaml.cs">
       <DependentUpon>Window_PDF_Viewer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows\Window_Anmelden.xaml.cs">
+      <DependentUpon>Window_Anmelden.xaml</DependentUpon>
+    </Compile>
     <Page Include="Pages\Page_Add_Produkt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -230,6 +233,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Window_PDF_Viewer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\Window_Anmelden.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

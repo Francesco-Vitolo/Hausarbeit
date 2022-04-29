@@ -1,7 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,21 +15,20 @@ using System.Windows.Shapes;
 namespace Verwaltungsprogramm_Vinothek
 {
     /// <summary>
-    /// Interaktionslogik für Window_PDF_Viewer.xaml
+    /// Interaktionslogik für Window_Anmelden.xaml
     /// </summary>
-    public partial class Window_PDF_Viewer : Window
+    public partial class Window_Anmelden : Window
     {
-        public Window_PDF_Viewer(string path)
+        public Window_Anmelden()
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            pdfWebViewer.Navigate(path);
-            Focus();
         }
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            pdfWebViewer.Navigate("about:blank");
+            MainWindow main = new MainWindow();
+            main.Show();
             Close();
         }
     }
