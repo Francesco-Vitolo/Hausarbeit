@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
         mc:Ignorable="d"
-        Title="Window_Select_Object" Height="450" Width="800">
+        Title="Window_Select_Object" Height="900" Width="1600" ResizeMode="NoResize">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
+            <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <local:Uc_Default/>
-        <Border Grid.Row="2" Grid.Column="1" BorderThickness="1" BorderBrush="Black" CornerRadius="4" Margin="10" >
-            <DataGrid  Name="data" MouseDoubleClick="SelectItem_DoubleClick"/>
-        </Border>
+        <TextBox Grid.Column="1" Grid.Row="1" TextAlignment="Center" VerticalContentAlignment="Center" Margin="10"  Name="tbSearch" KeyUp="tbSearch_KeyUp"/>
+        <DataGrid Grid.Row="2" Grid.Column="1"  Name="data" MouseDoubleClick="SelectItem_DoubleClick"/>
     </Grid>
 </Window>
 

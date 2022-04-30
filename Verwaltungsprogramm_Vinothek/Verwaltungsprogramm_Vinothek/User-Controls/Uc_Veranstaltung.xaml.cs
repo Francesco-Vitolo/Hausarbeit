@@ -62,6 +62,8 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         public string GetDate()
         {
+            if (datepicker.SelectedDate == null)
+                datepicker.SelectedDate = DateTime.Now;
             DateTime date = (DateTime)datepicker.SelectedDate;
             return date.ToString("dddd, dd MMMM yyyy");
         }

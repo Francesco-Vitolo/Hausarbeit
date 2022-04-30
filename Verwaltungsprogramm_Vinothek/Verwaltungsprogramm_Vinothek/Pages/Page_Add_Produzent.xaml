@@ -9,6 +9,8 @@
       Title="Page_Add_Produzent">
     <Grid>
         <local:Uc_Produzent x:Name="felder"/>
-        <Button  Content="Save" FontSize="24" Click="Button_Click_Save" VerticalAlignment="Bottom" Margin="25" Width="75"/>
+        <Button x:Name="saveChanges" Click="Button_Click_Save" VerticalAlignment="Bottom" Style="{StaticResource Button_Style2}">
+            <Image Source="..\Pictures\save.png"/>
+        </Button>
     </Grid>
 </Page>

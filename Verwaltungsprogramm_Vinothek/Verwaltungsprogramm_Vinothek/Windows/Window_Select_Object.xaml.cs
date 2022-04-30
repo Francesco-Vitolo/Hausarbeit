@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Text;
@@ -22,22 +23,26 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private VinothekContext ctx = new VinothekContext();
         private object obj = null;
+        private string gridType;
+        private ICollectionView collection;
         public Window_Select_Object(string gridType)
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            this.gridType = gridType;
             if (gridType == "ListeProdukte")
             {
                 CreateDataGrid.Produkt(data);
                 ctx.Produkt.Load();
-                DataContext = ctx.Produkt.Local;
+                collection = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
             }
             else if (gridType == "ListeProduzenten")
             {
                 CreateDataGrid.Produzent(data);
                 ctx.Produzent.Load();
-                DataContext = ctx.Produzent.Local;
+                collection = CollectionViewSource.GetDefaultView(ctx.Produzent.Local);
             }
+            DataContext = collection;
         }
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
@@ -49,6 +54,23 @@ namespace Verwaltungsprogramm_Vinothek
         public object GetObj()
         {
             return obj;
+        }
+
+        private void tbSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            string filterStr = tbSearch.Text.ToLower();
+            switch (gridType)
+            {
+                case "ListeProdukte":
+                    collection.Filter = x => ((Produkt)x).Name.ToLower().Contains(filterStr);
+                    break;
+                case "ListeProduzenten":
+                    collection.Filter = x => ((Produzent)x).Name.ToLower().Contains(filterStr);
+                    break;
+                case "ListeEvents":
+                    collection.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
+                    break;
+            }
         }
     }
 }

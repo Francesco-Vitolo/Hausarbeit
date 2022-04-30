@@ -4,7 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
-
+using System.Windows.Input;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -18,8 +18,14 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            Demo();
         }
 
+        private void Demo()
+        {
+            tb_username.Text = "admin";
+            tb_pw.Password = "admin";
+        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string username = tb_username.Text;

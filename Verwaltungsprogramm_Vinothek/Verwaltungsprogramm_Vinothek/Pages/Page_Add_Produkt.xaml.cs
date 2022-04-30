@@ -27,7 +27,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Messagebox WM;
             var tbs = test.GetTbs();
-            newProd.Name = tbs[0].Text;
+            newProd.Name = tbs[0].Text.Trim();
             newProd.Art = tbs[1].Text;
             newProd.Qualitätssiegel = tbs[2].Text;
             if (int.TryParse(tbs[3].Text, out int i))

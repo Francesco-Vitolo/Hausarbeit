@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
 {
@@ -37,9 +38,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Window_Select_Object WSO = new Window_Select_Object("ListeProdukte");
             WSO.ShowDialog();
             Produkt p = (Produkt)WSO.GetObj();
-            listProd.Add(p);
-            data.DataContext = null;
-            data.DataContext = listProd;
+            if (p != null && listProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null)
+            {
+                listProd.Add(p);
+                data.DataContext = null;
+                data.DataContext = listProd;
+            }
         }
 
         private void SaveEvent_Click(object sender, RoutedEventArgs e)
@@ -48,23 +52,30 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             List<TextBox> tbs = felder.GetTbs();
             //if (tbs[0].Text != "")
             //{
-            E.Name = tbs[0].Text;
-            if (int.TryParse(tbs[1].Text, out int i))
-                E.AnzahlPersonen = i;
-
-            E.Datum = felder.GetDate();
-            E.Zeit = felder.GetTime();
-            ctx.Event.Add(E);
-            ctx.SaveChanges();
-            //}
-            foreach (var v in listProd)
+            if (tbs[0].Text == "")
             {
-                //int i = E.ID_Veranstaltung;
-                EventPos EP = new EventPos();
-                EP.ID_Veranstaltung = E.ID_Veranstaltung;
-                EP.ID_Produkt = v.ID_Produkt;
-                ctx.EventPos.Add(EP);
+                Window_Messagebox WM = new Window_Messagebox("Bitte Namen eingeben");
+                WM.ShowDialog();
+            }
+            else
+            {
+                E.Name = tbs[0].Text;
+                if (int.TryParse(tbs[1].Text, out int i))
+                    E.AnzahlPersonen = i;
+                E.Datum = felder.GetDate();
+                E.Zeit = felder.GetTime();
+                ctx.Event.Add(E);
                 ctx.SaveChanges();
+
+                foreach (var v in listProd)
+                {
+                    //int i = E.ID_Veranstaltung;
+                    EventPos EP = new EventPos();
+                    EP.ID_Veranstaltung = E.ID_Veranstaltung;
+                    EP.ID_Produkt = v.ID_Produkt;
+                    ctx.EventPos.Add(EP);
+                    ctx.SaveChanges();
+                }
             }
             NavigationService.GoBack();
         }

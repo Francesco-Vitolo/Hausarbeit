@@ -4,6 +4,8 @@ using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
+using System.Windows;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -70,7 +72,8 @@ namespace Verwaltungsprogramm_Vinothek
             if (prod.Picture != null)
             {
                 XImage image = GetImg(prod.Picture);
-                gfx.DrawImage(image, 460, 100, 100, 300);
+                //var v = image.Width / image.Height;
+                gfx.DrawImage(image, 460, 100, 80, 300);
             }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
             Drawing($"Bezeichnung: {prod.Qualitätssiegel}");
@@ -84,7 +87,6 @@ namespace Verwaltungsprogramm_Vinothek
             tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, posY + 160, page.Width - 100, page.Height), XStringFormats.TopLeft);
             gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 380, 740, 200, 80);
         }
-
 
         private byte[] SaveAndReturn()
         {
@@ -106,6 +108,6 @@ namespace Verwaltungsprogramm_Vinothek
             MemoryStream strm = new MemoryStream();
             img.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
             return XImage.FromStream(strm);
-        }       
+        }
     }
 }

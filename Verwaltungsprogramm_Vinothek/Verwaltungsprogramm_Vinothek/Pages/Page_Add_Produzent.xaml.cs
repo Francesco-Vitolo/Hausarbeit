@@ -33,7 +33,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             var tbs = felder.GetTbs();
             if (tbs[0].Text != "")
             {
-                produzent.Name = tbs[0].Text;
+                produzent.Name = tbs[0].Text.Trim();
                 produzent.Land = tbs[1].Text;
                 produzent.Region = tbs[2].Text;
                 if (int.TryParse(tbs[3].Text, out int i))
