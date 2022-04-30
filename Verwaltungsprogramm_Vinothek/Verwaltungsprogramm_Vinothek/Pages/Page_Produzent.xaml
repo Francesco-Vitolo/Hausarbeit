@@ -35,6 +35,9 @@
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
                     <Image Source="..\Pictures\save.png"/>
                 </Button>
+                <Button Click="Button_Click_OpenMail">
+                    <Image Source="..\Pictures\mail.png"/>
+                </Button>
                 <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">

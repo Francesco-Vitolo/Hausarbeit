@@ -14,6 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
     public partial class Window_Anmelden : Window
     {
         VinothekContext ctx = new VinothekContext();
+        Benutzer user;
         public Window_Anmelden()
         {
             InitializeComponent();
@@ -28,12 +29,14 @@ namespace Verwaltungsprogramm_Vinothek
         }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
             ctx.Benutzer.Load();           
             if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
-                MainWindow main = new MainWindow();
+                user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
+                MainWindow main = new MainWindow(user);
                 main.Show();
                 Close();
             }
@@ -43,7 +46,7 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Window_KeyUp_Enter(object sender, System.Windows.Input.KeyEventArgs e)
         {
-            if (e.Key == System.Windows.Input.Key.Enter)
+            if (e.Key == Key.Enter)
                 Button_Click(null,null);
         }
 

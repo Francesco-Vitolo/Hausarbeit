@@ -24,10 +24,13 @@ namespace Verwaltungsprogramm_Vinothek
     public partial class MainWindow : Window
     {
         private double scale = 1;
-        public MainWindow()
+        private Benutzer user { get; }
+        public MainWindow(Benutzer user)
         {
             InitializeComponent();
-            Style = FindResource("Window_Default") as Style;
+            Style = FindResource("Window_Default") as Style;            
+            this.user = user;
+            tb_username.DataContext = user;
             Frame_Main.Content = new Page_MainMenu();
         }
 
@@ -89,6 +92,11 @@ namespace Verwaltungsprogramm_Vinothek
                 Thread.Sleep(i);
                 Dispatcher.Invoke(() => { label_zoom.Content = null; });
             });
+        }
+
+        public int getUserID()
+        {
+            return user.ID_Benutzer;
         }
 
     }

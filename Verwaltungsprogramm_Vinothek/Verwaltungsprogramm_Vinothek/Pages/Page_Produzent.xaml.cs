@@ -1,6 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -52,6 +52,14 @@ namespace Verwaltungsprogramm_Vinothek
         {
             ctx.SaveChanges();
             NavigationService.GoBack();
+        }
+
+        private void Button_Click_OpenMail(object sender, RoutedEventArgs e)
+        {
+            string OpenMailProg = "Mailto:" + "francesco011@hotmail.de"; //?subject= "Betreff"&body=\"Inhalt\"
+            Process proc = new Process();
+            proc.StartInfo.FileName = OpenMailProg;
+            proc.Start();
         }
     }
 }

@@ -24,6 +24,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_MainMenu()
         {
             InitializeComponent();
+            MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
+            if (currentWindow.getUserID() != 1)
+                UserVerwaltung.Visibility = Visibility.Hidden;
         }
 
         private void Button_MainMenu(object sender, RoutedEventArgs e)
@@ -54,6 +57,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Button_Kundensicht(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Page_Kundensicht());
+        }
+
+        private void Button_User(object sender, RoutedEventArgs e)
+        {
+            NavigationService.Navigate(new Page_User());
         }
     }
 }
