@@ -30,6 +30,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             ctx.Produzent.Load();
             prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt);
             DataContext = prod;
+
+            if (prod.Aktiv == true)
+                Checkbox_aktiv.IsChecked = true;
+            else
+                Checkbox_aktiv.IsChecked = false;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -48,6 +53,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
+            if ((bool)Checkbox_aktiv.IsChecked)
+                prod.Aktiv = true;
+            else
+                prod.Aktiv = false;
             ctx.SaveChanges();
             NavigationService.GoBack();
         }
@@ -143,7 +152,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e)
-        {//ctx to list und dann
+        {
             int i = prod.ID_Produkt + 1;
             while (i <= ctx.Produkt.ToList().Last().ID_Produkt)
             {

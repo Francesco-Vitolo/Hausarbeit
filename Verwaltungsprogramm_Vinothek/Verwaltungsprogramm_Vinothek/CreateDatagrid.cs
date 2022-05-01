@@ -17,6 +17,8 @@ namespace Verwaltungsprogramm_Vinothek
            {"Produzent",     "Produzent.Name"}  ,
            {"Geschmack",     "Geschmack"}  ,
            {"Alkoholgehalt", "Alkoholgehalt"} ,
+           {"Preis", "Preis"} ,
+           //{"Aktiv", "Aktiv"} ,
            //{"Beschreibung",  "Beschreibung"} ,
         };
 
@@ -27,6 +29,8 @@ namespace Verwaltungsprogramm_Vinothek
            {"Region",       "Region"}  ,
            {"Adresse",      "Adresse"}  ,
            {"Hektar",       "Hektar"}  ,
+           {"Email",       "Email"}  ,
+           {"Telefon",       "Telefon"}  ,
            //{"Beschreibung", "Beschreibung"}  ,
         };
         private static Dictionary<string, string> Events = new Dictionary<string, string>()
@@ -92,14 +96,14 @@ namespace Verwaltungsprogramm_Vinothek
 
         public static string[] GetFilterNamesProdukte()
         {
-            string[] s = new string[9];
+            string[] s = new string[11];
             Produkte.Values.CopyTo(s, 0);
             return s;
         }
 
         public static string[] GetFilterNamesProduzenten()
         {
-            string[] s = new string[5];
+            string[] s = new string[7];
             Produzenten.Values.CopyTo(s, 0);
             return s;
         }

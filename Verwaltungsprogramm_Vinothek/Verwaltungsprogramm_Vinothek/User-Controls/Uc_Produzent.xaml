@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
              mc:Ignorable="d" 
-   d:DesignHeight="900" d:DesignWidth="1800">
+   d:DesignHeight="900" d:DesignWidth="900">
     <Grid >
         <Grid.Resources>
             <Style TargetType="TextBlock">
@@ -17,31 +17,34 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="1.2*"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1" Margin="0,50">
+        <StackPanel Grid.Column="1" Margin="0,50">
             <TextBlock Text="Name"/>
             <TextBlock Text="Land"/>
             <TextBlock Text="Region"/>
             <TextBlock Text="Hektar"/>
             <TextBlock Text="Adresse"/>
+            <TextBlock Text="Email"/>
+            <TextBlock Text="Telefon"/>
 
         </StackPanel>
-        <StackPanel Grid.Column="2" Grid.Row="1" HorizontalAlignment="Stretch"  Margin="0,50" Name="stackpanel">
+        <StackPanel Grid.Column="2" HorizontalAlignment="Stretch"  Margin="0,50" Name="stackpanel">
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding Land}"/>
             <TextBox Text="{Binding Region}"/>
             <TextBox Text="{Binding Hektar}"/>
             <TextBox Text="{Binding Adresse}"/>
+            <TextBox Text="{Binding Email}"/>
+            <TextBox Text="{Binding Telefon}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="3">
+        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
             <TextBlock Text="Beschreibung" />
             <TextBox Text="{Binding Beschreibung}" Name="tb" Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
         </StackPanel>

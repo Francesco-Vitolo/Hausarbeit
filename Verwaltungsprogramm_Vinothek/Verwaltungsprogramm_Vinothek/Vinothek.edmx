@@ -45,6 +45,8 @@
           <Property Name="Alkoholgehalt" Type="float" />
           <Property Name="Jahrgang" Type="int" />
           <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
+          <Property Name="Preis" Type="float" />
+          <Property Name="Aktiv" Type="bit" />
           <Property Name="Picture" Type="varbinary(max)" />
           <Property Name="PDF_file" Type="varbinary(max)" />
           <Property Name="ID_Produzent" Type="int" Nullable="false" />
@@ -59,6 +61,8 @@
           <Property Name="Region" Type="nvarchar" MaxLength="50" />
           <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
           <Property Name="Adresse" Type="nvarchar" MaxLength="100" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
           <Property Name="Hektar" Type="int" />
         </EntityType>
         <Association Name="fk_Produzent">
@@ -123,6 +127,8 @@
           <Property Name="PDF_file" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ID_Produzent" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Produzent" Relationship="Self.fk_Produzent" FromRole="Produkt" ToRole="Produzent" />
+          <Property Name="Preis" Type="Double" />
+          <Property Name="Aktiv" Type="Boolean" />
         </EntityType>
         <EntityType Name="Produzent">
           <Key>
@@ -136,6 +142,8 @@
           <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Hektar" Type="Int32" />
           <NavigationProperty Name="Produkt" Relationship="Self.fk_Produzent" FromRole="Produzent" ToRole="Produkt" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="fk_Produzent">
           <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
@@ -197,6 +205,8 @@
           <EntitySetMapping Name="Produkt">
             <EntityTypeMapping TypeName="testModel.Produkt">
               <MappingFragment StoreEntitySet="Produkt">
+                <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
                 <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Art" ColumnName="Art" />
@@ -215,6 +225,8 @@
           <EntitySetMapping Name="Produzent">
             <EntityTypeMapping TypeName="testModel.Produzent">
               <MappingFragment StoreEntitySet="Produzent">
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID_Produzent" ColumnName="ID_Produzent" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Land" ColumnName="Land" />

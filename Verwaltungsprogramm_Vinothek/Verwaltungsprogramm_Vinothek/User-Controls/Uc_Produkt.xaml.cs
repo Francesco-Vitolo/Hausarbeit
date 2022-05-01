@@ -46,6 +46,5 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
         {
             return tb_prod;
         }
-
     }
 }

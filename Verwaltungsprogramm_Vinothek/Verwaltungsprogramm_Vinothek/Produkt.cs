@@ -26,6 +26,8 @@ namespace Verwaltungsprogramm_Vinothek
         public byte[] Picture { get; set; }
         public byte[] PDF_file { get; set; }
         public int ID_Produzent { get; set; }
+        public Nullable<double> Preis { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Produzent Produzent { get; set; }
     }

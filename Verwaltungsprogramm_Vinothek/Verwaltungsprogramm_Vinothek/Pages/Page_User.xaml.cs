@@ -49,7 +49,15 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Benutzer user = (Benutzer)lv_Users.SelectedItem;
             if (user.username != "admin")
-                ctx.Benutzer.Remove(user);
+            {
+                Window_Abfrage WA = new Window_Abfrage($"Soll {user.username} gelöscht werden?");
+                WA.ShowDialog();
+                if (WA.GetOption())
+                {
+                    ctx.Benutzer.Remove(user);
+                    ctx.SaveChanges();
+                }
+            }
             else
                 MessageBox.Show("geht nicht mfka"); 
         }

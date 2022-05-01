@@ -26,8 +26,15 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
+            <StackPanel Grid.Column="1" Grid.Row="0">
 
-            <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0"/>
+                <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0"/>
+                <WrapPanel Grid.Row="2" Grid.Column="2" VerticalAlignment="Top" HorizontalAlignment="Center">
+                    <Label Content="Aktiv/Verfügbar: "/>
+                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Center" Name="Checkbox_aktiv"/>
+                </WrapPanel>
+            </StackPanel>
+            
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
                 <Button  Click="btn_create_pdf_Click">
                     <Image Source="..\Pictures\new_file.png" Margin="4,2,0,0"/>

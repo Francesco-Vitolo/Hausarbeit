@@ -17,12 +17,13 @@ namespace Verwaltungsprogramm_Vinothek
     {
         VinothekContext ctx = new VinothekContext();
         List<Produkt> Produkte = new List<Produkt>();
+        Produzent p;
         public Page_Produzent(Produzent produzent)
         {
             InitializeComponent();
             CreateDataGrid.Produkt(data);
             ctx.Produzent.Load();
-            Produzent p = ctx.Produzent.Find(produzent.ID_Produzent);
+            p = ctx.Produzent.Find(produzent.ID_Produzent);
             prodz.DataContext = p;
             ctx.Produkt.Load();
             Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList();
@@ -56,7 +57,7 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click_OpenMail(object sender, RoutedEventArgs e)
         {
-            string OpenMailProg = "Mailto:" + "francesco011@hotmail.de"; //?subject= "Betreff"&body=\"Inhalt\"
+            string OpenMailProg = "Mailto:" + p.Email; //?subject= "Betreff"&body=\"Inhalt\"
             Process proc = new Process();
             proc.StartInfo.FileName = OpenMailProg;
             proc.Start();

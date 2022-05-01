@@ -27,19 +27,29 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Messagebox WM;
             var tbs = test.GetTbs();
+
             newProd.Name = tbs[0].Text.Trim();
             newProd.Art = tbs[1].Text;
             newProd.Qualitätssiegel = tbs[2].Text;
+
             if (int.TryParse(tbs[3].Text, out int i))
                 newProd.Jahrgang = i;
+
             newProd.Rebsorten = tbs[4].Text;
             newProd.Geschmack = tbs[6].Text;
+
             if (int.TryParse(tbs[7].Text, out i))
                 newProd.Alkoholgehalt = i;
+
+            if (double.TryParse(tbs[8].Text,out double j))
+                newProd.Preis = j;
+
+            newProd.Aktiv = true;
+
             newProd.Beschreibung = test.GetDesc().Text;
             //Prod.Name --> Prod.ID
-            string produzentName = tbs[5].Text;
 
+            string produzentName = tbs[5].Text;
             if (produzentName == "" || tbs[0].Text == "")
             {
                 WM = new Window_Messagebox("Bitte eingeben du HUND");
@@ -56,7 +66,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                     newProd.Produzent = pp;
                 }
                 else
-                {
+                {   //ändern
                     WM = new Window_Messagebox($"Noch kein Produzent mit dem Namen vorhanden. Neuer Produzent wurde automatisch angelegt");
                     WM.ShowDialog();
                     Produzent produzent = new Produzent()
