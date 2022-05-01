@@ -17,14 +17,9 @@
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="1.2*"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
-        </Grid.RowDefinitions>
-
         <StackPanel Grid.Column="1" Margin="0,50">
             <TextBlock Text="Name"/>
             <TextBlock Text="Land"/>
@@ -35,7 +30,7 @@
             <TextBlock Text="Telefon"/>
 
         </StackPanel>
-        <StackPanel Grid.Column="2" HorizontalAlignment="Stretch"  Margin="0,50" Name="stackpanel">
+        <StackPanel Grid.Column="2" HorizontalAlignment="Stretch"   Margin="0,50" Name="stackpanel">
             <TextBox Text="{Binding Name}"/>
             <TextBox Text="{Binding Land}"/>
             <TextBox Text="{Binding Region}"/>
@@ -44,7 +39,7 @@
             <TextBox Text="{Binding Email}"/>
             <TextBox Text="{Binding Telefon}"/>
         </StackPanel>
-        <StackPanel Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+        <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="20">
             <TextBlock Text="Beschreibung" />
             <TextBox Text="{Binding Beschreibung}" Name="tb" Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
         </StackPanel>

@@ -7,6 +7,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
@@ -28,14 +29,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             MainW.GoBack.Visibility = Visibility.Hidden;
             MainW.expander.Visibility = Visibility.Hidden;
             ctx.Produkt.Load();
-            var v = ctx.Produkt.ToList();
-            foreach (var vv in v)
+            var listProdukte = ctx.Produkt.ToList();
+            foreach (var prod in listProdukte)
             {
-                if (vv.Picture != null)
+                if (prod.Picture != null && prod.Aktiv == true)
                 {
-                    System.Drawing.Image img = Imageconverter.BinaryToImage(vv.Picture);
+                    System.Drawing.Image img = Imageconverter.BinaryToImage(prod.Picture);
                     System.Drawing.Bitmap b = new System.Drawing.Bitmap(img);
-                    AddImgToGrid(b, vv);
+                    AddImgToGrid(b, prod);
                 }
             }
         }
@@ -55,24 +56,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             btn.Click += (sender, args) =>
             {
                 this.p = p;
-                Infos.DataContext = p;
-                if (p.PDF_file == null)
-                {
-                    pdf.IsEnabled = false;
-                }
-                else
-                    pdf.IsEnabled = true;
+                expanderInfos.DataContext = p;
+                expanderInfos.Visibility = Visibility.Visible;
+                expanderInfos.IsExpanded = true;
             };
             maingrid.Children.Add(btn);
         }
-        private async void ShowPDF(Produkt p)
+        private async void ShowPDF()
         {
             string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf";
             File.WriteAllBytes(tempfile, p.PDF_file);
             Window_PDF_Viewer WPDF = new Window_PDF_Viewer(tempfile);
             WPDF = new Window_PDF_Viewer(tempfile);
             WPDF.ShowDialog();
-            await Timer(5000);
+            await Timer(20000);
             File.Delete(tempfile);
         }
 
@@ -90,6 +87,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Task Timer(int i)
         {
             return Task.Run(() => { Thread.Sleep(i); });
+        }
+
+        private void Page_KeyUp(object sender, KeyEventArgs e)
+        {
+            if ((e.Key == Key.E) && (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl)))
+            {
+                Application.Current.Shutdown();
+                System.Windows.Forms.Application.Restart();
+            }
+        }
+
+        private void expanderInfos_Collapsed(object sender, RoutedEventArgs e)
+        {
+            expanderInfos.Visibility = Visibility.Hidden;
         }
     }
 }

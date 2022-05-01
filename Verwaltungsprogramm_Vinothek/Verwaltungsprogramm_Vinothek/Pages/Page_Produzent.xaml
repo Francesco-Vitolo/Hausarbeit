@@ -15,20 +15,20 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="20"/>
-                <RowDefinition Height="5*"/>
-                <RowDefinition Height="0.6*"/>
+                <RowDefinition Height="1.2*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="120"/>
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <local:Uc_Produzent Grid.Row="1" Grid.Column="1" x:Name="prodz" IsEnabled="False"/>
-            <DataGrid  Name="data" Grid.Row="1" Grid.Column="2"
+            <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" 
                        MouseDoubleClick="Item_MouseDoubleClick" />
 
-            <UniformGrid Grid.Row="2" Grid.Column="1" Rows="1" >
+            <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1" >
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
                     <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
@@ -39,7 +39,7 @@
                     <Image Source="..\Pictures\mail.png"/>
                 </Button>
             </UniformGrid>
-            <StackPanel Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">
                 <StackPanel.Resources>
                     <Style TargetType="TextBlock">
                         <Setter Property="FontSize" Value="32"/>

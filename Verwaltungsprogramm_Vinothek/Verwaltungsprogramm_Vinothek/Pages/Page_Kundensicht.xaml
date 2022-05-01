@@ -7,16 +7,13 @@
       xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
-      Title="Page_Kundensicht" >
+      Title="Page_Kundensicht" KeyUp="Page_KeyUp">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="PDF" VerticalAlignment="Top" Margin="0,50,0,0" Click="Button_Click" Name="pdf" IsEnabled="False"/>
-        <local1:Uc_Produkt Grid.Column="0" x:Name="Infos" VerticalAlignment="Center" IsEnabled="False"/>
-            <ScrollViewer Grid.Column="1" >
-            <UniformGrid x:Name="maingrid" Margin="50">
+        <ScrollViewer>
+            <UniformGrid x:Name="maingrid" Margin="40">
                 <UniformGrid.LayoutTransform>
                     <ScaleTransform ScaleX="3" ScaleY="3"/>
                 </UniformGrid.LayoutTransform>
@@ -28,5 +25,9 @@
                 </UniformGrid.Resources>
             </UniformGrid>
         </ScrollViewer>
+
+        <Expander Visibility="Hidden" Name="expanderInfos" Collapsed="expanderInfos_Collapsed" >
+            <local1:Uc_Produkt Background="White" IsEnabled="False"/>
+        </Expander>
     </Grid>
 </Page>

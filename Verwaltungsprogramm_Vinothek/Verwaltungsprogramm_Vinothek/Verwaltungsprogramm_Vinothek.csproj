@@ -346,6 +346,7 @@
     <Resource Include="Pictures\clipboard.png" />
     <Resource Include="Pictures\mail.png" />
     <Resource Include="Pictures\avatar.png" />
+    <Resource Include="Pictures\settings.png" />
     <Content Include="Vinothek.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Vinothek.Context.cs</LastGenOutput>

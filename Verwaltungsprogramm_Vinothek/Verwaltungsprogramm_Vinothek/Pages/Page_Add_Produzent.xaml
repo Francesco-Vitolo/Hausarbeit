@@ -7,10 +7,10 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Page_Add_Produzent">
-    <Grid>
+    <StackPanel VerticalAlignment="Center">
         <local:Uc_Produzent x:Name="felder"/>
         <Button x:Name="saveChanges" Click="Button_Click_Save" VerticalAlignment="Bottom" Style="{StaticResource Button_Style2}">
             <Image Source="..\Pictures\save.png"/>
         </Button>
-    </Grid>
+    </StackPanel>
 </Page>

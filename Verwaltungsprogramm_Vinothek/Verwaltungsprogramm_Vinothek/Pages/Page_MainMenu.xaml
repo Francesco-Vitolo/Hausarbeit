@@ -6,53 +6,63 @@
       xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d"     
       Title="Page_MainMenu" Width="1800" Height="900">
-    
+
     <Grid Name="Grid_Menu">
         <Grid.RowDefinitions>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="300"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-        <Image Source="..\Pictures\Logo.png" Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
-        <Image Grid.Row="1" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="150"/>
-        <UniformGrid Grid.Row="2" Grid.Column="1" Rows="3" Columns="1">
-            <!--<UniformGrid.Resources>
-                <Style TargetType="Button" >
-                    <Setter Property="FontSize" Value="42"/>
-                </Style>
-            </UniformGrid.Resources>-->
+
+        <Image Source="..\Pictures\Logo.png" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" MaxHeight="200"/>
+
+        <UniformGrid Grid.Row="1" Rows="3" Columns="2">
             <Button Name="ListeProdukte" Content="Produkte" Click="Button_MainMenu"/>
+            <Button Name="Lite"  Content="Kundenansicht" Click="Button_Kundensicht"/>
             <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
             <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
         </UniformGrid>
-        <StackPanel Grid.Row="2" Grid.Column="2">
-            <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="200" MaxWidth="200">
-                <Calendar Background="AliceBlue"/>
-            </Viewbox>
-            <UniformGrid x:Name="Options">
-                <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click">
-                    <Image Source="..\Pictures\dir.png"/>
-                </Button>
-                <WrapPanel VerticalAlignment="Center">
+
+        <Border  Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="5" CornerRadius="5">
+            <Grid x:Name="Options" HorizontalAlignment="Left" Margin="50,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="..\Pictures\settings.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-40,0"/>
+                <UniformGrid Grid.Column="0" Columns="1">
+                    <TextBlock Text="PDF - Verzeichnis: "/>
                     <TextBlock Text="Hintergrund: " VerticalAlignment="Center" FontSize="24"/>
-                    <TextBox x:Name="tb_background" Text="#FFFFFF"/>
-                    <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100"/>
-                </WrapPanel>
-                <Button>
-                    <Hyperlink NavigateUri="https://www.flaticon.com/free-icons/duplicate"/>
-                </Button> 
-                <Button Name="Lite"  Content="Lite" Click="Button_Kundensicht"/>
-                <Button Name="UserVerwaltung" Click="Button_User">
-                    <Image Source="..\Pictures\avatar.png"/>
-                </Button>
-            </UniformGrid>
-        </StackPanel>
+                    <TextBlock Text="Nutzerverwaltung: "/>
+                </UniformGrid>
+
+                <UniformGrid Grid.Column="1" Columns="1">
+                    <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click">
+                        <Image Source="..\Pictures\dir.png"/>
+                    </Button>
+                    <WrapPanel VerticalAlignment="Center">
+                        <TextBox x:Name="tb_background" Text="#FFFFFF"/>
+                        <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100" Height="40"/>
+                    </WrapPanel>
+                    <Button Name="UserVerwaltung" Click="Button_User">
+                        <Image Source="..\Pictures\avatar.png"/>
+                    </Button>
+                </UniformGrid>
+                <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="2">
+                    <TextBlock Text="Icons used from:" FontSize="14"/>
+                    <TextBlock Text="https://lordicon.com/" FontSize="14"/>
+                    <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="300" MaxWidth="300" Grid.Column="1" Grid.Row="1">
+            <Calendar Background="AliceBlue"/>
+        </Viewbox>
     </Grid>
 </Page>
