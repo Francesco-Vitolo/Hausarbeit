@@ -34,8 +34,8 @@
         </UniformGrid>
         <StackPanel Grid.Row="2" Grid.Column="2">
             <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Stretch" MaxHeight="200" MaxWidth="200">
-            <Calendar Background="AliceBlue"/>
-        </Viewbox>
+                <Calendar Background="AliceBlue"/>
+            </Viewbox>
             <UniformGrid x:Name="Options">
                 <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click">
                     <Image Source="..\Pictures\dir.png"/>

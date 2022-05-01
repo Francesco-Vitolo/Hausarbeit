@@ -24,6 +24,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             InitializeComponent();
             VinothekContext ctx = new VinothekContext();
+            var MainW = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
+            MainW.GoBack.Visibility = Visibility.Hidden;
+            MainW.expander.Visibility = Visibility.Hidden;
             ctx.Produkt.Load();
             var v = ctx.Produkt.ToList();
             foreach (var vv in v)
@@ -32,11 +35,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 {
                     System.Drawing.Image img = Imageconverter.BinaryToImage(vv.Picture);
                     System.Drawing.Bitmap b = new System.Drawing.Bitmap(img);
-                    moin(b, vv);
+                    AddImgToGrid(b, vv);
                 }
             }
         }
-        private void moin(System.Drawing.Bitmap b, Produkt p)
+        private void AddImgToGrid(System.Drawing.Bitmap b, Produkt p)
         {
             Button btn = new Button();
             Image i = new Image();
@@ -57,6 +60,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 {
                     pdf.IsEnabled = false;
                 }
+                else
+                    pdf.IsEnabled = true;
             };
             maingrid.Children.Add(btn);
         }

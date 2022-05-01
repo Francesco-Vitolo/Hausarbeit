@@ -73,7 +73,7 @@ namespace Verwaltungsprogramm_Vinothek
             {
                 XImage image = GetImg(prod.Picture);
                 //var v = image.Width / image.Height;
-                gfx.DrawImage(image, 460, 100, 80, 300);
+                gfx.DrawImage(image, 460, 100, 90, 300);
             }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
             Drawing($"Bezeichnung: {prod.Qualitätssiegel}");

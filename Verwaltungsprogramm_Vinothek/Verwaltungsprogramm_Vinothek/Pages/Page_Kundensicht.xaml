@@ -11,11 +11,11 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="1.75*"/>
+            <ColumnDefinition Width="1.5*"/>
         </Grid.ColumnDefinitions>
-        <Button Content="PDF" VerticalAlignment="Top" Margin="0,50,0,0" Click="Button_Click" Name="pdf" />
-        <local1:Uc_Produkt Grid.Column="0" x:Name="Infos" VerticalAlignment="Center"/>
-        <ScrollViewer Grid.Column="1" >
+        <Button Content="PDF" VerticalAlignment="Top" Margin="0,50,0,0" Click="Button_Click" Name="pdf" IsEnabled="False"/>
+        <local1:Uc_Produkt Grid.Column="0" x:Name="Infos" VerticalAlignment="Center" IsEnabled="False"/>
+            <ScrollViewer Grid.Column="1" >
             <UniformGrid x:Name="maingrid" Margin="50">
                 <UniformGrid.LayoutTransform>
                     <ScaleTransform ScaleX="3" ScaleY="3"/>

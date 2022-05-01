@@ -49,7 +49,7 @@
         </Expander>
 
         <Label Name="label_zoom" Content="{Binding }" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <WrapPanel  VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="5,0">
+        <WrapPanel  VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="5,0">
             <Label Content="Eingeloggt als:"/>
             <TextBlock x:Name="tb_username" Text="{Binding username}" VerticalAlignment="Center"/>
         </WrapPanel>

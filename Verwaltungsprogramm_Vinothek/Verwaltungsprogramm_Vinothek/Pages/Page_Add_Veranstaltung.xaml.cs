@@ -1,18 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -76,8 +67,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                     ctx.EventPos.Add(EP);
                     ctx.SaveChanges();
                 }
+                NavigationService.GoBack();
             }
-            NavigationService.GoBack();
         }
 
         private void DelProd_Click(object sender, RoutedEventArgs e)
@@ -85,6 +76,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             listProd.Remove((Produkt)data.SelectedItem);
             data.DataContext = null;
             data.DataContext = listProd;
-        }
+        }     
     }
 }

@@ -14,19 +14,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     {
         private VinothekContext ctx = new VinothekContext();
         private Produkt newProd = new Produkt();
+        private Produzent produzent = null;
         public Page_Add_Produkt()
         {
             InitializeComponent();
             ctx.Produkt.Load();
             ctx.Produzent.Load();
-            TextBox tb_prod = test.GetProd();
-            tb_prod.IsEnabled = true;
         }
 
         private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)
         {
             Window_Messagebox WM;
-            var tbs = test.GetTbs();
+            var tbs = felderProdukt.GetTbs();
 
             newProd.Name = tbs[0].Text.Trim();
             newProd.Art = tbs[1].Text;
@@ -46,11 +45,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             newProd.Aktiv = true;
 
-            newProd.Beschreibung = test.GetDesc().Text;
+            newProd.Beschreibung = felderProdukt.GetDesc().Text;
             //Prod.Name --> Prod.ID
 
             string produzentName = tbs[5].Text;
-            if (produzentName == "" || tbs[0].Text == "")
+            if (tbs[0].Text == "" || produzent == null)
             {
                 WM = new Window_Messagebox("Bitte eingeben du HUND");
                 WM.ShowDialog();
@@ -58,25 +57,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
             else
             {
-                List<Produzent> list = ctx.Produzent.Local.ToList();
-                Produzent pp = list.FirstOrDefault(x => x.Name == produzentName);
-
-                if (pp != null)
-                {
-                    newProd.Produzent = pp;
-                }
-                else
-                {   //ändern
-                    WM = new Window_Messagebox($"Noch kein Produzent mit dem Namen vorhanden. Neuer Produzent wurde automatisch angelegt");
-                    WM.ShowDialog();
-                    Produzent produzent = new Produzent()
-                    {
-                        Name = produzentName
-                    };
-                    ctx.Produzent.Add(produzent);
-                    ctx.SaveChanges();
-                    newProd.Produzent = produzent;
-                }
                 ctx.Produkt.Add(newProd);
                 ctx.SaveChanges();
                 Application.Current.MainWindow.Show();
@@ -89,11 +69,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             if (imgPath != null)
             {
-                ImgSrc.Text = imgPath;
+                ImgSrc.Text = "Pfad: " + imgPath;
                 byte[] b = Imageconverter.ConvertImageToByteArray(imgPath);
                 newProd.Picture = b;
             }
-
         }
         private void Button_Previous_Click(object sender, RoutedEventArgs e)
         {
@@ -116,6 +95,16 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 newProd.Picture = v;
                 ImgSrc.Text = "Aus Zwischenablage";
             }
+        }
+
+        private void Add_Produzent_Click(object sender, RoutedEventArgs e)
+        {
+            Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
+            WSP.ShowDialog();
+            produzent = (Produzent)WSP.GetObj();      
+            newProd.Produzent = ctx.Produzent.FirstOrDefault(x => x.Name == produzent.Name);
+            TextBox tb_prod = felderProdukt.GetProd();
+            tb_prod.DataContext = newProd;
         }
     }
 }

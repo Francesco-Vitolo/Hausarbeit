@@ -6,6 +6,16 @@
              StartupUri="Windows\Window_Anmelden.xaml">
     <Application.Resources>
 
+        <Style TargetType="CheckBox">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Style.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="4"/>
+                    <Setter Property="Padding" Value="2"/>
+                </Style>
+            </Style.Resources>
+        </Style>
+
         <Style TargetType="Separator" x:Key="SepVertical">
             <Setter Property="LayoutTransform" Value="90"/>
         </Style>
@@ -18,7 +28,7 @@
         <Style TargetType="Image">
             <Setter Property="MaxHeight" Value="50"/>
         </Style>
-        
+
         <Style TargetType="DataGrid">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
@@ -74,7 +84,7 @@
         </Style>-->
 
 
-        
+
         <Style TargetType="ComboBox" x:Key="cb_Style">
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Margin" Value="1"/>
@@ -92,7 +102,7 @@
                 </Style>
             </Style.Resources>
         </Style>
-        
+
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
             <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
@@ -151,7 +161,6 @@
             <Setter Property="Width" Value="75"/>
             <Setter Property="Margin" Value="4"/>
             <Setter Property="FontSize" Value="16"/>
-            <!--<Setter Property="Background" Value="Gray"/>-->
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -210,17 +219,18 @@
                             <ScrollViewer x:Name="PART_ContentHost"
                                           Focusable="false"
                                           HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden">
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="2">
                             </ScrollViewer>
                         </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FFECECEC" TargetName="PART_ContentHost"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
-
-
-
-       
-
     </Application.Resources>
 </Application>

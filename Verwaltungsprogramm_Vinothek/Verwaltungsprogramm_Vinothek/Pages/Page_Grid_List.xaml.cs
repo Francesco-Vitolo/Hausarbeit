@@ -56,6 +56,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
                     datagrid.DataContext = collectionView;
                     cb_filter = CreateDataGrid.ProduktFilter(cb_filter);
+                    cb_filter.Items.Add("Aktiv");
                     break;
 
                 case "ListeProduzenten":
@@ -250,7 +251,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e)
         {
-            string[] filteroptions = new string[9];
+            string[] filteroptions = new string[11];
             switch (gridType)
             {
                 case "ListeProdukte":
@@ -295,6 +296,12 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
                 case 9:
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[8], ListSortDirection.Ascending));
+                    break;
+                case 10:
+                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[9], ListSortDirection.Ascending));
+                    break;
+                case 11:
+                    collectionView.SortDescriptions.Add(new SortDescription("Aktiv", ListSortDirection.Descending));
                     break;
             }
             //collectionView.SortDescriptions.
