@@ -8,5 +8,11 @@
     <Setting Name="Background" Type="System.Windows.Media.SolidColorBrush" Scope="User">
       <Value Profile="(Default)">#FF4B6676</Value>
     </Setting>
+    <Setting Name="Foreground" Type="System.Windows.Media.SolidColorBrush" Scope="User">
+      <Value Profile="(Default)">#FF03C6FC</Value>
+    </Setting>
+    <Setting Name="LinearGradientBrush" Type="System.Windows.Media.LinearGradientBrush" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -46,5 +46,28 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
                 this["Background"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF03C6FC")]
+        public global::System.Windows.Media.SolidColorBrush Foreground {
+            get {
+                return ((global::System.Windows.Media.SolidColorBrush)(this["Foreground"]));
+            }
+            set {
+                this["Foreground"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public global::System.Windows.Media.LinearGradientBrush LinearGradientBrush {
+            get {
+                return ((global::System.Windows.Media.LinearGradientBrush)(this["LinearGradientBrush"]));
+            }
+            set {
+                this["LinearGradientBrush"] = value;
+            }
+        }
     }
 }

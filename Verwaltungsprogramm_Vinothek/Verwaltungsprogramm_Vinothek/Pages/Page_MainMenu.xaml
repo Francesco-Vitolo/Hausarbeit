@@ -4,8 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
-      mc:Ignorable="d"     
-      Title="Page_MainMenu" Width="1800" Height="900">
+      mc:Ignorable="d"
+      d:DesignHeight="800" d:DesignWidth="1900"
+      Title="Page_MainMenu">
 
     <Grid Name="Grid_Menu">
         <Grid.RowDefinitions>
@@ -15,46 +16,70 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="0.5*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
 
         <Image Source="..\Pictures\Logo.png" Grid.ColumnSpan="2" VerticalAlignment="Top" HorizontalAlignment="Center" MaxHeight="200"/>
 
-        <UniformGrid Grid.Row="1" Rows="3" Columns="2">
+        <UniformGrid Grid.Row="1" Columns="1">
             <Button Name="ListeProdukte" Content="Produkte" Click="Button_MainMenu"/>
-            <Button Name="Lite"  Content="Kundenansicht" Click="Button_Kundensicht"/>
             <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_MainMenu"/>
             <Button Name="ListeEvents"  Content="Events" Click="Button_MainMenu"/>
+            <Button Name="Lite"  Content="Kundenansicht" Click="Button_Kundensicht"/>
         </UniformGrid>
 
-        <Border  Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="5" CornerRadius="5">
-            <Grid x:Name="Options" HorizontalAlignment="Left" Margin="50,5">
+        <Border  Grid.Row="1" Grid.Column="2" BorderBrush="Black" BorderThickness="2" CornerRadius="5" Margin="20">
+            <Grid x:Name="Options" Margin="50,5" HorizontalAlignment="Stretch">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="32"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Image Source="..\Pictures\settings.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-40,0"/>
-                <UniformGrid Grid.Column="0" Columns="1">
-                    <TextBlock Text="PDF - Verzeichnis: "/>
-                    <TextBlock Text="Hintergrund: " VerticalAlignment="Center" FontSize="24"/>
-                    <TextBlock Text="Nutzerverwaltung: "/>
-                </UniformGrid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Image Source="..\Pictures\settings.png" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="-40,0,0,0"/>
 
-                <UniformGrid Grid.Column="1" Columns="1">
-                    <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click">
-                        <Image Source="..\Pictures\dir.png"/>
-                    </Button>
-                    <WrapPanel VerticalAlignment="Center">
-                        <TextBox x:Name="tb_background" Text="#FFFFFF"/>
-                        <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100" Height="40"/>
-                    </WrapPanel>
-                    <Button Name="UserVerwaltung" Click="Button_User">
-                        <Image Source="..\Pictures\avatar.png"/>
-                    </Button>
-                </UniformGrid>
-                <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="2">
+                <TextBlock Text="PDF - Verzeichnis: " Grid.Column="1" />
+                <TextBlock Text="Hintergrund: " VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="1"/>
+                <TextBlock Text="Schriftfarbe: " VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="2"/>
+                <TextBlock Text="Farben Buttons: " VerticalAlignment="Center" FontSize="24" Grid.Column="1" Grid.Row="3"/>
+                <TextBlock Text="Nutzerverwaltung: " Grid.Column="1" Grid.Row="4"/>
+                
+                
+                <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click" Grid.Column="2" Grid.Row="0">
+                    <Image Source="..\Pictures\dir.png"/>
+                </Button>
+
+                <WrapPanel VerticalAlignment="Center" Grid.Column="2" Grid.Row="1">
+                    <TextBox x:Name="tb_background" Text="#FFFFFF"/>
+                    <Button Click="Background_Click" Style="{StaticResource Button_Style2}" Width="100" Height="40"/>
+                </WrapPanel>
+
+                <WrapPanel VerticalAlignment="Center" Grid.Column="2" Grid.Row="2">
+                    <TextBox x:Name="tb_foreground" Text="#03c6fc"/>
+                    <Button Click="Foreground_Click" Style="{StaticResource Button_Style2}" Width="100" Height="40"/>
+                </WrapPanel>
+
+                <WrapPanel Grid.Column="2" Grid.Row="3" VerticalAlignment="Center">
+                    <TextBox x:Name="tb_Color1" Text="#FF1E40DA"/>
+                    <TextBox x:Name="tb_Color2" Text="#FF2FBFF5"/>
+                    <Button Click="Color1_Click" Style="{StaticResource Button_Style2}" Width="100" Height="40"/>
+                </WrapPanel>
+
+
+
+                <Button Name="UserVerwaltung" Click="Button_User" Grid.Column="2" Grid.Row="4">
+                    <Image Source="..\Pictures\avatar.png"/>
+                </Button>
+                <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="2" Grid.Row="5">
                     <TextBlock Text="Icons used from:" FontSize="14"/>
                     <TextBlock Text="https://lordicon.com/" FontSize="14"/>
                     <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>

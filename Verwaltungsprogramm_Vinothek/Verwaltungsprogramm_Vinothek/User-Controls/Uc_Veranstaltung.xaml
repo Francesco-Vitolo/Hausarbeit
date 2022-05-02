@@ -39,11 +39,11 @@
             <UniformGrid Rows="1" Width="600" HorizontalAlignment="Left" Margin="4">
                 <WrapPanel>
                     <Border Style="{StaticResource Border}" Width="80" Height="40">
-                        <ComboBox Name="TimeHours" Margin="1" FontSize="24" />
+                        <ComboBox Name="TimeHours" Margin="1" FontSize="24" Style="{StaticResource cb_Style}"/>
                     </Border>
                     <TextBlock Text=" : "/>
                     <Border Style="{StaticResource Border}" Width="80" Height="40">
-                        <ComboBox Name="TimeMinutes" Margin="1" FontSize="24"/>
+                        <ComboBox Name="TimeMinutes" Margin="1" FontSize="24" Style="{StaticResource cb_Style}"/>
                     </Border>
                     <Button Content="übernehmen" FontSize="24" Click="Button_Click" Margin="5" Background="Transparent" Width="150"/>
                     <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>

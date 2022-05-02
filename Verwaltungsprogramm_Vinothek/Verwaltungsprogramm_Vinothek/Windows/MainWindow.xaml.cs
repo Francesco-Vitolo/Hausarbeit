@@ -21,7 +21,7 @@ namespace Verwaltungsprogramm_Vinothek
         public MainWindow(Benutzer user)
         {
             InitializeComponent();
-            Style = FindResource("Window_Default") as Style;            
+            Style = FindResource("Window_Default") as Style;
             this.user = user;
             user.Passwort = null;
             tb_username.DataContext = user;

@@ -6,9 +6,44 @@
              StartupUri="Windows\Window_Anmelden.xaml">
     <Application.Resources>
 
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
+            <Setter Property="Height" Value="44"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="Margin" Value="4"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type TextBox}">
+                        <Border BorderThickness="1" BorderBrush="Black">
+                            <Border.Style>
+                                <Style TargetType="Border">
+                                    <Setter Property="CornerRadius" Value="5"/>
+                                </Style>
+                            </Border.Style>
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Focusable="false"
+                                          HorizontalScrollBarVisibility="Hidden"
+                                          VerticalScrollBarVisibility="Hidden"
+                                          Margin="2">
+                            </ScrollViewer>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="#FFECECEC" TargetName="PART_ContentHost"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        
+        
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
         </Style>
         
         <Style TargetType="CheckBox">
@@ -54,6 +89,7 @@
                 </Style>
                 <Style TargetType="DataGridCell">
                     <Setter Property="Cursor" Value="Hand" />
+                    <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
                     <!--<Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}" />-->
                 </Style>
                 <Style TargetType="DataGridColumnHeader">
@@ -69,7 +105,7 @@
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1" >
                                 <GradientStop Color="White" Offset="0" />
                                 <GradientStop Color="LightSlateGray" Offset="0.1" />
-                                <GradientStop Color="LightGray" Offset="0.2" />
+                                <GradientStop Color="Transparent" Offset="0.2"/>
                             </LinearGradientBrush>
                         </Setter.Value>
                     </Setter>
@@ -95,14 +131,12 @@
             <Setter Property="Margin" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
-            <Setter Property="FontSize" Value="24"/>
             <Style.Resources>
                 <Style TargetType="ComboBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
                     <Style.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="CornerRadius" Value="5"/>
-                        </Style>
+                        <Style TargetType="Border" BasedOn="{StaticResource Border}"/>
                     </Style.Resources>
                 </Style>
             </Style.Resources>
@@ -110,6 +144,7 @@
 
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
+            <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
             <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
             <Setter Property="FontStyle" Value="Italic"/>
             <Setter Property="FontSize" Value="18"/>
@@ -169,13 +204,23 @@
             <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Background">
-                <Setter.Value>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
+            <Setter Property="Background" Value="{Binding Path=LinearGradientBrush, Source={x:Static properties:Settings.Default}}">
+
+
+                <!--<LinearGradientBrush StartPoint="0,0" EndPoint="1,1" >
                         <GradientStop Color="#FF1E40DA" Offset="0" />
                         <GradientStop Color="#FF2FBFF5" Offset="0.8" />
-                    </LinearGradientBrush>
-                </Setter.Value>
+                    </LinearGradientBrush>--><!--
+
+                    <LinearGradientBrush GradientStops="{Binding Path=LinearGradientBrush, Source={x:Static properties:Settings.Default}}"/>
+                    --><!--<GradientStop Color="White" Offset="0" />
+                        <GradientStop Color="White" Offset="0.1" />
+                        <GradientStop Color="LightSlateGray" Offset="0.1" />
+                        <GradientStop Color="{Binding Path=ButtonColor1, Source={x:Static properties:Settings.Default}}" Offset="0.2"/>
+                        <GradientStop Color="{Binding Path=Background, Source={x:Static properties:Settings.Default}}" Offset="0.5" />
+                        <GradientStop Color="{Binding Path=ButtonColor, Source={x:Static properties:Settings.Default}}" Offset="0.4" />--><!--
+
+                </Setter.Value>-->
             </Setter>
             <Style.Resources>
                 <Style TargetType="Border">
@@ -206,36 +251,6 @@
             </Style.Resources>
         </Style>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Height" Value="44"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="Margin" Value="4"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type TextBox}">
-                        <Border BorderThickness="1" BorderBrush="Black">
-                            <Border.Style>
-                                <Style TargetType="Border">
-                                    <Setter Property="CornerRadius" Value="5"/>
-                                </Style>
-                            </Border.Style>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="false"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"
-                                          Margin="2">
-                            </ScrollViewer>
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="#FFECECEC" TargetName="PART_ContentHost"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
+        
     </Application.Resources>
 </Application>
