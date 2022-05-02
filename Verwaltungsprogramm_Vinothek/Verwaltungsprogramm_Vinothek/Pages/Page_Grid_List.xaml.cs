@@ -22,7 +22,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private string gridType;
         Window_Abfrage WA;
         Window_Messagebox WM;
-        private string currentSortDesc;
+        private SortDescription currentSortDesc;
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
@@ -53,8 +53,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 case "ListeProdukte":
                     CreateDataGrid.Produkt(datagrid);
                     ctx.Produkt.Load();
-                    //collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.OrderBy(x => x.Name).ToList());
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name));
                     datagrid.DataContext = collectionView;
                     cb_filter = CreateDataGrid.ProduktFilter(cb_filter);
                     cb_filter.Items.Add("Aktiv");
@@ -63,16 +62,15 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 case "ListeProduzenten":
                     CreateDataGrid.Produzent(datagrid);
                     ctx.Produzent.Load();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
                     datagrid.DataContext = collectionView;
                     cb_filter = CreateDataGrid.ProduzentFilter(cb_filter);
-
                     break;
 
                 case "ListeEvents":
                     CreateDataGrid.Event(datagrid);
                     ctx.Event.Load();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum));
                     datagrid.DataContext = collectionView;
                     cb_filter = CreateDataGrid.EventFilter(cb_filter);
                     break;
@@ -125,7 +123,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 switch (gridType)
                 {
                     case "ListeProdukte":
-                        SortDescription v = collectionView.SortDescriptions.FirstOrDefault();                        
                         Produkt selected_produkt = (Produkt)datagrid.CurrentItem;
                         NavigationService.Navigate(new Page_Produkt(selected_produkt, currentSortDesc));
                         break;
@@ -148,15 +145,15 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 case "ListeProdukte":
                     ctx.Produkt.Load();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeProduzenten":
                     ctx.Produzent.Load();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeEvents":
                     ctx.Event.Load();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local);
+                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum));
                     break;
             }
             datagrid.DataContext = collectionView;
@@ -265,6 +262,11 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e)
         {
+            collectionView.SortDescriptions.Clear();
+            int direction = 0;
+            if ((bool)RB_Desc.IsChecked)
+                direction = 1;
+
             string[] filteroptions = new string[11];
             switch (gridType)
             {
@@ -278,60 +280,23 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     filteroptions = CreateDataGrid.GetFilterNamesEvents();
                     break;
             }
-            collectionView.SortDescriptions.Clear();
-            switch (cb_filter.SelectedIndex)
-            {
-            default:
-                    currentSortDesc = "";
-                    collectionView.Refresh();
-                    break;
-                case 1:
-                    currentSortDesc = filteroptions[0];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[0], ListSortDirection.Ascending));
-                    break;
-                case 2:
-                    currentSortDesc = filteroptions[1];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[1], ListSortDirection.Ascending));
-                    break;
-                case 3:
-                    currentSortDesc = filteroptions[2];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[2], ListSortDirection.Ascending));
-                    break;
-                case 4:
-                    currentSortDesc = filteroptions[3];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[3], ListSortDirection.Ascending));
-                    break;
-                case 5:
-                    currentSortDesc = filteroptions[4];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[4], ListSortDirection.Ascending));
-                    break;
-                case 6:
-                    currentSortDesc = filteroptions[5];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[5], ListSortDirection.Ascending));
-                    break;
-                case 7:
-                    currentSortDesc = filteroptions[6];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[6], ListSortDirection.Ascending));
-                    break;
-                case 8:
-                    currentSortDesc = filteroptions[7];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[7], ListSortDirection.Ascending));
-                    break;
-                case 9:
-                    currentSortDesc = filteroptions[8];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[8], ListSortDirection.Ascending));
-                    break;
-                case 10:
-                    currentSortDesc = filteroptions[9];
-                    collectionView.SortDescriptions.Add(new SortDescription(filteroptions[9], ListSortDirection.Ascending));
-                    break;
-                case 11:
-                    currentSortDesc = "Aktiv";
-                    collectionView.SortDescriptions.Add(new SortDescription("Aktiv", ListSortDirection.Descending));
-                    break;
-            }
-            //collectionView.SortDescriptions.
-            //collectionView.Refresh();
+
+            if(cb_filter.SelectedIndex == 11)
+                currentSortDesc = new SortDescription("Aktiv", (ListSortDirection)direction);
+            else
+                currentSortDesc = new SortDescription(filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);     
+            
+            collectionView.SortDescriptions.Add(currentSortDesc);
+
+            if (currentSortDesc.Direction == 0)
+                RB_Asc.IsChecked = true;
+            else
+                RB_Desc.IsChecked = true;
+        }
+
+        private void Radiobutton_Checked(object sender, RoutedEventArgs e)
+        {
+            cb_filter_DropDownClosed(null, null);
         }
     }
 }

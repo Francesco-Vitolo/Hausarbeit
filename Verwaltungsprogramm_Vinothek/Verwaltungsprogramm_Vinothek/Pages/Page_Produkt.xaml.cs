@@ -25,7 +25,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Window_Messagebox WM;
         ICollectionView collectionView;
         //string filename überarbeiten
-        public Page_Produkt(Produkt p, string sortby)
+        public Page_Produkt(Produkt p, SortDescription sortby)
         {
             InitializeComponent();
             prod = p;
@@ -33,8 +33,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             ctx.Produzent.Load();
             collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
             collectionView.MoveCurrentTo(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
-            if(sortby != null)
-                collectionView.SortDescriptions.Add(new SortDescription(sortby, ListSortDirection.Ascending));
+            if(sortby.PropertyName != null)
+                collectionView.SortDescriptions.Add(sortby);
             DataContext = collectionView;
         }
 

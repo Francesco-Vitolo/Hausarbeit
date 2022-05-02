@@ -8,8 +8,8 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private static Dictionary<string, string> Produkte = new Dictionary<string, string>() //Header und Rows(SQL)
         {
-           {"Typ",           "Art" } ,
            { "Name",         "Name" },
+           {"Typ",           "Art" } ,
            {"Bezeichnung",   "Qualitätssiegel"}  ,
            {"Rebsorte(n)",   "Rebsorten"}  ,
            {"Region",        "Produzent.Region"}  ,
