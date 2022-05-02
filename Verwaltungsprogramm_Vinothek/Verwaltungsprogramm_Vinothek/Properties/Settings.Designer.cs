@@ -73,9 +73,9 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF1E40DA")]
-        public string Color1 {
+        public global::System.Windows.Media.SolidColorBrush Color1 {
             get {
-                return ((string)(this["Color1"]));
+                return ((global::System.Windows.Media.SolidColorBrush)(this["Color1"]));
             }
             set {
                 this["Color1"] = value;
@@ -85,9 +85,9 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("#FF2FBFF5")]
-        public string Color2 {
+        public global::System.Windows.Media.SolidColorBrush Color2 {
             get {
-                return ((string)(this["Color2"]));
+                return ((global::System.Windows.Media.SolidColorBrush)(this["Color2"]));
             }
             set {
                 this["Color2"] = value;

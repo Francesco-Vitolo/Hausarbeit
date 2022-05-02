@@ -8,6 +8,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Navigation;
 using Verwaltungsprogramm_Vinothek.Windows;
 
@@ -22,19 +23,19 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private VinothekContext ctx = new VinothekContext();
         private Window_PDF_Viewer WPDF;
         private Window_Messagebox WM;
+        ICollectionView collectionView;
         //string filename überarbeiten
-        public Page_Produkt(Produkt p)
+        public Page_Produkt(Produkt p, string sortby)
         {
             InitializeComponent();
+            prod = p;
             ctx.Produkt.Load();
             ctx.Produzent.Load();
-            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt);
-            DataContext = prod;
-
-            if (prod.Aktiv == true)
-                Checkbox_aktiv.IsChecked = true;
-            else
-                Checkbox_aktiv.IsChecked = false;
+            collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
+            collectionView.MoveCurrentTo(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
+            if(sortby != null)
+                collectionView.SortDescriptions.Add(new SortDescription(sortby, ListSortDirection.Ascending));
+            DataContext = collectionView;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -53,10 +54,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
-            if ((bool)Checkbox_aktiv.IsChecked)
-                prod.Aktiv = true;
-            else
-                prod.Aktiv = false;
             ctx.SaveChanges();
             NavigationService.GoBack();
         }
@@ -153,42 +150,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e)
         {
-            int i = prod.ID_Produkt + 1;
-            while (i <= ctx.Produkt.ToList().Last().ID_Produkt)
-            {
-                if (ctx.Produkt.Any(x => x.ID_Produkt == i))
-                {
-                    prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == i);
-                    DataContext = null;
-                    DataContext = prod;
-                    break;
-                }
-                else
-                    i++;
-            }
-            path.Content = null;
-            pic.DataContext = null;
-            pic.DataContext = prod;
+            collectionView.MoveCurrentToNext();
+            if (collectionView.IsCurrentAfterLast)
+                collectionView.MoveCurrentToFirst();
+            prod = (Produkt)collectionView.CurrentItem;
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e)
-        {          
-            int i = prod.ID_Produkt - 1;
-            while (i >= 1000)
-            {
-                if (ctx.Produkt.Any(x => x.ID_Produkt == i))
-                {
-                    prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == i);
-                    DataContext = null;
-                    DataContext = prod;
-                    break;
-                }
-                else
-                    i--;
-            }
-            path.Content = null;
-            pic.DataContext = null;
-            pic.DataContext = prod;
+        {
+            collectionView.MoveCurrentToPrevious();
+            if (collectionView.IsCurrentBeforeFirst)
+                collectionView.MoveCurrentToLast();
+            prod = (Produkt)collectionView.CurrentItem;
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)

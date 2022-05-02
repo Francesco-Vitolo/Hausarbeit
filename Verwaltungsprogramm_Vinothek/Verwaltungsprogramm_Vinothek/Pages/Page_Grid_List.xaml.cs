@@ -22,6 +22,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private string gridType;
         Window_Abfrage WA;
         Window_Messagebox WM;
+        private string currentSortDesc;
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
@@ -119,12 +120,25 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Page p = ItemInfos.Show(datagrid.CurrentItem, gridType);
-            if (p != null)
-                NavigationService.Navigate(p);
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
-            //GC.Collect();
+            if (datagrid.CurrentItem != null)
+            {
+                switch (gridType)
+                {
+                    case "ListeProdukte":
+                        SortDescription v = collectionView.SortDescriptions.FirstOrDefault();                        
+                        Produkt selected_produkt = (Produkt)datagrid.CurrentItem;
+                        NavigationService.Navigate(new Page_Produkt(selected_produkt, currentSortDesc));
+                        break;
+                    case "ListeProduzenten":
+                        Produzent selected_produzent = (Produzent)datagrid.CurrentItem;
+                        NavigationService.Navigate(new Page_Produzent(selected_produzent));
+                        break;
+                    case "ListeEvents":
+                        Event selected_event = (Event)datagrid.CurrentItem;
+                        NavigationService.Navigate(new Page_Veranstaltung(selected_event));
+                        break;
+                }
+            }
         }
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
@@ -267,40 +281,52 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             collectionView.SortDescriptions.Clear();
             switch (cb_filter.SelectedIndex)
             {
-                default:
+            default:
+                    currentSortDesc = "";
                     collectionView.Refresh();
                     break;
                 case 1:
+                    currentSortDesc = filteroptions[0];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[0], ListSortDirection.Ascending));
                     break;
                 case 2:
+                    currentSortDesc = filteroptions[1];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[1], ListSortDirection.Ascending));
                     break;
                 case 3:
+                    currentSortDesc = filteroptions[2];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[2], ListSortDirection.Ascending));
                     break;
                 case 4:
+                    currentSortDesc = filteroptions[3];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[3], ListSortDirection.Ascending));
                     break;
                 case 5:
+                    currentSortDesc = filteroptions[4];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[4], ListSortDirection.Ascending));
                     break;
                 case 6:
+                    currentSortDesc = filteroptions[5];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[5], ListSortDirection.Ascending));
                     break;
                 case 7:
+                    currentSortDesc = filteroptions[6];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[6], ListSortDirection.Ascending));
                     break;
                 case 8:
+                    currentSortDesc = filteroptions[7];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[7], ListSortDirection.Ascending));
                     break;
                 case 9:
+                    currentSortDesc = filteroptions[8];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[8], ListSortDirection.Ascending));
                     break;
                 case 10:
+                    currentSortDesc = filteroptions[9];
                     collectionView.SortDescriptions.Add(new SortDescription(filteroptions[9], ListSortDirection.Ascending));
                     break;
                 case 11:
+                    currentSortDesc = "Aktiv";
                     collectionView.SortDescriptions.Add(new SortDescription("Aktiv", ListSortDirection.Descending));
                     break;
             }

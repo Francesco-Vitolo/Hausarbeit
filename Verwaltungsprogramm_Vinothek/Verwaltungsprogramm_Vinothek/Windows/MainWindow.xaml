@@ -8,7 +8,9 @@
         Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
     <Grid>
         <local:Uc_Default/>
-        <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click"/>
+        <Button x:Name="GoBack" Background="#FF6990B8" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click">
+            <Image Source="..\Pictures\arrow_left.png"/>
+        </Button>
         <Frame Name="Frame_Main" Margin="0,40,0,0"/>
         <Expander x:Name="expander"  HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" BorderBrush="Black" Height="360">
             <Expander.Resources>

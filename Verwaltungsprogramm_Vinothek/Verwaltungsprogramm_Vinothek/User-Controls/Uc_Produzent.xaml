@@ -9,8 +9,8 @@
     <Grid >
         <Grid.Resources>
             <Style TargetType="TextBlock">
-                <Setter Property="Margin" Value="8"/>
-                <Setter Property="FontSize" Value="24"/>
+                <Setter Property="Margin" Value="9"/>
+                <Setter Property="FontSize" Value="26"/>
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
@@ -41,7 +41,7 @@
         </StackPanel>
         <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="20">
             <TextBlock Text="Beschreibung" />
-            <TextBox Text="{Binding Beschreibung}" Name="tb" Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top"/>
+            <TextBox Text="{Binding Beschreibung}" Name="tb" Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>

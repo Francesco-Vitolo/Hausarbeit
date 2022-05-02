@@ -14,11 +14,10 @@
             </Style>
         </Grid.Resources>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
@@ -27,7 +26,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Column="1" Grid.Row="1">
+        <StackPanel Grid.Column="1" Grid.Row="1" >
             <TextBlock Text="Name"/>
             <TextBlock Text="Typ"/>
             <TextBlock Text="Bezeichnung"/>
@@ -48,12 +47,18 @@
             <!--<ComboBox Margin="5" Height="40" BorderBrush="Black" BorderThickness="1" Background="Transparent" SelectedIndex="{Binding tb.Text}"/>-->
             <TextBox Text="{Binding Produzent.Name}" IsEnabled="False" x:Name="tb_prod"/>
             <TextBox Text="{Binding Geschmack}"/>
-            <TextBox Text="{Binding Alkoholgehalt}"/>
-            <TextBox Text="{Binding Preis}"/>
+            <WrapPanel>
+                <TextBox Text="{Binding Alkoholgehalt}" Width="150" />
+                <TextBlock Text="% vol"/>
+            </WrapPanel>
+            <WrapPanel>
+                <TextBox Text="{Binding Preis}" Width="150" />
+                <TextBlock Text="€"/>
+            </WrapPanel>
         </StackPanel>
-        <StackPanel Grid.ColumnSpan="3" Grid.Row="2" Grid.Column="1">
+        <StackPanel Grid.ColumnSpan="4" Grid.Row="2" Grid.Column="0">
             <TextBlock Text="Beschreibung" />
-            <TextBox Text="{Binding Beschreibung}"  Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top" x:Name="tb_desc"/>
+            <TextBox Text="{Binding Beschreibung}"  Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top" x:Name="tb_desc" HorizontalContentAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>

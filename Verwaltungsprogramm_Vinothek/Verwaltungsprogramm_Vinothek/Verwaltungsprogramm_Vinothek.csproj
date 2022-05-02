@@ -85,7 +85,6 @@
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="Imageconverter.cs" />
-    <Compile Include="ItemInfos.cs" />
     <Compile Include="Pages\Page_Add_Produkt.xaml.cs">
       <DependentUpon>Page_Add_Produkt.xaml</DependentUpon>
     </Compile>
@@ -347,7 +346,7 @@
     <Resource Include="Pictures\mail.png" />
     <Resource Include="Pictures\avatar.png" />
     <Resource Include="Pictures\settings.png" />
-    <Resource Include="Pages\arrow_back.png" />
+    <Resource Include="Pictures\arrow_back.png" />
     <Content Include="Vinothek.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Vinothek.Context.cs</LastGenOutput>

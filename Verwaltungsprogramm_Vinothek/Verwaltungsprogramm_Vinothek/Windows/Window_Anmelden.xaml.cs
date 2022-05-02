@@ -30,8 +30,8 @@ namespace Verwaltungsprogramm_Vinothek
         {
             try
             {
-                System.Windows.Media.Color brush1 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color1);
-                System.Windows.Media.Color brush2 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color2);
+                System.Windows.Media.Color brush1 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color1.ToString());
+                System.Windows.Media.Color brush2 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color2.ToString());
                 LinearGradientBrush gradient = new LinearGradientBrush()
                 {
                     StartPoint = new System.Windows.Point(0, 0),

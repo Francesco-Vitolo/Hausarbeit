@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Diagnostics;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -70,8 +71,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             try
             {
-                Settings.Default.Color1 = tb_Color1.Text;
-                Settings.Default.Color2 = tb_Color2.Text;
+                Settings.Default.Color1 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color1.Text);
+                Settings.Default.Color2 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color2.Text);
                 Color brush1 = (Color)ColorConverter.ConvertFromString(tb_Color1.Text);
                 Color brush2 = (Color)ColorConverter.ConvertFromString(tb_Color2.Text);
                 LinearGradientBrush gradient = new LinearGradientBrush()
@@ -85,6 +86,16 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 Settings.Default.Save();
             }
             catch { }
+        }
+
+        private void Dokumentation_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit/blob/main/README.md");
+        }
+
+        private void ColorPickerLink_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://g.co/kgs/M1YyXm");
         }
     }
 }

@@ -32,7 +32,8 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            ItemInfos.Show(data.CurrentItem, "ListeProdukte");
+            Produzent selected_produzent = (Produzent)data.CurrentItem;
+            NavigationService.Navigate(new Page_Produzent(selected_produzent));
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)

@@ -25,7 +25,7 @@
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <local1:Uc_Produkt x:Name="felderProdukt" Grid.Column="1" Grid.Row="1" />
-        <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center">
+        <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Top" Margin="0,40">
             <Button Click="Button_Click_BildausZwischenablage">
                 <Image Source="..\Pictures\clipboard.png"/>
             </Button>
