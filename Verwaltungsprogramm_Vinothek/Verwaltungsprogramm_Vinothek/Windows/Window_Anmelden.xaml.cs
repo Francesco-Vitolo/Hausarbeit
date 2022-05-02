@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using Verwaltungsprogramm_Vinothek.Properties;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -19,7 +22,27 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            SetButtonFarbe();
             Demo();
+        }
+
+        private void SetButtonFarbe()
+        {
+            try
+            {
+                System.Windows.Media.Color brush1 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color1);
+                System.Windows.Media.Color brush2 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color2);
+                LinearGradientBrush gradient = new LinearGradientBrush()
+                {
+                    StartPoint = new System.Windows.Point(0, 0),
+                    EndPoint = new System.Windows.Point(1, 1),
+                };
+                gradient.GradientStops.Add(new GradientStop(brush1, 0));
+                gradient.GradientStops.Add(new GradientStop(brush2, 0.8));
+                Settings.Default.LinearGradientBrush = gradient;
+                Settings.Default.Save();
+            }
+            catch { }
         }
 
         private void Demo()

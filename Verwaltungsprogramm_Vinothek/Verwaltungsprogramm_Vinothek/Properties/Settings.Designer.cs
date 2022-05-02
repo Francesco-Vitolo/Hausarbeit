@@ -69,5 +69,29 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
                 this["LinearGradientBrush"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF1E40DA")]
+        public string Color1 {
+            get {
+                return ((string)(this["Color1"]));
+            }
+            set {
+                this["Color1"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("#FF2FBFF5")]
+        public string Color2 {
+            get {
+                return ((string)(this["Color2"]));
+            }
+            set {
+                this["Color2"] = value;
+            }
+        }
     }
 }

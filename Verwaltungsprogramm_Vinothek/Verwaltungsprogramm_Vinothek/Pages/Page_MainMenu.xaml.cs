@@ -70,6 +70,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             try
             {
+                Settings.Default.Color1 = tb_Color1.Text;
+                Settings.Default.Color2 = tb_Color2.Text;
                 Color brush1 = (Color)ColorConverter.ConvertFromString(tb_Color1.Text);
                 Color brush2 = (Color)ColorConverter.ConvertFromString(tb_Color2.Text);
                 LinearGradientBrush gradient = new LinearGradientBrush()

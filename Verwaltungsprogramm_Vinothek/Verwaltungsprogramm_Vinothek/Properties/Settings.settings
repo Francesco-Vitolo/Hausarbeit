@@ -14,5 +14,11 @@
     <Setting Name="LinearGradientBrush" Type="System.Windows.Media.LinearGradientBrush" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="Color1" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF1E40DA</Value>
+    </Setting>
+    <Setting Name="Color2" Type="System.String" Scope="User">
+      <Value Profile="(Default)">#FF2FBFF5</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
