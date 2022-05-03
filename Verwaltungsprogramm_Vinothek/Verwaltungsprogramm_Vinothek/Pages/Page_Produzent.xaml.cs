@@ -21,12 +21,12 @@ namespace Verwaltungsprogramm_Vinothek
         public Page_Produzent(Produzent produzent)
         {
             InitializeComponent();
-            CreateDataGrid.Produkt(data);
+            CreateDataGrid.Produkt(data); //Datagrid erstellen
             ctx.Produzent.Load();
-            p = ctx.Produzent.Find(produzent.ID_Produzent);
+            p = ctx.Produzent.Find(produzent.ID_Produzent); //selbe wie ...FirstOrDefault(x => x.Produzent == produzent.ID_Produzent)
             prodz.DataContext = p;
             ctx.Produkt.Load();
-            Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList();
+            Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList(); //Produkte, die zu Produzent gehören
             data.DataContext = Produkte;
         }
 
@@ -56,7 +56,7 @@ namespace Verwaltungsprogramm_Vinothek
             NavigationService.GoBack();
         }
 
-        private void Button_Click_OpenMail(object sender, RoutedEventArgs e)
+        private void Button_Click_OpenMail(object sender, RoutedEventArgs e) //Email - Programm öffnen und Empfänger wird eingetragen
         {
             string OpenMailProg = "Mailto:" + p.Email; //?subject= "Betreff"&body=\"Inhalt\"
             Process proc = new Process();

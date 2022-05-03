@@ -25,9 +25,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)
         {
             Window_Messagebox WM;
-            var tbs = felderProdukt.GetTbs();
+            var tbs = felderProdukt.GetTbs(); //Uc_Produkt alle Textboxen
 
-            newProd.Name = tbs[0].Text.Trim();
+            newProd.Name = tbs[0].Text.Trim(); //Leerzeichen abschneiden
             newProd.Art = tbs[1].Text;
             newProd.Qualitätssiegel = tbs[2].Text;
 
@@ -45,13 +45,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             newProd.Aktiv = true;
 
-            newProd.Beschreibung = felderProdukt.GetDesc().Text;
-            //Prod.Name --> Prod.ID
+            newProd.Beschreibung = felderProdukt.GetDesc().Text;            
 
-            string produzentName = tbs[5].Text;
             if (tbs[0].Text == "" || produzent == null)
             {
-                WM = new Window_Messagebox("Bitte eingeben du HUND");
+                WM = new Window_Messagebox("Bitte Name und Weingut eingeben");
                 WM.ShowDialog();
                 return;
             }
@@ -59,19 +57,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             {
                 ctx.Produkt.Add(newProd);
                 ctx.SaveChanges();
-                Application.Current.MainWindow.Show();
                 NavigationService.GoBack();
             }
         }
-        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e)
+        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e) //Bild auswählen und un byte - Array umwandeln
         {
             string imgPath = SelectFile.Image();
 
             if (imgPath != null)
             {
                 ImgSrc.Text = "Pfad: " + imgPath;
-                byte[] b = Imageconverter.ConvertImageToByteArray(imgPath);
-                newProd.Picture = b;
+                byte[] binaryPic = Imageconverter.ConvertImageToByteArray(imgPath);
+                newProd.Picture = binaryPic;
             }
         }
         private void Button_Previous_Click(object sender, RoutedEventArgs e)
@@ -79,7 +76,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             NavigationService.GoBack();
         }
 
-        private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)
+        private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e) //Datacontext zurücksetzen
         {
             newProd.Picture = null;
             newProd.Picture = null;
@@ -91,8 +88,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             var img = SelectFile.SelectImgfromClipboard();
             if (img != null)
             {
-                var v = Imageconverter.ConvertImageFromClipboard(img);
-                newProd.Picture = v;
+                byte[] binaryPic = Imageconverter.ConvertImageFromClipboard(img);
+                newProd.Picture = binaryPic;
                 ImgSrc.Text = "Aus Zwischenablage";
             }
         }

@@ -44,15 +44,14 @@
             <TextBox Text="{Binding Qualitätssiegel}"/>
             <TextBox Text="{Binding Jahrgang}"/>
             <TextBox Text="{Binding Rebsorten}"/>
-            <!--<ComboBox Margin="5" Height="40" BorderBrush="Black" BorderThickness="1" Background="Transparent" SelectedIndex="{Binding tb.Text}"/>-->
             <TextBox Text="{Binding Produzent.Name}" IsEnabled="False" x:Name="tb_prod"/>
             <TextBox Text="{Binding Geschmack}"/>
             <WrapPanel>
-                <TextBox Text="{Binding Alkoholgehalt}" Width="150" />
+                <TextBox Text="{Binding Alkoholgehalt}" Width="150" x:Name="tb_alk"/>
                 <TextBlock Text="% vol"/>
             </WrapPanel>
             <WrapPanel>
-                <TextBox Text="{Binding Preis}" Width="150" />
+                <TextBox Text="{Binding Preis}" Width="150" x:Name="tb_preis"/>
                 <TextBlock Text="€"/>
             </WrapPanel>
         </StackPanel>

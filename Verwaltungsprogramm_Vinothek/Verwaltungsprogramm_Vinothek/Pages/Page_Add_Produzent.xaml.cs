@@ -29,11 +29,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
         {
-            Produzent produzent = new Produzent();
+            Produzent produzent = new Produzent(); //Daten aus Uc_Produzent holen
             var tbs = felder.GetTbs();
-            if (tbs[0].Text != "")
+            if (tbs[0].Text != "") //Wenn Name nicht eingegeben
             {
-                produzent.Name = tbs[0].Text.Trim();
+                produzent.Name = tbs[0].Text.Trim(); //Leerzeichen abschneiden
                 produzent.Land = tbs[1].Text;
                 produzent.Region = tbs[2].Text;
                 if (int.TryParse(tbs[3].Text, out int i))

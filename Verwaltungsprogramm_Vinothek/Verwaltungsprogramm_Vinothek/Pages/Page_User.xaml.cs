@@ -37,7 +37,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             this.user = user;
         }
 
-        private void btn_changePW_Click(object sender, RoutedEventArgs e)
+        private void btn_changePW_Click(object sender, RoutedEventArgs e) //Passwort ändern
         {
            Window_Anmelden WinAnmelden = new Window_Anmelden();
            WinAnmelden.ShowDialog();
@@ -45,10 +45,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
            ctx.SaveChanges();
         }
 
-        private void btn_delUser_Click(object sender, RoutedEventArgs e)
+        private void btn_delUser_Click(object sender, RoutedEventArgs e) //User wird gelöscht (außer admin)
         {
             Benutzer user = (Benutzer)lv_Users.SelectedItem;
-            if (user.username != "admin")
+            if (user.ID_Benutzer != 1)
             {
                 Window_Abfrage WA = new Window_Abfrage($"Soll {user.username} gelöscht werden?");
                 WA.ShowDialog();
@@ -59,10 +59,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 }
             }
             else
-                MessageBox.Show("geht nicht mfka"); 
+                MessageBox.Show("Admin kann nicht gelöscht werden");
         }
 
-        private void btn_addUser_Click(object sender, RoutedEventArgs e)
+        private void btn_addUser_Click(object sender, RoutedEventArgs e) //neuen Nutzer anlegen
         {
             Benutzer newUser = new Benutzer();
             newUser.username = tb_newUser_Name.Text;

@@ -29,7 +29,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Window_Select_Object WSO = new Window_Select_Object("ListeProdukte");
             WSO.ShowDialog();
             Produkt p = (Produkt)WSO.GetObj();
-            if (p != null && listProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null)
+            if (p != null && listProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null) //Wenn Produkt nicht schon hinzugefügt
             {
                 listProd.Add(p);
                 data.DataContext = null;
@@ -41,8 +41,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Event E = new Event();
             List<TextBox> tbs = felder.GetTbs();
-            //if (tbs[0].Text != "")
-            //{
             if (tbs[0].Text == "")
             {
                 Window_Messagebox WM = new Window_Messagebox("Bitte Namen eingeben");
@@ -60,8 +58,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
                 foreach (var v in listProd)
                 {
-                    //int i = E.ID_Veranstaltung;
-                    EventPos EP = new EventPos();
+                    EventPos EP = new EventPos(); //Neue EventPos erstellen
                     EP.ID_Veranstaltung = E.ID_Veranstaltung;
                     EP.ID_Produkt = v.ID_Produkt;
                     ctx.EventPos.Add(EP);
@@ -73,7 +70,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void DelProd_Click(object sender, RoutedEventArgs e)
         {
-            listProd.Remove((Produkt)data.SelectedItem);
+            listProd.Remove((Produkt)data.SelectedItem); //Aus Liste entfernen
             data.DataContext = null;
             data.DataContext = listProd;
         }     

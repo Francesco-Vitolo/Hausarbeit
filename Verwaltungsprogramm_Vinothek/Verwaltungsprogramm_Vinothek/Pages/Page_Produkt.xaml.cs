@@ -58,7 +58,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             NavigationService.GoBack();
         }
 
-        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e)
+        private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e) //Bild auswählen
         {
             string imgPath = SelectFile.Image();
 
@@ -73,11 +73,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
 
 
-        private void Add_Produzent_Click(object sender, RoutedEventArgs e)
+        private void Add_Produzent_Click(object sender, RoutedEventArgs e) //Produzent auswählen
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
             WSP.ShowDialog();
-            Produzent p = (Produzent)WSP.GetObj();
+            Produzent p = (Produzent)WSP.GetObj(); //Produzent nehmen
             if(p != null)
             {
                 prod.Produzent = p;
@@ -89,7 +89,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         }
 
-        private void btn_download_pdf_Click(object sender, RoutedEventArgs e)
+        private void btn_download_pdf_Click(object sender, RoutedEventArgs e) //PDF download, wenn in db vorhanden. Sonst zuerst btn_create_pdf_Click
         {
             if (prod.PDF_file != null)
             {
@@ -106,24 +106,24 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void btn_create_pdf_Click(object sender, RoutedEventArgs e)
         {
             PDF pdf = new PDF();
-            byte[] b = pdf.CreateFromProd(prod);
-            var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            v.PDF_file = b;
+            byte[] byteArrayPDF = pdf.CreateFromProd(prod);
+            var produkt = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            produkt.PDF_file = byteArrayPDF;
             ctx.SaveChanges();
             WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.GetPath()}");
             WM.Show();
         }
 
-        private async void btn_show_pdf_Click(object sender, RoutedEventArgs e)
+        private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {
             if (prod.PDF_file != null)
             {
-                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf";
+                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf"; //temporäre Datei wird erstellt
                 File.WriteAllBytes(tempfile, prod.PDF_file);
                 WPDF = new Window_PDF_Viewer(tempfile);
                 WPDF.ShowDialog();
-                await Timer(1000);
-                File.Delete(tempfile);
+                await Timer(1000);      //PDF noch nicht freigegeben, deshalb timer
+                File.Delete(tempfile); //löschen
             }
             else
             {
@@ -148,7 +148,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 pic.DataContext = prod;
             }
         }
-        private void MoveNext_Click(object sender, RoutedEventArgs e)
+        private void MoveNext_Click(object sender, RoutedEventArgs e) //Nächstes Obj
         {
             collectionView.MoveCurrentToNext();
             if (collectionView.IsCurrentAfterLast)
@@ -156,7 +156,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             prod = (Produkt)collectionView.CurrentItem;
         }
 
-        private void MovePrev_Click(object sender, RoutedEventArgs e)
+        private void MovePrev_Click(object sender, RoutedEventArgs e) //Vorheriges Obj
         {
             collectionView.MoveCurrentToPrevious();
             if (collectionView.IsCurrentBeforeFirst)

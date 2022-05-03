@@ -18,11 +18,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             InitializeComponent();
             MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
-            if (currentWindow.getUserID() != 1)
+            if (currentWindow.getUserID() != 1) //User - ID 1 --> admin
                 UserVerwaltung.Visibility = Visibility.Hidden;
         }
 
-        private void Button_MainMenu(object sender, RoutedEventArgs e)
+        private void Button_Übersicht(object sender, RoutedEventArgs e)
         {
             Button b = (Button)sender;
             string grid = b.Name;
@@ -30,9 +30,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             NavigationService.Navigate(newPage);
         }
 
-        private void PdfDir_Click(object sender, RoutedEventArgs e)
+        private void PdfDir_Click(object sender, RoutedEventArgs e) //PDF - Verzeichnis ändern
         {
-            Settings.Default.PDF_Directory = SelectFile.PdfDir(Properties.Settings.Default.PDF_Directory);
+            Settings.Default.PDF_Directory = SelectFile.PdfDir(Settings.Default.PDF_Directory);
             Settings.Default.Save();
         }
 
@@ -41,11 +41,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             NavigationService.Navigate(new Page_Kundensicht());
         }
 
-        private void Button_User(object sender, RoutedEventArgs e)
+        private void Button_User(object sender, RoutedEventArgs e) //Userverwaltung
         {
             NavigationService.Navigate(new Page_User());
         }
-        private void Background_Click(object sender, RoutedEventArgs e)
+        private void Background_Click(object sender, RoutedEventArgs e) //Hintergrund ändern
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
            
         }
 
-        private void Foreground_Click(object sender, RoutedEventArgs e)
+        private void Foreground_Click(object sender, RoutedEventArgs e) //Vordergrund ändern
         {
             try
             {
@@ -67,11 +67,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
 
 
-        private void Color1_Click(object sender, RoutedEventArgs e)
+        private void Color_Click(object sender, RoutedEventArgs e) //Farbe für Buttons ändern (und andere Dinge)
         {
             try
             {
-                Settings.Default.Color1 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color1.Text);
+                Settings.Default.Color1 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color1.Text); //Farben 1 und 2 werden gespeichert
                 Settings.Default.Color2 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color2.Text);
                 Color brush1 = (Color)ColorConverter.ConvertFromString(tb_Color1.Text);
                 Color brush2 = (Color)ColorConverter.ConvertFromString(tb_Color2.Text);
@@ -82,13 +82,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 };
                 gradient.GradientStops.Add(new GradientStop(brush1, 0));
                 gradient.GradientStops.Add(new GradientStop(brush2, 0.8));
-                Settings.Default.LinearGradientBrush = gradient;
+                Settings.Default.LinearGradientBrush = gradient;    //Farbverlauf wird erstellt und gespeichert
                 Settings.Default.Save();
             }
             catch { }
         }
 
-        private void Dokumentation_Click(object sender, RoutedEventArgs e)
+        private void Dokumentation_Click(object sender, RoutedEventArgs e) 
         {
             Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit/blob/main/README.md");
         }
