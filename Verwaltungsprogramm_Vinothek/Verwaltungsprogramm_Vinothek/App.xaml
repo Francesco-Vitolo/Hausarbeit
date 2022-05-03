@@ -32,7 +32,8 @@
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Background" Value="{Binding Path=Color2, Source={x:Static properties:Settings.Default}}" TargetName="PART_ContentHost"/>
+                                <!--<Setter Property="Background" Value="{Binding Path=Color2, Source={x:Static properties:Settings.Default}}" TargetName="PART_ContentHost"/>-->
+                                <Setter Property="Background" Value="{Binding Path=LinearGradientBrush, Source={x:Static properties:Settings.Default}}" TargetName="PART_ContentHost"/>
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="True">
                                 <Setter Property="Background" Value="Transparent" TargetName="PART_ContentHost"/>
@@ -172,12 +173,16 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border >
+                        <Border>
                             <!--BorderThickness="1" BorderBrush="Black" Margin="10" Height="150" Width="250">-->
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
+                                    <Setter Property="BorderThickness" Value="2"/>
+                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="10"/>
                                 </Style>
                             </Border.Style>
                         </Border>
@@ -190,7 +195,6 @@
                                 <Setter Property="Background" Value="Gray"/>
                             </Trigger>
                         </ControlTemplate.Triggers>
-
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>

@@ -7,34 +7,42 @@
       mc:Ignorable="d" 
       Title="Page_User">
     <Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="42"/>
+        </Style>
     </Page.Resources>
     <Grid>
-        <WrapPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-
-            <ListView ItemsSource="{Binding }"  Name="lv_Users" SelectedIndex="0">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock Text="{Binding username}" MouseUp="TextBlock_MouseUp" />
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-            <StackPanel>
-                <Label Content="Passwort ändern"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <ListView ItemsSource="{Binding }"  Name="lv_Users" SelectedIndex="0" Grid.Column="0">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding username}" MouseUp="TextBlock_MouseUp" />
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+        <StackPanel Grid.Column="1" Margin="50">
+            <Button x:Name="btn_delUser" Click="btn_delUser_Click" Content="Nutzer löschen"/>
+            <Separator Margin="40"/>
+            <Label Content="Passwort ändern"/>
+            <WrapPanel>
                 <TextBox Name="tb_pw" Width="250"/>
-            </StackPanel>
-            <Button x:Name="btn_changePW" Click="btn_changePW_Click" Content="pw"/>
-            <Button x:Name="btn_delUser" Click="btn_delUser_Click" Content="del"/>
-            <Button x:Name="btn_addUser" Click="btn_addUser_Click" Content="add"/>
-            <StackPanel>
+                <Button x:Name="btn_changePW" Click="btn_changePW_Click" Content="ändern"/>
+            </WrapPanel>
+            <Separator Margin="40"/>
+            <TextBlock Text="Nutzer hinzufügen" Margin="5,0,0,20"/>
+            <WrapPanel>
                 <Label Content="Username"/>
                 <TextBox Width="250" Name="tb_newUser_Name"/>
-            </StackPanel>
-            <StackPanel>
+            </WrapPanel>
+            <WrapPanel>
                 <Label Content="Passwort"/>
-                <TextBox Width="250" Name="tb_newUser_PW"/>
-            </StackPanel>
-        </WrapPanel>
-        
+                <TextBox Width="250" Name="tb_newUser_PW" Margin="18,0"/>
+            </WrapPanel>
+            <Button x:Name="btn_addUser" Click="btn_addUser_Click" Content="hinzufügen"/>
+        </StackPanel>
     </Grid>
 </Page>
