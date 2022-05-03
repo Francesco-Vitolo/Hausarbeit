@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using System.Data.Entity;
 using System.Data.SqlClient;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -168,6 +169,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             prod.Picture = null;
             pic.DataContext = null;
+        }
+
+        private void WebSuche_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start($"https://google.com/search?q={prod.Name}+{prod.Produzent.Name}");
         }
     }
 }

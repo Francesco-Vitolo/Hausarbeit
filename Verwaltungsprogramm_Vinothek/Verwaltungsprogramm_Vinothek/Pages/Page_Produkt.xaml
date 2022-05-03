@@ -30,7 +30,7 @@
             <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" >
 
                 <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0"/>
-                
+
                 <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="30,0">
                     <TextBlock Text="Aktiv/Verfügbar: " FontSize="24" VerticalAlignment="Center"/>
                     <CheckBox VerticalAlignment="Center"  Name="Checkbox_aktiv" IsChecked="{Binding Aktiv}" >
@@ -39,7 +39,7 @@
                         </CheckBox.LayoutTransform>
                     </CheckBox>
                 </WrapPanel>
-                
+
             </StackPanel>
 
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
@@ -59,7 +59,7 @@
                 </Separator.LayoutTransform>
             </Separator>
             <UniformGrid Grid.Row="1" Grid.Column="2" Rows="1" >
-              
+
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
                     <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
@@ -69,6 +69,10 @@
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
                     <Image Source="..\Pictures\save.png"/>
                 </Button>
+                <Button x:Name="WebSuche" Click="WebSuche_Click">
+                    <Image Source="..\Pictures\browser.png"/>
+                </Button>
+
             </UniformGrid>
             <StackPanel Grid.Column="3" >
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
@@ -113,7 +117,7 @@
                     <Image Source="..\Pictures\cross.png"/>
                 </Button>
             </UniformGrid>
-            
+
         </Grid>
     </Grid>
 </Page>
