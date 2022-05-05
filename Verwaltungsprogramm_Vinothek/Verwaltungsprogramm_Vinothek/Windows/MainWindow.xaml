@@ -24,9 +24,35 @@
                     <GradientStop Color="#FF474749" Offset="0.8" />
                 </LinearGradientBrush>
             </Expander.Background>
+            <Expander.Triggers>
+                <EventTrigger RoutedEvent="Expander.Expanded">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation   From="30"
+                          To="300"   
+                          Storyboard.TargetProperty="Width"   
+                          Duration="0:00:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="Expander.Collapsed">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard >
+                                <DoubleAnimation From="300"   
+                          To="30"   
+                          Storyboard.TargetProperty="Width"   
+                          Duration="0:00:0.2"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Expander.Triggers>
             <StackPanel Margin="10,0,-10,0">
                 <StackPanel.Resources>
-                    <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+                    <Style TargetType="Button" BasedOn="{StaticResource Button_TextContent}">
                         <Setter Property="Width" Value="auto"/>
                         <Setter Property="Padding" Value="10,0"/>
                         <Setter Property="Height" Value="40"/>

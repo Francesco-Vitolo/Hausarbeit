@@ -57,12 +57,16 @@ namespace Verwaltungsprogramm_Vinothek
 
         public static DataGrid Rest(DataGrid dg, Dictionary<string, string> dict)
         {
-            foreach (var v in dict)
+            foreach (var name in dict)
             {
+                Binding b = new Binding(name.Value); 
+                if (name.Key == "Datum") 
+                    b.StringFormat = "dd.MM.yy";
                 DataGridTextColumn column = new DataGridTextColumn()
                 {
-                    Header = v.Key,
-                    Binding = new Binding(v.Value),
+                    Header = name.Key,
+                    Binding = b,
+
                 };
                 dg.Columns.Add(column);
             }

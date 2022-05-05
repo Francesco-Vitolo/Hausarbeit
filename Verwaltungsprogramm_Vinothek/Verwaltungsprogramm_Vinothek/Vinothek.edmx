@@ -21,7 +21,7 @@
           <Property Name="ID_Veranstaltung" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="AnzahlPersonen" Type="int" />
-          <Property Name="Datum" Type="nvarchar" MaxLength="50" />
+          <Property Name="Datum" Type="date" />
           <Property Name="Zeit" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="EventPos">
@@ -99,7 +99,7 @@
           <Property Name="ID_Veranstaltung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnzahlPersonen" Type="Int32" />
-          <Property Name="Datum" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Datum" Type="DateTime" />
           <Property Name="Zeit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EventPos">

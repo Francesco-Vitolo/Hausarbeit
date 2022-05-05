@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -39,7 +40,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void SaveEvent_Click(object sender, RoutedEventArgs e)
         {
-            Event E = new Event();
+            Event evnt = new Event();
             List<TextBox> tbs = felder.GetTbs();
             if (tbs[0].Text == "")
             {
@@ -48,18 +49,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
             else
             {
-                E.Name = tbs[0].Text;
+                evnt.Name = tbs[0].Text;
                 if (int.TryParse(tbs[1].Text, out int i))
-                    E.AnzahlPersonen = i;
-                E.Datum = felder.GetDate();
-                E.Zeit = felder.GetTime();
-                ctx.Event.Add(E);
+                    evnt.AnzahlPersonen = i;
+                evnt.Datum = DateTime.Parse(felder.GetDate());
+                evnt.Zeit = felder.GetTime();
+                ctx.Event.Add(evnt);
                 ctx.SaveChanges();
 
                 foreach (var v in listProd)
                 {
                     EventPos EP = new EventPos(); //Neue EventPos erstellen
-                    EP.ID_Veranstaltung = E.ID_Veranstaltung;
+                    EP.ID_Veranstaltung = evnt.ID_Veranstaltung;
                     EP.ID_Produkt = v.ID_Produkt;
                     ctx.EventPos.Add(EP);
                     ctx.SaveChanges();

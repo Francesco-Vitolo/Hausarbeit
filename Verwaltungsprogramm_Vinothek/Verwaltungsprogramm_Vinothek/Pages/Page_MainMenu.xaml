@@ -81,13 +81,9 @@
             <Button Name="Einstellungen" Content="Einstellungen" Click="Settings_Click"/>
         </UniformGrid>
 
-
-
-
-
         <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Center" MaxHeight="500" MaxWidth="500" Grid.Column="2" Grid.Row="1">
             <Calendar />
         </Viewbox>
-        
+
     </Grid>
 </Page>

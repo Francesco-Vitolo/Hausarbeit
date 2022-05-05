@@ -17,7 +17,7 @@ namespace Verwaltungsprogramm_Vinothek
         public int ID_Veranstaltung { get; set; }
         public string Name { get; set; }
         public Nullable<int> AnzahlPersonen { get; set; }
-        public string Datum { get; set; }
+        public Nullable<System.DateTime> Datum { get; set; }
         public string Zeit { get; set; }
     }
 }

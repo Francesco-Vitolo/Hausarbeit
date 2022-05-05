@@ -161,6 +161,14 @@
                     <Style.Resources>
                         <Style TargetType="Border" BasedOn="{StaticResource Border}"/>
                     </Style.Resources>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True" >
+                            <!--Value="Gainsboro"-->
+                            <Setter Property="Background" Value="Black" />
+                            <Setter Property="BorderThickness" Value="0" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                    </Style.Triggers>
                 </Style>
             </Style.Resources>
         </Style>
@@ -169,7 +177,7 @@
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
             <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
             <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
-            <Setter Property="FontStyle" Value="Italic"/>
+            <!--<Setter Property="FontStyle" Value="Italic"/>-->
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Height" Value="1080"/>
             <Setter Property="Width" Value="1600"/>
@@ -182,7 +190,7 @@
             <Setter Property="WindowChrome.ResizeBorderThickness" Value="0"/>
         </Style>
 
-        <Style TargetType="Button">
+        <Style TargetType="Button" x:Key="Button_Kunden">
             <Setter Property="OverridesDefaultStyle" Value="True" />
             <Setter Property="Cursor" Value="Hand" />
             <Setter Property="FontSize" Value="32" />
@@ -197,8 +205,8 @@
                             <Border.Style>
                                 <Style TargetType="Border">
                                     <Setter Property="CornerRadius" Value="5"/>
-                                    <Setter Property="BorderThickness" Value="2"/>
-                                    <Setter Property="BorderBrush" Value="Black"/>
+                                    <Setter Property="BorderThickness" Value="0"/>
+                                    <!--<Setter Property="BorderBrush" Value="Black"/>-->
                                     <Setter Property="HorizontalAlignment" Value="Stretch"/>
                                     <Setter Property="Padding" Value="10"/>
                                 </Style>
@@ -222,6 +230,8 @@
             <Setter Property="NavigationUIVisibility" Value="Hidden"/>
         </Style>
 
+
+
         <Style TargetType="Button" x:Key="Button_Style2">
             <Setter Property="Height" Value="75"/>
             <Setter Property="Width" Value="75"/>
@@ -236,6 +246,40 @@
                     <Setter Property="CornerRadius" Value="5" />
                 </Style>
             </Style.Resources>
+        </Style>
+
+        <Style TargetType="Button" x:Key="Button_TextContent" BasedOn="{StaticResource Button_Style2}">
+            <Setter Property="Content" Value="übernehmen"/>
+            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Height" Value="42"/>
+            <Setter Property="Padding" Value="15,0"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True" >
+                    <Setter Property="FontStyle" Value="Italic" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+        
+
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"> <!--x:Key="Button_Style_With_Animation"-->
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="75" To="100" Duration="0:0:0.2" ></DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetProperty="Height" From="75" To="60" Duration="0:0:0.2" ></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="100" To="75" Duration="0:0:0.1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Height" From="60" To="75" Duration="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
         </Style>
 
         <Style TargetType="Button" x:Key="Button_Titlebar">
@@ -260,6 +304,31 @@
             </Style.Resources>
         </Style>
 
-        
+        <Style x:Key="AnimationImage" TargetType="Image">
+            <Setter Property="RenderTransform">
+                <Setter.Value>
+                    <RotateTransform Angle="0" CenterX="20" CenterY="20" />
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Trigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation 
+                                    Storyboard.TargetProperty="RenderTransform.Angle"
+                                    From="0" To="360" 
+                                    Duration="0:0:1.5" 
+                                    RepeatBehavior="Forever" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </Trigger.EnterActions>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+
+
     </Application.Resources>
 </Application>

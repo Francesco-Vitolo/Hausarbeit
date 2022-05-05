@@ -21,11 +21,14 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private Window_Messagebox WM;
         private SortDescription currentSortDesc;
         string[] filteroptions = new string[11];
+        string totalItemsGrid;
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
             this.gridType = gridType;
             CreateDG();
+            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
+            labelResults.DataContext = totalItemsGrid;
         }
 
         private async void asyncRefresh()
@@ -93,6 +96,9 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     collectionView.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
                     break;
             }
+            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
+            labelResults.DataContext = null;
+            labelResults.DataContext = totalItemsGrid;
         }
        
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
@@ -137,6 +143,9 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             }
             datagrid.DataContext = collectionView;
             cb_filter.SelectedIndex = 0;
+            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
+            labelResults.DataContext = null;
+            labelResults.DataContext = totalItemsGrid;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -268,6 +277,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         {
             if (e.Key == Key.Delete)
                 Delete_Click(null, null);
-        }    
+        }
     }
 }

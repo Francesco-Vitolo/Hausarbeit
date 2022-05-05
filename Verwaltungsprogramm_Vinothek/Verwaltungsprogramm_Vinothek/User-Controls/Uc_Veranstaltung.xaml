@@ -45,12 +45,12 @@
                     <Border Style="{StaticResource Border}" Width="80" Height="40">
                         <ComboBox Name="TimeMinutes" Margin="1" FontSize="24" Style="{StaticResource cb_Style}"/>
                     </Border>
-                    <Button Content="übernehmen" Click="Button_Click"  Style="{StaticResource Button_Style2}" Width="auto" Height="42" Margin="50,0" Padding="15,0"/>
+                    <Button Click="Button_Click"  Style="{StaticResource Button_TextContent}" Margin="50,0" />
                     <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>
                 </WrapPanel>
             </UniformGrid>
-            
-            <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
+
+            <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum, StringFormat=dd.MM.yy}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
                 <DatePicker.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>

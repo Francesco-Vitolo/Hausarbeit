@@ -51,6 +51,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             bi.EndInit();
             i.Source = bi;  //Für System.Windows.Constrols.Image
             btn.Content = i;
+            btn.Style = FindResource("Button_Kunden") as Style;
             btn.Click += (sender, args) =>      //Event für Button wird erzeugt
             {
                 this.p = p;

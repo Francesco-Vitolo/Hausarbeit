@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
@@ -111,7 +112,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             if (added_EVNT_POS.Count > 0)
                 added_EVNT_POS.ForEach(x => ctx.EventPos.Add(x));
             veranstaltung.Zeit = felder.GetTime(); //Daten aus Uc_Veranstaltung holen
-            veranstaltung.Datum = felder.GetDate();
+            veranstaltung.Datum = DateTime.Parse(felder.GetDate());
             ctx.SaveChanges();
             NavigationService.GoBack();
         }

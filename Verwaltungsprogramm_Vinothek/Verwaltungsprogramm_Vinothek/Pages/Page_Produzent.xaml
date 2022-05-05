@@ -7,9 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Produzent">
-    <Page.Resources>
+    <!--<Page.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
-    </Page.Resources>
+    </Page.Resources>-->
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>

@@ -7,10 +7,7 @@
       mc:Ignorable="d" 
       Title="Page_User">
     <Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
-            <Setter Property="Width" Value="auto"/>
-            <Setter Property="Height" Value="42"/>
-        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_TextContent}"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -30,7 +27,7 @@
             <Label Content="Passwort ändern"/>
             <WrapPanel>
                 <TextBox Name="tb_pw" Width="250"/>
-                <Button x:Name="btn_changePW" Click="btn_changePW_Click" Content="ändern"/>
+                <Button x:Name="btn_changePW" Click="btn_changePW_Click" Content="ändern" Style="{StaticResource Button_TextContent}"/>
             </WrapPanel>
             <Separator Margin="40"/>
             <TextBlock Text="Nutzer hinzufügen" Margin="5,0,0,20"/>
