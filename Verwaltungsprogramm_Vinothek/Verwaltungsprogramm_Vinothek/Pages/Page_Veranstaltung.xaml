@@ -29,7 +29,7 @@
             </Grid.RowDefinitions>
 
             <local1:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="3"/>
-            <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3"/>
+            <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" MouseDoubleClick="Item_MouseDoubleClick" />
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1">
                 <StackPanel Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center">

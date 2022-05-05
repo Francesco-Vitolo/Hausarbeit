@@ -14,66 +14,79 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="0.2*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="30"/>
+            <ColumnDefinition Width="1.5*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
-
         <Image Source="..\Pictures\Logo.png" Grid.ColumnSpan="3" Grid.Column="1" VerticalAlignment="Top" HorizontalAlignment="Center" MaxHeight="200"/>
-        <Border  Grid.Row="1"  Background="White" BorderBrush="Black" BorderThickness="4" CornerRadius="0,5,0,0" Grid.RowSpan="2">
-            <UniformGrid Columns="1">
-                <UniformGrid.Background>
+        <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="4" CornerRadius="0,5,0,0">
+            <Grid Grid.Row="1">
+                <Grid.Background>
                     <LinearGradientBrush>
                         <GradientStop Color="#FF383838" Offset="0.4"/>
                         <GradientStop Color="#FF1D1D1D" Offset="0.8"/>
                     </LinearGradientBrush>
-                </UniformGrid.Background>
-                <UniformGrid.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="4"/>
-                    </Style>
-                    <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
-                        <Setter Property="Width" Value="auto"/>
-                        <Setter Property="Height" Value="100"/>
-                        <Setter Property="HorizontalContentAlignment" Value="Right"/>
-                        <Setter Property="Margin" Value="0,0,10,0"/>
-                        <Setter Property="Padding" Value="50,0"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="3"/>
-                        <Style.Resources>
-                            <Style TargetType="Border">
-                                <Setter Property="CornerRadius" Value="0,20,20,0"/>
-                                
-                            </Style>
-                        </Style.Resources>
-
-                    </Style>
-                </UniformGrid.Resources>
-                <Button Name="ListeProdukte" Content="Produkte" Click="Button_Übersicht"/>
-                <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_Übersicht"/>
-                <Button Name="ListeEvents"  Content="Events" Click="Button_Übersicht"/>
-                <Button Name="Lite"  Content="Kundenansicht" Click="Button_Kundensicht"/>
-                <Button Name="Dokumentation" Content="Dokumentation" Click="Dokumentation_Click"/>
-                <Button Name="Einstellungen" Content="Einstellungen" Click="Settings_Click"/>
-
-            </UniformGrid>
+                </Grid.Background>
+            </Grid>
         </Border>
+        <UniformGrid Columns="1" Grid.Row="1" Grid.ColumnSpan="2" Background="Transparent">
+            <UniformGrid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="4"/>
+                </Style>
+                <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+                    <Setter Property="Width" Value="auto"/>
+                    <Setter Property="Height" Value="100"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Right"/>
+                    <Setter Property="Margin" Value="0,0,10,0"/>
+                    <Setter Property="Padding" Value="50,0"/>
+                    <Setter Property="BorderBrush" Value="Black"/>
+                    <Setter Property="BorderThickness" Value="3"/>
+                    <Style.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="CornerRadius" Value="0,20,20,0"/>
+                        </Style>
+                    </Style.Resources>
+                    <Style.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                        <SplineThicknessKeyFrame KeyTime="00:00:0.02" Value="0,0,-10,0" />
+                                    </ThicknessAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard >
+                                    <ThicknessAnimationUsingKeyFrames Storyboard.TargetProperty="Margin" BeginTime="00:00:00">
+                                        <SplineThicknessKeyFrame KeyTime="00:00:0.02" Value="0,0,10,0" />
+                                    </ThicknessAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UniformGrid.Resources>
+            <Button Name="ListeProdukte" Content="Produkte" Click="Button_Übersicht"/>
+            <Button Name="ListeProduzenten" Content="Produzenten" Click="Button_Übersicht"/>
+            <Button Name="ListeEvents"  Content="Events" Click="Button_Übersicht"/>
+            <Button Name="Lite"  Content="Kundenansicht" Click="Button_Kundensicht"/>
+            <Button Name="Dokumentation" Content="Dokumentation" Click="Dokumentation_Click"/>
+            <Button Name="Einstellungen" Content="Einstellungen" Click="Settings_Click"/>
+        </UniformGrid>
 
-       
-        
+
+
+
+
         <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Center" MaxHeight="500" MaxWidth="500" Grid.Column="2" Grid.Row="1">
-            <Calendar Background="{Binding Path=Background, Source={x:Static properties:Settings.Default}}" BorderBrush="Black" BorderThickness="2">
-                <Calendar.Resources>
-                    <Style TargetType="Border">
-                        <Setter Property="CornerRadius" Value="5"/>
-                    </Style>
-                </Calendar.Resources>
-            </Calendar>
+            <Calendar />
         </Viewbox>
         
     </Grid>

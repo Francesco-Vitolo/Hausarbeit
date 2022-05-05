@@ -18,7 +18,7 @@ namespace Verwaltungsprogramm_Vinothek
            {"Geschmack",     "Geschmack"}  ,
            {"Alkoholgehalt", "Alkoholgehalt"} ,
            {"Preis", "Preis"} ,
-           //{"Aktiv", "Aktiv"} ,
+           {"Aktiv", "Aktiv"} ,
            //{"Beschreibung",  "Beschreibung"} ,
         };
 

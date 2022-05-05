@@ -69,7 +69,7 @@ namespace Verwaltungsprogramm_Vinothek
                 scale += 0.1;
             Frame_Main.LayoutTransform = new ScaleTransform(scale, scale);
             label_zoom.Content = Math.Round(scale * 100 ,0) + " %"; //wird angezeigt
-            await Timer(4000); 
+            await Timer(4000);
         }
 
         private Task Timer(int i)

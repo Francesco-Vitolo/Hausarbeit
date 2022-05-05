@@ -27,7 +27,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             InitializeComponent();
             MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             if (currentWindow.getUserID() != 1) //User - ID 1 --> admin
+            {
                 UserVerwaltung.Visibility = Visibility.Hidden;
+                UserVerwaltungBtn.Visibility = Visibility.Hidden;
+            }
         }
 
         private void PdfDir_Click(object sender, RoutedEventArgs e) //PDF - Verzeichnis ändern

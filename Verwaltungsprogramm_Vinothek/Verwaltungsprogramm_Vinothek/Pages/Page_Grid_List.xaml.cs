@@ -55,7 +55,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     ctx.Produkt.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name)); //ORDER BY Name ist Default
                     datagrid.DataContext = collectionView;
-                    cb_filter.Items.Add("Aktiv");                               //"Aktiv" Eigenschaft ist nicht sichtbar im Datagrid
                     break;
 
                 case "ListeProduzenten":
@@ -76,6 +75,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     datagrid.DataContext = collectionView;
                     break;
             }
+            cb_filter_DropDownClosed(null, null);
         }
 
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)
@@ -245,14 +245,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             if ((bool)RB_Desc.IsChecked)
                 direction = 1;
 
-            if(cb_filter.SelectedIndex == 11)
-            {
-                currentSortDesc = new SortDescription("Aktiv", (ListSortDirection)direction);
-            }
-            else
-            {
-                currentSortDesc = new SortDescription(filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);
-            }            
+            currentSortDesc = new SortDescription(filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);
+
             collectionView.SortDescriptions.Add(currentSortDesc); //collectionview wird sortiert --> datagrid
 
             if (currentSortDesc.Direction == 0) //Radiobuttons belegen

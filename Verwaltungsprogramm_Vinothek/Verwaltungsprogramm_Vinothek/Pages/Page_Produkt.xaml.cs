@@ -25,18 +25,19 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Window_PDF_Viewer WPDF;
         private Window_Messagebox WM;
         ICollectionView collectionView;
+        SortDescription sortby;
         //string filename überarbeiten
         public Page_Produkt(Produkt p, SortDescription sortby)
         {
             InitializeComponent();
-            prod = p;
             ctx.Produkt.Load();
             ctx.Produzent.Load();
+            this.sortby = sortby;
             collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
-            collectionView.MoveCurrentTo(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
-            if(sortby.PropertyName != null)
-                collectionView.SortDescriptions.Add(sortby);
-            DataContext = collectionView;
+            collectionView.MoveCurrentTo(ctx.Produkt.Find(p.ID_Produkt));
+            collectionView.SortDescriptions.Add(sortby);
+            prod = (Produkt)collectionView.CurrentItem;
+            DataContext = prod;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -55,6 +56,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
+
             ctx.SaveChanges();
             NavigationService.GoBack();
         }
@@ -89,7 +91,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
 
         }
-
         private void btn_download_pdf_Click(object sender, RoutedEventArgs e) //PDF download, wenn in db vorhanden. Sonst zuerst btn_create_pdf_Click
         {
             if (prod.PDF_file != null)
@@ -103,7 +104,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 WM.Show();
             }
         }
-
         private void btn_create_pdf_Click(object sender, RoutedEventArgs e)
         {
             PDF pdf = new PDF();
@@ -114,7 +114,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.GetPath()}");
             WM.Show();
         }
-
         private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {
             if (prod.PDF_file != null)
@@ -150,19 +149,25 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e) //Nächstes Obj
-        {
+        {          
             collectionView.MoveCurrentToNext();
             if (collectionView.IsCurrentAfterLast)
+            {
                 collectionView.MoveCurrentToFirst();
+            }
             prod = (Produkt)collectionView.CurrentItem;
+            DataContext = prod;
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e) //Vorheriges Obj
         {
             collectionView.MoveCurrentToPrevious();
             if (collectionView.IsCurrentBeforeFirst)
+            {
                 collectionView.MoveCurrentToLast();
+            }
             prod = (Produkt)collectionView.CurrentItem;
+            DataContext = prod;
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)

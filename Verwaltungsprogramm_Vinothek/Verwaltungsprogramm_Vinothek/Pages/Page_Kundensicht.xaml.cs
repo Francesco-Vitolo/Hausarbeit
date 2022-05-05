@@ -58,6 +58,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 expanderInfos.Visibility = Visibility.Visible;
                 expanderInfos.IsExpanded = true;
             };
+
             maingrid.Children.Add(btn);
         }
 

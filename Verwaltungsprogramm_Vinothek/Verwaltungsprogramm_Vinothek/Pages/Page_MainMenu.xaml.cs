@@ -26,17 +26,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Page_Grid_List newPage = new Page_Grid_List(grid);
             NavigationService.Navigate(newPage);
         }
-
-        private void Dokumentation_Click(object sender, RoutedEventArgs e) 
-        {
-            Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit/blob/main/README.md");
-        }       
-
         private void Button_Kundensicht(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Page_Kundensicht());
         }
-
+        private void Dokumentation_Click(object sender, RoutedEventArgs e) 
+        {
+            Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit/blob/main/README.md");
+        }       
         private void Settings_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Page_Settings());

@@ -45,22 +45,35 @@
                     <Border Style="{StaticResource Border}" Width="80" Height="40">
                         <ComboBox Name="TimeMinutes" Margin="1" FontSize="24" Style="{StaticResource cb_Style}"/>
                     </Border>
-                    <Button Content="übernehmen" FontSize="24" Click="Button_Click" Margin="5" Background="Transparent" Width="150"/>
+                    <Button Content="übernehmen" Click="Button_Click"  Style="{StaticResource Button_Style2}" Width="auto" Height="42" Margin="50,0" Padding="15,0"/>
                     <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>
                 </WrapPanel>
             </UniformGrid>
+            
             <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
                 <DatePicker.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>
                     </Style>
-                    <Style TargetType="DatePickerTextBox">
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="Height" Value="40"/>
+                    <Style TargetType="DatePickerTextBox" >
+                        <Setter Property="Height" Value="34"/>
                         <Setter Property="FontSize" Value="24"/>
                         <Setter Property="IsEnabled" Value="False"/>
+                        <Setter Property="Padding" Value="50,0"/>
+                    </Style>
+                    <Style TargetType="Button" >
+                        <Setter Property="OverridesDefaultStyle" Value="True"/>
                     </Style>
                 </DatePicker.Resources>
+                <DatePicker.CalendarStyle>
+                    <Style TargetType="Calendar" BasedOn="{StaticResource Default_Calendar}">
+                        <Style.Resources>
+                            <Style TargetType="CalendarButton">
+                                <Setter Property="Content" Value="A"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                </DatePicker.CalendarStyle>
             </DatePicker>
         </StackPanel>
     </Grid>

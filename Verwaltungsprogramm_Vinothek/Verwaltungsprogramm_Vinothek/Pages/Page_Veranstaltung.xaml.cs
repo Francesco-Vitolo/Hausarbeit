@@ -1,18 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -45,6 +37,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             data.DataContext = PRODS;
         }
 
+        private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Produkt selected_produzent = (Produkt)data.CurrentItem;
+            if (selected_produzent != null)
+                NavigationService.Navigate(new Page_Produkt(selected_produzent, new System.ComponentModel.SortDescription("Name", 0)));
+        }
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
         {
             if (felder.IsEnabled == false)

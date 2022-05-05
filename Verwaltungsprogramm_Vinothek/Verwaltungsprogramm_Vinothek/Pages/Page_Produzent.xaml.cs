@@ -6,7 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Navigation;
-
+using Verwaltungsprogramm_Vinothek.Pages;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -32,8 +32,9 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Produzent selected_produzent = (Produzent)data.CurrentItem;
-            NavigationService.Navigate(new Page_Produzent(selected_produzent));
+            Produkt selected_produzent = (Produkt)data.CurrentItem;
+            if(selected_produzent != null)
+                NavigationService.Navigate(new Page_Produkt(selected_produzent,new System.ComponentModel.SortDescription("Name",0)));
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)

@@ -8,7 +8,26 @@
       d:DesignHeight="1100" d:DesignWidth="1900"
       Title="Page_Grid_List">
     <Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="75" To="100" Duration="0:0:0.2" ></DoubleAnimation>
+                            <DoubleAnimation Storyboard.TargetProperty="Height" From="75" To="60" Duration="0:0:0.2" ></DoubleAnimation>
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <BeginStoryboard>
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetProperty="Width" From="100" To="75" Duration="0:0:0.1" />
+                            <DoubleAnimation Storyboard.TargetProperty="Height" From="60" To="75" Duration="0:0:0.1" />
+                        </Storyboard>
+                    </BeginStoryboard>
+                </EventTrigger>
+            </Style.Triggers>
+        </Style>
     </Page.Resources>
     <Grid x:Name="Grid_Liste">
         <Grid.ColumnDefinitions>
@@ -48,7 +67,9 @@
                 <Image Source="..\Pictures\refresh.png"/>
             </Button>
             <Separator/>
-            <Button x:Name="Add" Content="+" Click="Add_Click" FontSize="36" FontWeight="ExtraBold"/>
+            <Button x:Name="Add" Click="Add_Click" FontSize="36" FontWeight="ExtraBold">
+                <Image Source="..\Pictures\plus.png"/>
+            </Button>
             <Separator/>
             <Button x:Name="Delete" Click="Delete_Click">
                 <Image Source="..\Pictures\trash.png"/>

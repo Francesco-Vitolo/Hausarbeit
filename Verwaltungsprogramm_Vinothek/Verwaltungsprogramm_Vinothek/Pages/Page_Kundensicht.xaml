@@ -19,7 +19,6 @@
                 </UniformGrid.LayoutTransform>
                 <UniformGrid.Resources>
                     <Style TargetType="Image">
-                        <Setter Property="Margin" Value="14"/>
                         <Setter Property="MaxHeight" Value="100"/>
                     </Style>
                 </UniformGrid.Resources>
