@@ -3,6 +3,7 @@ using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -59,7 +60,9 @@ namespace Verwaltungsprogramm_Vinothek
             posY = 300;
             gfx.DrawString(ev.Name, font, XBrushes.Black, new XRect(0, 340, page.Width, page.Height), XStringFormats.TopCenter);
             font = new XFont("Garamond", 24);
-            gfx.DrawString(ev.Datum.ToString(), font, XBrushes.Black, new XRect(0, 400, page.Width, page.Height), XStringFormats.TopCenter);
+            DateTime date =(DateTime) ev.Datum;
+            string dateString = date.ToString("dddd, dd.MM.yyyy");
+            gfx.DrawString(dateString, font, XBrushes.Black, new XRect(0, 400, page.Width, page.Height), XStringFormats.TopCenter);
             gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 200, 460, 200, 80);
         }
 

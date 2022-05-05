@@ -61,7 +61,7 @@ namespace Verwaltungsprogramm_Vinothek
             {
                 Binding b = new Binding(name.Value); 
                 if (name.Key == "Datum") 
-                    b.StringFormat = "dd.MM.yy";
+                    b.StringFormat = "dd.MM.yyyy";
                 DataGridTextColumn column = new DataGridTextColumn()
                 {
                     Header = name.Key,

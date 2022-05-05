@@ -9,7 +9,7 @@
       Title="Page_Add_Produzent">
     <StackPanel VerticalAlignment="Center">
         <local:Uc_Produzent x:Name="felder"/>
-        <Button x:Name="saveChanges" Click="Button_Click_Save" VerticalAlignment="Bottom" Style="{StaticResource Button_Style2}">
+        <Button x:Name="saveChanges" Click="Button_Click_Save" VerticalAlignment="Bottom">
             <Image Source="..\Pictures\save.png"/>
         </Button>
     </StackPanel>

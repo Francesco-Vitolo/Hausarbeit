@@ -25,7 +25,8 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            pdfWebViewer.Navigate(path);
+            var uri = new Uri(path); //Muss umgewnadelt werden, weil Fehler falls Umlaut
+            pdfWebViewer.Navigate(uri);
             Focus();
         }
 

@@ -50,7 +50,7 @@
                 </WrapPanel>
             </UniformGrid>
 
-            <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum, StringFormat=dd.MM.yy}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
+            <DatePicker HorizontalAlignment="Left" Width="360" Text="{Binding Datum, StringFormat=dd.MM.yyyy}" BorderThickness="1" BorderBrush="Black" Margin="4" Name="datepicker" >
                 <DatePicker.Resources>
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>

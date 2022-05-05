@@ -8,9 +8,9 @@
       mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1900"
       Title="Page_Add_Produkt">
-    <Page.Resources>
+    <!--<Page.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
-    </Page.Resources>
+    </Page.Resources>-->
 
     <Grid Grid.Row="1" Grid.Column="1">
         <Grid.ColumnDefinitions>
