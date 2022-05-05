@@ -57,7 +57,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
             Window_Abfrage WA = new Window_Abfrage("Fenster schließen");
             WA.ShowDialog();
             if(WA.GetOption())
-            currentWindow.Close();
+                currentWindow.Close();
         }
     }
 }

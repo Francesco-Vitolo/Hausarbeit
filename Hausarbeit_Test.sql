@@ -247,8 +247,8 @@ values
 ('A te',			'Weisswein','DOCG','Roero Arneis','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam volup.', 15.90,1, 2007  );
 
 INSERT INTO Event 
-Values('Weinprobe_Gunther',8,'Freitag, 29 April 2022','19:00');
-
+Values('Weinprobe_Gunther',8,'29-04-2022','19:00');
+--Freitag, 29 April 2022
 INSERT INTO EventPos Values 
 (3000,1000),
 (3000,1002),

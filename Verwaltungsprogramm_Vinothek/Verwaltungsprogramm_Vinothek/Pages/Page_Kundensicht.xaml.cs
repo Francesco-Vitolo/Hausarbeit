@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Drawing.Imaging;
 using System.IO;
@@ -21,15 +22,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     public partial class Page_Kundensicht : Page
     {
         Produkt p;
+        List<string> tempfiles = new List<string>(); //Liste falls User zu schnell für Zeit bis zum löschen
+        Random r;
         public Page_Kundensicht()
         {
             InitializeComponent();
+            r = new Random();
             VinothekContext ctx = new VinothekContext();
             var MainW = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             MainW.GoBack.Visibility = Visibility.Hidden;    //Button_zurück und Menü unsichtbar machen
             MainW.expander.Visibility = Visibility.Hidden;
             ctx.Produkt.Load();
-            var listProdukte = ctx.Produkt.Where(x => x.Picture != null && x.Aktiv == true).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
+            var listProdukte = ctx.Produkt.Where(x => x.Picture != null && x.Aktiv == true && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
             foreach (var prod in listProdukte)
             {
                 System.Drawing.Image img = Imageconverter.BinaryToImage(prod.Picture);
@@ -58,9 +62,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 expanderInfos.DataContext = p; //Infos zum Produkt im Expander
                 expanderInfos.Visibility = Visibility.Visible;
                 expanderInfos.IsExpanded = true;
+                tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin_{r.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
+                string tempfile = tempfiles.LastOrDefault();
+                File.WriteAllBytes(tempfile, p.PDF_file); //PDF noch nicht freigegeben, deshalb timer
+                pdfBrowser.Navigate(tempfile);
             };
 
             maingrid.Children.Add(btn);
+            
         }
 
         private void Page_KeyUp(object sender, KeyEventArgs e) //STRG + e --> Programm wird neu gestartet (Passwort eingeben)
@@ -72,35 +81,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
 
-        private void expanderInfos_Collapsed(object sender, RoutedEventArgs e) //Wenn Expander geschlossen --> unsichtbar
+        private async void expanderInfos_Collapsed(object sender, RoutedEventArgs e) //Wenn Expander geschlossen --> unsichtbar
         {
             expanderInfos.Visibility = Visibility.Hidden;
-        }
-        
-        private async void ShowPDF() //Option PDF anschuen (nicht im Programm drin)
-        {
-            string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf";
-            File.WriteAllBytes(tempfile, p.PDF_file);
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(tempfile);
-            WPDF = new Window_PDF_Viewer(tempfile);
-            WPDF.ShowDialog();
-            await Timer(20000);
-            File.Delete(tempfile);
+            pdfBrowser.Navigate("about:blank");
+            await Timer(1000);      //PDF noch nicht freigegeben, deshalb timer
+            File.Delete(tempfiles.FirstOrDefault()); //löschen
         }
 
-
-        private async void Button_Click(object sender, RoutedEventArgs e)
-        {
-            string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf";
-            File.WriteAllBytes(tempfile, p.PDF_file);
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(tempfile);
-            WPDF.ShowDialog();
-            await Timer(1000);
-            File.Delete(tempfile);
-        }
         private Task Timer(int i)
         {
             return Task.Run(() => { Thread.Sleep(i); });
         }
+
     }
 }
