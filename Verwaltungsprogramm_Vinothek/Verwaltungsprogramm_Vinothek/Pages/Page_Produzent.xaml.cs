@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Verwaltungsprogramm_Vinothek.Pages;
@@ -18,6 +20,7 @@ namespace Verwaltungsprogramm_Vinothek
         VinothekContext ctx = new VinothekContext();
         List<Produkt> Produkte = new List<Produkt>();
         Produzent p;
+        ICollectionView collectionView;
         public Page_Produzent(Produzent produzent)
         {
             InitializeComponent();
@@ -27,14 +30,16 @@ namespace Verwaltungsprogramm_Vinothek
             prodz.DataContext = p;
             ctx.Produkt.Load();
             Produkte = ctx.Produkt.Where(x => x.Produzent.ID_Produzent == produzent.ID_Produzent).ToList(); //Produkte, die zu Produzent gehören
-            data.DataContext = Produkte;
+            Produkte = Produkte.OrderBy(x => x.Name).ToList();
+            collectionView = CollectionViewSource.GetDefaultView(Produkte);
+            data.DataContext = collectionView;
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             Produkt selected_produzent = (Produkt)data.CurrentItem;
             if(selected_produzent != null)
-                NavigationService.Navigate(new Page_Produkt(selected_produzent,new System.ComponentModel.SortDescription("Name",0)));
+                NavigationService.Navigate(new Page_Produkt(selected_produzent,collectionView));
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)

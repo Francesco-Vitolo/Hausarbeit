@@ -25,19 +25,21 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Window_PDF_Viewer WPDF;
         private Window_Messagebox WM;
         ICollectionView collectionView;
-        SortDescription sortby;
         //string filename überarbeiten
-        public Page_Produkt(Produkt p, SortDescription sortby)
+        public Page_Produkt(Produkt p, ICollectionView collectionView)
         {
             InitializeComponent();
             ctx.Produkt.Load();
             ctx.Produzent.Load();
-            this.sortby = sortby;
-            collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
-            collectionView.MoveCurrentTo(ctx.Produkt.Find(p.ID_Produkt));
-            collectionView.SortDescriptions.Add(sortby);
-            prod = (Produkt)collectionView.CurrentItem;
-            DataContext = prod;
+            this.collectionView = collectionView;
+            if(collectionView == null)
+            {
+                this.collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.Where(x => x.ID_Produzent == p.ID_Produzent).OrderBy(x => x.Name));
+                bool b = this.collectionView.MoveCurrentTo(ctx.Produkt.Find(p));
+            }
+            else
+                prod = (Produkt)this.collectionView.CurrentItem;
+            DataContext = this.collectionView;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)

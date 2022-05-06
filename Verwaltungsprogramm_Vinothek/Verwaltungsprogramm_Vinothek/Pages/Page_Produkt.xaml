@@ -29,7 +29,7 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" >
 
-                <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0"/>
+                <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0" />
 
                 <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="30,0">
                     <TextBlock Text="Aktiv/Verfügbar: " FontSize="24" VerticalAlignment="Center"/>

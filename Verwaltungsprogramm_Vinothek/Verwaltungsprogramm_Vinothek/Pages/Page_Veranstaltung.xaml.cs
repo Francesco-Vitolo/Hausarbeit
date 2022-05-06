@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data.Entity;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Navigation;
 using Verwaltungsprogramm_Vinothek.Windows;
@@ -42,7 +44,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Produkt selected_produzent = (Produkt)data.CurrentItem;
             if (selected_produzent != null)
-                NavigationService.Navigate(new Page_Produkt(selected_produzent, new System.ComponentModel.SortDescription("Name", 0)));
+            {
+                ICollectionView collectionView = CollectionViewSource.GetDefaultView(PRODS);
+                NavigationService.Navigate(new Page_Produkt(selected_produzent, collectionView ));
+
+            }
         }
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
         {

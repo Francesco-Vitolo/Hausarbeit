@@ -109,7 +109,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 {
                     case "ListeProdukte":
                         Produkt selected_produkt = (Produkt)collectionView.CurrentItem;
-                        NavigationService.Navigate(new Page_Produkt(selected_produkt, currentSortDesc));
+                        NavigationService.Navigate(new Page_Produkt(selected_produkt, collectionView));
                         break;
                     case "ListeProduzenten":
                         Produzent selected_produzent = (Produzent)collectionView.CurrentItem;
