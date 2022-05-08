@@ -38,7 +38,7 @@ namespace Verwaltungsprogramm_Vinothek
            {"Datum",       "Datum"}  ,
            {"Zeit",       "Zeit"}  ,
            { "Name",       "Name" },
-           {"Anzahl",      "AnzahlPersonen" } ,
+           {"Anzahl Personen",      "AnzahlPersonen" } ,
         };       
 
         public static DataGrid Produkt(DataGrid dg)
