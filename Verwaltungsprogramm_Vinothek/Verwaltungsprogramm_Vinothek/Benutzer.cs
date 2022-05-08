@@ -14,9 +14,18 @@ namespace Verwaltungsprogramm_Vinothek
     
     public partial class Benutzer
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Benutzer()
+        {
+            this.Logins = new HashSet<Logins>();
+        }
+    
         public int ID_Benutzer { get; set; }
         public string username { get; set; }
         public string Passwort { get; set; }
         public string Salt { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Logins> Logins { get; set; }
     }
 }

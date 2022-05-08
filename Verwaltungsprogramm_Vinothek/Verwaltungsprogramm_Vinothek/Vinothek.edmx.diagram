@@ -4,13 +4,15 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="e3ac053a98fe4023add4690c99056c2f" Name="Diagram1">
+      <Diagram DiagramId="e3ac053a98fe4023add4690c99056c2f" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="testModel.Event" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="testModel.EventPos" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="testModel.EventPos" Width="1.5" PointX="10.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Produkt" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="testModel.Produzent" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
         <AssociationConnector Association="testModel.fk_Produzent" ManuallyRouted="false" />
         <EntityTypeShape EntityType="testModel.Benutzer" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="testModel.Logins" Width="1.5" PointX="0.75" PointY="5.75" />
+        <AssociationConnector Association="testModel.fk_User" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -59,6 +59,11 @@ namespace Verwaltungsprogramm_Vinothek
             if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
                 user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
+                Logins login = new Logins();
+                login.ID_Benutzer = user.ID_Benutzer;
+                login.Datum = DateTime.Now;
+                ctx.Logins.Add(login);
+                ctx.SaveChanges();
                 MainWindow main = new MainWindow(user);
                 main.Show();
                 Close();
@@ -67,24 +72,10 @@ namespace Verwaltungsprogramm_Vinothek
                 Alert.Visibility = Visibility.Visible;
         }
 
-        private void Window_KeyUp_Enter(object sender, System.Windows.Input.KeyEventArgs e)
+        private void Window_KeyUp_Enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 Button_Click(null,null);
         }
-
-        //private void Button_Click_2(object sender, RoutedEventArgs e)
-        //{
-        //    string username = tb_username.Text;
-        //    string pw = tb_pw.Password;
-        //    ctx.Benutzer.Load();
-        //    Benutzer b = new Benutzer();
-        //    b.username = username;
-        //    b.Passwort = Encrypt.getHash(pw);
-        //    b.Salt = "aa";
-        //    ctx.Benutzer.Add(b);
-        //    ctx.SaveChanges();
-        //}
-
     }
 }

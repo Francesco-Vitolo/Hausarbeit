@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
 {
@@ -23,26 +24,21 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     {
         private VinothekContext ctx = new VinothekContext();
         private Benutzer user;
+        private Window_Messagebox WM;
         public Page_User()
         {
             InitializeComponent();
             ctx.Benutzer.Load();
             DataContext = ctx.Benutzer.Local;
-
-        }
-
-        private void TextBlock_MouseUp(object sender, MouseButtonEventArgs e)
-        {
-            Benutzer user = (Benutzer)lv_Users.SelectedItem;
-            this.user = user;
-        }
+        }  
 
         private void btn_changePW_Click(object sender, RoutedEventArgs e) //Passwort ändern
         {
-           Window_Anmelden WinAnmelden = new Window_Anmelden();
-           WinAnmelden.ShowDialog();
+           user = (Benutzer)lv_Users.SelectedItem;
            user.Passwort = Encrypt.getHash(tb_pw.Text);
            ctx.SaveChanges();
+           WM = new Window_Messagebox("Das Passwort wurde geändert");
+           WM.Show();
         }
 
         private void btn_delUser_Click(object sender, RoutedEventArgs e) //User wird gelöscht (außer admin)
@@ -56,6 +52,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 {
                     ctx.Benutzer.Remove(user);
                     ctx.SaveChanges();
+                    WM = new Window_Messagebox($"{user.username} wurde gelöscht");
+                    WM.Show();
                 }
             }
             else

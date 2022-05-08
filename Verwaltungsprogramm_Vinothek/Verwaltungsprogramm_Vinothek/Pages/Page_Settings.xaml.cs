@@ -89,5 +89,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Process.Start("https://g.co/kgs/M1YyXm");
         }
+
+        private void Button_Logins(object sender, RoutedEventArgs e)
+        {
+            HiddenUserverwaltung.NavigationService.Navigate(new Page_Logins());
+        }
     }
 }

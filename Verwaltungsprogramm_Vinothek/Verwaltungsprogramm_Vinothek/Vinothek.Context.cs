@@ -30,5 +30,6 @@ namespace Verwaltungsprogramm_Vinothek
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<Produzent> Produzent { get; set; }
         public virtual DbSet<Benutzer> Benutzer { get; set; }
+        public virtual DbSet<Logins> Logins { get; set; }
     }
 }

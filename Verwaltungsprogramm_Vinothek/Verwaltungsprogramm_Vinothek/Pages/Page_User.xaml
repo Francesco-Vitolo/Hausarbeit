@@ -17,7 +17,7 @@
         <ListView ItemsSource="{Binding }"  Name="lv_Users" SelectedIndex="0" Grid.Column="0">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <TextBlock Text="{Binding username}" MouseUp="TextBlock_MouseUp" />
+                    <TextBlock Text="{Binding username}" />
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

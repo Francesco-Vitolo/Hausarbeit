@@ -24,13 +24,18 @@ IF OBJECT_ID('EventPos') IS NOT NULL
   DROP TABLE EventPos;
 GO
 
-IF OBJECT_ID('Pictures') IS NOT NULL
-  DROP TABLE Pictures;
-GO
 
 IF OBJECT_ID('Benutzer') IS NOT NULL
   DROP TABLE Benutzer;
 GO
+
+IF OBJECT_ID('Logins') IS NOT NULL
+  DROP TABLE Logins;
+GO
+
+--IF OBJECT_ID('Pictures') IS NOT NULL
+--  DROP TABLE Pictures;
+--GO
 
 CREATE TABLE Produzent (
   ID_Produzent int PRIMARY KEY IDENTITY(2000,1), 
@@ -50,7 +55,7 @@ CREATE TABLE Produzent (
 --);
 
 CREATE TABLE Produkt (
-  ID_Produkt int PRIMARY KEY IDENTITY(1000,1), 
+  ID_Produkt int PRIMARY KEY IDENTITY(9000,1), 
   Name nvarchar(50),
   Art nvarchar(50),
   Qualitätssiegel nvarchar(50),
@@ -94,6 +99,16 @@ CREATE TABLE Benutzer (
 	username nvarchar(50),
 	Passwort nvarchar(64),
 	Salt  nvarchar(50),
+);
+
+CREATE TABLE Logins(
+	ID_Login int PRIMARY KEY IDENTITY(0,1),
+	ID_Benutzer int,
+	Datum Datetime	
+
+  CONSTRAINT fk_Produzent FOREIGN KEY (ID_Benutzer)
+  REFERENCES Benutzer(ID_Benutzer)
+  ON DELETE NO ACTION,
 );
 
 Insert into Benutzer values
@@ -257,10 +272,10 @@ INSERT INTO Event
 Values('Weinprobe_Gunther',8,'29-04-2022','19:00');
 --Freitag, 29 April 2022
 INSERT INTO EventPos Values 
-(3000,1000),
-(3000,1002),
-(3000,1005),
-(3000,1006);
+(3000,9000),
+(3000,9002),
+(3000,9005),
+(3000,9006);
 SELECT * FROM EventPos;
 
 SELECT P1.Name, P2.Name, Rebsorten FROM Produkt P1

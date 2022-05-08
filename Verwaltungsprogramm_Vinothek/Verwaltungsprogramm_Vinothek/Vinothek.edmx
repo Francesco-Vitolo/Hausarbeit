@@ -32,6 +32,14 @@
           <Property Name="ID_Veranstaltung" Type="int" Nullable="false" />
           <Property Name="ID_Produkt" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="ID_Login" />
+          </Key>
+          <Property Name="ID_Login" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Benutzer" Type="int" />
+          <Property Name="Datum" Type="datetime" />
+        </EntityType>
         <EntityType Name="Produkt">
           <Key>
             <PropertyRef Name="ID_Produkt" />
@@ -44,7 +52,7 @@
           <Property Name="Geschmack" Type="nvarchar" MaxLength="50" />
           <Property Name="Alkoholgehalt" Type="float" />
           <Property Name="Jahrgang" Type="int" />
-          <Property Name="Beschreibung" Type="nvarchar" MaxLength="250" />
+          <Property Name="Beschreibung" Type="nvarchar" MaxLength="500" />
           <Property Name="Preis" Type="float" />
           <Property Name="Aktiv" Type="bit" />
           <Property Name="Picture" Type="varbinary(max)" />
@@ -77,15 +85,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="fk_User">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID_Benutzer" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="ID_Benutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="testModelStoreContainer">
           <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventPos" EntityType="Self.EventPos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produzent" EntityType="Self.Produzent" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
+          </AssociationSet>
+          <AssociationSet Name="fk_User" Association="Self.fk_User">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="Logins" EntitySet="Logins" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -99,7 +124,7 @@
           <Property Name="ID_Veranstaltung" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="AnzahlPersonen" Type="Int32" />
-          <Property Name="Datum" Type="DateTime" />
+          <Property Name="Datum" Type="DateTime" Precision="0" />
           <Property Name="Zeit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="EventPos">
@@ -122,7 +147,7 @@
           <Property Name="Geschmack" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Alkoholgehalt" Type="Double" />
           <Property Name="Jahrgang" Type="Int32" />
-          <Property Name="Beschreibung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Beschreibung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PDF_file" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ID_Produzent" Type="Int32" Nullable="false" />
@@ -167,6 +192,11 @@
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
           <EntitySet Name="Benutzer" EntityType="testModel.Benutzer" />
+          <EntitySet Name="Logins" EntityType="testModel.Logins" />
+          <AssociationSet Name="fk_User" Association="testModel.fk_User">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Benutzer">
           <Key>
@@ -176,7 +206,29 @@
           <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Passwort" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Logins" Relationship="testModel.fk_User" FromRole="Benutzer" ToRole="Logins" />
         </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="ID_Login" />
+          </Key>
+          <Property Name="ID_Login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Benutzer" Type="Int32" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Benutzer" Relationship="testModel.fk_User" FromRole="Logins" ToRole="Benutzer" />
+        </EntityType>
+        <Association Name="fk_User">
+          <End Type="testModel.Benutzer" Role="Benutzer" Multiplicity="0..1" />
+          <End Type="testModel.Logins" Role="Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID_Benutzer" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="ID_Benutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -244,6 +296,15 @@
                 <ScalarProperty Name="Passwort" ColumnName="Passwort" />
                 <ScalarProperty Name="username" ColumnName="username" />
                 <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="testModel.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
+                <ScalarProperty Name="ID_Login" ColumnName="ID_Login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
