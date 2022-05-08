@@ -24,22 +24,17 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private VinothekContext ctx = new VinothekContext();
         private Window_PDF_Viewer WPDF;
         private Window_Messagebox WM;
-        ICollectionView collectionView;
+        private ICollectionView collectionView;
         //string filename überarbeiten
-        public Page_Produkt(Produkt p, ICollectionView collectionView)
+        public Page_Produkt(ICollectionView collectionView)
         {
             InitializeComponent();
             ctx.Produkt.Load();
             ctx.Produzent.Load();
             this.collectionView = collectionView;
-            if(collectionView == null)
-            {
-                this.collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.Where(x => x.ID_Produzent == p.ID_Produzent).OrderBy(x => x.Name));
-                bool b = this.collectionView.MoveCurrentTo(ctx.Produkt.Find(p));
-            }
-            else
-                prod = (Produkt)this.collectionView.CurrentItem;
-            DataContext = this.collectionView;
+            prod = (Produkt)this.collectionView.CurrentItem;
+            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            DataContext = prod;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -58,7 +53,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
-
             ctx.SaveChanges();
             NavigationService.GoBack();
         }
@@ -118,7 +112,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
         private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {
-            if (prod.PDF_file != null)
+            var produkt = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            if (produkt.PDF_file != null)
             {
                 string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf"; //temporäre Datei wird erstellt
                 File.WriteAllBytes(tempfile, prod.PDF_file);
@@ -158,6 +153,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 collectionView.MoveCurrentToFirst();
             }
             prod = (Produkt)collectionView.CurrentItem;
+            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             DataContext = prod;
         }
 
@@ -169,6 +165,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 collectionView.MoveCurrentToLast();
             }
             prod = (Produkt)collectionView.CurrentItem;
+            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             DataContext = prod;
         }
 

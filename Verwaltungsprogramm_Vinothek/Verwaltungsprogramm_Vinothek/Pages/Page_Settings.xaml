@@ -65,7 +65,7 @@
                 <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>
             </StackPanel>
 
-            <Button Grid.Row="5" Grid.Column="2" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click"/>
+            <Button Grid.Row="5" Grid.Column="2" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click" Width="300"/>
             <Separator Grid.Column="3" HorizontalAlignment="Left" Grid.RowSpan="10" Margin="0,40">
                 <Separator.LayoutTransform>
                     <RotateTransform Angle="90" />

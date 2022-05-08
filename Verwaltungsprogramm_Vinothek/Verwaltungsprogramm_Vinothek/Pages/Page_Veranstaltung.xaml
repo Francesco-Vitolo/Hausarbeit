@@ -8,9 +8,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Veranstaltung">
-    <Page.Resources>
+    <!--<Page.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
-    </Page.Resources>
+    </Page.Resources>-->
     <Grid>
         <Grid Margin="0,32,0,0">
             <Grid.ColumnDefinitions>
@@ -28,7 +28,7 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <local1:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="3"/>
+            <local1:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="2"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" MouseDoubleClick="Item_MouseDoubleClick" />
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1">

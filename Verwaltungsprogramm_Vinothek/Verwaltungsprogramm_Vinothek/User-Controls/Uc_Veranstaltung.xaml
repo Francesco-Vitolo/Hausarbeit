@@ -55,7 +55,7 @@
                     <Style TargetType="Border">
                         <Setter Property="CornerRadius" Value="4"/>
                     </Style>
-                    <Style TargetType="DatePickerTextBox" >
+                    <Style TargetType="DatePickerTextBox" x:Key="datepicker" >
                         <Setter Property="Height" Value="34"/>
                         <Setter Property="FontSize" Value="24"/>
                         <Setter Property="IsEnabled" Value="False"/>

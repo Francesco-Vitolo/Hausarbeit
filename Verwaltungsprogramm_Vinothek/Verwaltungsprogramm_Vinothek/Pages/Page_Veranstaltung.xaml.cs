@@ -46,7 +46,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             if (selected_produzent != null)
             {
                 ICollectionView collectionView = CollectionViewSource.GetDefaultView(PRODS);
-                NavigationService.Navigate(new Page_Produkt(selected_produzent, collectionView ));
+                NavigationService.Navigate(new Page_Produkt(collectionView ));
 
             }
         }

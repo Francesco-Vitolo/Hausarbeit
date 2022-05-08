@@ -39,7 +39,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             Produkt selected_produzent = (Produkt)data.CurrentItem;
             if(selected_produzent != null)
-                NavigationService.Navigate(new Page_Produkt(selected_produzent,collectionView));
+                NavigationService.Navigate(new Page_Produkt(collectionView));
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)

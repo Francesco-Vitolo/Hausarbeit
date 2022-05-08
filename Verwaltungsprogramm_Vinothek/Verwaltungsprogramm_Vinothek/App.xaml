@@ -213,14 +213,14 @@
                             </Border.Style>
                         </Border>
 
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
+                        <!--<ControlTemplate.Triggers>
+                            --><!--<Trigger Property="IsMouseOver" Value="True">
                                 <Setter Property="FontWeight" Value="ExtraBold"/>
-                            </Trigger>
+                            </Trigger>--><!--
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="Gray"/>
                             </Trigger>
-                        </ControlTemplate.Triggers>
+                        </ControlTemplate.Triggers>-->
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -230,29 +230,71 @@
             <Setter Property="NavigationUIVisibility" Value="Hidden"/>
         </Style>
 
-
-
         <Style TargetType="Button" x:Key="Button_Style2">
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="Width" Value="75"/>
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
             <Setter Property="Margin" Value="4"/>
             <Setter Property="FontSize" Value="16"/>
-            <Setter Property="BorderBrush" Value="Black"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="Background" Value="{Binding Path=LinearGradientBrush, Source={x:Static properties:Settings.Default}}"/>
-            <Style.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="5" />
-                </Style>
-            </Style.Resources>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="1" BorderBrush="Black" CornerRadius="5" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderThickness" Value="3" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+            <Setter Property="OverridesDefaultStyle" Value="True"/>
+            <Setter Property="Height" Value="75"/>
+            <Setter Property="Width" Value="75"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Name="border" BorderThickness="1" BorderBrush="Black" CornerRadius="5" Background="{TemplateBinding Background}">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="border" Property="BorderThickness" Value="3" />
+                            </Trigger>
+                            <EventTrigger RoutedEvent="MouseEnter">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" From="75" To="100" Duration="0:0:0.2" ></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="75" To="60" Duration="0:0:0.2" ></DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="MouseLeave">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" From="100" To="75" Duration="0:0:0.1" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="60" To="75" Duration="0:0:0.1" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
         </Style>
 
         <Style TargetType="Button" x:Key="Button_TextContent" BasedOn="{StaticResource Button_Style2}">
             <Setter Property="Content" Value="übernehmen"/>
-            <Setter Property="Width" Value="auto"/>
+            <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="42"/>
-            <Setter Property="Padding" Value="15,0"/>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True" >
                     <Setter Property="FontStyle" Value="Italic" />
@@ -261,7 +303,7 @@
         </Style>
         
 
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"> <!--x:Key="Button_Style_With_Animation"-->
+        <!--<Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"> --><!--x:Key="Button_Style_With_Animation"--><!--
             <Style.Triggers>
                 <EventTrigger RoutedEvent="MouseEnter">
                     <BeginStoryboard>
@@ -280,7 +322,7 @@
                     </BeginStoryboard>
                 </EventTrigger>
             </Style.Triggers>
-        </Style>
+        </Style>-->
 
         <Style TargetType="Button" x:Key="Button_Titlebar">
             <Setter Property="Height" Value="26"/>

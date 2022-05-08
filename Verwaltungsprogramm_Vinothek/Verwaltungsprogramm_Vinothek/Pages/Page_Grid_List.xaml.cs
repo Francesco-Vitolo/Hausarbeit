@@ -109,7 +109,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 {
                     case "ListeProdukte":
                         Produkt selected_produkt = (Produkt)collectionView.CurrentItem;
-                        NavigationService.Navigate(new Page_Produkt(selected_produkt, collectionView));
+                        NavigationService.Navigate(new Page_Produkt(collectionView));
                         break;
                     case "ListeProduzenten":
                         Produzent selected_produzent = (Produzent)collectionView.CurrentItem;
@@ -219,16 +219,18 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void Duplicate_Click(object sender, RoutedEventArgs e)
         {
+            object DuplicateObj = null;
             switch (gridType)
             {
                 case "ListeProdukte":
-                    ctx.Produkt.Add((Produkt)collectionView.CurrentItem);
+                    DuplicateObj = ctx.Produkt.Add((Produkt)collectionView.CurrentItem);
                     break;
                 case "ListeProduzenten":
-                    ctx.Produzent.Add((Produzent)collectionView.CurrentItem);
+                    DuplicateObj = ctx.Produzent.Add((Produzent)collectionView.CurrentItem);
                     break;
                 case "ListeEvents":
                     Event evnt = (Event)collectionView.CurrentItem;
+                    DuplicateObj = evnt;
                     var list = ctx.EventPos.Where(x => x.ID_Veranstaltung == evnt.ID_Veranstaltung).ToList();
                     ctx.Event.Add(evnt);
                     ctx.SaveChanges();      //Muss gespeichert werden, um ID zu erhalten (weil automatisch generiert)
@@ -243,8 +245,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             }
             ctx.SaveChanges();
             Refresh_Click(null, null);
-            collectionView.MoveCurrentToLast(); //Ansicht zum neuen Objekt
-            datagrid.ScrollIntoView(collectionView.CurrentItem);
+            datagrid.ScrollIntoView(DuplicateObj);
         }            
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren
