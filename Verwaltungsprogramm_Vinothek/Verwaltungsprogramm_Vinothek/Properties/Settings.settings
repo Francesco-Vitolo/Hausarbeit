@@ -3,13 +3,13 @@
   <Profiles />
   <Settings>
     <Setting Name="PDF_Directory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Environment.GetFolderPath(Environment.SpecialFolder.Desktop)</Value>
+      <Value Profile="(Default)">.</Value>
     </Setting>
     <Setting Name="Background" Type="System.Windows.Media.SolidColorBrush" Scope="User">
-      <Value Profile="(Default)">#FF4B6676</Value>
+      <Value Profile="(Default)">#FFFFFFFF</Value>
     </Setting>
     <Setting Name="Foreground" Type="System.Windows.Media.SolidColorBrush" Scope="User">
-      <Value Profile="(Default)">#FF03C6FC</Value>
+      <Value Profile="(Default)">#FF000000</Value>
     </Setting>
     <Setting Name="LinearGradientBrush" Type="System.Windows.Media.LinearGradientBrush" Scope="User">
       <Value Profile="(Default)" />

@@ -59,7 +59,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             foreach (var name in dict)
             {
-                Binding b = new Binding(name.Value); 
+                Binding b = new Binding(name.Value);
                 if (name.Key == "Datum") 
                     b.StringFormat = "dd.MM.yyyy";
                 DataGridTextColumn column = new DataGridTextColumn()
