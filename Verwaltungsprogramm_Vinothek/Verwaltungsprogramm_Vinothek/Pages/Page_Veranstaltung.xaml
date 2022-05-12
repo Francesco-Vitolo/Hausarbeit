@@ -71,6 +71,9 @@
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
                     <Image Source="..\Pictures\edit.png" MaxHeight="70" />
                 </Button>
+                <Button x:Name="Refresh" Click="Refresh_Click">
+                    <Image Source="..\Pictures\refresh.png"/>
+                </Button>
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
                     <Image Source="..\Pictures\save.png"/>
                 </Button>

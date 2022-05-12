@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="1100" d:DesignWidth="1900"
-      Title="Page_Grid_List">
+      Title="Page_Grid_List" KeyUp="Page_KeyUp" >
     <!--<Page.Resources>
         <Style TargetType="Button" BasedOn="{StaticResource Button_Style_With_Animation}"/>
     </Page.Resources>-->

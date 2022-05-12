@@ -1,5 +1,7 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -16,7 +18,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     {
         public Page_MainMenu()
         {
-            InitializeComponent(); 
+            InitializeComponent();
+           
         }
 
         private void Button_Übersicht(object sender, RoutedEventArgs e)

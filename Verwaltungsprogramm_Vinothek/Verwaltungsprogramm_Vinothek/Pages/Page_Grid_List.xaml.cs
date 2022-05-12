@@ -279,5 +279,18 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             if (e.Key == Key.Delete)
                 Delete_Click(null, null);
         }
+
+        private void Page_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
+            {
+                if (e.Key == Key.R)
+                    Refresh_Click(null, null);
+                if (e.Key == Key.A)
+                    Add_Click(null, null);
+                if (e.Key == Key.D)
+                    Duplicate_Click(null, null);
+            }
+        }
     }
 }

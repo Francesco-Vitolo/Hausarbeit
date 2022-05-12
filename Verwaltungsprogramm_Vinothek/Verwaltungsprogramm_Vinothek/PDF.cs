@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows;
 
@@ -12,21 +13,24 @@ namespace Verwaltungsprogramm_Vinothek
 {
     public class PDF
     {
-       private PdfDocument doc = new PdfDocument();
+       private PdfDocument doc;
        private PdfPage page;
        private XGraphics gfx;
        private XTextFormatter tf; //für Absatz
-       private XFont ueberschrift = new XFont("Arial", 40, XFontStyle.Underline);
-       private XFont font = new XFont("Garamond", 20);
+       private XFont ueberschrift;
+       private XFont font;
        private Produkt prod;
-       private Random r;
-       private int posY = 120;
+       private static Random r;
+       private int posY;
        private string filename;
 
         public PDF()
         {
             doc = new PdfDocument();
+            ueberschrift = new XFont("Arial", 40, XFontStyle.Underline); 
+            font = new XFont("Garamond", 20);
             r = new Random();
+            posY = 120;
         }
         public byte[] CreateFromProd(Produkt prod)
         {
@@ -47,9 +51,12 @@ namespace Verwaltungsprogramm_Vinothek
             }
             return SaveAndReturn();
         }
-        public string GetPath()
+        private byte[] SaveAndReturn()
         {
-            return filename;
+            doc.Save(filename);
+            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+            WPDF.Show();
+            return File.ReadAllBytes(filename);
         }
 
         private void CreateDeckblatt(Event ev)
@@ -80,7 +87,10 @@ namespace Verwaltungsprogramm_Vinothek
             }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
             Drawing($"Bezeichnung: {prod.Qualitätssiegel}");
-            Drawing($"Region: { prod.Produzent.Region}");
+            if (prod.Produzent.Region != "")
+            {
+                Drawing($"Region: { prod.Produzent.Region}");
+            }
             Drawing($"Hersteller: {prod.Produzent.Name}");
             Drawing($"Jahrgang: {prod.Jahrgang}");
             Drawing($"Rebsorte(n): {prod.Rebsorten}");
@@ -91,13 +101,6 @@ namespace Verwaltungsprogramm_Vinothek
             gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 380, 740, 200, 80);
         }
 
-        private byte[] SaveAndReturn()
-        {
-            doc.Save(filename);
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
-            WPDF.Show();
-            return File.ReadAllBytes(filename);
-        }
 
         private void Drawing(string s)
         {
@@ -111,6 +114,10 @@ namespace Verwaltungsprogramm_Vinothek
             MemoryStream strm = new MemoryStream();
             img.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
             return XImage.FromStream(strm);
+        }
+        public string GetPath()
+        {
+            return filename;
         }
     }
 }

@@ -154,6 +154,7 @@
             <Setter Property="Margin" Value="1"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
+            <Setter Property="Background" Value="Transparent"/>
             <Style.Resources>
                 <Style TargetType="ComboBoxItem">
                     <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -161,14 +162,14 @@
                     <Style.Resources>
                         <Style TargetType="Border" BasedOn="{StaticResource Border}"/>
                     </Style.Resources>
-                    <Style.Triggers>
+                    <!--<Style.Triggers>
                         <Trigger Property="IsSelected" Value="True" >
-                            <!--Value="Gainsboro"-->
+                            --><!--Value="Gainsboro"--><!--
                             <Setter Property="Background" Value="Black" />
                             <Setter Property="BorderThickness" Value="0" />
                             <Setter Property="FontWeight" Value="Bold" />
-                        </Trigger>
-                    </Style.Triggers>
+                        </Trigger>-->
+                    <!--</Style.Triggers>-->
                 </Style>
             </Style.Resources>
         </Style>
@@ -374,6 +375,29 @@
         </Style>
 
 
+
+        <Style x:Key="CalendarItemStyle" TargetType="{x:Type CalendarItem}">
+            <Setter Property="Margin" Value="0,3,0,3" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type CalendarItem}">
+                        <ControlTemplate.Resources>
+                            <DataTemplate x:Key="{x:Static CalendarItem.DayTitleTemplateResourceKey}">
+                                <TextBlock 
+                                Foreground="Red"
+                                FontWeight="Bold"
+                                FontSize="9.5"
+                                FontFamily="Verdana"
+                                Margin="0,6,0,6"
+                                Text="{Binding}"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center" />
+                            </DataTemplate>
+                        </ControlTemplate.Resources>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
 
     </Application.Resources>
 </Application>

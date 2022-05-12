@@ -110,6 +110,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
 
+        private void Refresh_Click(object sender, RoutedEventArgs e)
+        {
+            PRODS = new List<Produkt>();
+            ctx = new VinothekContext(); //neuer ctx
+            EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt
+            foreach (var ep in EVNT_POS)
+            {
+                PRODS.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt));
+            }
+            data.DataContext = null;
+            data.DataContext = PRODS;
+        }
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
