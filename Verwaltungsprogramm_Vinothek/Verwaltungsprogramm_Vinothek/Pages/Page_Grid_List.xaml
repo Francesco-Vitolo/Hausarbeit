@@ -51,8 +51,8 @@
             </UniformGrid.Resources>
 
             <StackPanel VerticalAlignment="Top" HorizontalAlignment="Center">
-                <RadioButton Content="Aufsteigend" Name="RB_Asc" VerticalContentAlignment="Center" Checked="Radiobutton_Checked" />
-                <RadioButton Content="Absteigend" Name="RB_Desc" VerticalContentAlignment="Center"  Checked="Radiobutton_Checked"/>
+                <RadioButton Content="aufsteigend" Name="RB_Asc" VerticalContentAlignment="Center" Checked="Radiobutton_Checked" />
+                <RadioButton Content="absteigend" Name="RB_Desc" VerticalContentAlignment="Center"  Checked="Radiobutton_Checked"/>
             </StackPanel>
             <Separator/>
             <Button x:Name="Refresh" Click="Refresh_Click">

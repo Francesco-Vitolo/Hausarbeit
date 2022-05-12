@@ -23,7 +23,15 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             SetButtonFarbe();
+            SetDirectory();
             Demo();
+            tb_username.Focus();
+        }
+
+        private void SetDirectory()
+        {
+            if (Settings.Default.PDF_Directory == null)
+                Settings.Default.PDF_Directory = Environment.SpecialFolder.MyDocuments.ToString();
         }
 
         private void SetButtonFarbe()

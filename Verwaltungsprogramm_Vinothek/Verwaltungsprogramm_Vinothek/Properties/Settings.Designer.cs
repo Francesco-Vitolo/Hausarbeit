@@ -25,7 +25,7 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".")]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
         public string PDF_Directory {
             get {
                 return ((string)(this["PDF_Directory"]));

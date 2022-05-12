@@ -3,7 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="PDF_Directory" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.</Value>
+      <Value Profile="(Default)" />
     </Setting>
     <Setting Name="Background" Type="System.Windows.Media.SolidColorBrush" Scope="User">
       <Value Profile="(Default)">#FFFFFFFF</Value>

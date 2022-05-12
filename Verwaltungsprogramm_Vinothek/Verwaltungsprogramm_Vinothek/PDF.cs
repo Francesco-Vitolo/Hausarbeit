@@ -3,11 +3,7 @@ using PdfSharp.Drawing.Layout;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Windows;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -100,7 +96,6 @@ namespace Verwaltungsprogramm_Vinothek
             tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, posY + 160, page.Width - 100, page.Height), XStringFormats.TopLeft);
             gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 380, 740, 200, 80);
         }
-
 
         private void Drawing(string s)
         {

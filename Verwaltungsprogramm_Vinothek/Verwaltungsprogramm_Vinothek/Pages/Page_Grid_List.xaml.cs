@@ -20,8 +20,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private Window_Abfrage WA;
         private Window_Messagebox WM;
         private SortDescription currentSortDesc;
-        string[] filteroptions = new string[11];
-        string totalItemsGrid;
+        private string[] filteroptions = new string[11];
+        private string totalItemsGrid;
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
@@ -29,6 +29,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             CreateDG();
             totalItemsGrid = collectionView.Cast<object>().Count().ToString();
             labelResults.DataContext = totalItemsGrid;
+            tbSearch.Focus();
         }
 
         private async void asyncRefresh()
@@ -103,7 +104,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
        
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (collectionView.CurrentItem != null) //Ausgewähltes Objekt wird weitergegeben mit Sortierreihenfolge
+            if (collectionView.CurrentItem != null)
             {
                 switch (gridType)
                 {
@@ -143,6 +144,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             }
             datagrid.DataContext = collectionView;
             cb_filter.SelectedIndex = 0;
+
             totalItemsGrid = collectionView.Cast<object>().Count().ToString();
             labelResults.DataContext = null;
             labelResults.DataContext = totalItemsGrid;
@@ -246,7 +248,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             ctx.SaveChanges();
             Refresh_Click(null, null);
             datagrid.ScrollIntoView(DuplicateObj);
-        }            
+        }
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren
         {
@@ -256,7 +258,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 direction = 1;
 
             currentSortDesc = new SortDescription(filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);
-
             collectionView.SortDescriptions.Add(currentSortDesc); //collectionview wird sortiert --> datagrid
 
             if (currentSortDesc.Direction == 0) //Radiobuttons belegen
@@ -286,7 +287,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 if (e.Key == Key.R)
                     Refresh_Click(null, null);
-                if (e.Key == Key.A)
+                if (e.Key == Key.N)
                     Add_Click(null, null);
                 if (e.Key == Key.D)
                     Duplicate_Click(null, null);

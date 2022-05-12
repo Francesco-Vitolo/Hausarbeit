@@ -43,6 +43,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             {
                 felder.IsEnabled = true;
                 modus.Text = "bearbeiten";
+                TextBox tbFokus = felder.GetTbs().FirstOrDefault();
+                tbFokus.Focus();
+                tbFokus.CaretIndex = 999;
             }
             else
             {

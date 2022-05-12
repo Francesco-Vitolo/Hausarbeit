@@ -3,22 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <Style BasedOn="{StaticResource Button_Titlebar}" TargetType="Button"/>
     </UserControl.Resources>
 
-    <Grid x:Name="Titlebar" VerticalAlignment="Top" Background="#FF464646" Height="32" MouseDown="MoveWindow">
-        <!--<WrapPanel VerticalAlignment="Center" HorizontalAlignment="Left">
-            <Button x:Name="GoBack" Background="#FF6990B8" Content="🢢" Click="btn_prev" />
-            --><!--<Button x:Name="Vor" Background="#FF6990B8" Content="🢣" IsEnabled="False"/>--><!--
-        </WrapPanel>-->
-
-
+    <Grid x:Name="Titlebar" VerticalAlignment="Top" Background="#FF464646" Height="32" MouseDown="MoveWindow" >
         <WrapPanel HorizontalAlignment="Right" VerticalAlignment="Center" >
-            <Button x:Name="Minimize" Click="Minimize_Click" >
+            <Button x:Name="Minimize" Click="Minimize_Click" Focusable="False">
                 <Button.Content>
                     <Canvas >
                         <Line X1="-7" 
@@ -32,14 +25,14 @@
                 </Button.Content>
             </Button>
 
-            <Button x:Name="Maximize" Click="Maximize_Click" HorizontalContentAlignment="Left" VerticalContentAlignment="Top">
+            <Button x:Name="Maximize" Click="Maximize_Click" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" Focusable="False">
                 <Button.Content>
                     <Canvas >
                         <Rectangle Height="14" Width="14" Stroke="Black" StrokeThickness="1.25" Margin="4,5,0,0"/>
                     </Canvas>
                 </Button.Content>
             </Button>
-            <Button x:Name="Exit" Content="X" Click="Exit_Click" Background="#FFA85D5D" />
+            <Button x:Name="Exit" Content="X" Click="Exit_Click" Background="#FFA85D5D" Foreground="Black" Focusable="False"/>
         </WrapPanel>
 
         <!--<Image Source="..\Pictures\unnamed.png" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="75"/>-->

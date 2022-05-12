@@ -34,12 +34,7 @@
                                     <Setter Property="CornerRadius" Value="5"/>
                                 </Style>
                             </Border.Style>
-                            <ScrollViewer x:Name="PART_ContentHost"
-                                          Focusable="false"
-                                          HorizontalScrollBarVisibility="Hidden"
-                                          VerticalScrollBarVisibility="Hidden"
-                                          Margin="2">
-                            </ScrollViewer>
+                            <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="2"/>
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsEnabled" Value="False">
@@ -249,6 +244,10 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="BorderThickness" Value="3" />
                             </Trigger>
+                            <Trigger Property="IsFocused" Value="True" >
+                                <Setter TargetName="border" Property="BorderThickness" Value="3" />
+                                <Setter Property="FontStyle" Value="Italic" />
+                            </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
                 </Setter.Value>
@@ -270,14 +269,17 @@
                             <Trigger Property="IsMouseOver" Value="True">
                                 <Setter TargetName="border" Property="BorderThickness" Value="3" />
                             </Trigger>
+                            <Trigger Property="IsFocused" Value="True">
+                                <Setter TargetName="border" Property="BorderThickness" Value="3" />
+                            </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="Gray" />
                             </Trigger>
-                            <EventTrigger RoutedEvent="MouseEnter">
+                            <EventTrigger RoutedEvent="MouseEnter" >
                                 <BeginStoryboard>
                                     <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetProperty="Width" From="75" To="100" Duration="0:0:0.2" ></DoubleAnimation>
-                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="75" To="60" Duration="0:0:0.2" ></DoubleAnimation>
+                                        <DoubleAnimation Storyboard.TargetProperty="Width" From="75" To="100" Duration="0:0:0.2" />
+                                        <DoubleAnimation Storyboard.TargetProperty="Height" From="75" To="60" Duration="0:0:0.2" />
                                     </Storyboard>
                                 </BeginStoryboard>
                             </EventTrigger>
@@ -299,11 +301,11 @@
             <Setter Property="Content" Value="übernehmen"/>
             <Setter Property="Width" Value="200"/>
             <Setter Property="Height" Value="42"/>
-            <Style.Triggers>
+            <!--<Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True" >
                     <Setter Property="FontStyle" Value="Italic" />
                 </Trigger>
-            </Style.Triggers>
+            </Style.Triggers>-->
         </Style>
         
 

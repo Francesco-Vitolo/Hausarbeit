@@ -16,8 +16,8 @@
             <Image Source="..\Pictures\Logo.png" Margin="20" VerticalAlignment="Top" MaxHeight="75"/>
             <WrapPanel x:Name="Text" HorizontalAlignment="Center"/>
             <WrapPanel HorizontalAlignment="Center">
-                <Button Height="50" Width="125" Content="Ja" Click="Button_Click_Ja" Margin="15" Style="{StaticResource Button_Style2}"/>
-                <Button Height="50" Width="125" Content="Nein" Click="Button_Click_Nein" Margin="15" Style="{StaticResource Button_Style2}"/>
+                <Button x:Name="Btn_ja" Height="50" Width="125" Content="Ja" Click="Button_Click_Ja" Margin="15" Style="{StaticResource Button_TextContent}"/>
+                <Button x:Name="Btn_nein" Height="50" Width="125" Content="Nein" Click="Button_Click_Nein" Margin="15" Style="{StaticResource Button_TextContent}"/>
             </WrapPanel>
         </StackPanel>
 

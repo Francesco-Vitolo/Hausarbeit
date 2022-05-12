@@ -4,13 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
-        xmlns:properties="clr-namespace:Verwaltungsprogramm_Vinothek.Properties"
-        
+        xmlns:properties="clr-namespace:Verwaltungsprogramm_Vinothek.Properties"      
         mc:Ignorable="d"
         Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
+    
     <Grid>
         <local:Uc_Default/>
-        <Button x:Name="GoBack" Background="{Binding Path=Color1, Source={x:Static properties:Settings.Default}}" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click">
+        <Button x:Name="GoBack" Background="{Binding Path=Color1, Source={x:Static properties:Settings.Default}}" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click" Focusable="False">
              <Image Source="..\Pictures\arrow_left.png"/>
         </Button>
         <Frame Name="Frame_Main" Margin="0,40,0,0"/>
@@ -31,10 +31,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard>
-                                <DoubleAnimation   From="30"
-                          To="300"   
-                          Storyboard.TargetProperty="Width"   
-                          Duration="0:00:0.2"/>
+                                <DoubleAnimation From="30" To="300" Storyboard.TargetProperty="Width" Duration="0:00:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
@@ -43,10 +40,7 @@
                     <EventTrigger.Actions>
                         <BeginStoryboard>
                             <Storyboard >
-                                <DoubleAnimation From="300"   
-                          To="30"   
-                          Storyboard.TargetProperty="Width"   
-                          Duration="0:00:0.2"/>
+                                <DoubleAnimation From="300" To="30" Storyboard.TargetProperty="Width" Duration="0:00:0.2"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </EventTrigger.Actions>
