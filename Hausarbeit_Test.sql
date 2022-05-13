@@ -98,7 +98,6 @@ CREATE TABLE Benutzer (
 	ID_Benutzer int PRIMARY KEY IDENTITY(1,1),
 	username nvarchar(50),
 	Passwort nvarchar(64),
-	Salt  nvarchar(50),
 );
 
 CREATE TABLE Logins(
@@ -112,15 +111,15 @@ CREATE TABLE Logins(
 );
 
 Insert into Benutzer values
-('admin',  '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('Francesco' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user2' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user3' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user4' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user6' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user5' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user7' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt'),
-('user5' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff', 'salt in Programm festgelegt');
+('admin',  '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('Francesco' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user2' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user3' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user4' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user6' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user5' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user7' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff'),
+('user5' , '22b9b596cae2c3d3f45b96fc2f126263f9c49dfc395bc00daa76514b1743beff');
 
 -- PW:admin
 

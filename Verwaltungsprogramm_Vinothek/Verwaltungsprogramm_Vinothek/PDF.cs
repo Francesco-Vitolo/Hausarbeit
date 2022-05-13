@@ -66,11 +66,16 @@ namespace Verwaltungsprogramm_Vinothek
             DateTime date =(DateTime) ev.Datum;
             string dateString = date.ToString("dddd, dd.MM.yyyy");
             gfx.DrawString(dateString, font, XBrushes.Black, new XRect(0, 400, page.Width, page.Height), XStringFormats.TopCenter);
-            gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 200, 460, 200, 80);
+            try
+            {
+                gfx.DrawImage(XImage.FromFile(@"\..\Pictures\Logo.png"), 200, 460, 200, 80);
+            }
+            catch { }
         }
 
         private void Create()
         {
+
             page = doc.AddPage();
             gfx = XGraphics.FromPdfPage(page);
             tf = new XTextFormatter(gfx); //für Absatz
@@ -78,7 +83,6 @@ namespace Verwaltungsprogramm_Vinothek
             if (prod.Picture != null)
             {
                 XImage image = GetImg(prod.Picture);
-                //var v = image.Width / image.Height;
                 gfx.DrawImage(image, 460, 100, 90, 300);
             }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
@@ -94,7 +98,11 @@ namespace Verwaltungsprogramm_Vinothek
             Drawing($"Alkoholgehalt: {prod.Alkoholgehalt} % vol.");
             gfx.DrawString($"Beschreibung:", font, XBrushes.Black, new XRect(40, posY + 100, page.Width, page.Height), XStringFormats.TopLeft);
             tf.DrawString($"{prod.Beschreibung}", font, XBrushes.Black, new XRect(40, posY + 160, page.Width - 100, page.Height), XStringFormats.TopLeft);
-            gfx.DrawImage(XImage.FromFile(@"..\..\Pictures\Logo.png"), 380, 740, 200, 80);
+            try
+            {
+                gfx.DrawImage(XImage.FromFile(@"..\Pictures\Logo.png"), 380, 740, 200, 80);
+            }
+            catch { }
         }
 
         private void Drawing(string s)

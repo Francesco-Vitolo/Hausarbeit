@@ -26,9 +26,9 @@ namespace Verwaltungsprogramm_Vinothek
         public string Region { get; set; }
         public string Beschreibung { get; set; }
         public string Adresse { get; set; }
-        public Nullable<int> Hektar { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }
+        public Nullable<int> Hektar { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produkt> Produkt { get; set; }

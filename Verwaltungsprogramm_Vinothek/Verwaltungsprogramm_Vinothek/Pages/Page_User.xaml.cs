@@ -65,7 +65,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Benutzer newUser = new Benutzer();
             newUser.username = tb_newUser_Name.Text;
             newUser.Passwort = Encrypt.getHash(tb_newUser_PW.Text);
-            newUser.Salt = null;
             ctx.Benutzer.Add(newUser);
             ctx.SaveChanges();
         }

@@ -25,11 +25,11 @@ namespace Verwaltungsprogramm_Vinothek
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Benutzer> Benutzer { get; set; }
         public virtual DbSet<Event> Event { get; set; }
         public virtual DbSet<EventPos> EventPos { get; set; }
+        public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<Produzent> Produzent { get; set; }
-        public virtual DbSet<Benutzer> Benutzer { get; set; }
-        public virtual DbSet<Logins> Logins { get; set; }
     }
 }

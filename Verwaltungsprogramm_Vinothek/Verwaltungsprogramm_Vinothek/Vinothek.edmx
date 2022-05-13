@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="testModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DB_VinothekModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Benutzer">
           <Key>
             <PropertyRef Name="ID_Benutzer" />
@@ -12,7 +12,6 @@
           <Property Name="ID_Benutzer" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="username" Type="nvarchar" MaxLength="50" />
           <Property Name="Passwort" Type="nvarchar" MaxLength="64" />
-          <Property Name="Salt" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Event">
           <Key>
@@ -73,6 +72,18 @@
           <Property Name="Telefon" Type="nvarchar" MaxLength="50" />
           <Property Name="Hektar" Type="int" />
         </EntityType>
+        <Association Name="fk_Benutzer">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID_Benutzer" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="ID_Benutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Produzent">
           <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
           <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
@@ -85,38 +96,36 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="fk_User">
-          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
-          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Benutzer">
-              <PropertyRef Name="ID_Benutzer" />
-            </Principal>
-            <Dependent Role="Logins">
-              <PropertyRef Name="ID_Benutzer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="testModelStoreContainer">
+        <EntityContainer Name="DB_VinothekModelStoreContainer">
           <EntitySet Name="Benutzer" EntityType="Self.Benutzer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="EventPos" EntityType="Self.EventPos" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Produzent" EntityType="Self.Produzent" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="fk_Benutzer" Association="Self.fk_Benutzer">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
           <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
-          <AssociationSet Name="fk_User" Association="Self.fk_User">
-            <End Role="Benutzer" EntitySet="Benutzer" />
-            <End Role="Logins" EntitySet="Logins" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="testModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DB_VinothekModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Benutzer">
+          <Key>
+            <PropertyRef Name="ID_Benutzer" />
+          </Key>
+          <Property Name="ID_Benutzer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Passwort" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Logins" Relationship="Self.fk_Benutzer" FromRole="Benutzer" ToRole="Logins" />
+        </EntityType>
         <EntityType Name="Event">
           <Key>
             <PropertyRef Name="ID_Veranstaltung" />
@@ -135,6 +144,15 @@
           <Property Name="ID_Veranstaltung" Type="Int32" Nullable="false" />
           <Property Name="ID_Produkt" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="Logins">
+          <Key>
+            <PropertyRef Name="ID_Login" />
+          </Key>
+          <Property Name="ID_Login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Benutzer" Type="Int32" />
+          <Property Name="Datum" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Benutzer" Relationship="Self.fk_Benutzer" FromRole="Logins" ToRole="Benutzer" />
+        </EntityType>
         <EntityType Name="Produkt">
           <Key>
             <PropertyRef Name="ID_Produkt" />
@@ -148,12 +166,12 @@
           <Property Name="Alkoholgehalt" Type="Double" />
           <Property Name="Jahrgang" Type="Int32" />
           <Property Name="Beschreibung" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Preis" Type="Double" />
+          <Property Name="Aktiv" Type="Boolean" />
           <Property Name="Picture" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="PDF_file" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ID_Produzent" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Produzent" Relationship="Self.fk_Produzent" FromRole="Produkt" ToRole="Produzent" />
-          <Property Name="Preis" Type="Double" />
-          <Property Name="Aktiv" Type="Boolean" />
         </EntityType>
         <EntityType Name="Produzent">
           <Key>
@@ -165,11 +183,23 @@
           <Property Name="Region" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Beschreibung" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
           <Property Name="Adresse" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Hektar" Type="Int32" />
-          <NavigationProperty Name="Produkt" Relationship="Self.fk_Produzent" FromRole="Produzent" ToRole="Produkt" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Telefon" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Hektar" Type="Int32" />
+          <NavigationProperty Name="Produkt" Relationship="Self.fk_Produzent" FromRole="Produzent" ToRole="Produkt" />
         </EntityType>
+        <Association Name="fk_Benutzer">
+          <End Role="Benutzer" Type="Self.Benutzer" Multiplicity="0..1" />
+          <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Benutzer">
+              <PropertyRef Name="ID_Benutzer" />
+            </Principal>
+            <Dependent Role="Logins">
+              <PropertyRef Name="ID_Benutzer" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="fk_Produzent">
           <End Role="Produzent" Type="Self.Produzent" Multiplicity="1" />
           <End Role="Produkt" Type="Self.Produkt" Multiplicity="*" />
@@ -183,60 +213,38 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="VinothekContext" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Benutzer" EntityType="Self.Benutzer" />
           <EntitySet Name="Event" EntityType="Self.Event" />
           <EntitySet Name="EventPos" EntityType="Self.EventPos" />
+          <EntitySet Name="Logins" EntityType="Self.Logins" />
           <EntitySet Name="Produkt" EntityType="Self.Produkt" />
           <EntitySet Name="Produzent" EntityType="Self.Produzent" />
+          <AssociationSet Name="fk_Benutzer" Association="Self.fk_Benutzer">
+            <End Role="Benutzer" EntitySet="Benutzer" />
+            <End Role="Logins" EntitySet="Logins" />
+          </AssociationSet>
           <AssociationSet Name="fk_Produzent" Association="Self.fk_Produzent">
             <End Role="Produzent" EntitySet="Produzent" />
             <End Role="Produkt" EntitySet="Produkt" />
           </AssociationSet>
-          <EntitySet Name="Benutzer" EntityType="testModel.Benutzer" />
-          <EntitySet Name="Logins" EntityType="testModel.Logins" />
-          <AssociationSet Name="fk_User" Association="testModel.fk_User">
-            <End Role="Benutzer" EntitySet="Benutzer" />
-            <End Role="Logins" EntitySet="Logins" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Benutzer">
-          <Key>
-            <PropertyRef Name="ID_Benutzer" />
-          </Key>
-          <Property Name="ID_Benutzer" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Passwort" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
-          <Property Name="Salt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Logins" Relationship="testModel.fk_User" FromRole="Benutzer" ToRole="Logins" />
-        </EntityType>
-        <EntityType Name="Logins">
-          <Key>
-            <PropertyRef Name="ID_Login" />
-          </Key>
-          <Property Name="ID_Login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ID_Benutzer" Type="Int32" />
-          <Property Name="Datum" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Benutzer" Relationship="testModel.fk_User" FromRole="Logins" ToRole="Benutzer" />
-        </EntityType>
-        <Association Name="fk_User">
-          <End Type="testModel.Benutzer" Role="Benutzer" Multiplicity="0..1" />
-          <End Type="testModel.Logins" Role="Logins" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Benutzer">
-              <PropertyRef Name="ID_Benutzer" />
-            </Principal>
-            <Dependent Role="Logins">
-              <PropertyRef Name="ID_Benutzer" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="testModelStoreContainer" CdmEntityContainer="VinothekContext">
+        <EntityContainerMapping StorageEntityContainer="DB_VinothekModelStoreContainer" CdmEntityContainer="VinothekContext">
+          <EntitySetMapping Name="Benutzer">
+            <EntityTypeMapping TypeName="DB_VinothekModel.Benutzer">
+              <MappingFragment StoreEntitySet="Benutzer">
+                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Event">
-            <EntityTypeMapping TypeName="testModel.Event">
+            <EntityTypeMapping TypeName="DB_VinothekModel.Event">
               <MappingFragment StoreEntitySet="Event">
                 <ScalarProperty Name="ID_Veranstaltung" ColumnName="ID_Veranstaltung" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -247,18 +255,25 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="EventPos">
-            <EntityTypeMapping TypeName="testModel.EventPos">
+            <EntityTypeMapping TypeName="DB_VinothekModel.EventPos">
               <MappingFragment StoreEntitySet="EventPos">
                 <ScalarProperty Name="ID_Veranstaltung" ColumnName="ID_Veranstaltung" />
                 <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Logins">
+            <EntityTypeMapping TypeName="DB_VinothekModel.Logins">
+              <MappingFragment StoreEntitySet="Logins">
+                <ScalarProperty Name="ID_Login" ColumnName="ID_Login" />
+                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
+                <ScalarProperty Name="Datum" ColumnName="Datum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Produkt">
-            <EntityTypeMapping TypeName="testModel.Produkt">
+            <EntityTypeMapping TypeName="DB_VinothekModel.Produkt">
               <MappingFragment StoreEntitySet="Produkt">
-                <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
-                <ScalarProperty Name="Preis" ColumnName="Preis" />
                 <ScalarProperty Name="ID_Produkt" ColumnName="ID_Produkt" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Art" ColumnName="Art" />
@@ -268,6 +283,8 @@
                 <ScalarProperty Name="Alkoholgehalt" ColumnName="Alkoholgehalt" />
                 <ScalarProperty Name="Jahrgang" ColumnName="Jahrgang" />
                 <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
+                <ScalarProperty Name="Preis" ColumnName="Preis" />
+                <ScalarProperty Name="Aktiv" ColumnName="Aktiv" />
                 <ScalarProperty Name="Picture" ColumnName="Picture" />
                 <ScalarProperty Name="PDF_file" ColumnName="PDF_file" />
                 <ScalarProperty Name="ID_Produzent" ColumnName="ID_Produzent" />
@@ -275,36 +292,17 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Produzent">
-            <EntityTypeMapping TypeName="testModel.Produzent">
+            <EntityTypeMapping TypeName="DB_VinothekModel.Produzent">
               <MappingFragment StoreEntitySet="Produzent">
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="ID_Produzent" ColumnName="ID_Produzent" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Land" ColumnName="Land" />
                 <ScalarProperty Name="Region" ColumnName="Region" />
                 <ScalarProperty Name="Beschreibung" ColumnName="Beschreibung" />
                 <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
                 <ScalarProperty Name="Hektar" ColumnName="Hektar" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Benutzer">
-            <EntityTypeMapping TypeName="testModel.Benutzer">
-              <MappingFragment StoreEntitySet="Benutzer">
-                <ScalarProperty Name="Salt" ColumnName="Salt" />
-                <ScalarProperty Name="Passwort" ColumnName="Passwort" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Logins">
-            <EntityTypeMapping TypeName="testModel.Logins">
-              <MappingFragment StoreEntitySet="Logins">
-                <ScalarProperty Name="Datum" ColumnName="Datum" />
-                <ScalarProperty Name="ID_Benutzer" ColumnName="ID_Benutzer" />
-                <ScalarProperty Name="ID_Login" ColumnName="ID_Login" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

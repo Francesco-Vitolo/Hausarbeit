@@ -25,7 +25,7 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -169,6 +169,21 @@
     <Compile Include="User-Controls\Uc_Veranstaltung.xaml.cs">
       <DependentUpon>Uc_Veranstaltung.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vinothek.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vinothek.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vinothek.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vinothek.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vinothek.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Vinothek.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Windows\Window_Abfrage.xaml.cs">
       <DependentUpon>Window_Abfrage.xaml</DependentUpon>
     </Compile>
@@ -244,21 +259,6 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Vinothek.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Vinothek.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vinothek.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Vinothek.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Vinothek.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Vinothek.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Windows\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -324,11 +324,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Verwaltungsprogramm_Vinothek_TemporaryKey.pfx" />
     <EntityDeploy Include="Vinothek.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Vinothek.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="Verwaltungsprogramm_Vinothek_TemporaryKey.pfx" />
     <None Include="Vinothek.edmx.diagram">
       <DependentUpon>Vinothek.edmx</DependentUpon>
     </None>
@@ -343,7 +343,9 @@
     <Resource Include="Pictures\magnifier.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\Logo.png" />
+    <Resource Include="Pictures\Logo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Pictures\edit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -396,16 +398,6 @@
     <Resource Include="Pictures\browser.png" />
     <Resource Include="Pictures\plus.png" />
     <Resource Include="Pictures\logins.png" />
-    <Content Include="Vinothek.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Vinothek.Context.cs</LastGenOutput>
-      <DependentUpon>Vinothek.edmx</DependentUpon>
-    </Content>
-    <Content Include="Vinothek.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Vinothek.edmx</DependentUpon>
-      <LastGenOutput>Vinothek.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -416,6 +408,18 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Vinothek.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Vinothek.edmx</DependentUpon>
+      <LastGenOutput>Vinothek.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Vinothek.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Vinothek.edmx</DependentUpon>
+      <LastGenOutput>Vinothek.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

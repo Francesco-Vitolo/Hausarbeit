@@ -23,11 +23,11 @@ namespace Verwaltungsprogramm_Vinothek
         public Nullable<double> Alkoholgehalt { get; set; }
         public Nullable<int> Jahrgang { get; set; }
         public string Beschreibung { get; set; }
+        public Nullable<double> Preis { get; set; }
+        public Nullable<bool> Aktiv { get; set; }
         public byte[] Picture { get; set; }
         public byte[] PDF_file { get; set; }
         public int ID_Produzent { get; set; }
-        public Nullable<double> Preis { get; set; }
-        public Nullable<bool> Aktiv { get; set; }
     
         public virtual Produzent Produzent { get; set; }
     }

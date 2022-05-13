@@ -178,6 +178,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     if (WA.GetOption()) //Option Ja oder Nein
                     {
                         ctx.Produkt.Remove(deleted_Produ); // löschen
+                        var list = ctx.EventPos.Where(x => x.ID_Produkt == deleted_Produ.ID_Produkt).ToList();
+                        list.ForEach(x => ctx.EventPos.Remove(x));
                         WM = new Window_Messagebox(deleted_Produ.Name + " wurde gelöscht.");
                         WM.ShowDialog();
                     }
