@@ -2,7 +2,7 @@
 
 namespace Verwaltungsprogramm_Vinothek
 {
-    public class VinothekDBInitialiser : CreateDatabaseIfNotExists<VinothekContext>
+    public class VinothekDBInitializer : CreateDatabaseIfNotExists<VinothekContext>
     {
         protected override void Seed(VinothekContext context)
         {

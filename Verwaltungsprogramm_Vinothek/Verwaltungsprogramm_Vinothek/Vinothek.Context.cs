@@ -18,7 +18,7 @@ namespace Verwaltungsprogramm_Vinothek
         public VinothekContext() : base("name=VinothekContext")
         {
             //Database.SetInitializer<VinothekContext>(new CreateDatabaseIfNotExists<VinothekContext>());
-            Database.SetInitializer(new VinothekDBInitialiser());
+            Database.SetInitializer(new VinothekDBInitializer());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
