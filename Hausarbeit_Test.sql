@@ -1,11 +1,11 @@
 USE master;
 GO
 
-IF DB_ID('test') IS NULL
-  CREATE DATABASE test;
+IF DB_ID('DB_Vinothek') IS NULL
+  CREATE DATABASE DB_Vinothek;
 GO
 
-USE test;
+USE DB_Vinothek;
 GO 
 
 IF OBJECT_ID('Produkt') IS NOT NULL

@@ -184,6 +184,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vinothek.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VinothekDBInitialiser.cs" />
     <Compile Include="Windows\Window_Abfrage.xaml.cs">
       <DependentUpon>Window_Abfrage.xaml</DependentUpon>
     </Compile>
