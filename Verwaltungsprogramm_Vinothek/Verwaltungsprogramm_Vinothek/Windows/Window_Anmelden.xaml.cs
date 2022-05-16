@@ -4,10 +4,12 @@ using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using Verwaltungsprogramm_Vinothek.Properties;
+using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -26,6 +28,11 @@ namespace Verwaltungsprogramm_Vinothek
             SetDirectory();
             Demo();
             tb_username.Focus();
+        }
+        private void Demo()
+        {
+            tb_username.Text = "admin";
+            tb_pw.Password = "admin";
         }
 
         private void SetDirectory()
@@ -53,17 +60,12 @@ namespace Verwaltungsprogramm_Vinothek
             catch { }
         }
 
-        private void Demo()
-        {
-            tb_username.Text = "admin";
-            tb_pw.Password = "admin";
-        }
         private void Button_Click(object sender, RoutedEventArgs e)
         {
 
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
-            ctx.Benutzer.Load();           
+            ctx.Benutzer.Load();
             if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
                 user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
@@ -72,18 +74,36 @@ namespace Verwaltungsprogramm_Vinothek
                 login.Datum = DateTime.Now;
                 ctx.Logins.Add(login);
                 ctx.SaveChanges();
-                MainWindow main = new MainWindow(user);
-                main.Show();
+                StartSplashScreen();
                 Close();
             }
             else
                 Alert.Visibility = Visibility.Visible;
         }
-
         private void Window_KeyUp_Enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
                 Button_Click(null,null);
+        }
+        private void StartSplashScreen()
+        {
+            Window_SplashScreen splashScreen = new Window_SplashScreen();
+            splashScreen.Show();      
+            Task.Factory.StartNew(() =>
+            {
+                for (int i = 1; i <= 100; i++)
+                {
+                    System.Threading.Thread.Sleep(10);                   
+                    splashScreen.Dispatcher.Invoke(() => splashScreen.Progress = i);
+                }
+
+                Dispatcher.Invoke(() =>
+                {
+                    MainWindow mainWindow = new MainWindow(user);
+                    mainWindow.Show();
+                    splashScreen.Close();
+                });
+            });
         }
     }
 }

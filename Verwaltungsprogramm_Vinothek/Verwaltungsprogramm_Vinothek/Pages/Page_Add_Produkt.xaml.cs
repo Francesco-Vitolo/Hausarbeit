@@ -98,10 +98,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
             WSP.ShowDialog();
-            produzent = (Produzent)WSP.GetObj();      
-            newProd.Produzent = ctx.Produzent.FirstOrDefault(x => x.Name == produzent.Name);
-            TextBox tb_prod = felderProdukt.GetProd();
-            tb_prod.DataContext = newProd;
+            produzent = (Produzent)WSP.GetObj();
+            Produzent p = (Produzent)WSP.GetObj(); //Produzent nehmen
+            if (p != null)
+            {
+                newProd.Produzent = ctx.Produzent.FirstOrDefault(x => x.Name == produzent.Name);
+                TextBox tb_prod = felderProdukt.GetProd();
+                tb_prod.DataContext = newProd;
+            }
         }
     }
 }
