@@ -17,5 +17,6 @@
             <!--<Button Height="50" Content="test" Click="Button_Click_2"/>-->
             <TextBlock x:Name="Alert" Text="Login fehlgeschlagen" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         </StackPanel>
+        <ProgressBar VerticalAlignment="Bottom" Name="progressBar" Height="20"/>
     </Grid>
 </Window>

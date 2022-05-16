@@ -6,6 +6,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Verwaltungsprogramm_Vinothek.Properties;
@@ -20,6 +21,11 @@ namespace Verwaltungsprogramm_Vinothek
     {
         VinothekContext ctx = new VinothekContext();
         Benutzer user;
+        public double Progress
+        {
+            get { return progressBar.Value; }
+            set { progressBar.Value = value; }
+        }
         public Window_Anmelden()
         {
             InitializeComponent();
@@ -62,20 +68,20 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
             ctx.Benutzer.Load();
             if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
+                Button b = (Button)sender;
+                b.IsEnabled = false;
                 user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
                 Logins login = new Logins();
                 login.ID_Benutzer = user.ID_Benutzer;
                 login.Datum = DateTime.Now;
                 ctx.Logins.Add(login);
                 ctx.SaveChanges();
-                StartSplashScreen();
-                Close();
+                ProgressBar();
             }
             else
                 Alert.Visibility = Visibility.Visible;
@@ -85,23 +91,22 @@ namespace Verwaltungsprogramm_Vinothek
             if (e.Key == Key.Enter)
                 Button_Click(null,null);
         }
-        private void StartSplashScreen()
-        {
-            Window_SplashScreen splashScreen = new Window_SplashScreen();
-            splashScreen.Show();      
+        
+        private void ProgressBar()
+        {            
             Task.Factory.StartNew(() =>
             {
                 for (int i = 1; i <= 100; i++)
                 {
-                    System.Threading.Thread.Sleep(10);                   
-                    splashScreen.Dispatcher.Invoke(() => splashScreen.Progress = i);
+                    System.Threading.Thread.Sleep(5);
+                    Dispatcher.Invoke(() => Progress = i);
                 }
 
                 Dispatcher.Invoke(() =>
                 {
                     MainWindow mainWindow = new MainWindow(user);
                     mainWindow.Show();
-                    splashScreen.Close();
+                    Close();
                 });
             });
         }

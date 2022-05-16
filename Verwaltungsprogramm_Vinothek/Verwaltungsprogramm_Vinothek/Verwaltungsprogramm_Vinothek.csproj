@@ -29,6 +29,7 @@
     <ApplicationRevision>1</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
+    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -204,9 +205,6 @@
     <Compile Include="Windows\Window_Anmelden.xaml.cs">
       <DependentUpon>Window_Anmelden.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Windows\Window_SplashScreen.xaml.cs">
-      <DependentUpon>Window_SplashScreen.xaml</DependentUpon>
-    </Compile>
     <Page Include="Pages\Page_Add_Produkt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -300,10 +298,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Windows\Window_Anmelden.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Windows\Window_SplashScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
