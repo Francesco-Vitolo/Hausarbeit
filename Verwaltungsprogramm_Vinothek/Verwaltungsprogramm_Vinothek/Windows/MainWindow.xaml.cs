@@ -35,25 +35,25 @@ namespace Verwaltungsprogramm_Vinothek
             string name = b.Name;
             switch (name)
             {
-                case "_0":
+                case "Option_0":
                     Frame_Main.Content = new Page_MainMenu();
                     break;
-                case "_1":
+                case "Option_1":
                     Frame_Main.Content = new Page_Grid_List("ListeProdukte");
                     break;
-                case "_2":
+                case "Option_2":
                     Frame_Main.Content = new Page_Grid_List("ListeProduzenten");
                     break;
-                case "_3":
+                case "Option_3":
                     Frame_Main.Content = new Page_Grid_List("ListeEvents");
                     break;
-                case "_4":
+                case "Option_4":
                     Frame_Main.Content = new Page_Add_Produkt();
                     break;
-                case "_5":
+                case "Option_5":
                     Frame_Main.Content = new Page_Add_Produzent();
                     break;
-                case "_6":
+                case "Option_6":
                     Frame_Main.Content = new Page_Add_Veranstaltung();
                     break;
             }

@@ -27,7 +27,7 @@ namespace Verwaltungsprogramm_Vinothek
             ResizeMode = ResizeMode.NoResize;
             TextBlock t = new TextBlock() { Text = text, HorizontalAlignment = HorizontalAlignment.Center, TextWrapping = TextWrapping.Wrap };
             Text.Children.Add(t);
-            Btn_ja.Focus();
+            btn_ja.Focus();
         }
         private void Button_Click_Ja(object sender, RoutedEventArgs e)
         {

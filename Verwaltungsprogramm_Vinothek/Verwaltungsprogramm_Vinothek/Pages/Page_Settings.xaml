@@ -51,17 +51,17 @@
                 <Button Click="Color_Click"  Style="{StaticResource Button_TextContent}"/>
             </WrapPanel>
 
-            <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center">
+            <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" ToolTip="Standard - Verzeichnis">
                 <Image Source="..\Pictures\dir.png"/>
             </Button>
 
 
             <WrapPanel Grid.Column="2" Grid.Row="4" HorizontalAlignment="Center" VerticalAlignment="Center">
-                <Button Name="UserVerwaltungBtn" Click="Button_User">
+                <Button Name="UserVerwaltungBtn" Click="Button_User" ToolTip="Nutzerverwaltung">
                     <Image Source="..\Pictures\avatar.png"/>
                 </Button>
 
-                <Button Name="Logins" Click="Button_Logins">
+                <Button Name="Logins" Click="Button_Logins" ToolTip="Logins">
                     <Image Source="..\Pictures\logins.png"/>
                 </Button>
             </WrapPanel>

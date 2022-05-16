@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data.Entity;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography;
@@ -30,6 +31,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            //Process.Start("sqllocaldb.exe");
             SetButtonFarbe();
             SetDirectory();
             Demo();
@@ -68,6 +70,7 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+                ProgressBar();
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
             ctx.Benutzer.Load();
@@ -81,7 +84,6 @@ namespace Verwaltungsprogramm_Vinothek
                 login.Datum = DateTime.Now;
                 ctx.Logins.Add(login);
                 ctx.SaveChanges();
-                ProgressBar();
             }
             else
                 Alert.Visibility = Visibility.Visible;
@@ -89,25 +91,25 @@ namespace Verwaltungsprogramm_Vinothek
         private void Window_KeyUp_Enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                Button_Click(null,null);
+                Button_Click(null, null);
         }
-        
-        private void ProgressBar()
-        {            
-            Task.Factory.StartNew(() =>
+
+        private async void ProgressBar()
+        {
+            await ProgressBarTask();
+            MainWindow mainWindow = new MainWindow(user);
+            mainWindow.Show();
+            Close();
+        }
+        private Task ProgressBarTask()
+        {
+            return Task.Run(() =>
             {
                 for (int i = 1; i <= 100; i++)
                 {
-                    System.Threading.Thread.Sleep(5);
+                    System.Threading.Thread.Sleep(2);
                     Dispatcher.Invoke(() => Progress = i);
                 }
-
-                Dispatcher.Invoke(() =>
-                {
-                    MainWindow mainWindow = new MainWindow(user);
-                    mainWindow.Show();
-                    Close();
-                });
             });
         }
     }

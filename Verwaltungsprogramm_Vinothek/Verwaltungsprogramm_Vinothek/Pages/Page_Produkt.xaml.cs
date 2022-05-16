@@ -149,7 +149,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e) //Nächstes Obj
-        {          
+        {
             collectionView.MoveCurrentToNext();
             if (collectionView.IsCurrentAfterLast)
             {
@@ -158,6 +158,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             prod = (Produkt)collectionView.CurrentItem;
             prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             DataContext = prod;
+            pic.DataContext = prod;
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e) //Vorheriges Obj
@@ -170,6 +171,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             prod = (Produkt)collectionView.CurrentItem;
             prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
             DataContext = prod;
+            pic.DataContext = prod;
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)

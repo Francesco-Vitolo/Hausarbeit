@@ -54,13 +54,13 @@
                         <Setter Property="Height" Value="40"/>
                     </Style>
                 </StackPanel.Resources>
-                <Button x:Name="_0" Content="Home" Click="Button_Click_Expander"/>
-                <Button x:Name="_1" Content="Übersicht Produkte" Click="Button_Click_Expander"/>
-                <Button x:Name="_2" Content="Übersicht Produzenten" Click="Button_Click_Expander"/>
-                <Button x:Name="_3" Content="Übersicht Events" Click="Button_Click_Expander"/>
-                <Button x:Name="_4" Content="Produkt hinzufügen" Click="Button_Click_Expander"/>
-                <Button x:Name="_5" Content="Produzent hinzufügen" Click="Button_Click_Expander"/>
-                <Button x:Name="_6" Content="Event hinzufügen" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_0" Content="Home" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_1" Content="Übersicht Produkte" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_2" Content="Übersicht Produzenten" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_3" Content="Übersicht Events" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_4" Content="Produkt hinzufügen" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_5" Content="Produzent hinzufügen" Click="Button_Click_Expander"/>
+                <Button x:Name="Option_6" Content="Event hinzufügen" Click="Button_Click_Expander"/>
             </StackPanel>
         </Expander>
 

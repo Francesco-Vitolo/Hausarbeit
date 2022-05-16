@@ -45,13 +45,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             newProd.Aktiv = true;
 
-            newProd.Beschreibung = felderProdukt.GetDesc().Text;            
+            newProd.Beschreibung = felderProdukt.GetDesc().Text;
 
             if (tbs[0].Text == "" || produzent == null)
             {
-                WM = new Window_Messagebox("Bitte Name und Weingut eingeben");
+                WM = new Window_Messagebox("Bitte Namen und Weingut eingeben");
                 WM.ShowDialog();
-                return;
             }
             else
             {
@@ -63,17 +62,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e) //Bild auswählen und un byte - Array umwandeln
         {
             string imgPath = SelectFile.Image();
-
             if (imgPath != null)
             {
                 ImgSrc.Text = "Pfad: " + imgPath;
                 byte[] binaryPic = Imageconverter.ConvertImageToByteArray(imgPath);
                 newProd.Picture = binaryPic;
             }
-        }
-        private void Button_Previous_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService.GoBack();
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e) //Datacontext zurücksetzen
@@ -98,9 +92,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
             WSP.ShowDialog();
-            produzent = (Produzent)WSP.GetObj();
-            Produzent p = (Produzent)WSP.GetObj(); //Produzent nehmen
-            if (p != null)
+            produzent = (Produzent)WSP.GetObj(); //Produzent nehmen
+            if (produzent != null)
             {
                 newProd.Produzent = ctx.Produzent.FirstOrDefault(x => x.Name == produzent.Name);
                 TextBox tb_prod = felderProdukt.GetProd();

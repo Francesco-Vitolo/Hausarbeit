@@ -60,6 +60,7 @@
                         <Setter Property="FontSize" Value="24"/>
                         <Setter Property="IsEnabled" Value="False"/>
                         <Setter Property="Padding" Value="50,0"/>
+                        <Setter Property="Background" Value="Transparent"/>
                     </Style>
                     <Style TargetType="Button" >
                         <Setter Property="OverridesDefaultStyle" Value="True"/>
