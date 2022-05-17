@@ -12,9 +12,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Logins()
         {
             InitializeComponent();
-            VinothekContext ctx = new VinothekContext();
-            ctx.Logins.Load();
-            datagrid.DataContext = ctx.Logins.Local.Reverse();            
+            VinothekContext ctx = ContextHelper.GetContext();
+            datagrid.DataContext = ctx.Logins.Local.Reverse();
         }
     }
 }

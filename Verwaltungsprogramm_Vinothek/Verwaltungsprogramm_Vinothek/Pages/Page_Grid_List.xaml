@@ -56,7 +56,7 @@
             </StackPanel>
             <Separator/>
             <Button x:Name="Refresh" Click="Refresh_Click" ToolTip="Aktualisieren" >
-            <Image Source="..\Pictures\refresh.png"/>
+                <Image Source="..\Pictures\refresh.png"/>
             </Button>
             <Separator/>
             <Button x:Name="Add" Click="Add_Click" ToolTip="Hinzufügen" >

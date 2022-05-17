@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -21,10 +10,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Produzent : Page
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         public Page_Add_Produzent()
         {
             InitializeComponent();
+            ctx = ContextHelper.GetContext();
         }
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
@@ -48,7 +38,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
             else
             {
-                Window_Messagebox WM = new Window_Messagebox("Bitte Name eingeben");
+                Window_Messagebox WM = new Window_Messagebox("Bitte Namen eingeben");
                 WM.ShowDialog();
             }
         }

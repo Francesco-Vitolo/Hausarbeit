@@ -20,8 +20,8 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Anmelden : Window
     {
-        VinothekContext ctx = new VinothekContext();
-        Benutzer user;
+        private VinothekContext ctx;
+        private Benutzer user;
         public double Progress
         {
             get { return progressBar.Value; }
@@ -31,7 +31,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            //Process.Start("sqllocaldb.exe");
+            InitializeContext();
             SetButtonFarbe();
             SetDirectory();
             Demo();
@@ -43,6 +43,12 @@ namespace Verwaltungsprogramm_Vinothek
             tb_pw.Password = "admin";
         }
 
+        private void InitializeContext()
+        {
+            ContextHelper.SetNewContext();
+            ContextHelper.LoadTables();
+            ctx = ContextHelper.GetContext();
+        }
         private void SetDirectory()
         {
             if (Settings.Default.PDF_Directory == null)
@@ -70,14 +76,12 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-                ProgressBar();
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
-            ctx.Benutzer.Load();
             if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
-                Button b = (Button)sender;
-                b.IsEnabled = false;
+                ProgressBar();
+                btn_Anmelden.IsEnabled = false;
                 user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
                 Logins login = new Logins();
                 login.ID_Benutzer = user.ID_Benutzer;

@@ -35,6 +35,9 @@
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
                     <Image Source="..\Pictures\save.png"/>
                 </Button>
+                <Button x:Name="Refresh" Click="Refresh_Click" ToolTip="Aktualisieren" >
+                    <Image Source="..\Pictures\refresh.png"/>
+                </Button>
                 <Button Click="Button_Click_OpenMail">
                     <Image Source="..\Pictures\mail.png"/>
                 </Button>

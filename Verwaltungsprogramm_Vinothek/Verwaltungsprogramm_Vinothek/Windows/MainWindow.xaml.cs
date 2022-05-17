@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,7 +25,7 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             this.user = user;
-            this.user.Passwort = null;
+            //this.user.Passwort = null;
             tb_username.DataContext = this.user;
             Frame_Main.Content = new Page_MainMenu();
         }

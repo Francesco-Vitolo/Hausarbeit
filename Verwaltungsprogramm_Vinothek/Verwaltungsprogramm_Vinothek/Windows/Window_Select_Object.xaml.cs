@@ -21,7 +21,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Select_Object : Window
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private object obj = null;
         private string gridType;
         private ICollectionView collection;
@@ -29,6 +29,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
+            ctx = ContextHelper.GetContext();
             this.gridType = gridType;
             if (gridType == "ListeProdukte")
             {

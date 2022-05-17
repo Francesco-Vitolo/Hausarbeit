@@ -247,13 +247,13 @@ values
 ('023',				'Spuamnte','DOC','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2004  ),
 ('024',				'Weiﬂwein','IGT','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2001);
 
---INSERT INTO Event
---Values
---('Weinprobe',20,'02.02.2022','19:00'),
---('Weinprobe',8,'13.04.2022','18:00'),
---('Weinprobe',150,'05.06.2022','19:00'),
---('Weinprobe',8,'06.09.2022','19:00'),
---('Weinprobe',16,'27.10.2022','20:15');
+INSERT INTO Event
+Values
+('Weinprobe',20,'2022-02-02','19:00'),
+('Weinprobe',8,'2022-04-13','18:00'),
+('Weinprobe',150,'2022-06-05','19:00'),
+('Weinprobe',8,'2022-09-06','19:00'),
+('Weinprobe',16,'2022-10-24','20:15');
 
 INSERT INTO EventPos Values 
 (3000,9000),

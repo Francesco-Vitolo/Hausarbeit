@@ -17,7 +17,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Veranstaltung : Page
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private Event veranstaltung;
         private List<Produkt> PRODS = new List<Produkt>(); //Für datagrid
 
@@ -28,16 +28,17 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Veranstaltung(Event veranstaltung)
         {
             InitializeComponent();
+            ctx = ContextHelper.GetContext();
             this.veranstaltung = ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
             DataContext = this.veranstaltung;
-            CreateDataGrid.Produkt(data);
-            ctx.EventPos.Load();
+            CreateDataGrid.Produkt(data);           
             EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt
             foreach (var ep in EVNT_POS)
             {
                 PRODS.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt)); 
             }
             data.DataContext = PRODS;
+            
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -46,8 +47,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             if (selected_produzent != null)
             {
                 ICollectionView collectionView = CollectionViewSource.GetDefaultView(PRODS);
-                NavigationService.Navigate(new Page_Produkt(collectionView ));
-
+                NavigationService.Navigate(new Page_Produkt(collectionView));
             }
         }
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -81,6 +81,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             PRODS.Remove(prod); //Aus Datagrid entfernt
             data.DataContext = null;
             data.DataContext = PRODS;
+            DataContext = veranstaltung;
         }
 
         private void AddProd_Click(object sender, RoutedEventArgs e)
@@ -112,12 +113,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
+
             List<Produkt> listRefresh = new List<Produkt>();
-            ctx = new VinothekContext(); //neuer ctx
-            ctx.Produkt.Load();
-            foreach(var prod in PRODS)
+            ContextHelper.SetNewContext();
+            ctx = ContextHelper.GetContext();
+            foreach (var prod in PRODS)
             {
-               listRefresh.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
+                listRefresh.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
             }
             PRODS = listRefresh;
             data.DataContext = null;

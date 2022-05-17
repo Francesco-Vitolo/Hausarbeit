@@ -21,7 +21,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     public partial class Page_Produkt : Page
     {
         private Produkt prod;
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private Window_PDF_Viewer WPDF;
         private Window_Messagebox WM;
         private ICollectionView collectionView;
@@ -29,8 +29,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Produkt(ICollectionView collectionView)
         {
             InitializeComponent();
-            ctx.Produkt.Load();
-            ctx.Produzent.Load();
+            ctx = ContextHelper.GetContext();
             this.collectionView = collectionView;
             prod = (Produkt)this.collectionView.CurrentItem;
             prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);

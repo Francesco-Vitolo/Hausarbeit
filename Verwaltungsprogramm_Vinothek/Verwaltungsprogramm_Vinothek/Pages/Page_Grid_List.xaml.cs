@@ -14,7 +14,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 {
     public partial class Page_Grid_List : Page
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private ICollectionView collectionView;
         private string gridType;
         private Window_Abfrage WA;
@@ -25,6 +25,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
+            ctx = ContextHelper.GetContext();
             this.gridType = gridType;
             CreateDG();
             totalItemsGrid = collectionView.Cast<object>().Count().ToString();
@@ -32,13 +33,14 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             tbSearch.Focus();
         }
 
-        private async void asyncRefresh()
-        {
-            while (true)
-            {
-                await Timer(5000);
-            }
-        }
+        //private async void asyncRefresh()
+        //{
+        //    while (true)
+        //    {
+        //        await Timer(5000);
+        //    }
+        //}
+
         private Task Timer(int i)
         {
             return Task.Run(() =>
@@ -56,14 +58,12 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     CreateDataGrid.Produkt(datagrid);
                     CreateDataGrid.ProduktFilter(cb_filter);                    //Combobox füllen (ORDER BY)
                     filteroptions = CreateDataGrid.GetFilterNamesProdukte();    //Binding Namen für GridColumns
-                    ctx.Produkt.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name)); //ORDER BY Name ist Default
                     datagrid.DataContext = collectionView;
                     break;
 
                 case "ListeProduzenten":
                     CreateDataGrid.Produzent(datagrid);
-                    ctx.Produzent.Load();
                     CreateDataGrid.ProduzentFilter(cb_filter);
                     filteroptions =  CreateDataGrid.GetFilterNamesProduzenten();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
@@ -74,7 +74,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     CreateDataGrid.Event(datagrid);
                     CreateDataGrid.EventFilter(cb_filter);
                     filteroptions = CreateDataGrid.GetFilterNamesEvents();
-                    ctx.Event.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum)); //ORDER BY Datum
                     datagrid.DataContext = collectionView;
                     break;
@@ -126,19 +125,18 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
-            ctx = new VinothekContext(); //neuer ctx
+            ContextHelper.SetNewContext();
+            ctx = ContextHelper.GetContext();
+            ContextHelper.LoadTables();
             switch (gridType)
             {
                 case "ListeProdukte":
-                    ctx.Produkt.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeProduzenten":
-                    ctx.Produzent.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeEvents":
-                    ctx.Event.Load();
                     collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum));
                     break;
             }

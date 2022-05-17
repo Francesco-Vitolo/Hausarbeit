@@ -117,6 +117,7 @@
     <Compile Include="EventPos.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContextHelper.cs" />
     <Compile Include="Imageconverter.cs" />
     <Compile Include="Logins.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>

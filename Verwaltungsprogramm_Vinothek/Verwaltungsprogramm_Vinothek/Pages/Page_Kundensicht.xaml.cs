@@ -28,11 +28,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             InitializeComponent();
             r = new Random();
-            VinothekContext ctx = new VinothekContext();
+            VinothekContext ctx = ContextHelper.GetContext();
             var MainW = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             MainW.GoBack.Visibility = Visibility.Hidden;    //Button_zurück und Menü unsichtbar machen
             MainW.expander.Visibility = Visibility.Hidden;
-            ctx.Produkt.Load();
             var listProdukte = ctx.Produkt.Where(x => x.Picture != null && x.Aktiv == true && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
             foreach (var prod in listProdukte)
             {

@@ -15,14 +15,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     public partial class Page_Add_Veranstaltung : Page
     {
         private List<Produkt> listProd = new List<Produkt>();
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         public Page_Add_Veranstaltung()
         {
             InitializeComponent();
             CreateDataGrid.Produkt(data);
             data.DataContext = listProd;
-            ctx.Event.Load();
-            ctx.EventPos.Load();
+            ctx = ContextHelper.GetContext();
         }
 
         private void AddProd_Click(object sender, RoutedEventArgs e)

@@ -12,14 +12,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Produkt : Page
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private Produkt newProd = new Produkt();
         private Produzent produzent = null;
         public Page_Add_Produkt()
         {
             InitializeComponent();
-            ctx.Produkt.Load();
-            ctx.Produzent.Load();
+            ctx = ContextHelper.GetContext();
         }
 
         private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)

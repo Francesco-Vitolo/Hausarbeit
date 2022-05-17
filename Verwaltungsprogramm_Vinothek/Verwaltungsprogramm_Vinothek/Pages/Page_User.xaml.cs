@@ -1,18 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.Entity;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -22,13 +10,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_User : Page
     {
-        private VinothekContext ctx = new VinothekContext();
+        private VinothekContext ctx;
         private Benutzer user;
         private Window_Messagebox WM;
         public Page_User()
         {
             InitializeComponent();
-            ctx.Benutzer.Load();
+            ctx = ContextHelper.GetContext();
             DataContext = ctx.Benutzer.Local;
         }  
 
