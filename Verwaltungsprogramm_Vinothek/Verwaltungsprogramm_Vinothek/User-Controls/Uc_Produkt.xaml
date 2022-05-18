@@ -3,12 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
-             mc:Ignorable="d" 
-         d:DesignHeight="1000" d:DesignWidth="1000">
+             mc:Ignorable="d" d:DesignHeight="1000" d:DesignWidth="1000">
+    
     <Grid x:Name="stackpanel">
-       
-            <Grid.ColumnDefinitions>
+        <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="50"/>
@@ -34,7 +32,7 @@
         <TextBox Grid.Column="1" Grid.Row="1" Text="{Binding Art}" MaxLength="50"/>
         <TextBox Grid.Column="1" Grid.Row="2" Text="{Binding Qualitätssiegel}" MaxLength="50"/>
         <TextBox Grid.Column="1" Grid.Row="3" Text="{Binding Jahrgang}" MaxLength="10"/>
-        <TextBox Grid.Column="1" Grid.Row="4" Text="{Binding Rebsorten}" MaxLength="50"/>
+        <TextBox Grid.Column="1" Grid.Row="4" Grid.ColumnSpan="3" Text="{Binding Rebsorten}" MaxLength="50"/>
         
         <TextBlock Grid.Column="3" Grid.Row="0" Text="Produzent"/>
         <TextBlock Grid.Column="3" Grid.Row="1" Text="Geschmack"/>

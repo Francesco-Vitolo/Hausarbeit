@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.Entity;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
@@ -14,22 +13,22 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 {
     public partial class Page_Grid_List : Page
     {
-        private VinothekContext ctx;
-        private ICollectionView collectionView;
-        private string gridType;
-        private Window_Abfrage WA;
-        private Window_Messagebox WM;
-        private SortDescription currentSortDesc;
-        private string[] filteroptions = new string[11];
-        private string totalItemsGrid;
+        private VinothekContext Ctx { get; set; }
+        private ICollectionView CollectionView { get; set; }
+        private string GridType { get; }
+        private Window_Abfrage WA { get; set; }
+        private Window_Messagebox WM { get; set; }
+        private SortDescription CurrentSortDesc { get; set; }
+        private string[] Filteroptions { get; set; } = new string[11];
+        private string TotalItemsGrid { get; set; }
         public Page_Grid_List(string gridType)
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
-            this.gridType = gridType;
+            Ctx = ContextHelper.GetContext();
+            GridType = gridType;
             CreateDG();
-            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
-            labelResults.DataContext = totalItemsGrid;
+            TotalItemsGrid = CollectionView.Cast<object>().Count().ToString();
+            labelResults.DataContext = TotalItemsGrid;
             tbSearch.Focus();
         }
 
@@ -52,30 +51,30 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void CreateDG()
         {
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    CreateDataGrid.Produkt(datagrid);
+                    datagrid = CreateDataGrid.Produkt(datagrid);
                     CreateDataGrid.ProduktFilter(cb_filter);                    //Combobox füllen (ORDER BY)
-                    filteroptions = CreateDataGrid.GetFilterNamesProdukte();    //Binding Namen für GridColumns
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name)); //ORDER BY Name ist Default
-                    datagrid.DataContext = collectionView;
+                    Filteroptions = CreateDataGrid.GetFilterNamesProdukte();    //Binding Namen für GridColumns
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produkt.Local.OrderBy(x => x.Name)); //ORDER BY Name ist Default
+                    datagrid.DataContext = CollectionView;
                     break;
 
                 case "ListeProduzenten":
-                    CreateDataGrid.Produzent(datagrid);
+                    datagrid = CreateDataGrid.Produzent(datagrid);
                     CreateDataGrid.ProduzentFilter(cb_filter);
-                    filteroptions =  CreateDataGrid.GetFilterNamesProduzenten();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
-                    datagrid.DataContext = collectionView;
+                    Filteroptions =  CreateDataGrid.GetFilterNamesProduzenten();
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local.OrderBy(x => x.Name));
+                    datagrid.DataContext = CollectionView;
                     break;
 
                 case "ListeEvents":
-                    CreateDataGrid.Event(datagrid);
+                    datagrid = CreateDataGrid.Event(datagrid);
                     CreateDataGrid.EventFilter(cb_filter);
-                    filteroptions = CreateDataGrid.GetFilterNamesEvents();
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum)); //ORDER BY Datum
-                    datagrid.DataContext = collectionView;
+                    Filteroptions = CreateDataGrid.GetFilterNamesEvents();
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Event.Local.OrderBy(x => x.Datum)); //ORDER BY Datum
+                    datagrid.DataContext = CollectionView;
                     break;
             }
             cb_filter_DropDownClosed(null, null);
@@ -84,39 +83,39 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
             string filterStr = tbSearch.Text.ToLower(); //Suche
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    collectionView.Filter = x => ((Produkt)x).Name.ToLower().Contains(filterStr);
+                    CollectionView.Filter = x => ((Produkt)x).Name.ToLower().Contains(filterStr);
                     break;
                 case "ListeProduzenten":
-                    collectionView.Filter = x => ((Produzent)x).Name.ToLower().Contains(filterStr);
+                    CollectionView.Filter = x => ((Produzent)x).Name.ToLower().Contains(filterStr);
                     break;
                 case "ListeEvents":
-                    collectionView.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
+                    CollectionView.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
                     break;
             }
-            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
+            TotalItemsGrid = CollectionView.Cast<object>().Count().ToString();
             labelResults.DataContext = null;
-            labelResults.DataContext = totalItemsGrid;
+            labelResults.DataContext = TotalItemsGrid;
         }
        
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (collectionView.CurrentItem != null)
+            if (CollectionView.CurrentItem != null)
             {
-                switch (gridType)
+                switch (GridType)
                 {
                     case "ListeProdukte":
-                        Produkt selected_produkt = (Produkt)collectionView.CurrentItem;
-                        NavigationService.Navigate(new Page_Produkt(collectionView));
+                        Produkt selected_produkt = (Produkt)CollectionView.CurrentItem;
+                        NavigationService.Navigate(new Page_Produkt(CollectionView));
                         break;
                     case "ListeProduzenten":
-                        Produzent selected_produzent = (Produzent)collectionView.CurrentItem;
+                        Produzent selected_produzent = (Produzent)CollectionView.CurrentItem;
                         NavigationService.Navigate(new Page_Produzent(selected_produzent));
                         break;
                     case "ListeEvents":
-                        Event selected_event = (Event)collectionView.CurrentItem;
+                        Event selected_event = (Event)CollectionView.CurrentItem;
                         NavigationService.Navigate(new Page_Veranstaltung(selected_event));
                         break;
                 }
@@ -126,72 +125,72 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         private void Refresh_Click(object sender, RoutedEventArgs e)
         {
             ContextHelper.SetNewContext();
-            ctx = ContextHelper.GetContext();
+            Ctx = ContextHelper.GetContext();
             ContextHelper.LoadTables();
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produkt.Local.OrderBy(x => x.Name));
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produkt.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeProduzenten":
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Produzent.Local.OrderBy(x => x.Name));
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local.OrderBy(x => x.Name));
                     break;
                 case "ListeEvents":
-                    collectionView = CollectionViewSource.GetDefaultView(ctx.Event.Local.OrderBy(x => x.Datum));
+                    CollectionView = CollectionViewSource.GetDefaultView(Ctx.Event.Local.OrderBy(x => x.Datum));
                     break;
             }
-            datagrid.DataContext = collectionView;
+            datagrid.DataContext = CollectionView;
             cb_filter.SelectedIndex = 0;
 
-            totalItemsGrid = collectionView.Cast<object>().Count().ToString();
+            TotalItemsGrid = CollectionView.Cast<object>().Count().ToString();
             labelResults.DataContext = null;
-            labelResults.DataContext = totalItemsGrid;
+            labelResults.DataContext = TotalItemsGrid;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            if (gridType == "ListeProdukte")
+            if (GridType == "ListeProdukte")
             {
                 NavigationService.Navigate(new Page_Add_Produkt());
             }
-            else if (gridType == "ListeProduzenten")
+            else if (GridType == "ListeProduzenten")
             {
                 NavigationService.Navigate(new Page_Add_Produzent());
             }
-            else if (gridType == "ListeEvents")
+            else if (GridType == "ListeEvents")
             {
                 NavigationService.Navigate(new Page_Add_Veranstaltung());
             }
-            collectionView.Refresh();
+            CollectionView.Refresh();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
         {
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    Produkt deleted_Produ = (Produkt)collectionView.CurrentItem;
+                    Produkt deleted_Produ = (Produkt)CollectionView.CurrentItem;
                     WA = new Window_Abfrage($"Soll {deleted_Produ.Name} gelöscht werden"); //Abfrage
                     WA.ShowDialog();
                     if (WA.GetOption()) //Option Ja oder Nein
                     {
-                        ctx.Produkt.Remove(deleted_Produ); // löschen
-                        var list = ctx.EventPos.Where(x => x.ID_Produkt == deleted_Produ.ID_Produkt).ToList();
-                        list.ForEach(x => ctx.EventPos.Remove(x));
+                        Ctx.Produkt.Remove(deleted_Produ); // löschen
+                        var list = Ctx.EventPos.Where(x => x.ID_Produkt == deleted_Produ.ID_Produkt).ToList();
+                        list.ForEach(x => Ctx.EventPos.Remove(x));
                         WM = new Window_Messagebox(deleted_Produ.Name + " wurde gelöscht.");
                         WM.ShowDialog();
                     }
                     break;
 
                 case "ListeProduzenten":
-                    Produzent deleted_Prodz = (Produzent)collectionView.CurrentItem;
+                    Produzent deleted_Prodz = (Produzent)CollectionView.CurrentItem;
                     WA = new Window_Abfrage($"Soll {deleted_Prodz.Name} gelöscht werden");
                     WA.ShowDialog();
                     if (WA.GetOption())
                     {
-                        if (ctx.Produkt.FirstOrDefault(x => x.ID_Produzent == deleted_Prodz.ID_Produzent) == null) //Prüfen, ob Produzent noch Teil von Produkt ist
+                        if (Ctx.Produkt.FirstOrDefault(x => x.ID_Produzent == deleted_Prodz.ID_Produzent) == null) //Prüfen, ob Produzent noch Teil von Produkt ist
                         {
-                            ctx.Produzent.Remove(deleted_Prodz);
+                            Ctx.Produzent.Remove(deleted_Prodz);
                             WM = new Window_Messagebox(deleted_Prodz.Name + " wurde gelöscht.");
                             WM.ShowDialog();
                         }
@@ -204,63 +203,63 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
 
                 case "ListeEvents":
-                    Event deleted_Event = (Event)collectionView.CurrentItem;
+                    Event deleted_Event = (Event)CollectionView.CurrentItem;
                     WA = new Window_Abfrage($"Soll {deleted_Event.Name} gelöscht werden");
                     WA.ShowDialog();
                     if (WA.GetOption())
                     {
-                        ctx.Event.Remove(deleted_Event);
-                        ctx.EventPos.Where(x => x.ID_Veranstaltung == deleted_Event.ID_Veranstaltung).ToList().ForEach(x => ctx.EventPos.Remove(x)); //Event-ID aus EventPos löschen 
+                        Ctx.Event.Remove(deleted_Event);
+                        Ctx.EventPos.Where(x => x.ID_Veranstaltung == deleted_Event.ID_Veranstaltung).ToList().ForEach(x => Ctx.EventPos.Remove(x)); //Event-ID aus EventPos löschen 
                         WM = new Window_Messagebox(deleted_Event.Name + " wurde gelöscht.");
                     }
                     break;
             }
-            ctx.SaveChanges();
+            Ctx.SaveChanges();
             Refresh_Click(null, null);
         }
 
         private void Duplicate_Click(object sender, RoutedEventArgs e)
         {
             object DuplicateObj = null;
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    DuplicateObj = ctx.Produkt.Add((Produkt)collectionView.CurrentItem);
+                    DuplicateObj = Ctx.Produkt.Add((Produkt)CollectionView.CurrentItem);
                     break;
                 case "ListeProduzenten":
-                    DuplicateObj = ctx.Produzent.Add((Produzent)collectionView.CurrentItem);
+                    DuplicateObj = Ctx.Produzent.Add((Produzent)CollectionView.CurrentItem);
                     break;
                 case "ListeEvents":
-                    Event evnt = (Event)collectionView.CurrentItem;
+                    Event evnt = (Event)CollectionView.CurrentItem;
                     DuplicateObj = evnt;
-                    var list = ctx.EventPos.Where(x => x.ID_Veranstaltung == evnt.ID_Veranstaltung).ToList();
-                    ctx.Event.Add(evnt);
-                    ctx.SaveChanges();      //Muss gespeichert werden, um ID zu erhalten (weil automatisch generiert)
+                    var list = Ctx.EventPos.Where(x => x.ID_Veranstaltung == evnt.ID_Veranstaltung).ToList();
+                    Ctx.Event.Add(evnt);
+                    Ctx.SaveChanges();      //Muss gespeichert werden, um ID zu erhalten (weil automatisch generiert)
                     foreach (var item in list)
                     {
                         EventPos EP = new EventPos();   //Dann in EventPos - Tabelle eintragen
                         EP.ID_Veranstaltung = evnt.ID_Veranstaltung;
                         EP.ID_Produkt = item.ID_Produkt;
-                        ctx.EventPos.Add(EP);
+                        Ctx.EventPos.Add(EP);
                     }
                     break;
             }
-            ctx.SaveChanges();
+            Ctx.SaveChanges();
             Refresh_Click(null, null);
             datagrid.ScrollIntoView(DuplicateObj);
         }
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren
         {
-            collectionView.SortDescriptions.Clear();
+            CollectionView.SortDescriptions.Clear();
             int direction = 0;
             if ((bool)RB_Desc.IsChecked)
                 direction = 1;
 
-            currentSortDesc = new SortDescription(filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);
-            collectionView.SortDescriptions.Add(currentSortDesc); //collectionview wird sortiert --> datagrid
+            CurrentSortDesc = new SortDescription(Filteroptions[cb_filter.SelectedIndex], (ListSortDirection)direction);
+            CollectionView.SortDescriptions.Add(CurrentSortDesc); //collectionview wird sortiert --> datagrid
 
-            if (currentSortDesc.Direction == 0) //Radiobuttons belegen
+            if (CurrentSortDesc.Direction == 0) //Radiobuttons belegen
             {
                 RB_Asc.IsChecked = true;
             }

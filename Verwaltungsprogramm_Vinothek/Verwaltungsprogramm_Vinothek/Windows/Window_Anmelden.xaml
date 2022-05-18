@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Window_Anmelden" Height="400" Width="500" KeyUp="Window_KeyUp_Enter" ResizeMode="NoResize">
     <Grid>
-        <local:Uc_Default/>
+        <local:Uc_Titlebar/>
         <StackPanel HorizontalAlignment="Stretch" Margin="5">
             <Image Source="..\Pictures\Logo.png" Margin="0,70,0,20" Width="400"/>
             <TextBox Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tb_username" />

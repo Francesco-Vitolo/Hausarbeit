@@ -1,17 +1,10 @@
 ﻿using System;
-using System.Data.Entity;
-using System.Diagnostics;
-using System.Drawing;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using Verwaltungsprogramm_Vinothek.Properties;
-using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -20,8 +13,8 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Anmelden : Window
     {
-        private VinothekContext ctx;
-        private Benutzer user;
+        private VinothekContext Ctx { get; set; }
+        private Benutzer User { get; set; }
         public double Progress
         {
             get { return progressBar.Value; }
@@ -47,7 +40,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             ContextHelper.SetNewContext();
             ContextHelper.LoadTables();
-            ctx = ContextHelper.GetContext();
+            Ctx = ContextHelper.GetContext();
         }
         private void SetDirectory()
         {
@@ -78,16 +71,16 @@ namespace Verwaltungsprogramm_Vinothek
         {
             string username = tb_username.Text;
             string pw = Encrypt.getHash(tb_pw.Password);
-            if (ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
+            if (Ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
                 ProgressBar();
                 btn_Anmelden.IsEnabled = false;
-                user = ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
+                User = Ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
                 Logins login = new Logins();
-                login.ID_Benutzer = user.ID_Benutzer;
+                login.ID_Benutzer = User.ID_Benutzer;
                 login.Datum = DateTime.Now;
-                ctx.Logins.Add(login);
-                ctx.SaveChanges();
+                Ctx.Logins.Add(login);
+                Ctx.SaveChanges();
             }
             else
                 Alert.Visibility = Visibility.Visible;
@@ -101,7 +94,7 @@ namespace Verwaltungsprogramm_Vinothek
         private async void ProgressBar()
         {
             await ProgressBarTask();
-            MainWindow mainWindow = new MainWindow(user);
+            MainWindow mainWindow = new MainWindow(User);
             mainWindow.Show();
             Close();
         }

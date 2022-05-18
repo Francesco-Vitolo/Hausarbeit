@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using Verwaltungsprogramm_Vinothek.Windows;
@@ -12,49 +10,49 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Produkt : Page
     {
-        private VinothekContext ctx;
-        private Produkt newProd = new Produkt();
-        private Produzent produzent = null;
+        private VinothekContext Ctx { get; }
+        private Produkt NewProd { get; set; }
+        private Produzent Produzent { get; set; } = null;
         public Page_Add_Produkt()
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
+            Ctx = ContextHelper.GetContext();
+            NewProd = new Produkt();
         }
 
         private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)
-        {
-            Window_Messagebox WM;
+        {            
             var tbs = felderProdukt.GetTbs(); //Uc_Produkt alle Textboxen
 
-            newProd.Name = tbs[0].Text.Trim(); //Leerzeichen abschneiden
-            newProd.Art = tbs[1].Text;
-            newProd.Qualitätssiegel = tbs[2].Text;
+            NewProd.Name = tbs[0].Text.Trim(); //Leerzeichen abschneiden
+            NewProd.Art = tbs[1].Text;
+            NewProd.Qualitätssiegel = tbs[2].Text;
 
             if (int.TryParse(tbs[3].Text, out int i))
-                newProd.Jahrgang = i;
+                NewProd.Jahrgang = i;
 
-            newProd.Rebsorten = tbs[4].Text;
-            newProd.Geschmack = tbs[6].Text;
+            NewProd.Rebsorten = tbs[4].Text;
+            NewProd.Geschmack = tbs[6].Text;
 
             if (int.TryParse(tbs[7].Text, out i))
-                newProd.Alkoholgehalt = i;
+                NewProd.Alkoholgehalt = i;
 
             if (double.TryParse(tbs[8].Text,out double j))
-                newProd.Preis = j;
+                NewProd.Preis = j;
 
-            newProd.Aktiv = true;
+            NewProd.Aktiv = true;
 
-            newProd.Beschreibung = felderProdukt.GetDesc().Text;
+            NewProd.Beschreibung = felderProdukt.GetDesc().Text;
 
-            if (tbs[0].Text == "" || produzent == null)
+            if (tbs[0].Text == "" || Produzent == null)
             {
-                WM = new Window_Messagebox("Bitte Namen und Weingut eingeben");
+                Window_Messagebox WM = new Window_Messagebox("Bitte Namen und Weingut eingeben");
                 WM.ShowDialog();
             }
             else
             {
-                ctx.Produkt.Add(newProd);
-                ctx.SaveChanges();
+                Ctx.Produkt.Add(NewProd);
+                Ctx.SaveChanges();
                 NavigationService.GoBack();
             }
         }
@@ -65,14 +63,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             {
                 ImgSrc.Text = "Pfad: " + imgPath;
                 byte[] binaryPic = Imageconverter.ConvertImageToByteArray(imgPath);
-                newProd.Picture = binaryPic;
+                NewProd.Picture = binaryPic;
             }
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e) //Datacontext zurücksetzen
         {
-            newProd.Picture = null;
-            newProd.Picture = null;
+            NewProd.Picture = null;
+            NewProd.Picture = null;
             ImgSrc.Text = null;
         }
 
@@ -82,7 +80,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             if (img != null)
             {
                 byte[] binaryPic = Imageconverter.ConvertImageFromClipboard(img);
-                newProd.Picture = binaryPic;
+                NewProd.Picture = binaryPic;
                 ImgSrc.Text = "Aus Zwischenablage";
             }
         }
@@ -91,12 +89,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Select_Object WSP = new Window_Select_Object("ListeProduzenten");
             WSP.ShowDialog();
-            produzent = (Produzent)WSP.GetObj(); //Produzent nehmen
-            if (produzent != null)
+            Produzent = (Produzent)WSP.GetObj(); //Produzent nehmen
+            if (Produzent != null)
             {
-                newProd.Produzent = ctx.Produzent.FirstOrDefault(x => x.Name == produzent.Name);
+                NewProd.Produzent = Ctx.Produzent.FirstOrDefault(x => x.Name == Produzent.Name);
                 TextBox tb_prod = felderProdukt.GetProd();
-                tb_prod.DataContext = newProd;
+                tb_prod.DataContext = NewProd;
             }
         }
     }

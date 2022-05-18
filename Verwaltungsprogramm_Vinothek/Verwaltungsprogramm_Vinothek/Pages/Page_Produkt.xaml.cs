@@ -1,7 +1,5 @@
 ﻿using System;
 using System.ComponentModel;
-using System.Data.Entity;
-using System.Data.SqlClient;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -9,7 +7,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Navigation;
 using Verwaltungsprogramm_Vinothek.Windows;
 
@@ -20,20 +17,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Produkt : Page
     {
-        private Produkt prod;
-        private VinothekContext ctx;
-        private Window_PDF_Viewer WPDF;
-        private Window_Messagebox WM;
-        private ICollectionView collectionView;
-        //string filename überarbeiten
+        private Produkt Produkt { get; set; }
+        private VinothekContext Ctx { get; set; }
+        private Window_PDF_Viewer WPDF { get; set; }
+        private Window_Messagebox WM { get; set; }
+        private ICollectionView CollectionView { get; }
+
         public Page_Produkt(ICollectionView collectionView)
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
-            this.collectionView = collectionView;
-            prod = (Produkt)this.collectionView.CurrentItem;
-            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            DataContext = prod;
+            Ctx = ContextHelper.GetContext();
+            CollectionView = collectionView;
+            Produkt = (Produkt)CollectionView.CurrentItem;
+            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
+            DataContext = Produkt;
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -55,7 +52,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
-            ctx.SaveChanges();
+            Ctx.SaveChanges();
             NavigationService.GoBack();
         }
 
@@ -67,9 +64,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             {
                 byte[] b = Imageconverter.ConvertImageToByteArray(imgPath);
                 path.Content = imgPath;
-                prod.Picture = b;
+                Produkt.Picture = b;
                 pic.DataContext = null;
-                pic.DataContext = prod;
+                pic.DataContext = Produkt;
             }
         }
 
@@ -81,20 +78,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Produzent p = (Produzent)WSP.GetObj(); //Produzent nehmen
             if(p != null)
             {
-                prod.Produzent = p;
+                Produkt.Produzent = p;
                 DataContext = null;
-                DataContext = prod;
-                prod.Produzent = null;
-                prod.ID_Produzent = p.ID_Produzent;
+                DataContext = Produkt;
+                Produkt.Produzent = null;
+                Produkt.ID_Produzent = p.ID_Produzent;
             }
 
         }
         private void btn_download_pdf_Click(object sender, RoutedEventArgs e) //PDF download, wenn in db vorhanden. Sonst zuerst btn_create_pdf_Click
         {
-            if (prod.PDF_file != null)
+            if (Produkt.PDF_file != null)
             {
-                var v = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-                SelectFile.SavePDF(v.PDF_file, prod.Name + ".pdf");
+                var v = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
+                SelectFile.SavePDF(v.PDF_file, Produkt.Name + ".pdf");
             }
             else
             {
@@ -105,20 +102,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void btn_create_pdf_Click(object sender, RoutedEventArgs e)
         {
             PDF pdf = new PDF();
-            byte[] byteArrayPDF = pdf.CreateFromProd(prod);
-            var produkt = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            byte[] byteArrayPDF = pdf.CreateFromProd(Produkt);
+            var produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
             produkt.PDF_file = byteArrayPDF;
-            ctx.SaveChanges();
+            Ctx.SaveChanges();
             WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.GetPath()}");
             WM.Show();
         }
         private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {
-            var produkt = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
+            var produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
             if (produkt.PDF_file != null)
             {
                 string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf"; //temporäre Datei wird erstellt
-                File.WriteAllBytes(tempfile, prod.PDF_file);
+                File.WriteAllBytes(tempfile, Produkt.PDF_file);
                 WPDF = new Window_PDF_Viewer(tempfile);
                 WPDF.ShowDialog();
                 await Timer(1000);      //PDF noch nicht freigegeben, deshalb timer
@@ -141,47 +138,47 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             var img = SelectFile.SelectImgfromClipboard();
             if (img != null)
             {
-                var v = Imageconverter.ConvertImageFromClipboard(img);
-                prod.Picture = v;
+                var picByteArray = Imageconverter.ConvertImageFromClipboard(img);
+                Produkt.Picture = picByteArray;
                 pic.DataContext = null;
-                pic.DataContext = prod;
+                pic.DataContext = Produkt;
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e) //Nächstes Obj
         {
-            collectionView.MoveCurrentToNext();
-            if (collectionView.IsCurrentAfterLast)
+            CollectionView.MoveCurrentToNext();
+            if (CollectionView.IsCurrentAfterLast)
             {
-                collectionView.MoveCurrentToFirst();
+                CollectionView.MoveCurrentToFirst();
             }
-            prod = (Produkt)collectionView.CurrentItem;
-            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            DataContext = prod;
-            pic.DataContext = prod;
+            Produkt = (Produkt)CollectionView.CurrentItem;
+            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
+            DataContext = Produkt;
+            pic.DataContext = Produkt;
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e) //Vorheriges Obj
         {
-            collectionView.MoveCurrentToPrevious();
-            if (collectionView.IsCurrentBeforeFirst)
+            CollectionView.MoveCurrentToPrevious();
+            if (CollectionView.IsCurrentBeforeFirst)
             {
-                collectionView.MoveCurrentToLast();
+                CollectionView.MoveCurrentToLast();
             }
-            prod = (Produkt)collectionView.CurrentItem;
-            prod = ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt);
-            DataContext = prod;
-            pic.DataContext = prod;
+            Produkt = (Produkt)CollectionView.CurrentItem;
+            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
+            DataContext = Produkt;
+            pic.DataContext = Produkt;
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)
         {
-            prod.Picture = null;
+            Produkt.Picture = null;
             pic.DataContext = null;
         }
 
         private void WebSuche_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start($"https://google.com/search?q={prod.Name}+{prod.Produzent.Name}");
+            Process.Start($"https://google.com/search?q={Produkt.Name}+{Produkt.Produzent.Name}");
         }
     }
 }

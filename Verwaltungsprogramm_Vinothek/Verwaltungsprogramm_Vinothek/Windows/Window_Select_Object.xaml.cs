@@ -21,55 +21,55 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Select_Object : Window
     {
-        private VinothekContext ctx;
-        private object obj = null;
-        private string gridType;
-        private ICollectionView collection;
+        private VinothekContext Ctx { get; }
+        private ICollectionView Collection { get; }
+        private string GridType { get; }
+        private object Obj { get; set; } = null;
         public Window_Select_Object(string gridType)
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            ctx = ContextHelper.GetContext();
-            this.gridType = gridType;
+            Ctx = ContextHelper.GetContext();
+            this.GridType = gridType;
             if (gridType == "ListeProdukte")
             {
-                CreateDataGrid.Produkt(data);
-                ctx.Produkt.Load();
-                collection = CollectionViewSource.GetDefaultView(ctx.Produkt.Local);
+                data = CreateDataGrid.Produkt(data);
+                Ctx.Produkt.Load();
+                Collection = CollectionViewSource.GetDefaultView(Ctx.Produkt.Local);
             }
             else if (gridType == "ListeProduzenten")
             {
-                CreateDataGrid.Produzent(data);
-                ctx.Produzent.Load();
-                collection = CollectionViewSource.GetDefaultView(ctx.Produzent.Local);
+                data = CreateDataGrid.Produzent(data);
+                Ctx.Produzent.Load();
+                Collection = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local);
             }
-            DataContext = collection;
+            DataContext = Collection;
         }
 
         private void SelectItem_DoubleClick(object sender, MouseButtonEventArgs e)
         {
-            obj = data.SelectedItem;
+            Obj = data.SelectedItem;
             Close();
         }
 
         public object GetObj()
         {
-            return obj;
+            return Obj;
         }
 
         private void tbSearch_KeyUp(object sender, KeyEventArgs e)
         {
             string filterStr = tbSearch.Text.ToLower();
-            switch (gridType)
+            switch (GridType)
             {
                 case "ListeProdukte":
-                    collection.Filter = x => ((Produkt)x).Name.ToLower().Contains(filterStr);
+                    Collection.Filter = x => ((Produkt)x).Name.ToLower().Contains(filterStr);
                     break;
                 case "ListeProduzenten":
-                    collection.Filter = x => ((Produzent)x).Name.ToLower().Contains(filterStr);
+                    Collection.Filter = x => ((Produzent)x).Name.ToLower().Contains(filterStr);
                     break;
                 case "ListeEvents":
-                    collection.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
+                    Collection.Filter = x => ((Event)x).Name.ToLower().Contains(filterStr);
                     break;
             }
         }

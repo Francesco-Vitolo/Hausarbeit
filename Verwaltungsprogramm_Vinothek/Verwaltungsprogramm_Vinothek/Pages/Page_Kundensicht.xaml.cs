@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
@@ -9,10 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
 {
@@ -21,17 +17,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Kundensicht : Page
     {
-        Produkt p;
-        List<string> tempfiles = new List<string>(); //Liste falls User zu schnell für Zeit bis zum löschen
-        Random r;
+        List<string> Tempfiles { get; set; } //Liste, falls User zu schnell ist --> Datei noch nicht gelöscht
+        Random Random { get; }
         public Page_Kundensicht()
         {
             InitializeComponent();
-            r = new Random();
+            Random = new Random();
+            Tempfiles = new List<string>();
             VinothekContext ctx = ContextHelper.GetContext();
-            var MainW = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
-            MainW.GoBack.Visibility = Visibility.Hidden;    //Button_zurück und Menü unsichtbar machen
-            MainW.expander.Visibility = Visibility.Hidden;
+            var MainWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
+            MainWindow.GoBack.Visibility = Visibility.Hidden;    //Button_zurück und Menü unsichtbar machen
+            MainWindow.expander.Visibility = Visibility.Hidden;
+
             var listProdukte = ctx.Produkt.Where(x => x.Picture != null && x.Aktiv == true && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
             foreach (var prod in listProdukte)
             {
@@ -41,7 +38,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             }
         }
 
-        private void AddImgToGrid(System.Drawing.Bitmap b, Produkt p)
+        private void AddImgToGrid(System.Drawing.Bitmap b, Produkt prod)
         {
             Button btn = new Button();
             Image i = new Image();
@@ -57,13 +54,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             btn.Style = FindResource("Button_Kunden") as Style;
             btn.Click += (sender, args) =>      //Event für Button wird erzeugt
             {
-                this.p = p;
-                expanderInfos.DataContext = p; //Infos zum Produkt im Expander
+                expanderInfos.DataContext = prod; //Infos zum Produkt im Expander
                 expanderInfos.Visibility = Visibility.Visible;
                 expanderInfos.IsExpanded = true;
-                tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin_{r.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
-                string tempfile = tempfiles.LastOrDefault();
-                File.WriteAllBytes(tempfile, p.PDF_file); //PDF noch nicht freigegeben, deshalb timer
+
+                Tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin_{Random.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
+                string tempfile = Tempfiles.LastOrDefault();
+                File.WriteAllBytes(tempfile, prod.PDF_file); //PDF noch nicht freigegeben, deshalb timer
                 pdfBrowser.Navigate(tempfile);
             };
 
@@ -85,7 +82,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             expanderInfos.Visibility = Visibility.Hidden;
             pdfBrowser.Navigate("about:blank");
             await Timer(1000);      //PDF noch nicht freigegeben, deshalb timer
-            File.Delete(tempfiles.FirstOrDefault()); //löschen
+            File.Delete(Tempfiles.FirstOrDefault()); //löschen
         }
 
         private Task Timer(int i)

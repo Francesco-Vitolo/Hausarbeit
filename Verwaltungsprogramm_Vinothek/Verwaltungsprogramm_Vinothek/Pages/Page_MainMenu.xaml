@@ -10,14 +10,14 @@
 
     <Grid Name="Grid_Menu">
         <Grid.RowDefinitions>
-            <RowDefinition Height="200"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="30"/>
-            <ColumnDefinition Width="1.5*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="1.618*"/>
+            <ColumnDefinition Width="30"/>
         </Grid.ColumnDefinitions>
         <Image Source="..\Pictures\Logo.png" Grid.ColumnSpan="3" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Center" MaxHeight="100"/>
         <Border  Grid.Row="1" BorderBrush="Black" BorderThickness="4" CornerRadius="0,5,0,0">

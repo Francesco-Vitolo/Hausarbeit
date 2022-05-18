@@ -1,18 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Windows;
 
 namespace Verwaltungsprogramm_Vinothek.User_Controls
@@ -22,7 +12,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
     /// </summary>
     public partial class Uc_Veranstaltung : UserControl
     {
-        private List<TextBox> listObj = new List<TextBox>();
+        private List<TextBox> ListObj { get; } = new List<TextBox>();
         public Uc_Veranstaltung()
         {
             InitializeComponent();
@@ -30,7 +20,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
             {
                 if (v.GetType() == typeof(TextBox))
                 {
-                    listObj.Add((TextBox)v);
+                    ListObj.Add((TextBox)v);
                 }
             }
             for (int i = 0; i < 24; i++)
@@ -43,21 +33,21 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
                 else
                 {
 
-                    TimeHours.Items.Add(new ComboBoxItem() { Content = i });
-                    TimeMinutes.Items.Add(new ComboBoxItem() { Content = i });
+                    TimeHours.Items.Add(new ComboBoxItem() { Content = i.ToString() }) ;
+                    TimeMinutes.Items.Add(new ComboBoxItem() { Content = i.ToString() });
                 }
 
             }
 
             for (int i = 25; i <= 59; i++)
             {
-                TimeMinutes.Items.Add(new ComboBoxItem() { Content = i });
+                TimeMinutes.Items.Add(new ComboBoxItem() { Content = i.ToString() });
             }
         }
 
         public List<TextBox> GetTbs()
         {
-            return listObj;
+            return ListObj;
         }
 
         public string GetDate()

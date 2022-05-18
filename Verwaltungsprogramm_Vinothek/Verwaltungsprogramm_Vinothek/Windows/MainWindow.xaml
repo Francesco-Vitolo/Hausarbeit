@@ -9,7 +9,7 @@
         Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
 
     <Grid>
-        <local:Uc_Default/>
+        <local:Uc_Titlebar/>
         <Button x:Name="GoBack" Background="{Binding Path=Color1, Source={x:Static properties:Settings.Default}}" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click" Focusable="False">
             <Image Source="..\Pictures\arrow_left.png"/>
         </Button>

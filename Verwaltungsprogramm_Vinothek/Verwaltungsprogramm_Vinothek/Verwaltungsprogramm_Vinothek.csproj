@@ -160,8 +160,8 @@
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="SelectFile.cs" />
-    <Compile Include="User-Controls\Uc_Default.xaml.cs">
-      <DependentUpon>Uc_Default.xaml</DependentUpon>
+    <Compile Include="User-Controls\Uc_Titlebar.xaml.cs">
+      <DependentUpon>Uc_Titlebar.xaml</DependentUpon>
     </Compile>
     <Compile Include="Pages\Page_Grid_List.xaml.cs">
       <DependentUpon>Page_Grid_List.xaml</DependentUpon>
@@ -274,7 +274,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="User-Controls\Uc_Default.xaml">
+    <Page Include="User-Controls\Uc_Titlebar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

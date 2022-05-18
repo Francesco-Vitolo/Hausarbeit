@@ -10,11 +10,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Produzent : Page
     {
-        private VinothekContext ctx;
+        private VinothekContext Ctx { get; }
         public Page_Add_Produzent()
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
+            Ctx = ContextHelper.GetContext();
         }
 
         private void Button_Click_Save(object sender, RoutedEventArgs e)
@@ -31,8 +31,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 produzent.Adresse = tbs[4].Text;
                 produzent.Email = tbs[6].Text;
                 produzent.Telefon= tbs[7].Text;
-                ctx.Produzent.Add(produzent);
-                ctx.SaveChanges();
+                Ctx.Produzent.Add(produzent);
+                Ctx.SaveChanges();
                 NavigationService.GoBack();
             }
             else

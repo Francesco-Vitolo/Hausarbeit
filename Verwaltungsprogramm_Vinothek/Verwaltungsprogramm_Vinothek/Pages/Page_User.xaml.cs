@@ -10,21 +10,21 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_User : Page
     {
-        private VinothekContext ctx;
-        private Benutzer user;
-        private Window_Messagebox WM;
+        private VinothekContext Ctx { get; }
+        private Benutzer User { get; set; }
+        private Window_Messagebox WM { get; set; }
         public Page_User()
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
-            DataContext = ctx.Benutzer.Local;
-        }  
+            Ctx = ContextHelper.GetContext();
+            DataContext = Ctx.Benutzer.Local;
+        }
 
         private void btn_changePW_Click(object sender, RoutedEventArgs e) //Passwort ändern
         {
-           user = (Benutzer)lv_Users.SelectedItem;
-           user.Passwort = Encrypt.getHash(tb_pw.Text);
-           ctx.SaveChanges();
+           User = (Benutzer)lv_Users.SelectedItem;
+           User.Passwort = Encrypt.getHash(tb_pw.Text);
+           Ctx.SaveChanges();
            WM = new Window_Messagebox("Das Passwort wurde geändert");
            WM.Show();
         }
@@ -38,8 +38,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 WA.ShowDialog();
                 if (WA.GetOption())
                 {
-                    ctx.Benutzer.Remove(user);
-                    ctx.SaveChanges();
+                    Ctx.Benutzer.Remove(user);
+                    Ctx.SaveChanges();
                     WM = new Window_Messagebox($"{user.username} wurde gelöscht");
                     WM.Show();
                 }
@@ -53,8 +53,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Benutzer newUser = new Benutzer();
             newUser.username = tb_newUser_Name.Text;
             newUser.Passwort = Encrypt.getHash(tb_newUser_PW.Text);
-            ctx.Benutzer.Add(newUser);
-            ctx.SaveChanges();
+            Ctx.Benutzer.Add(newUser);
+            Ctx.SaveChanges();
         }
     }
 }

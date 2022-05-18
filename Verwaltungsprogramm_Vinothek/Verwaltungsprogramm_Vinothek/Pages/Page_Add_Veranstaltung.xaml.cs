@@ -14,14 +14,15 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Veranstaltung : Page
     {
-        private List<Produkt> listProd = new List<Produkt>();
-        private VinothekContext ctx;
+        private List<Produkt> ListProd { get; }
+        private VinothekContext Ctx { get; }
         public Page_Add_Veranstaltung()
         {
             InitializeComponent();
-            CreateDataGrid.Produkt(data);
-            data.DataContext = listProd;
-            ctx = ContextHelper.GetContext();
+            data = CreateDataGrid.Produkt(data);
+            Ctx = ContextHelper.GetContext();
+            ListProd = new List<Produkt>();
+            data.DataContext = ListProd;
         }
 
         private void AddProd_Click(object sender, RoutedEventArgs e)
@@ -29,11 +30,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Window_Select_Object WSO = new Window_Select_Object("ListeProdukte");
             WSO.ShowDialog();
             Produkt p = (Produkt)WSO.GetObj();
-            if (p != null && listProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null) //Wenn Produkt nicht schon hinzugefügt
+            if (p != null && ListProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null) //Wenn Produkt nicht schon hinzugefügt
             {
-                listProd.Add(p);
+                ListProd.Add(p);
                 data.DataContext = null;
-                data.DataContext = listProd;
+                data.DataContext = ListProd;
             }
         }
 
@@ -53,16 +54,16 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                     evnt.AnzahlPersonen = i;
                 evnt.Datum = DateTime.Parse(felder.GetDate());
                 evnt.Zeit = felder.GetTime();
-                ctx.Event.Add(evnt);
-                ctx.SaveChanges();
+                Ctx.Event.Add(evnt);
+                Ctx.SaveChanges();
 
-                foreach (var v in listProd)
+                foreach (var v in ListProd)
                 {
                     EventPos EP = new EventPos(); //Neue EventPos erstellen
                     EP.ID_Veranstaltung = evnt.ID_Veranstaltung;
                     EP.ID_Produkt = v.ID_Produkt;
-                    ctx.EventPos.Add(EP);
-                    ctx.SaveChanges();
+                    Ctx.EventPos.Add(EP);
+                    Ctx.SaveChanges();
                 }
                 NavigationService.GoBack();
             }
@@ -70,9 +71,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void DelProd_Click(object sender, RoutedEventArgs e)
         {
-            listProd.Remove((Produkt)data.SelectedItem); //Aus Liste entfernen
+            ListProd.Remove((Produkt)data.SelectedItem); //Aus Liste entfernen
             data.DataContext = null;
-            data.DataContext = listProd;
+            data.DataContext = ListProd;
         }     
     }
 }

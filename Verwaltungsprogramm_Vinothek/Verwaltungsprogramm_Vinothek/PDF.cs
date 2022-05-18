@@ -9,28 +9,27 @@ namespace Verwaltungsprogramm_Vinothek
 {
     public class PDF
     {
-       private PdfDocument doc;
-       private PdfPage page;
-       private XGraphics gfx;
-       private XTextFormatter tf; //für Absatz
-       private XFont ueberschrift;
-       private XFont font;
-       private Produkt prod;
-       private static Random r;
-       private int posY;
-       private string filename;
+       private PdfDocument doc { get; }
+       private XFont font { get; }
+       private XFont ueberschrift { get; }
+       private PdfPage page { get; set; }
+       private XTextFormatter tf { get; set; }
+       private XGraphics gfx { get; set; }
+       private Produkt prod { get; set; }
+       private int posY { get; set; } = 120;
+       private string filename { get; set; }
+       private Random rand { get; set; }
 
         public PDF()
         { 
             doc = new PdfDocument();
-            ueberschrift = new XFont("Arial", 40, XFontStyle.Underline); 
+            ueberschrift = new XFont("Garamond", 44, (XFontStyle)4);
             font = new XFont("Garamond", 20);
-            r = new Random();
-            posY = 120;
+            rand = new Random();
         }
         public byte[] CreateFromProd(Produkt prod)
         {
-            filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{r.Next(0, 1000)}.pdf";
+            filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{rand.Next(0, 1000)}.pdf";
             this.prod = prod;
             Create();
             return SaveAndReturn();
@@ -39,10 +38,10 @@ namespace Verwaltungsprogramm_Vinothek
         public byte[] CreateFromEvent(List<Produkt> produkte, Event veranstaltung)
         {
             CreateDeckblatt(veranstaltung);
-            filename = $@"{Properties.Settings.Default.PDF_Directory}\{veranstaltung.Name}_{r.Next(0, 1000)}.pdf";
-            foreach (var v in produkte)
+            filename = $@"{Properties.Settings.Default.PDF_Directory}\{veranstaltung.Name}_{rand.Next(0, 1000)}.pdf";
+            foreach (var aktuellesProd in produkte)
             {
-                prod = v;
+                prod = aktuellesProd;
                 Create();
             }
             return SaveAndReturn();
@@ -59,10 +58,8 @@ namespace Verwaltungsprogramm_Vinothek
         {
             page = doc.AddPage();
             gfx = XGraphics.FromPdfPage(page);
-            font = new XFont("Garamond", 44, (XFontStyle)4);
             posY = 300;
             gfx.DrawString(ev.Name, font, XBrushes.Black, new XRect(0, 340, page.Width, page.Height), XStringFormats.TopCenter);
-            font = new XFont("Garamond", 24);
             DateTime date =(DateTime) ev.Datum;
             string dateString = date.ToString("dddd, dd.MM.yyyy");
             gfx.DrawString(dateString, font, XBrushes.Black, new XRect(0, 400, page.Width, page.Height), XStringFormats.TopCenter);

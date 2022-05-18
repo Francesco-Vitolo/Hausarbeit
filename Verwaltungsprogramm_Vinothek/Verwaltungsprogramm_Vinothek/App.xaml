@@ -50,8 +50,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        
-        
+
         <Style TargetType="TextBlock">
             <Setter Property="FontSize" Value="24"/>
             <Setter Property="VerticalAlignment" Value="Center"/>
@@ -281,6 +280,7 @@
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
                                 <Setter Property="Background" Value="Gray" />
+                                <Setter TargetName="border" Property="BorderThickness" Value="3" />
                             </Trigger>
                             <EventTrigger RoutedEvent="MouseEnter" >
                                 <BeginStoryboard>

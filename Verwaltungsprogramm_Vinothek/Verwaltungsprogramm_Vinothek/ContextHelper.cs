@@ -6,7 +6,7 @@ namespace Verwaltungsprogramm_Vinothek
 {
     public static class ContextHelper
     {
-        private static VinothekContext ctx;
+        private static VinothekContext ctx { get; set; }
         public static VinothekContext GetContext()
         {
             return ctx;

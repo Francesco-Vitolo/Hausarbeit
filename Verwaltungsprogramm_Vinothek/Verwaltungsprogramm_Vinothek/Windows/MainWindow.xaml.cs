@@ -18,7 +18,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double scale = 1;
+        private double scale { get; set; } = 1;
         private Benutzer user { get; }
         public MainWindow(Benutzer user) //user wird weitergegeben
         {

@@ -13,7 +13,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="40"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="8*"/>
@@ -71,8 +71,19 @@
                 </Button>
 
             </UniformGrid>
-            <StackPanel Grid.Column="3" >
-                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Grid Grid.Column="3">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="80"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                
+                <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1">
                     <StackPanel.Resources>
                         <Style TargetType="TextBlock">
                             <Setter Property="FontSize" Value="32"/>
@@ -82,18 +93,26 @@
                     <TextBlock Name="modus" Text="anschauen" Foreground="Red"/>
                 </StackPanel>
 
-                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-
-                    <Button x:Name="MoveNext" Click="MovePrev_Click" Style="{StaticResource Button_TextContent}" Height="50" Width="75" Margin="0,20,0,0" ToolTip="Springe zum vorherigen Produkt">
+                <UniformGrid HorizontalAlignment="Center" Rows="1" Grid.Row="1" Grid.ColumnSpan="3" Width="600" Grid.Column="0">
+                    <UniformGrid.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource Button_TextContent}">
+                            <Setter Property="Height" Value="50"/>
+                            <Setter Property="Width" Value="100"/>
+                        </Style>
+                    </UniformGrid.Resources>
+                    <Button x:Name="MoveNext" Click="MovePrev_Click" ToolTip="Springe zum vorherigen Produkt" >
                         <Image Source="..\Pictures\arrow_left.png" MaxHeight="40"/>
                     </Button>
-                    <Button x:Name="MovePrev" Click="MoveNext_Click" Style="{StaticResource Button_TextContent}" Height="50" Width="75" Margin="75,20,0,0" ToolTip="Springe zum vorherigen Produkt">
+                    <Button x:Name="MovePrev" Click="MoveNext_Click" ToolTip="Springe zum vorherigen Produkt">
                         <Image Source="..\Pictures\arrow_right.png" MaxHeight="40"/>
                     </Button>
+                </UniformGrid>
+                <StackPanel Grid.Row="2" Grid.Column="1">
+
+                    <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20"/>
+                    <Label Name="path" HorizontalAlignment="Center"/>
                 </StackPanel>
-                <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" Margin="0,20"/>
-                <Label Name="path" HorizontalAlignment="Center"/>
-            </StackPanel>
+            </Grid>
 
 
             <Separator HorizontalAlignment="Left" Grid.Column="3" Grid.Row="1">

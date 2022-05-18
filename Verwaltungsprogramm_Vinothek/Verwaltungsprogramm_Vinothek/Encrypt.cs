@@ -16,7 +16,7 @@ namespace Verwaltungsprogramm_Vinothek
             {
                 byte[] hashedBytes = sha256.ComputeHash(Encoding.UTF8.GetBytes(text + salt));
                 return BitConverter.ToString(hashedBytes).Replace("-", "").ToLower();
-            }          
+            }
         }
     }
 }

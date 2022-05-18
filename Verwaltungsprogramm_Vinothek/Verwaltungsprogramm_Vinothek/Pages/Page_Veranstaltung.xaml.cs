@@ -17,28 +17,29 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Veranstaltung : Page
     {
-        private VinothekContext ctx;
-        private Event veranstaltung;
-        private List<Produkt> PRODS = new List<Produkt>(); //Für datagrid
+        private VinothekContext Ctx { get; set; }
+        private Event Veranstaltung { get; set; }
 
-        private List<EventPos> EVNT_POS = new List<EventPos>(); //Falls der Vorgang nicht gespeichert wird, braucht man noch del/added EPs
-        private List<EventPos> del_EVNT_POS = new List<EventPos>();
-        private List<EventPos> added_EVNT_POS = new List<EventPos>();
+        private List<Produkt> PRODS { get; set; } = new List<Produkt>(); //Für datagrid
+        private List<EventPos> EVNT_POS { get; set; } = new List<EventPos>(); //Falls der Vorgang nicht gespeichert wird, braucht man noch del/added EPs
+        private List<EventPos> DEL_EVNT_POS { get; set; } = new List<EventPos>();
+        private List<EventPos> ADDED_EVNT_POS { get; set; } = new List<EventPos>();
 
         public Page_Veranstaltung(Event veranstaltung)
         {
             InitializeComponent();
-            ctx = ContextHelper.GetContext();
-            this.veranstaltung = ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
-            DataContext = this.veranstaltung;
-            CreateDataGrid.Produkt(data);           
-            EVNT_POS = ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt
+            Ctx = ContextHelper.GetContext();
+            data = CreateDataGrid.Produkt(data);
+
+            Veranstaltung = Ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
+            DataContext = Veranstaltung;
+
+            EVNT_POS = Ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt
             foreach (var ep in EVNT_POS)
             {
-                PRODS.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt)); 
+                PRODS.Add(Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt)); 
             }
-            data.DataContext = PRODS;
-            
+            data.DataContext = PRODS;           
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -70,18 +71,18 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             EventPos EP = new EventPos();
             if (EVNT_POS.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt) != null) //Wenn EP nicht vorhanden in Liste hinzugefügte EPS
             {
-                EP = ctx.EventPos.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt && x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung); //Aus dem ctx holen
-                del_EVNT_POS.Add(EP);
+                EP = Ctx.EventPos.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt && x.ID_Veranstaltung == Veranstaltung.ID_Veranstaltung); //Aus dem ctx holen
+                DEL_EVNT_POS.Add(EP);
             }
             else //Wenn EP schon hinzugefügt wurde und dann wieder entfernt wird ohne dazwischen zu speichern
             {
-                EP = added_EVNT_POS.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt && x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
-                added_EVNT_POS.Remove(EP); // Prod muss aus added_EVNT_POS gelöscht werden
+                EP = ADDED_EVNT_POS.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt && x.ID_Veranstaltung == Veranstaltung.ID_Veranstaltung);
+                ADDED_EVNT_POS.Remove(EP); // Prod muss aus added_EVNT_POS gelöscht werden
             }
             PRODS.Remove(prod); //Aus Datagrid entfernt
             data.DataContext = null;
             data.DataContext = PRODS;
-            DataContext = veranstaltung;
+            DataContext = Veranstaltung;
         }
 
         private void AddProd_Click(object sender, RoutedEventArgs e)
@@ -96,10 +97,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 if (PRODS.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null) //Prüfen, ob das Produkt mit der selben ID schon vohanden
                 {
                     EventPos EP = new EventPos();
-                    EP.ID_Veranstaltung = veranstaltung.ID_Veranstaltung;
+                    EP.ID_Veranstaltung = Veranstaltung.ID_Veranstaltung;
                     EP.ID_Produkt = p.ID_Produkt;
                     PRODS.Add(p);
-                    added_EVNT_POS.Add(EP);
+                    ADDED_EVNT_POS.Add(EP);
                     data.DataContext = null;
                     data.DataContext = PRODS;
                 }
@@ -116,10 +117,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
             List<Produkt> listRefresh = new List<Produkt>();
             ContextHelper.SetNewContext();
-            ctx = ContextHelper.GetContext();
+            Ctx = ContextHelper.GetContext();
             foreach (var prod in PRODS)
             {
-                listRefresh.Add(ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
+                listRefresh.Add(Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == prod.ID_Produkt));
             }
             PRODS = listRefresh;
             data.DataContext = null;
@@ -128,20 +129,20 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
-            if (del_EVNT_POS.Count > 0) //Wenn Liste nicht leer
-                del_EVNT_POS.ForEach(x => ctx.EventPos.Remove(x));
-            if (added_EVNT_POS.Count > 0)
-                added_EVNT_POS.ForEach(x => ctx.EventPos.Add(x));
-            veranstaltung.Zeit = felder.GetTime(); //Daten aus Uc_Veranstaltung holen
-            veranstaltung.Datum = DateTime.Parse(felder.GetDate());
-            ctx.SaveChanges();
+            if (DEL_EVNT_POS.Count > 0) //Wenn Liste nicht leer
+                DEL_EVNT_POS.ForEach(x => Ctx.EventPos.Remove(x));
+            if (ADDED_EVNT_POS.Count > 0)
+                ADDED_EVNT_POS.ForEach(x => Ctx.EventPos.Add(x));
+            Veranstaltung.Zeit = felder.GetTime(); //Daten aus Uc_Veranstaltung holen
+            Veranstaltung.Datum = DateTime.Parse(felder.GetDate());
+            Ctx.SaveChanges();
             NavigationService.GoBack();
         }
 
         private void CreatePDF_Click(object sender, RoutedEventArgs e)
         {
             PDF pdf = new PDF();
-            pdf.CreateFromEvent(PRODS, veranstaltung); //PDF zum Event wird erstellt
+            pdf.CreateFromEvent(PRODS, Veranstaltung); //PDF zum Event wird erstellt
         }
     }
 }

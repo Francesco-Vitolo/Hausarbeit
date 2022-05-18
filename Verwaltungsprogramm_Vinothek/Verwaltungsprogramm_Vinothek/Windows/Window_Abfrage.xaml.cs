@@ -8,7 +8,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Abfrage : Window
     {
-        private bool option = false;
+        private bool option { get; set; } = false;
         public Window_Abfrage(string text)
         {
             InitializeComponent();
