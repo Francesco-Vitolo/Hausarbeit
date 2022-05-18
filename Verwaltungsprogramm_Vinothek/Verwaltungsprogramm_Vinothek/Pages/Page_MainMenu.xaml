@@ -36,6 +36,7 @@
                     <Setter Property="BorderBrush" Value="Black"/>
                     <Setter Property="BorderThickness" Value="4"/>
                 </Style>
+                
                 <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
                     <Setter Property="OverridesDefaultStyle" Value="True"/>
                     <Setter Property="Width" Value="auto"/>
@@ -45,6 +46,9 @@
                         <Setter.Value>
                             <ControlTemplate TargetType="Button">
                                 <Border Name="border" BorderThickness="3" BorderBrush="Black" CornerRadius="0,20,20,0" Background="{TemplateBinding Background}">
+                                    <Border.Effect>
+                                        <DropShadowEffect/>
+                                    </Border.Effect>
                                     <ContentPresenter HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0,0,30,0" Name="content"/>
                                 </Border>
                                 <ControlTemplate.Triggers>

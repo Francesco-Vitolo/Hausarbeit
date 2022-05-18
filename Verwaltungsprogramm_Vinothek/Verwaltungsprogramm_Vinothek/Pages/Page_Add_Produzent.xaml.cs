@@ -29,7 +29,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 if (int.TryParse(tbs[3].Text, out int i))
                     produzent.Hektar = i;
                 produzent.Adresse = tbs[4].Text;
-                produzent.Beschreibung = tbs[5].Text;
                 produzent.Email = tbs[6].Text;
                 produzent.Telefon= tbs[7].Text;
                 ctx.Produzent.Add(produzent);

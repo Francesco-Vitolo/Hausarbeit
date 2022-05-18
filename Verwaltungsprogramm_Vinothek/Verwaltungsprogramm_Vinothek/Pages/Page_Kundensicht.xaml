@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.Pages" 
-      xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+      
+      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Kundensicht" KeyUp="Page_KeyUp">

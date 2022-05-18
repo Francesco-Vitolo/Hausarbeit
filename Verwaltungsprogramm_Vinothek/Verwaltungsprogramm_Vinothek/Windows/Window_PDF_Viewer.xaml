@@ -3,11 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+        xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
         mc:Ignorable="d"
          Title="Window_PDF_Viewer" Height="1200" Width="800">
     <Grid>
-        <local1:Uc_Default/>
+        <local:Uc_Default/>
         <Button x:Name="Exit" Content="X" Click="Exit_Click" Background="#FFA85D5D" VerticalAlignment="Top"  HorizontalAlignment="Right" Style="{StaticResource Button_Titlebar}"/>
         <Grid Margin="0,32,0,0">
             <WebBrowser x:Name="pdfWebViewer" />

@@ -24,7 +24,6 @@ namespace Verwaltungsprogramm_Vinothek
         public string Name { get; set; }
         public string Land { get; set; }
         public string Region { get; set; }
-        public string Beschreibung { get; set; }
         public string Adresse { get; set; }
         public string Email { get; set; }
         public string Telefon { get; set; }

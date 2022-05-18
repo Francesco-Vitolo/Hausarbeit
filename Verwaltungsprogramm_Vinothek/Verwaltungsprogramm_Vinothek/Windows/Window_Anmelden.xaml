@@ -3,12 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek" 
-        xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+        xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
         mc:Ignorable="d"
         Title="Window_Anmelden" Height="400" Width="500" KeyUp="Window_KeyUp_Enter" ResizeMode="NoResize">
     <Grid>
-        <local1:Uc_Default/>
+        <local:Uc_Default/>
         <StackPanel HorizontalAlignment="Stretch" Margin="5">
             <Image Source="..\Pictures\Logo.png" Margin="0,70,0,20" Width="400"/>
             <TextBox Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tb_username" />

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
              mc:Ignorable="d" 
    d:DesignHeight="900" d:DesignWidth="900">
     <Grid >
@@ -38,10 +37,6 @@
             <TextBox Text="{Binding Adresse}" MaxLength="50"/>
             <TextBox Text="{Binding Email}" MaxLength="100"/>
             <TextBox Text="{Binding Telefon}" MaxLength="50"/>
-        </StackPanel>
-        <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="20">
-            <TextBlock Text="Beschreibung" />
-            <TextBox Text="{Binding Beschreibung}" Name="tb" Height="240" VerticalAlignment="Bottom" HorizontalAlignment="Stretch" TextWrapping="Wrap" VerticalContentAlignment="Top" HorizontalContentAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>

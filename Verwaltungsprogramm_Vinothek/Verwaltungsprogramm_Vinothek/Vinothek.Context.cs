@@ -15,10 +15,9 @@ namespace Verwaltungsprogramm_Vinothek
     
     public partial class VinothekContext : DbContext
     {
-        public VinothekContext() : base("name=VinothekContext")
+        public VinothekContext()
+            : base("name=VinothekContext")
         {
-            //Database.SetInitializer<VinothekContext>(new CreateDatabaseIfNotExists<VinothekContext>());
-            Database.SetInitializer(new VinothekDBInitializer());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
@@ -32,5 +31,5 @@ namespace Verwaltungsprogramm_Vinothek
         public virtual DbSet<Logins> Logins { get; set; }
         public virtual DbSet<Produkt> Produkt { get; set; }
         public virtual DbSet<Produzent> Produzent { get; set; }
-    }    
+    }
 }

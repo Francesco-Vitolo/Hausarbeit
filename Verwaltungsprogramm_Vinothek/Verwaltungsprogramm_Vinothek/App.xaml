@@ -68,8 +68,9 @@
             </Style.Resources>
         </Style>
 
-        <Style TargetType="Separator" x:Key="SepVertical">
-            <Setter Property="LayoutTransform" Value="90"/>
+        <Style TargetType="Separator">
+            <Setter Property="BorderBrush" Value="Black"/>
+            <Setter Property="BorderThickness" Value="5"/>
         </Style>
         <Style TargetType="Border" x:Key="Border">
             <Setter Property="CornerRadius" Value="5"/>
@@ -266,6 +267,9 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
                         <Border Name="border" BorderThickness="1" BorderBrush="Black" CornerRadius="5" Background="{TemplateBinding Background}">
+                            <Border.Effect>
+                                <DropShadowEffect/>
+                            </Border.Effect>
                             <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>

@@ -7,11 +7,11 @@
         xmlns:properties="clr-namespace:Verwaltungsprogramm_Vinothek.Properties"      
         mc:Ignorable="d"
         Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
-    
+
     <Grid>
         <local:Uc_Default/>
         <Button x:Name="GoBack" Background="{Binding Path=Color1, Source={x:Static properties:Settings.Default}}" Grid.Column="1"  Style="{StaticResource Button_Titlebar}" Click="Button_Previous_Click" Focusable="False">
-             <Image Source="..\Pictures\arrow_left.png"/>
+            <Image Source="..\Pictures\arrow_left.png"/>
         </Button>
         <Frame Name="Frame_Main" Margin="0,40,0,0"/>
         <Expander x:Name="expander"  HorizontalAlignment="Right" VerticalContentAlignment="Center" Margin="0,50" ExpandDirection="Left" BorderBrush="Black" BorderThickness="4" Height="360">

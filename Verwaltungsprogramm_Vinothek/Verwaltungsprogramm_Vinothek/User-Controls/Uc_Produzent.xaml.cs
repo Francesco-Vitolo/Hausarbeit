@@ -31,7 +31,6 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
                     tbs.Add((TextBox)v);
                 }
             }
-            tbs.Add(tb);
         }
         public List<TextBox> GetTbs()
         {

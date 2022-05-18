@@ -3,8 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.Pages" 
-      xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+      
+      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Veranstaltung">
@@ -28,7 +28,7 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <local1:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="2"/>
+            <local:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="2"/>
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" MouseDoubleClick="Item_MouseDoubleClick" />
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1">

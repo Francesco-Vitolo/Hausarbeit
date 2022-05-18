@@ -3,16 +3,9 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local1="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
-      mc:Ignorable="d"
-      Title="Page_Produkt">
-    <!--<Page.Resources>-->
-        <!--<Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="Height" Value="75"/>
-            <Setter Property="Width" Value="75"/>
-        </Style>-->
-    <!--</Page.Resources>-->
+      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
+      mc:Ignorable="d" Title="Page_Produkt">
+
     <Grid>
         <Grid>
             <Grid.ColumnDefinitions>
@@ -28,8 +21,12 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" >
-
-                <local1:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1" Grid.Row="0" Margin="0,40,0,0"/>
+                <Grid>
+                    <Grid.LayoutTransform>
+                        <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                    </Grid.LayoutTransform>
+                    <local:Uc_Produkt IsEnabled="False" x:Name="felder" Grid.Column="1"  Margin="0,120,0,0"/>
+                </Grid>
 
                 <WrapPanel Grid.Row="2" Grid.Column="2" HorizontalAlignment="Left" Margin="30,0">
                     <TextBlock Text="Aktiv/Verfügbar: " FontSize="24" VerticalAlignment="Center"/>
@@ -86,7 +83,7 @@
                 </StackPanel>
 
                 <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
-                    
+
                     <Button x:Name="MoveNext" Click="MovePrev_Click" Style="{StaticResource Button_TextContent}" Height="50" Width="75" Margin="0,20,0,0" ToolTip="Springe zum vorherigen Produkt">
                         <Image Source="..\Pictures\arrow_left.png" MaxHeight="40"/>
                     </Button>

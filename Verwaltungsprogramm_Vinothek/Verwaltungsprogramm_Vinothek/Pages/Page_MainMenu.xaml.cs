@@ -18,8 +18,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     {
         public Page_MainMenu()
         {
-            InitializeComponent();
-           
+            InitializeComponent();           
         }
 
         private void Button_Übersicht(object sender, RoutedEventArgs e)

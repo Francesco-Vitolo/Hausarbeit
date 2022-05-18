@@ -14,8 +14,7 @@ namespace Verwaltungsprogramm_Vinothek
            {"Rebsorte(n)",   "Rebsorten"}  ,
            {"Region",        "Produzent.Region"}  ,
            {"Jahrgang",      "Jahrgang"}  ,
-           {"Produzent",     "Produzent.Name"}  ,
-           {"Geschmack",     "Geschmack"}  ,
+           {"Produzent",     "Produzent.Name"}  ,           
            {"Alkoholgehalt", "Alkoholgehalt"} ,
            {"Preis", "Preis"} ,
            {"Aktiv", "Aktiv"} ,
@@ -43,19 +42,19 @@ namespace Verwaltungsprogramm_Vinothek
 
         public static DataGrid Produkt(DataGrid dg)
         {
-            return Rest(dg, Produkte);
+            return FillWithHeaderAndBinding(dg, Produkte);
         }
         public static DataGrid Produzent(DataGrid dg)
         {
-            return Rest(dg, Produzenten);
+            return FillWithHeaderAndBinding(dg, Produzenten);
 
         }
         public static DataGrid Event(DataGrid dg)
         {
-            return Rest(dg, Events);
+            return FillWithHeaderAndBinding(dg, Events);
         }
 
-        public static DataGrid Rest(DataGrid dg, Dictionary<string, string> dict)
+        public static DataGrid FillWithHeaderAndBinding(DataGrid dg, Dictionary<string, string> dict)
         {
             foreach (var name in dict)
             {
@@ -75,46 +74,46 @@ namespace Verwaltungsprogramm_Vinothek
 
         public static ComboBox ProduktFilter(ComboBox c)
         {
-            foreach (var v in Produkte)
+            foreach (var filter in Produkte)
             {
-                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+                c.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
             return c;
         }
         public static ComboBox ProduzentFilter(ComboBox c)
         {
-            foreach (var v in Produzenten)
+            foreach (var filter in Produzenten)
             {
-                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+                c.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
             return c;
         }
         public static ComboBox EventFilter(ComboBox c)
         {
-            foreach (var v in Events)
+            foreach (var filter in Events)
             {
-                c.Items.Add(new ComboBoxItem() { Content = v.Key });
+                c.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
             return c;
         }
 
         public static string[] GetFilterNamesProdukte()
         {
-            string[] s = new string[11];
+            string[] s = new string[Produkte.Count];
             Produkte.Values.CopyTo(s, 0);
             return s;
         }
 
         public static string[] GetFilterNamesProduzenten()
         {
-            string[] s = new string[7];
+            string[] s = new string[Produzenten.Count];
             Produzenten.Values.CopyTo(s, 0);
             return s;
         }
 
         public static string[] GetFilterNamesEvents()
         {
-            string[] s = new string[4];
+            string[] s = new string[Events.Count];
             Events.Values.CopyTo(s, 0);
             return s;
         }
