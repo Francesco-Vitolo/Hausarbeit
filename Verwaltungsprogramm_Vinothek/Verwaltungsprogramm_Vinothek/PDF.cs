@@ -17,7 +17,7 @@ namespace Verwaltungsprogramm_Vinothek
        private XGraphics gfx { get; set; }
        private Produkt prod { get; set; }
        private int posY { get; set; } = 120;
-       private string filename { get; set; }
+       public string filename { get; private set; }
        private Random rand { get; set; }
 
         public PDF()
@@ -32,7 +32,7 @@ namespace Verwaltungsprogramm_Vinothek
             filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{rand.Next(0, 1000)}.pdf";
             this.prod = prod;
             Create();
-            return SaveAndReturn();
+            return SaveAndShow();
         }
 
         public byte[] CreateFromEvent(List<Produkt> produkte, Event veranstaltung)
@@ -44,14 +44,7 @@ namespace Verwaltungsprogramm_Vinothek
                 prod = aktuellesProd;
                 Create();
             }
-            return SaveAndReturn();
-        }
-        private byte[] SaveAndReturn()
-        {
-            doc.Save(filename);
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
-            WPDF.Show();
-            return File.ReadAllBytes(filename);
+            return SaveAndShow();
         }
 
         private void CreateDeckblatt(Event ev)
@@ -72,14 +65,13 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void Create()
         {
-
             page = doc.AddPage();
             gfx = XGraphics.FromPdfPage(page);
             tf = new XTextFormatter(gfx); //für Absatz
             posY = 120;
             if (prod.Picture != null)
             {
-                XImage image = GetImg(prod.Picture);
+                XImage image = ImageConverter.BinaryToXImage(prod.Picture);
                 gfx.DrawImage(image, 460, 100, 90, 300);
             }
             gfx.DrawString($"{prod.Name}", ueberschrift, XBrushes.Black, new XRect(0, 40, page.Width, page.Height), XStringFormats.TopCenter);
@@ -106,18 +98,13 @@ namespace Verwaltungsprogramm_Vinothek
         {
             posY = posY + 30;
             gfx.DrawString(s, font, XBrushes.Black, new XRect(40, posY, page.Width, page.Height), XStringFormats.TopLeft);
-        }
-
-        private static XImage GetImg(byte[] b)
+        }       
+        private byte[] SaveAndShow()
         {
-            var img = Imageconverter.BinaryToImage(b);
-            MemoryStream strm = new MemoryStream();
-            img.Save(strm, System.Drawing.Imaging.ImageFormat.Png);
-            return XImage.FromStream(strm);
-        }
-        public string GetPath()
-        {
-            return filename;
+            doc.Save(filename);
+            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+            WPDF.Show();
+            return File.ReadAllBytes(filename);
         }
     }
 }

@@ -107,10 +107,10 @@
                         <Image Source="..\Pictures\arrow_right.png" MaxHeight="40"/>
                     </Button>
                 </UniformGrid>
-                <StackPanel Grid.Row="2" Grid.Column="1">
+                <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
 
-                    <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20"/>
-                    <Label Name="path" HorizontalAlignment="Center"/>
+                    <Image Source="{Binding Picture}" Name="pic" MaxHeight="480" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,20" />
+                    <TextBlock Name="path" HorizontalAlignment="Center" TextWrapping="Wrap"/>
                 </StackPanel>
             </Grid>
 

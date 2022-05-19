@@ -32,23 +32,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             tbSearch.Focus();
         }
 
-        //private async void asyncRefresh()
-        //{
-        //    while (true)
-        //    {
-        //        await Timer(5000);
-        //    }
-        //}
-
-        private Task Timer(int i)
-        {
-            return Task.Run(() =>
-            {
-                Thread.Sleep(i);
-                Dispatcher.Invoke(() => Refresh_Click(null, null));
-            });
-        }
-
         private void CreateDG()
         {
             switch (GridType)

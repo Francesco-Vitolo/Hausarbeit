@@ -26,8 +26,8 @@
     <UpdatePeriodically>false</UpdatePeriodically>
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>5</ApplicationRevision>
-    <ApplicationVersion>1.0.0.5</ApplicationVersion>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
     <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
@@ -118,7 +118,7 @@
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="ContextHelper.cs" />
-    <Compile Include="Imageconverter.cs" />
+    <Compile Include="ImageConverter.cs" />
     <Compile Include="Logins.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
@@ -159,7 +159,7 @@
     <Compile Include="Produzent.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
-    <Compile Include="SelectFile.cs" />
+    <Compile Include="Files.cs" />
     <Compile Include="User-Controls\Uc_Titlebar.xaml.cs">
       <DependentUpon>Uc_Titlebar.xaml</DependentUpon>
     </Compile>
@@ -438,5 +438,6 @@
       <LastGenOutput>Vinothek.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

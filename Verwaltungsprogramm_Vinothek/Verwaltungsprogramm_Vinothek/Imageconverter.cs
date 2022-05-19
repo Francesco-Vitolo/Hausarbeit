@@ -1,15 +1,23 @@
 ﻿using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using PdfSharp.Drawing;
 
 namespace Verwaltungsprogramm_Vinothek
 {
-    public static class Imageconverter
+    public static class ImageConverter
     {
         public static Image BinaryToImage(byte[] binaryData)
         {            
             MemoryStream ms = new MemoryStream(binaryData);
             Image img = Image.FromStream(ms);
+            return img;
+        }
+
+        public static XImage BinaryToXImage(byte[] binaryData)
+        {
+            MemoryStream ms = new MemoryStream(binaryData);
+            XImage img = XImage.FromStream(ms);
             return img;
         }
 

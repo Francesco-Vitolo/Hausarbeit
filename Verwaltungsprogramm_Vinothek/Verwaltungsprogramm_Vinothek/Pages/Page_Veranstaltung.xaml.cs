@@ -31,7 +31,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Ctx = ContextHelper.GetContext();
             data = CreateDataGrid.Produkt(data);
 
-            Veranstaltung = Ctx.Event.FirstOrDefault(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung);
+            Veranstaltung = veranstaltung;
             DataContext = Veranstaltung;
 
             EVNT_POS = Ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt

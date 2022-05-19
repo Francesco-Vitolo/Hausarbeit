@@ -29,28 +29,32 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             MainWindow.GoBack.Visibility = Visibility.Hidden;    //Button_zurück und Menü unsichtbar machen
             MainWindow.expander.Visibility = Visibility.Hidden;
 
-            var listProdukte = ctx.Produkt.Where(x => x.Picture != null && x.Aktiv == true && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
+            var listProdukte = ctx.Produkt.Where(
+                x => x.Aktiv == true
+                && x.Picture != null
+                && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
+
             foreach (var prod in listProdukte)
             {
-                System.Drawing.Image img = Imageconverter.BinaryToImage(prod.Picture);
+                System.Drawing.Image img = ImageConverter.BinaryToImage(prod.Picture);
                 System.Drawing.Bitmap bitmapImg = new System.Drawing.Bitmap(img);
                 AddImgToGrid(bitmapImg, prod);
             }
         }
 
-        private void AddImgToGrid(System.Drawing.Bitmap b, Produkt prod)
+        private void AddImgToGrid(System.Drawing.Bitmap bmap, Produkt prod)
         {
             Button btn = new Button();
-            Image i = new Image();
-            MemoryStream ms = new MemoryStream(); //Für System.Windows.Constrols.Image
-            b.Save(ms, ImageFormat.Png);
-            ms.Position = 0;
-            BitmapImage bi = new BitmapImage();
-            bi.BeginInit();
-            bi.StreamSource = ms;
-            bi.EndInit();
-            i.Source = bi;  //Für System.Windows.Constrols.Image
-            btn.Content = i;
+            Image img = new Image();
+            MemoryStream memorystream = new MemoryStream(); //Für System.Windows.Constrols.Image
+            bmap.Save(memorystream, ImageFormat.Png);
+            memorystream.Position = 0;
+            BitmapImage bitmapImg = new BitmapImage();
+            bitmapImg.BeginInit();
+            bitmapImg.StreamSource = memorystream;
+            bitmapImg.EndInit();
+            img.Source = bitmapImg;  //Für System.Windows.Constrols.Image
+            btn.Content = img;
             btn.Style = FindResource("Button_Kunden") as Style;
             btn.Click += (sender, args) =>      //Event für Button wird erzeugt
             {
@@ -60,7 +64,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
                 Tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin_{Random.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
                 string tempfile = Tempfiles.LastOrDefault();
-                File.WriteAllBytes(tempfile, prod.PDF_file); //PDF noch nicht freigegeben, deshalb timer
+                File.WriteAllBytes(tempfile, prod.PDF_file);
                 pdfBrowser.Navigate(tempfile);
             };
 

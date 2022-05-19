@@ -23,7 +23,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void btn_changePW_Click(object sender, RoutedEventArgs e) //Passwort ändern
         {
            User = (Benutzer)lv_Users.SelectedItem;
-           User.Passwort = Encrypt.getHash(tb_pw.Text);
+           User.Passwort = Encrypt.GetHash(tb_pw.Text);
            Ctx.SaveChanges();
            WM = new Window_Messagebox("Das Passwort wurde geändert");
            WM.Show();
@@ -52,7 +52,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Benutzer newUser = new Benutzer();
             newUser.username = tb_newUser_Name.Text;
-            newUser.Passwort = Encrypt.getHash(tb_newUser_PW.Text);
+            newUser.Passwort = Encrypt.GetHash(tb_newUser_PW.Text);
             Ctx.Benutzer.Add(newUser);
             Ctx.SaveChanges();
         }

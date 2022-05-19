@@ -26,21 +26,19 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Ctx = ContextHelper.GetContext();
-            data = CreateDataGrid.Produkt(data); //Datagrid erstellen
+            dataGridProdukte = CreateDataGrid.Produkt(dataGridProdukte); //Datagrid erstellen
             Produkte = new List<Produkt>();
-            Produzent = Ctx.Produzent.Find(produzent.ID_Produzent);
+            Produzent = produzent;
             prodz.DataContext = Produzent;
             Produkte = Ctx.Produkt.Where(x => x.Produzent.ID_Produzent == Produzent.ID_Produzent).ToList(); //Produkte, die zu Produzent gehören
             CollectionView = CollectionViewSource.GetDefaultView(Produkte.OrderBy(x => x.Name).ToList());
-            data.DataContext = CollectionView;
+            dataGridProdukte.DataContext = CollectionView;
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Produzent = Ctx.Produzent.Find(Produzent.ID_Produzent);
-            prodz.DataContext = Produzent;
-            Produkt selected_produzent = (Produkt)data.CurrentItem;
-            if (selected_produzent != null)
+            Produkt selected_produkt = (Produkt)dataGridProdukte.CurrentItem;
+            if (selected_produkt != null)
                 NavigationService.Navigate(new Page_Produkt(CollectionView));
         }
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -78,7 +76,7 @@ namespace Verwaltungsprogramm_Vinothek
             Produkte = Ctx.Produkt.Where(x => x.Produzent.ID_Produzent == Produzent.ID_Produzent).ToList(); //Produkte, die zu Produzent gehören
             Produkte = Produkte.OrderBy(x => x.Name).ToList();
             CollectionView = CollectionViewSource.GetDefaultView(Produkte);
-            data.DataContext = CollectionView;
+            dataGridProdukte.DataContext = CollectionView;
         }
     }
 }

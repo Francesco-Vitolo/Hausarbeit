@@ -70,7 +70,7 @@ namespace Verwaltungsprogramm_Vinothek
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             string username = tb_username.Text;
-            string pw = Encrypt.getHash(tb_pw.Password);
+            string pw = Encrypt.GetHash(tb_pw.Password);
             if (Ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
                 ProgressBar();

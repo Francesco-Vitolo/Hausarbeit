@@ -25,7 +25,6 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
             this.user = user;
-            //this.user.Passwort = null;
             tb_username.DataContext = this.user;
             Frame_Main.Content = new Page_MainMenu();
         }
@@ -65,9 +64,9 @@ namespace Verwaltungsprogramm_Vinothek
         {
             if (Keyboard.Modifiers != ModifierKeys.Control) //Key STRG
                 return;
-            if (e.Delta < 0 && scale > 0.7) //Mousewheel runter
+            if (e.Delta < 0 && scale > 0.7) //Mausrad runter
                 scale -= 0.1;
-            else if (e.Delta > 0 && scale < 1.5) //Mousewheel hoch
+            else if (e.Delta > 0 && scale < 1.5) //Mausrad hoch
                 scale += 0.1;
             Frame_Main.LayoutTransform = new ScaleTransform(scale, scale);
             label_zoom.Content = Math.Round(scale * 100 ,0) + " %"; //wird angezeigt

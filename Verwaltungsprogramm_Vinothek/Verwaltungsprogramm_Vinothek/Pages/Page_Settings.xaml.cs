@@ -35,7 +35,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void PdfDir_Click(object sender, RoutedEventArgs e) //PDF - Verzeichnis ändern
         {
-            Settings.Default.PDF_Directory = SelectFile.PdfDir(Settings.Default.PDF_Directory);
+            Settings.Default.PDF_Directory = Files.SelectPdfDir(Settings.Default.PDF_Directory);
             Settings.Default.Save();
         }
      

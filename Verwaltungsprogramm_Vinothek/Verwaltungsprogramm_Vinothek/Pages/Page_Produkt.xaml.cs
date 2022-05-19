@@ -29,7 +29,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Ctx = ContextHelper.GetContext();
             CollectionView = collectionView;
             Produkt = (Produkt)CollectionView.CurrentItem;
-            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
             DataContext = Produkt;
         }
 
@@ -58,12 +57,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e) //Bild auswählen
         {
-            string imgPath = SelectFile.Image();
+            string imgPath = Files.SelectImage();
 
             if (imgPath != null)
             {
-                byte[] b = Imageconverter.ConvertImageToByteArray(imgPath);
-                path.Content = imgPath;
+                byte[] b = ImageConverter.ConvertImageToByteArray(imgPath);
+                path.Text = imgPath;
                 Produkt.Picture = b;
                 pic.DataContext = null;
                 pic.DataContext = Produkt;
@@ -90,8 +89,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             if (Produkt.PDF_file != null)
             {
-                var v = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
-                SelectFile.SavePDF(v.PDF_file, Produkt.Name + ".pdf");
+                Files.SavePDF(Produkt.PDF_file, Produkt.Name + ".pdf");
             }
             else
             {
@@ -103,16 +101,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             PDF pdf = new PDF();
             byte[] byteArrayPDF = pdf.CreateFromProd(Produkt);
-            var produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
-            produkt.PDF_file = byteArrayPDF;
+            Produkt.PDF_file = byteArrayPDF;
             Ctx.SaveChanges();
-            WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.GetPath()}");
+            WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.filename}");
             WM.Show();
         }
         private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {
-            var produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
-            if (produkt.PDF_file != null)
+            if (Produkt.PDF_file != null)
             {
                 string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf"; //temporäre Datei wird erstellt
                 File.WriteAllBytes(tempfile, Produkt.PDF_file);
@@ -135,13 +131,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void btn_zwischenablage_Click(object sender, RoutedEventArgs e)
         {
 
-            var img = SelectFile.SelectImgfromClipboard();
+            var img = Files.SelectImgfromClipboard();
             if (img != null)
             {
-                var picByteArray = Imageconverter.ConvertImageFromClipboard(img);
+                var picByteArray = ImageConverter.ConvertImageFromClipboard(img);
                 Produkt.Picture = picByteArray;
                 pic.DataContext = null;
                 pic.DataContext = Produkt;
+                path.Text = "Zwischenablage";
             }
         }
         private void MoveNext_Click(object sender, RoutedEventArgs e) //Nächstes Obj
@@ -152,9 +149,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 CollectionView.MoveCurrentToFirst();
             }
             Produkt = (Produkt)CollectionView.CurrentItem;
-            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
             DataContext = Produkt;
             pic.DataContext = Produkt;
+            path.Text = null;
         }
 
         private void MovePrev_Click(object sender, RoutedEventArgs e) //Vorheriges Obj
@@ -165,15 +162,16 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 CollectionView.MoveCurrentToLast();
             }
             Produkt = (Produkt)CollectionView.CurrentItem;
-            Produkt = Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == Produkt.ID_Produkt);
             DataContext = Produkt;
             pic.DataContext = Produkt;
+            path.Text = null;
         }
 
         private void Button_Click_BildEntfernen(object sender, RoutedEventArgs e)
         {
             Produkt.Picture = null;
             pic.DataContext = null;
+            path.Text = "";
         }
 
         private void WebSuche_Click(object sender, RoutedEventArgs e)

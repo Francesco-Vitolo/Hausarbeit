@@ -58,11 +58,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
         private void Button_Click_BildAuswählen(object sender, RoutedEventArgs e) //Bild auswählen und un byte - Array umwandeln
         {
-            string imgPath = SelectFile.Image();
+            string imgPath = Files.SelectImage();
             if (imgPath != null)
             {
                 ImgSrc.Text = "Pfad: " + imgPath;
-                byte[] binaryPic = Imageconverter.ConvertImageToByteArray(imgPath);
+                byte[] binaryPic = ImageConverter.ConvertImageToByteArray(imgPath);
                 NewProd.Picture = binaryPic;
             }
         }
@@ -76,10 +76,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void Button_Click_BildausZwischenablage(object sender, RoutedEventArgs e)
         {
-            var img = SelectFile.SelectImgfromClipboard();
+            var img = Files.SelectImgfromClipboard();
             if (img != null)
             {
-                byte[] binaryPic = Imageconverter.ConvertImageFromClipboard(img);
+                byte[] binaryPic = ImageConverter.ConvertImageFromClipboard(img);
                 NewProd.Picture = binaryPic;
                 ImgSrc.Text = "Aus Zwischenablage";
             }
