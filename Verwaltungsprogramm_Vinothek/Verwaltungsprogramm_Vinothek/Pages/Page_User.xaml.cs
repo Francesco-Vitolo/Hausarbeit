@@ -34,13 +34,13 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Benutzer user = (Benutzer)lv_Users.SelectedItem;
             if (user.ID_Benutzer != 1)
             {
-                Window_Abfrage WA = new Window_Abfrage($"Soll {user.username} gelöscht werden?");
+                Window_Abfrage WA = new Window_Abfrage($"Soll {user} gelöscht werden?");
                 WA.ShowDialog();
                 if (WA.GetOption())
                 {
                     Ctx.Benutzer.Remove(user);
                     Ctx.SaveChanges();
-                    WM = new Window_Messagebox($"{user.username} wurde gelöscht");
+                    WM = new Window_Messagebox($"{user} wurde gelöscht");
                     WM.Show();
                 }
             }

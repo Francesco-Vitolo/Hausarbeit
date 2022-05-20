@@ -29,10 +29,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             Window_Select_Object WSO = new Window_Select_Object("ListeProdukte");
             WSO.ShowDialog();
-            Produkt p = (Produkt)WSO.GetObj();
-            if (p != null && ListProd.FirstOrDefault(x => x.ID_Produkt == p.ID_Produkt) == null) //Wenn Produkt nicht schon hinzugefügt
+            Produkt addedProd = (Produkt)WSO.GetObj();
+            if (addedProd != null && ListProd.FirstOrDefault(x => x.ID_Produkt == addedProd.ID_Produkt) == null) //Wenn Produkt nicht schon hinzugefügt
             {
-                ListProd.Add(p);
+                ListProd.Add(addedProd);
                 data.DataContext = null;
                 data.DataContext = ListProd;
             }

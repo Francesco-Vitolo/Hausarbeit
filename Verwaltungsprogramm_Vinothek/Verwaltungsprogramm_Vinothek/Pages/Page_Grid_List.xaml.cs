@@ -90,7 +90,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 switch (GridType)
                 {
                     case "ListeProdukte":
-                        Produkt selected_produkt = (Produkt)CollectionView.CurrentItem;
                         NavigationService.Navigate(new Page_Produkt(CollectionView));
                         break;
                     case "ListeProduzenten":
@@ -109,7 +108,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
         {
             ContextHelper.SetNewContext();
             Ctx = ContextHelper.GetContext();
-            ContextHelper.LoadTables();
             switch (GridType)
             {
                 case "ListeProdukte":
@@ -144,7 +142,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 NavigationService.Navigate(new Page_Add_Veranstaltung());
             }
-            CollectionView.Refresh();
+            //CollectionView.Refresh();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -153,28 +151,28 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 case "ListeProdukte":
                     Produkt deleted_Produ = (Produkt)CollectionView.CurrentItem;
-                    WA = new Window_Abfrage($"Soll {deleted_Produ.Name} gelöscht werden"); //Abfrage
+                    WA = new Window_Abfrage($"Soll {deleted_Produ} gelöscht werden"); //Abfrage
                     WA.ShowDialog();
                     if (WA.GetOption()) //Option Ja oder Nein
                     {
                         Ctx.Produkt.Remove(deleted_Produ); // löschen
                         var list = Ctx.EventPos.Where(x => x.ID_Produkt == deleted_Produ.ID_Produkt).ToList();
                         list.ForEach(x => Ctx.EventPos.Remove(x));
-                        WM = new Window_Messagebox(deleted_Produ.Name + " wurde gelöscht.");
+                        WM = new Window_Messagebox(deleted_Produ + " wurde gelöscht.");
                         WM.ShowDialog();
                     }
                     break;
 
                 case "ListeProduzenten":
                     Produzent deleted_Prodz = (Produzent)CollectionView.CurrentItem;
-                    WA = new Window_Abfrage($"Soll {deleted_Prodz.Name} gelöscht werden");
+                    WA = new Window_Abfrage($"Soll {deleted_Prodz} gelöscht werden");
                     WA.ShowDialog();
                     if (WA.GetOption())
                     {
                         if (Ctx.Produkt.FirstOrDefault(x => x.ID_Produzent == deleted_Prodz.ID_Produzent) == null) //Prüfen, ob Produzent noch Teil von Produkt ist
                         {
                             Ctx.Produzent.Remove(deleted_Prodz);
-                            WM = new Window_Messagebox(deleted_Prodz.Name + " wurde gelöscht.");
+                            WM = new Window_Messagebox(deleted_Prodz + " wurde gelöscht.");
                             WM.ShowDialog();
                         }
                         else
@@ -187,13 +185,13 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
                 case "ListeEvents":
                     Event deleted_Event = (Event)CollectionView.CurrentItem;
-                    WA = new Window_Abfrage($"Soll {deleted_Event.Name} gelöscht werden");
+                    WA = new Window_Abfrage($"Soll {deleted_Event} gelöscht werden");
                     WA.ShowDialog();
                     if (WA.GetOption())
                     {
                         Ctx.Event.Remove(deleted_Event);
                         Ctx.EventPos.Where(x => x.ID_Veranstaltung == deleted_Event.ID_Veranstaltung).ToList().ForEach(x => Ctx.EventPos.Remove(x)); //Event-ID aus EventPos löschen 
-                        WM = new Window_Messagebox(deleted_Event.Name + " wurde gelöscht.");
+                        WM = new Window_Messagebox(deleted_Event + " wurde gelöscht.");
                     }
                     break;
             }
@@ -203,18 +201,29 @@ namespace Verwaltungsprogramm_Vinothek.Windows
 
         private void Duplicate_Click(object sender, RoutedEventArgs e)
         {
-            object DuplicateObj = null;
             switch (GridType)
             {
                 case "ListeProdukte":
-                    DuplicateObj = Ctx.Produkt.Add((Produkt)CollectionView.CurrentItem);
+                    Produkt prod = Ctx.Produkt.Add((Produkt)CollectionView.CurrentItem);
+                    WM = new Window_Messagebox($"{prod} wurde verdoppelt.");
+                    WM.Show();
                     break;
                 case "ListeProduzenten":
-                    DuplicateObj = Ctx.Produzent.Add((Produzent)CollectionView.CurrentItem);
+                    Produzent produzent = (Produzent)CollectionView.CurrentItem;
+                    Produzent dupProd = new Produzent();
+                    dupProd.Name = produzent.Name;
+                    dupProd.Land = produzent.Land;
+                    dupProd.Region = produzent.Region;
+                    dupProd.Adresse = produzent.Adresse;
+                    dupProd.Hektar = produzent.Hektar;
+                    dupProd.Email = produzent.Email;
+                    dupProd.Telefon = produzent.Telefon;
+                    Ctx.Produzent.Add(dupProd);
+                    WM = new Window_Messagebox($"{dupProd} wurde verdoppelt.");
+                    WM.Show();
                     break;
                 case "ListeEvents":
                     Event evnt = (Event)CollectionView.CurrentItem;
-                    DuplicateObj = evnt;
                     var list = Ctx.EventPos.Where(x => x.ID_Veranstaltung == evnt.ID_Veranstaltung).ToList();
                     Ctx.Event.Add(evnt);
                     Ctx.SaveChanges();      //Muss gespeichert werden, um ID zu erhalten (weil automatisch generiert)
@@ -225,11 +234,14 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                         EP.ID_Produkt = item.ID_Produkt;
                         Ctx.EventPos.Add(EP);
                     }
+                    WM = new Window_Messagebox($"{evnt} wurde verdoppelt.");
+                    WM.Show();
                     break;
             }
             Ctx.SaveChanges();
-            Refresh_Click(null, null);
-            datagrid.ScrollIntoView(DuplicateObj);
+            Refresh_Click(null, null);            
+            //CollectionView.MoveCurrentTo(DuplicateObj);
+            //datagrid.ScrollIntoView(DuplicateObj);
         }
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren

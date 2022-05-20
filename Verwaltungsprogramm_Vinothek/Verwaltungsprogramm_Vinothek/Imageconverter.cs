@@ -26,11 +26,10 @@ namespace Verwaltungsprogramm_Vinothek
             Bitmap bitMap = new Bitmap(fileName);
             ImageFormat bmpFormat = bitMap.RawFormat;
             var imageToConvert = Image.FromFile(fileName);
-            using (MemoryStream ms = new MemoryStream())
-            {
-                imageToConvert.Save(ms, bmpFormat);
-                return ms.ToArray();
-            }
+
+            MemoryStream ms = new MemoryStream();
+            imageToConvert.Save(ms, bmpFormat);
+            return ms.ToArray();         
         }
 
         public static byte[] ConvertImageFromClipboard(Image img)

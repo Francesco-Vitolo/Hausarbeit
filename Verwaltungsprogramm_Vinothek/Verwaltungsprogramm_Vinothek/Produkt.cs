@@ -21,14 +21,45 @@ namespace Verwaltungsprogramm_Vinothek
         public string Rebsorten { get; set; }
         public string Geschmack { get; set; }
         public Nullable<double> Alkoholgehalt { get; set; }
-        public Nullable<int> Jahrgang { get; set; }
+
+        private Nullable<int> _jahrgang;
+        public Nullable<int> Jahrgang 
+        {
+            get { return _jahrgang; }
+            set 
+            {
+                if (value <= 1900)
+                    _jahrgang = 1900;
+                else if (value > DateTime.Now.Year)
+                    _jahrgang = DateTime.Now.Year;
+                else
+                    _jahrgang = value;
+            } 
+        }
         public string Beschreibung { get; set; }
-        public Nullable<double> Preis { get; set; }
+
+        private Nullable<double> _preis;
+        public Nullable<double> Preis
+        {
+            get { return _preis; }
+            set
+            {
+                if (value < 0)
+                    _preis = 0;                
+                else
+                    _preis = value;
+            }
+        }
         public Nullable<bool> Aktiv { get; set; }
         public byte[] Picture { get; set; }
         public byte[] PDF_file { get; set; }
         public int ID_Produzent { get; set; }
     
         public virtual Produzent Produzent { get; set; }
+
+        public override string ToString()
+        {
+            return Name;
+        }
     }
 }
