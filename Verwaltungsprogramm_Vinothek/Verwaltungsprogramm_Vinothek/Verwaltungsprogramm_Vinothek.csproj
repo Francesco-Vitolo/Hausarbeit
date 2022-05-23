@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Verwaltungsprogramm_Vinothek</RootNamespace>
     <AssemblyName>Verwaltungsprogramm_Vinothek</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
@@ -66,7 +66,7 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Pictures\favicon.ico</ApplicationIcon>
+    <ApplicationIcon>Images\favicon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
@@ -109,16 +109,16 @@
     <Compile Include="Benutzer.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
-    <Compile Include="CreateDatagrid.cs" />
-    <Compile Include="Encrypt.cs" />
+    <Compile Include="Classes\CreateDatagrid.cs" />
+    <Compile Include="Classes\Encrypt.cs" />
     <Compile Include="Event.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="EventPos.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
-    <Compile Include="ContextHelper.cs" />
-    <Compile Include="ImageConverter.cs" />
+    <Compile Include="Classes\ContextHelper.cs" />
+    <Compile Include="Classes\ImageConverter.cs" />
     <Compile Include="Logins.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
@@ -152,14 +152,14 @@
     <Compile Include="Pages\Page_Veranstaltung.xaml.cs">
       <DependentUpon>Page_Veranstaltung.xaml</DependentUpon>
     </Compile>
-    <Compile Include="PDF.cs" />
+    <Compile Include="Classes\PDF.cs" />
     <Compile Include="Produkt.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
     <Compile Include="Produzent.cs">
       <DependentUpon>Vinothek.tt</DependentUpon>
     </Compile>
-    <Compile Include="Files.cs" />
+    <Compile Include="Classes\Files.cs" />
     <Compile Include="User-Controls\Uc_Titlebar.xaml.cs">
       <DependentUpon>Uc_Titlebar.xaml</DependentUpon>
     </Compile>
@@ -190,7 +190,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Vinothek.edmx</DependentUpon>
     </Compile>
-    <Compile Include="VinothekDBInitialiser.cs" />
+    <Compile Include="Classes\VinothekDBInitialiser.cs" />
     <Compile Include="Windows\Window_Abfrage.xaml.cs">
       <DependentUpon>Window_Abfrage.xaml</DependentUpon>
     </Compile>
@@ -344,75 +344,75 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Pictures\favicon.ico">
+    <Resource Include="Images\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\magnifier.png">
+    <Resource Include="Images\magnifier.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\Logo.png">
+    <Resource Include="Images\Logo.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\edit.png">
+    <Resource Include="Images\edit.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\haus.png">
+    <Resource Include="Images\haus.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\wein.png">
+    <Resource Include="Images\wein.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\Add_Wein.png">
+    <Resource Include="Images\Add_Wein.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\Add_haus.png" />
-    <Resource Include="Pictures\dir.png">
+    <Resource Include="Images\Add_haus.png" />
+    <Resource Include="Images\dir.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\arrow_left.png">
+    <Resource Include="Images\arrow_left.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\arrow_right.png">
+    <Resource Include="Images\arrow_right.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\refresh.png" />
-    <Resource Include="Pictures\trash.png" />
-    <Resource Include="Pictures\duplicate.png" />
-    <Resource Include="Pictures\file.png">
+    <Resource Include="Images\refresh.png" />
+    <Resource Include="Images\trash.png" />
+    <Resource Include="Images\duplicate.png" />
+    <Resource Include="Images\file.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\download.png">
+    <Resource Include="Images\download.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\save.png">
+    <Resource Include="Images\save.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\new_file.png">
+    <Resource Include="Images\new_file.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\cross.png">
+    <Resource Include="Images\cross.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\haken.png">
+    <Resource Include="Images\haken.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Pictures\bild.png" />
-    <Resource Include="Pictures\clipboard.png" />
-    <Resource Include="Pictures\mail.png" />
-    <Resource Include="Pictures\avatar.png" />
-    <Resource Include="Pictures\settings.png" />
-    <Resource Include="Pictures\arrow_back.png" />
-    <Resource Include="Pictures\browser.png" />
-    <Resource Include="Pictures\plus.png" />
-    <Resource Include="Pictures\logins.png" />
+    <Resource Include="Images\bild.png" />
+    <Resource Include="Images\clipboard.png" />
+    <Resource Include="Images\mail.png" />
+    <Resource Include="Images\avatar.png" />
+    <Resource Include="Images\settings.png" />
+    <Resource Include="Images\arrow_back.png" />
+    <Resource Include="Images\browser.png" />
+    <Resource Include="Images\plus.png" />
+    <Resource Include="Images\logins.png" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <BootstrapperPackage Include=".NETFramework,Version=v4.6.2">
+    <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
-      <ProductName>Microsoft .NET Framework 4.6.2 %28x86 und x64%29</ProductName>
+      <ProductName>Microsoft .NET Framework 4.7.2 %28x86 und x64%29</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
     <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
@@ -432,6 +432,7 @@
       <DependentUpon>Vinothek.edmx</DependentUpon>
       <LastGenOutput>Vinothek.Context.cs</LastGenOutput>
     </Content>
+    <Content Include="Vinothek.edmx.sql" />
     <Content Include="Vinothek.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Vinothek.edmx</DependentUpon>

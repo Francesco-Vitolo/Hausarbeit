@@ -41,13 +41,13 @@
 
             <UniformGrid Grid.Row="1" Grid.Column="1" Rows="1" >
                 <Button  Click="btn_create_pdf_Click" ToolTip="PDF erstellen">
-                    <Image Source="..\Pictures\new_file.png" Margin="4,2,0,0"/>
+                    <Image Source="..\Images\new_file.png" Margin="4,2,0,0"/>
                 </Button>
                 <Button x:Name="btn_show_pdf" Click="btn_show_pdf_Click" ToolTip="PDF anschauen">
-                    <Image Source="..\Pictures\file.png"/>
+                    <Image Source="..\Images\file.png"/>
                 </Button>
                 <Button x:Name="btn_download_pdf" Click="btn_download_pdf_Click" ToolTip="PDF herunterladen">
-                    <Image Source="..\Pictures\download.png"/>
+                    <Image Source="..\Images\download.png"/>
                 </Button>
             </UniformGrid>
             <Separator Grid.Row="1" Grid.Column="2" HorizontalAlignment="Left">
@@ -58,16 +58,16 @@
             <UniformGrid Grid.Row="1" Grid.Column="2" Rows="1" >
 
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click" ToolTip="Modus umschalten">
-                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
+                    <Image Source="..\Images\edit.png" MaxHeight="70" />
                 </Button>
                 <Button Click="Add_Produzent_Click" ToolTip="Weingut auswählen">
-                    <Image Source="..\Pictures\haus.png"/>
+                    <Image Source="..\Images\haus.png"/>
                 </Button>
                 <Button x:Name="saveChanges" Click="saveChanges_Click" ToolTip="Änderungen übernehmen">
-                    <Image Source="..\Pictures\save.png"/>
+                    <Image Source="..\Images\save.png"/>
                 </Button>
                 <Button x:Name="WebSuche" Click="WebSuche_Click" ToolTip="Im Browser suchen">
-                    <Image Source="..\Pictures\browser.png"/>
+                    <Image Source="..\Images\browser.png"/>
                 </Button>
 
             </UniformGrid>
@@ -101,10 +101,10 @@
                         </Style>
                     </UniformGrid.Resources>
                     <Button x:Name="MoveNext" Click="MovePrev_Click" ToolTip="Springe zum vorherigen Produkt" >
-                        <Image Source="..\Pictures\arrow_left.png" MaxHeight="40"/>
+                        <Image Source="..\Images\arrow_left.png" MaxHeight="40"/>
                     </Button>
                     <Button x:Name="MovePrev" Click="MoveNext_Click" ToolTip="Springe zum vorherigen Produkt">
-                        <Image Source="..\Pictures\arrow_right.png" MaxHeight="40"/>
+                        <Image Source="..\Images\arrow_right.png" MaxHeight="40"/>
                     </Button>
                 </UniformGrid>
                 <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="4">
@@ -123,15 +123,15 @@
 
             <UniformGrid Rows="1" Grid.Column="3" Grid.Row="1">
                 <Button Click="btn_zwischenablage_Click" ToolTip="Bild aus Zwischenablage">
-                    <Image Source="..\Pictures\clipboard.png"/>
+                    <Image Source="..\Images\clipboard.png"/>
                 </Button>
 
                 <Button Click="Button_Click_BildAuswählen" ToolTip="Bild auswählen">
-                    <Image Source="..\Pictures\bild.png"/>
+                    <Image Source="..\Images\bild.png"/>
                 </Button>
 
                 <Button Click="Button_Click_BildEntfernen" ToolTip="Bild entfernen">
-                    <Image Source="..\Pictures\cross.png"/>
+                    <Image Source="..\Images\cross.png"/>
                 </Button>
             </UniformGrid>
 

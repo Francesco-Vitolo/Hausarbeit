@@ -55,19 +55,19 @@
             </StackPanel>
             <Separator/>
             <Button x:Name="Refresh" Click="Refresh_Click" ToolTip="Aktualisieren" >
-                <Image Source="..\Pictures\refresh.png"/>
+                <Image Source="..\Images\refresh.png"/>
             </Button>
             <Separator/>
             <Button x:Name="Add" Click="Add_Click" ToolTip="Hinzufügen" >
-                <Image Source="..\Pictures\plus.png"/>
+                <Image Source="..\Images\plus.png"/>
             </Button>
             <Separator/>
             <Button x:Name="Delete" Click="Delete_Click" ToolTip="Entfernen">
-                <Image Source="..\Pictures\trash.png"/>
+                <Image Source="..\Images\trash.png"/>
             </Button>
             <Separator/>
             <Button x:Name="Duplicate" Click="Duplicate_Click" ToolTip="Verdoppeln">
-                <Image Source="..\Pictures\duplicate.png"/>
+                <Image Source="..\Images\duplicate.png"/>
             </Button>
             <Separator/>
         </UniformGrid>

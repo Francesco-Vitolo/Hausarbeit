@@ -8,7 +8,7 @@
         Title="Window_Messagebox" Height="340" Width="340"  WindowStartupLocation="CenterScreen">
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <Image Source="..\Pictures\Logo.png" Margin="20" VerticalAlignment="Top" MaxHeight="75"/>
+            <Image Source="..\Images\Logo.png" Margin="20" VerticalAlignment="Top" MaxHeight="75"/>
             <StackPanel x:Name="Text" />
             <Button Content="OK" Click="Button_Click" Style="{StaticResource Button_Style2}" Width="100"/>
         </StackPanel>

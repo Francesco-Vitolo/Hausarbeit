@@ -35,7 +35,7 @@
             <Button x:Name="Exit" Content="X" Click="Exit_Click" Background="#FFA85D5D" Foreground="Black" Focusable="False"/>
         </WrapPanel>
 
-        <!--<Image Source="..\Pictures\unnamed.png" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="75"/>-->
+        <!--<Image Source="..\Images\unnamed.png" Margin="10,80,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" MaxHeight="75"/>-->
 
     </Grid>
 </UserControl>

@@ -26,7 +26,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Ctx = ContextHelper.GetContext();
-            dataGridProdukte = CreateDataGrid.Produkt(dataGridProdukte); //Datagrid erstellen
+            CreateDataGrid.Produkt(ref dataGridProdukte); //Datagrid erstellen
             Produkte = new List<Produkt>();
             Produzent = produzent;
             prodz.DataContext = Produzent;

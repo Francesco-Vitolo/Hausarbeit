@@ -174,7 +174,7 @@
         <Style x:Key="Window_Default" TargetType="Window">
             <Setter Property="Background" Value="{Binding Path=Background, Source={x:Static properties:Settings.Default}}"/>
             <Setter Property="Foreground" Value="{Binding Path=Foreground, Source={x:Static properties:Settings.Default}}"/>
-            <Setter Property="Icon" Value="..\..\Pictures\favicon.ico"/>
+            <Setter Property="Icon" Value="..\..\Images\favicon.ico"/>
             <!--<Setter Property="FontStyle" Value="Italic"/>-->
             <Setter Property="FontSize" Value="18"/>
             <Setter Property="Height" Value="1080"/>

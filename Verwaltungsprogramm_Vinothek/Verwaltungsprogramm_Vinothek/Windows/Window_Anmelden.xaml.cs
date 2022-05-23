@@ -39,7 +39,6 @@ namespace Verwaltungsprogramm_Vinothek
         private void InitializeContext()
         {
             ContextHelper.SetNewContext();
-            ContextHelper.LoadTables();
             Ctx = ContextHelper.GetContext();
         }
         private void SetDirectory()
@@ -50,30 +49,26 @@ namespace Verwaltungsprogramm_Vinothek
 
         private void SetButtonFarbe()
         {
-            try
+            Color brush1 = (Color)ColorConverter.ConvertFromString(Settings.Default.Color1.ToString());
+            Color brush2 = (Color)ColorConverter.ConvertFromString(Settings.Default.Color2.ToString());
+            LinearGradientBrush gradient = new LinearGradientBrush()
             {
-                System.Windows.Media.Color brush1 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color1.ToString());
-                System.Windows.Media.Color brush2 = (System.Windows.Media.Color)System.Windows.Media.ColorConverter.ConvertFromString(Settings.Default.Color2.ToString());
-                LinearGradientBrush gradient = new LinearGradientBrush()
-                {
-                    StartPoint = new System.Windows.Point(0, 0),
-                    EndPoint = new System.Windows.Point(1, 1),
-                };
-                gradient.GradientStops.Add(new GradientStop(brush1, 0));
-                gradient.GradientStops.Add(new GradientStop(brush2, 0.8));
-                Settings.Default.LinearGradientBrush = gradient;
-                Settings.Default.Save();
-            }
-            catch { }
+                StartPoint = new Point(0, 0),
+                EndPoint = new Point(1, 1),
+            };
+            gradient.GradientStops.Add(new GradientStop(brush1, 0));
+            gradient.GradientStops.Add(new GradientStop(brush2, 0.8));
+            Settings.Default.LinearGradientBrush = gradient;
+            Settings.Default.Save();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_Anmelden(object sender, RoutedEventArgs e)
         {
             string username = tb_username.Text;
             string pw = Encrypt.GetHash(tb_pw.Password);
             if (Ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
-                ProgressBar();
+                //ProgressBar();
                 btn_Anmelden.IsEnabled = false;
                 User = Ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
                 Logins login = new Logins();
@@ -81,6 +76,9 @@ namespace Verwaltungsprogramm_Vinothek
                 login.Datum = DateTime.Now;
                 Ctx.Logins.Add(login);
                 Ctx.SaveChanges();
+                MainWindow mainWindow = new MainWindow(User);
+                mainWindow.Show();
+                Close();
             }
             else
                 Alert.Visibility = Visibility.Visible;
@@ -88,16 +86,14 @@ namespace Verwaltungsprogramm_Vinothek
         private void Window_KeyUp_Enter(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
-                Button_Click(null, null);
+                Button_Click_Anmelden(null, null);
         }
 
-        private async void ProgressBar()
-        {
-            await ProgressBarTask();
-            MainWindow mainWindow = new MainWindow(User);
-            mainWindow.Show();
-            Close();
-        }
+        //private async void ProgressBar()
+        //{
+        //    await ProgressBarTask();
+           
+        //}
         private Task ProgressBarTask()
         {
             return Task.Run(() =>

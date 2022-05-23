@@ -39,21 +39,20 @@ namespace Verwaltungsprogramm_Vinothek
            {"Anzahl Personen",      "AnzahlPersonen" } ,
         };
 
-        public static DataGrid Produkt(DataGrid datagrid)
+        public static void Produkt(ref DataGrid datagrid)
         {
-            return FillWithHeaderAndBinding(datagrid, Produkte);
+            FillWithHeaderAndBinding(ref datagrid, Produkte);
         }
-        public static DataGrid Produzent(DataGrid datagrid)
+        public static void Produzent(ref DataGrid datagrid)
         {
-            return FillWithHeaderAndBinding(datagrid, Produzenten);
+            FillWithHeaderAndBinding(ref datagrid, Produzenten);
+        }
+        public static void Event(ref DataGrid datagrid)
+        {
+            FillWithHeaderAndBinding(ref datagrid, Events);
+        }
 
-        }
-        public static DataGrid Event(DataGrid datagrid)
-        {
-            return FillWithHeaderAndBinding(datagrid, Events);
-        }
-
-        private static DataGrid FillWithHeaderAndBinding(DataGrid datagrid, Dictionary<string, string> dict)
+        private static void FillWithHeaderAndBinding(ref DataGrid datagrid, Dictionary<string, string> dict)
         {
             foreach (var name in dict)
             {
@@ -68,32 +67,28 @@ namespace Verwaltungsprogramm_Vinothek
                 };
                 datagrid.Columns.Add(column);
             }
-            return datagrid;
         }
 
-        public static ComboBox ProduktFilter(ComboBox combobox)
+        public static void ProduktFilter(ref ComboBox combobox)
         {
             foreach (var filter in Produkte)
             {
                 combobox.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
-            return combobox;
         }
-        public static ComboBox ProduzentFilter(ComboBox combobox)
+        public static void ProduzentFilter(ref ComboBox combobox)
         {
             foreach (var filter in Produzenten)
             {
                 combobox.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
-            return combobox;
         }
-        public static ComboBox EventFilter(ComboBox combobox)
+        public static void EventFilter(ref ComboBox combobox)
         {
             foreach (var filter in Events)
             {
                 combobox.Items.Add(new ComboBoxItem() { Content = filter.Key });
             }
-            return combobox;
         }
 
         public static string[] GetFilterNamesProdukte()

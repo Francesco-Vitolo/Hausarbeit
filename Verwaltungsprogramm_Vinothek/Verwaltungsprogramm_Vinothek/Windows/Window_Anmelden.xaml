@@ -9,10 +9,10 @@
     <Grid>
         <local:Uc_Titlebar/>
         <StackPanel HorizontalAlignment="Stretch" Margin="5">
-            <Image Source="..\Pictures\Logo.png" Margin="0,70,0,20" Width="400"/>
+            <Image Source="..\Images\Logo.png" Margin="0,70,0,20" Width="400"/>
             <TextBox Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tb_username" />
             <PasswordBox HorizontalContentAlignment="Center" Height="50" VerticalContentAlignment="Center" x:Name="tb_pw" />
-            <Button Height="50" Content="Anmelden" Click="Button_Click" Style="{StaticResource Button_Style2}" Width="auto" x:Name="btn_Anmelden"/>
+            <Button Height="50" Content="Anmelden" Click="Button_Click_Anmelden" Style="{StaticResource Button_Style2}" Width="auto" x:Name="btn_Anmelden"/>
             <!--<Button Height="50" Content="test" Click="Button_Click_2"/>-->
             <TextBlock x:Name="Alert" Text="Login fehlgeschlagen" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         </StackPanel>

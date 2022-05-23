@@ -23,13 +23,13 @@
         
         <UniformGrid Grid.Column="1" Grid.Row="1" Width="800" Rows="1" HorizontalAlignment="Right">
             <Button Click="Button_Click_BildausZwischenablage">
-                <Image Source="..\Pictures\clipboard.png"/>
+                <Image Source="..\Images\clipboard.png"/>
             </Button>
             <Button Click="Button_Click_BildAuswählen">
-                <Image Source="..\Pictures\bild.png"/>
+                <Image Source="..\Images\bild.png"/>
             </Button>
             <Button Click="Button_Click_BildEntfernen">
-                <Image Source="..\Pictures\cross.png"/>
+                <Image Source="..\Images\cross.png"/>
             </Button>
             <Separator Margin="20">
                 <Separator.LayoutTransform>
@@ -37,10 +37,10 @@
                 </Separator.LayoutTransform>
             </Separator>
             <Button Click="Add_Produzent_Click">
-                <Image Source="..\Pictures\haus.png"/>
+                <Image Source="..\Images\haus.png"/>
             </Button>
             <Button x:Name="saveChanges" Click="Button_Click_SaveChanges" >
-                <Image Source="..\Pictures\save.png"/>
+                <Image Source="..\Images\save.png"/>
             </Button>
         </UniformGrid>
         <TextBlock Name="ImgSrc" Margin="5" Text="" TextWrapping="Wrap" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Left"/>

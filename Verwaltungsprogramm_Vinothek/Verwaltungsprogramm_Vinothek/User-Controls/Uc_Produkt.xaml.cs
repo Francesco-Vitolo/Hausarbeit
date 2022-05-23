@@ -8,7 +8,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
     /// </summary>
     public partial class Uc_Produkt : UserControl
     {
-        private List<TextBox> tbs = new List<TextBox>();
+        private List<TextBox> TextBoxen = new List<TextBox>();
         public Uc_Produkt()
         {
             InitializeComponent();
@@ -16,15 +16,15 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
             {
                 if (v.GetType() == typeof(TextBox))
                 {
-                    tbs.Add((TextBox)v);
+                    TextBoxen.Add((TextBox)v);
                 }
             }
-            tbs.Add(tb_alk);
-            tbs.Add(tb_preis);
+            TextBoxen.Add(tb_alk);
+            TextBoxen.Add(tb_preis);
         }
         public List<TextBox> GetTbs()
         {
-            return tbs;
+            return TextBoxen;
         }
 
         public TextBox GetDesc()

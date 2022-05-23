@@ -7,7 +7,7 @@
       <Diagram DiagramId="c7b4f29db729433abf0c17122a9edfd9" Name="Diagram1">
         <EntityTypeShape EntityType="DB_VinothekModel.Benutzer" Width="1.5" PointX="5.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VinothekModel.Event" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DB_VinothekModel.EventPos" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DB_VinothekModel.EventPos" Width="1.5" PointX="3.5" PointY="6.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VinothekModel.Logins" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VinothekModel.Produkt" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="DB_VinothekModel.Produzent" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />

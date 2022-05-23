@@ -45,7 +45,7 @@
                     <Border Style="{StaticResource Border}" Width="80" Height="40">
                         <ComboBox Name="TimeMinutes" Margin="1" FontSize="24" Style="{StaticResource cb_Style}"/>
                     </Border>
-                    <Button Click="Button_Click"  Style="{StaticResource Button_TextContent}" Margin="50,0" />
+                    <Button Click="Button_Click_ZeitÜbernehmen"  Style="{StaticResource Button_TextContent}" Margin="50,0" />
                     <TextBox Text="{Binding Zeit}" IsReadOnly="True" Name="tb_time"/>
                 </WrapPanel>
             </UniformGrid>

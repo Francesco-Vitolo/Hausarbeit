@@ -30,16 +30,16 @@
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1" >
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
-                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
+                    <Image Source="..\Images\edit.png" MaxHeight="70" />
                 </Button>
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
-                    <Image Source="..\Pictures\save.png"/>
+                    <Image Source="..\Images\save.png"/>
                 </Button>
                 <Button x:Name="Refresh" Click="Refresh_Click" ToolTip="Aktualisieren" >
-                    <Image Source="..\Pictures\refresh.png"/>
+                    <Image Source="..\Images\refresh.png"/>
                 </Button>
                 <Button Click="Button_Click_OpenMail">
-                    <Image Source="..\Pictures\mail.png"/>
+                    <Image Source="..\Images\mail.png"/>
                 </Button>
             </UniformGrid>
             <StackPanel Grid.Column="1" Grid.Row="3" VerticalAlignment="Center" HorizontalAlignment="Right">

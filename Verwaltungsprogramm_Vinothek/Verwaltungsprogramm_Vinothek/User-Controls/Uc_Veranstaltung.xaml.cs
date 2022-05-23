@@ -12,7 +12,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
     /// </summary>
     public partial class Uc_Veranstaltung : UserControl
     {
-        private List<TextBox> ListObj { get; } = new List<TextBox>();
+        private List<TextBox> TextBoxen { get; } = new List<TextBox>();
         public Uc_Veranstaltung()
         {
             InitializeComponent();
@@ -20,7 +20,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
             {
                 if (v.GetType() == typeof(TextBox))
                 {
-                    ListObj.Add((TextBox)v);
+                    TextBoxen.Add((TextBox)v);
                 }
             }
             for (int i = 0; i < 24; i++)
@@ -47,7 +47,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
 
         public List<TextBox> GetTbs()
         {
-            return ListObj;
+            return TextBoxen;
         }
 
         public string GetDate()
@@ -64,7 +64,7 @@ namespace Verwaltungsprogramm_Vinothek.User_Controls
         }
 
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void Button_Click_ZeitÜbernehmen(object sender, RoutedEventArgs e)
         {
             if (TimeHours.SelectedItem != null && TimeMinutes.SelectedItem != null)
             {

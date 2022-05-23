@@ -17,8 +17,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Kundensicht : Page
     {
-        List<string> Tempfiles { get; set; } //Liste, falls User zu schnell ist --> Datei noch nicht gelöscht
-        Random Random { get; }
+        private List<string> Tempfiles { get; set; } //Liste, falls User zu schnell ist --> Datei noch nicht gelöscht
+        private Random Random { get; }
         public Page_Kundensicht()
         {
             InitializeComponent();

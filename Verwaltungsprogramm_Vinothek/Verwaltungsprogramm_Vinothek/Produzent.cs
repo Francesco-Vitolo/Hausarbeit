@@ -31,10 +31,5 @@ namespace Verwaltungsprogramm_Vinothek
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Produkt> Produkt { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

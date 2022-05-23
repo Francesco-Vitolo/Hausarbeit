@@ -8,7 +8,7 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class Window_Abfrage : Window
     {
-        private bool option { get; set; } = false;
+        private bool Option { get; set; } = false;
         public Window_Abfrage(string text)
         {
             InitializeComponent();
@@ -20,19 +20,19 @@ namespace Verwaltungsprogramm_Vinothek
         }
         private void Button_Click_Ja(object sender, RoutedEventArgs e)
         {
-            option = true;
+            Option = true;
             Close();
         }
 
         private void Button_Click_Nein(object sender, RoutedEventArgs e)
         {
-            option = false;
+            Option = false;
             Close();
         }
 
         public bool GetOption()
         {
-            return option;
+            return Option;
         }
     }
 }

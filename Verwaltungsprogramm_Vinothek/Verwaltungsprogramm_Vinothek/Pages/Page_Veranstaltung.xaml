@@ -42,7 +42,7 @@
                     <TextBlock Name="modus" Text="anschauen" Foreground="Red"/>
                 </StackPanel>
                 <Button  Click="CreatePDF_Click">
-                    <Image Source="..\Pictures\new_file.png" Margin="4,2,0,0"/>
+                    <Image Source="..\Images\new_file.png" Margin="4,2,0,0"/>
                 </Button>
             </UniformGrid>
 
@@ -54,10 +54,10 @@
 
             <UniformGrid Grid.Row="3" Grid.Column="2" Rows="1">
                 <Button x:Name="DelProd" Click="DelProd_Click" >
-                    <Image Source="..\Pictures\cross.png"/>
+                    <Image Source="..\Images\cross.png"/>
                 </Button>
                 <Button x:Name="AddProd" Click="AddProd_Click">
-                    <Image Source="..\Pictures\Add_Wein.png" MaxHeight="60"/>
+                    <Image Source="..\Images\Add_Wein.png" MaxHeight="60"/>
                 </Button>
             </UniformGrid>
             
@@ -69,13 +69,13 @@
             
             <UniformGrid Grid.Row="3" Grid.Column="3" Rows="1" >
                 <Button x:Name="UmschaltenBearbeiten" Click="UmschaltenBearbeiten_Click">
-                    <Image Source="..\Pictures\edit.png" MaxHeight="70" />
+                    <Image Source="..\Images\edit.png" MaxHeight="70" />
                 </Button>
                 <Button x:Name="Refresh" Click="Refresh_Click">
-                    <Image Source="..\Pictures\refresh.png"/>
+                    <Image Source="..\Images\refresh.png"/>
                 </Button>
                 <Button x:Name="saveChanges" Click="saveChanges_Click">
-                    <Image Source="..\Pictures\save.png"/>
+                    <Image Source="..\Images\save.png"/>
                 </Button>
             </UniformGrid>
             

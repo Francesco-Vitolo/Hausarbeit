@@ -13,7 +13,7 @@
         </Grid.LayoutTransform>
         <local:Uc_Produzent x:Name="felder" VerticalAlignment="Center"/>
         <Button x:Name="saveChanges" Click="Button_Click_Save" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="100">
-            <Image Source="..\Pictures\save.png"/>
+            <Image Source="..\Images\save.png"/>
         </Button>
     </Grid>
 </Page>

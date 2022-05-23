@@ -26,16 +26,17 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             InitializeComponent();
             MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
-            if (currentWindow.getUserID() != 1) //User - ID 1 --> admin
+            if (currentWindow.GetUserID() != 1) //User - ID 1 --> admin
             {
                 UserVerwaltung.Visibility = Visibility.Hidden;
                 UserVerwaltungBtn.Visibility = Visibility.Hidden;
+                Logins.Visibility = Visibility.Hidden;
             }
         }
 
         private void PdfDir_Click(object sender, RoutedEventArgs e) //PDF - Verzeichnis ändern
         {
-            Settings.Default.PDF_Directory = Files.SelectPdfDir(Settings.Default.PDF_Directory);
+            Settings.Default.PDF_Directory = Files.SelectPdfDir();
             Settings.Default.Save();
         }
      

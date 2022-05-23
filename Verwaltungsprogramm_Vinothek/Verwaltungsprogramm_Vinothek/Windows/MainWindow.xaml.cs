@@ -18,14 +18,14 @@ namespace Verwaltungsprogramm_Vinothek
     /// </summary>
     public partial class MainWindow : Window
     {
-        private double scale { get; set; } = 1;
-        private Benutzer user { get; }
+        private double Scale { get; set; } = 1;
+        private Benutzer User { get; }
         public MainWindow(Benutzer user) //user wird weitergegeben
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            this.user = user;
-            tb_username.DataContext = this.user;
+            this.User = user;
+            tb_username.DataContext = this.User;
             Frame_Main.Content = new Page_MainMenu();
         }
 
@@ -64,12 +64,12 @@ namespace Verwaltungsprogramm_Vinothek
         {
             if (Keyboard.Modifiers != ModifierKeys.Control) //Key STRG
                 return;
-            if (e.Delta < 0 && scale > 0.7) //Mausrad runter
-                scale -= 0.1;
-            else if (e.Delta > 0 && scale < 1.5) //Mausrad hoch
-                scale += 0.1;
-            Frame_Main.LayoutTransform = new ScaleTransform(scale, scale);
-            label_zoom.Content = Math.Round(scale * 100 ,0) + " %"; //wird angezeigt
+            if (e.Delta < 0 && Scale > 0.7) //Mausrad runter
+                Scale -= 0.1;
+            else if (e.Delta > 0 && Scale < 1.5) //Mausrad hoch
+                Scale += 0.1;
+            Frame_Main.LayoutTransform = new ScaleTransform(Scale, Scale);
+            label_zoom.Content = Math.Round(Scale * 100 ,0) + " %"; //wird angezeigt
             await Timer(4000);
         }
 
@@ -89,9 +89,9 @@ namespace Verwaltungsprogramm_Vinothek
             n.GoBack();
         }
 
-        public int getUserID() //user - ID für Nutzerverwaltung (nur bei Admin)
+        public int GetUserID() //user - ID für Nutzerverwaltung (nur bei Admin)
         {
-            return user.ID_Benutzer;
+            return User.ID_Benutzer;
         }
     }
 }

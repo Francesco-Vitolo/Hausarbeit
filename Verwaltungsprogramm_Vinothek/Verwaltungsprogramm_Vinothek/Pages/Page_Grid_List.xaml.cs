@@ -37,24 +37,24 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             switch (GridType)
             {
                 case "ListeProdukte":
-                    datagrid = CreateDataGrid.Produkt(datagrid);
-                    CreateDataGrid.ProduktFilter(cb_filter);                    //Combobox füllen (ORDER BY)
+                    CreateDataGrid.Produkt(ref datagrid);
+                    CreateDataGrid.ProduktFilter(ref cb_filter);                    //Combobox füllen (ORDER BY)
                     Filteroptions = CreateDataGrid.GetFilterNamesProdukte();    //Binding Namen für GridColumns
                     CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produkt.Local.OrderBy(x => x.Name)); //ORDER BY Name ist Default
                     datagrid.DataContext = CollectionView;
                     break;
 
                 case "ListeProduzenten":
-                    datagrid = CreateDataGrid.Produzent(datagrid);
-                    CreateDataGrid.ProduzentFilter(cb_filter);
+                    CreateDataGrid.Produzent(ref datagrid);
+                    CreateDataGrid.ProduzentFilter(ref cb_filter);
                     Filteroptions =  CreateDataGrid.GetFilterNamesProduzenten();
                     CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local.OrderBy(x => x.Name));
                     datagrid.DataContext = CollectionView;
                     break;
 
                 case "ListeEvents":
-                    datagrid = CreateDataGrid.Event(datagrid);
-                    CreateDataGrid.EventFilter(cb_filter);
+                    CreateDataGrid.Event(ref datagrid);
+                    CreateDataGrid.EventFilter(ref cb_filter);
                     Filteroptions = CreateDataGrid.GetFilterNamesEvents();
                     CollectionView = CollectionViewSource.GetDefaultView(Ctx.Event.Local.OrderBy(x => x.Datum)); //ORDER BY Datum
                     datagrid.DataContext = CollectionView;
@@ -280,11 +280,17 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             if (Keyboard.IsKeyDown(Key.LeftCtrl) || Keyboard.IsKeyDown(Key.RightCtrl))
             {
                 if (e.Key == Key.R)
+                {
                     Refresh_Click(null, null);
-                if (e.Key == Key.N)
+                }
+                else if (e.Key == Key.N)
+                {
                     Add_Click(null, null);
-                if (e.Key == Key.D)
+                }
+                else if (e.Key == Key.D)
+                {
                     Duplicate_Click(null, null);
+                }
             }
         }
     }

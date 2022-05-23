@@ -10,33 +10,14 @@
 namespace Verwaltungsprogramm_Vinothek
 {
     using System;
-
+    using System.Collections.Generic;
+    
     public partial class Event
     {
         public int ID_Veranstaltung { get; set; }
         public string Name { get; set; }
         public Nullable<int> AnzahlPersonen { get; set; }
-
-        private Nullable<System.DateTime> _datum;
-        public Nullable<System.DateTime> Datum
-        {
-            get { return _datum; }
-            set
-            {
-                if (value < DateTime.Now)
-                {
-                    _datum = DateTime.Now;
-                }
-                else
-                    _datum = value;
-            }
-        }
-
+        public Nullable<System.DateTime> Datum { get; set; }
         public string Zeit { get; set; }
-
-        public override string ToString()
-        {
-            return Name;
-        }
     }
 }

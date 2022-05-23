@@ -32,10 +32,10 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button x:Name="AddProd" Click="AddProd_Click"  >
-                <Image Source="..\Pictures\Add_Wein.png" MaxHeight="60" />
+                <Image Source="..\Images\Add_Wein.png" MaxHeight="60" />
             </Button>
             <Button x:Name="DelProd" Click="DelProd_Click" Grid.Column="1">
-                <Image Source="..\Pictures\cross.png"/>
+                <Image Source="..\Images\cross.png"/>
             </Button> 
             <Separator Grid.Column="2" Margin="10">
                 <Separator.LayoutTransform>
@@ -44,7 +44,7 @@
             </Separator>
 
             <Button x:Name="saveChanges" Click="SaveEvent_Click" Grid.Column="3">
-                <Image Source="..\Pictures\save.png"/>
+                <Image Source="..\Images\save.png"/>
             </Button>
         </Grid>
         <DataGrid  Name="data" Grid.ColumnSpan="2" Grid.Row="2" Grid.Column="1"/>

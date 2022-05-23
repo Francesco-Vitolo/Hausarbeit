@@ -29,7 +29,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             InitializeComponent();
             Ctx = ContextHelper.GetContext();
-            data = CreateDataGrid.Produkt(data);
+            CreateDataGrid.Produkt(ref data);
 
             Veranstaltung = veranstaltung;
             DataContext = Veranstaltung;

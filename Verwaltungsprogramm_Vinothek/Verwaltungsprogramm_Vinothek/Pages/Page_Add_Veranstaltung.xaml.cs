@@ -14,12 +14,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
     /// </summary>
     public partial class Page_Add_Veranstaltung : Page
     {
-        private List<Produkt> ListProd { get; }
         private VinothekContext Ctx { get; }
+        private List<Produkt> ListProd { get; }
         public Page_Add_Veranstaltung()
         {
             InitializeComponent();
-            data = CreateDataGrid.Produkt(data);
+            CreateDataGrid.Produkt(ref data);
             Ctx = ContextHelper.GetContext();
             ListProd = new List<Produkt>();
             data.DataContext = ListProd;

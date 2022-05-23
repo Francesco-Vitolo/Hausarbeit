@@ -6,35 +6,35 @@ namespace Verwaltungsprogramm_Vinothek
 {
     public static class ContextHelper
     {
-        private static VinothekContext ctx { get; set; }
+        private static VinothekContext Context { get; set; }
         public static VinothekContext GetContext()
         {
-            return ctx;
+            return Context;
         }
 
         public static void SetNewContext()
         {
-            ctx = new VinothekContext();
+            Context = new VinothekContext();
             LoadTables();
         }
 
         public static void SaveChanges()
         {
-            ctx.SaveChanges();
+            Context.SaveChanges();
         }
 
         public static void LoadTables()
         {
-            ctx.Benutzer.Load();
-            ctx.Event.Load();
-            ctx.EventPos.Load();
-            ctx.Logins.Load();
-            ctx.Produkt.Load();
-            ctx.Produzent.Load();
+            Context.Benutzer.Load();
+            Context.Event.Load();
+            Context.EventPos.Load();
+            Context.Logins.Load();
+            Context.Produkt.Load();
+            Context.Produzent.Load();
         }
         public static void Reset()
         {
-            var entries = ctx.ChangeTracker.Entries().Where(e => e.State != EntityState.Unchanged).ToArray();
+            var entries = Context.ChangeTracker.Entries().Where(e => e.State != EntityState.Unchanged).ToArray();
             foreach (var entry in entries)
             {
                 switch (entry.State)

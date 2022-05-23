@@ -1,19 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-
 namespace Verwaltungsprogramm_Vinothek
 {
     /// <summary>
@@ -33,13 +22,13 @@ namespace Verwaltungsprogramm_Vinothek
             this.GridType = gridType;
             if (gridType == "ListeProdukte")
             {
-                data = CreateDataGrid.Produkt(data);
+                CreateDataGrid.Produkt(ref data);
                 Ctx.Produkt.Load();
                 Collection = CollectionViewSource.GetDefaultView(Ctx.Produkt.Local);
             }
             else if (gridType == "ListeProduzenten")
             {
-                data = CreateDataGrid.Produzent(data);
+                CreateDataGrid.Produzent(ref data);
                 Ctx.Produzent.Load();
                 Collection = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local);
             }

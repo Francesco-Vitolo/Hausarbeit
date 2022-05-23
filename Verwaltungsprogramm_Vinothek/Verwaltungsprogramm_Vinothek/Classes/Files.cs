@@ -23,10 +23,10 @@ namespace Verwaltungsprogramm_Vinothek
             return null;
         }
 
-        public static string SelectPdfDir(string path)
+        public static string SelectPdfDir()
         {
             FolderBrowserDialog folderDlg = new FolderBrowserDialog();
-            folderDlg.SelectedPath = path;
+            folderDlg.SelectedPath = Settings.Default.PDF_Directory;
             folderDlg.ShowDialog();
             return folderDlg.SelectedPath;
         }
