@@ -16,6 +16,7 @@ namespace Verwaltungsprogramm_Vinothek
        private XTextFormatter Tf { get; set; }
        private XGraphics Gfx { get; set; }
        private Produkt Prod { get; set; }
+       private Event Veranstaltung { get; set; }
        private int PosY { get; set; } = 120;
        private Random Rand { get; set; }
        public string filename { get; private set; }
@@ -37,8 +38,11 @@ namespace Verwaltungsprogramm_Vinothek
 
         public byte[] CreateFromEvent(List<Produkt> produkte, Event veranstaltung)
         {
-            CreateDeckblatt(veranstaltung);
-            filename = $@"{Properties.Settings.Default.PDF_Directory}\{veranstaltung.Name}_{Rand.Next(0, 1000)}.pdf";
+            Veranstaltung = veranstaltung;
+            CreateDeckblatt();
+            DateTime date = (DateTime)Veranstaltung.Datum;
+            string dateString = date.ToString("dd_MM_yy");
+            filename = $@"{Properties.Settings.Default.PDF_Directory}\{Veranstaltung.Name}_{dateString}.pdf";
             foreach (var aktuellesProd in produkte)
             {
                 Prod = aktuellesProd;
@@ -47,13 +51,13 @@ namespace Verwaltungsprogramm_Vinothek
             return SaveAndShow();
         }
 
-        private void CreateDeckblatt(Event ev)
+        private void CreateDeckblatt()
         {
             Page = Document.AddPage();
             Gfx = XGraphics.FromPdfPage(Page);
             PosY = 300;
-            Gfx.DrawString(ev.Name, Font, XBrushes.Black, new XRect(0, 340, Page.Width, Page.Height), XStringFormats.TopCenter);
-            DateTime date =(DateTime) ev.Datum;
+            Gfx.DrawString(Veranstaltung.Name, Font, XBrushes.Black, new XRect(0, 340, Page.Width, Page.Height), XStringFormats.TopCenter);
+            DateTime date =(DateTime) Veranstaltung.Datum;
             string dateString = date.ToString("dddd, dd.MM.yyyy");
             Gfx.DrawString(dateString, Font, XBrushes.Black, new XRect(0, 400, Page.Width, Page.Height), XStringFormats.TopCenter);
             try

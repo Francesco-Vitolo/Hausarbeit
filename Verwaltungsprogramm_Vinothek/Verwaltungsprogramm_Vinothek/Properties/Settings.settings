@@ -20,5 +20,8 @@
     <Setting Name="Color2" Type="System.Windows.Media.SolidColorBrush" Scope="User">
       <Value Profile="(Default)">#FF2FBFF5</Value>
     </Setting>
+    <Setting Name="ConnString" Type="System.String" Scope="User">
+      <Value Profile="(Default)">(LocalDb)\MSSQLLocalDB</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

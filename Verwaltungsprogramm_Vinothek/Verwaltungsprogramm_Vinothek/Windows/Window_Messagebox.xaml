@@ -10,7 +10,7 @@
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
             <Image Source="..\Images\Logo.png" Margin="20" VerticalAlignment="Top" MaxHeight="75"/>
             <StackPanel x:Name="Text" />
-            <Button Content="OK" Click="Button_Click" Style="{StaticResource Button_Style2}" Width="100"/>
+            <Button Content="OK" Click="Button_Click" Style="{StaticResource Button_Default}" Width="100"/>
         </StackPanel>
     </Grid>
 </Window>

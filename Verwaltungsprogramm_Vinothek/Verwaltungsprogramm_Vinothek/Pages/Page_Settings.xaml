@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="900" d:DesignWidth="1600"
       Title="Page_Settings">
 
     <Border BorderBrush="Black" BorderThickness="2" CornerRadius="5" Margin="100">
@@ -50,7 +50,7 @@
                 <Button Click="Color_Click"  Style="{StaticResource Button_TextContent}"/>
             </WrapPanel>
 
-            <Button x:Name="PdfDir" MaxHeight="100" Click="PdfDir_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" ToolTip="Standard - Verzeichnis">
+            <Button x:Name="PdfDir" Click="PdfDir_Click" Grid.Column="2" Grid.Row="3" HorizontalAlignment="Center" ToolTip="Standard - Verzeichnis">
                 <Image Source="..\Images\dir.png"/>
             </Button>
 
@@ -59,26 +59,30 @@
                 <Button Name="UserVerwaltungBtn" Click="Button_User" ToolTip="Nutzerverwaltung">
                     <Image Source="..\Images\avatar.png"/>
                 </Button>
-
                 <Button Name="Logins" Click="Button_Logins" ToolTip="Logins">
                     <Image Source="..\Images\logins.png"/>
                 </Button>
             </WrapPanel>
 
+            <WrapPanel Grid.Column="2" Grid.Row="5">
+                <TextBox x:Name="tb_ConnString" Width="150"/>
+                <Button x:Name="ChangeConnectionString" Style="{StaticResource Button_TextContent}" Click="ChangeConnectionString_Click"/>
+            </WrapPanel>
 
-
-            <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="3" Grid.Row="5">
+            <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="3" Grid.Row="6">
                 <TextBlock Text="Icons used from:" FontSize="14"/>
                 <TextBlock Text="https://lordicon.com/" FontSize="14"/>
                 <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>
             </StackPanel>
 
-            <Button Grid.Row="5" Grid.Column="2" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click" Width="300"/>
+            <Button Grid.Column="2" Grid.Row="6" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click" Width="300"/>
+            
             <Separator Grid.Column="3" HorizontalAlignment="Left" Grid.RowSpan="10" Margin="0,40">
                 <Separator.LayoutTransform>
                     <RotateTransform Angle="90" />
                 </Separator.LayoutTransform>
             </Separator>
+            
             <Frame Grid.RowSpan="10" Grid.Column="3" x:Name="HiddenUserverwaltung" VerticalAlignment="Center" Margin="50"/>
         </Grid>
     </Border>

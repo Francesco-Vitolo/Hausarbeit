@@ -11,7 +11,7 @@
     <Grid Name="Grid_Menu">
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="3*"/>
+            <RowDefinition Height="5*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -37,10 +37,10 @@
                     <Setter Property="BorderThickness" Value="4"/>
                 </Style>
                 
-                <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}">
+                <Style TargetType="Button" BasedOn="{StaticResource Button_Default}">
                     <Setter Property="OverridesDefaultStyle" Value="True"/>
                     <Setter Property="Width" Value="auto"/>
-                    <Setter Property="Height" Value="100"/>
+                    <Setter Property="Height" Value="120"/>
                     <Setter Property="HorizontalContentAlignment" Value="Right"/>
                     <Setter Property="Template">
                         <Setter.Value>
@@ -93,9 +93,6 @@
             <Button Name="Einstellungen" Content="Einstellungen" Click="Settings_Click"/>
         </UniformGrid>
 
-        <Viewbox  VerticalAlignment="Stretch" HorizontalAlignment="Center" MaxHeight="500" MaxWidth="500" Grid.Column="2" Grid.Row="1">
-            <Label  Height="148" HorizontalAlignment="Left" Margin="0,46,0,0" Name="label1" VerticalAlignment="Top" Width="378" FontSize="60" FontFamily="Forte" />
-        </Viewbox>
-
+        <TextBlock Grid.Row="1" Grid.Column="2" x:Name="begrueßung" FontFamily="Freestyle Script" FontSize="144" HorizontalAlignment="Center"/>
     </Grid>
 </Page>

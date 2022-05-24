@@ -8,7 +8,7 @@
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Produzent">
     <!--<Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style2}"/>
+        <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
     </Page.Resources>-->
     <Grid>
         <Grid>

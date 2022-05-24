@@ -1,18 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Verwaltungsprogramm_Vinothek.Properties;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
@@ -94,6 +84,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private void Button_Logins(object sender, RoutedEventArgs e)
         {
             HiddenUserverwaltung.NavigationService.Navigate(new Page_Logins());
+        }
+
+        private void ChangeConnectionString_Click(object sender, RoutedEventArgs e)
+        {
+            ContextHelper.ChangeDatabase();
         }
     }
 }

@@ -9,15 +9,14 @@
 
 namespace Verwaltungsprogramm_Vinothek
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
     public partial class VinothekContext : DbContext
     {
-        public VinothekContext()
-            : base("name=VinothekContext")
+        public VinothekContext() : base("name=VinothekContext")
         {
+            Database.SetInitializer(new VinothekDBInitializer());
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

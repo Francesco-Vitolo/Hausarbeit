@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -45,6 +46,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             if (Settings.Default.PDF_Directory == null)
                 Settings.Default.PDF_Directory = Environment.SpecialFolder.MyDocuments.ToString();
+            Settings.Default.Save();
         }
 
         private void SetButtonFarbe()

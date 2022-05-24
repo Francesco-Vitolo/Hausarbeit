@@ -93,5 +93,17 @@ namespace Verwaltungsprogramm_Vinothek.Properties {
                 this["Color2"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("(LocalDb)\\MSSQLLocalDB")]
+        public string ConnString {
+            get {
+                return ((string)(this["ConnString"]));
+            }
+            set {
+                this["ConnString"] = value;
+            }
+        }
     }
 }
