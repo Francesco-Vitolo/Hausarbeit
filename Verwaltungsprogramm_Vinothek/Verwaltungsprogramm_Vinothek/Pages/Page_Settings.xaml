@@ -40,7 +40,7 @@
             </WrapPanel>
 
             <WrapPanel VerticalAlignment="Center" Grid.Column="2" Grid.Row="1">
-                <TextBox x:Name="tb_foreground" Text="#000"/>
+                <TextBox x:Name="tb_foreground"/>
                 <Button Click="Foreground_Click" Style="{StaticResource Button_TextContent}"/>
             </WrapPanel>
 
@@ -64,18 +64,17 @@
                 </Button>
             </WrapPanel>
 
-            <WrapPanel Grid.Column="2" Grid.Row="5">
-                <TextBox x:Name="tb_ConnString" Width="150"/>
-                <Button x:Name="ChangeConnectionString" Style="{StaticResource Button_TextContent}" Click="ChangeConnectionString_Click"/>
-            </WrapPanel>
-
             <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="3" Grid.Row="6">
                 <TextBlock Text="Icons used from:" FontSize="14"/>
                 <TextBlock Text="https://lordicon.com/" FontSize="14"/>
                 <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>
             </StackPanel>
+            <StackPanel VerticalAlignment="Bottom"  Grid.Column="2" Grid.Row="6">
+                <Button Style="{StaticResource Button_TextContent }" Content="Lordicon.com" Click="lordicon_click"/>
+                <Button Style="{StaticResource Button_TextContent}" Content="flaticon.com" Click="flaticon_Click"/>
+            </StackPanel>
 
-            <Button Grid.Column="2" Grid.Row="6" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click" Width="300"/>
+            <Button Grid.Column="2" Grid.Row="5" Content="Googles Color Picker" Style="{StaticResource Button_TextContent}" Name="ColorPickerLink" Click="ColorPickerLink_Click" Width="300"/>
             
             <Separator Grid.Column="3" HorizontalAlignment="Left" Grid.RowSpan="10" Margin="0,40">
                 <Separator.LayoutTransform>

@@ -2,19 +2,17 @@
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"       
       xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="900" d:DesignWidth="1800"
       Title="Page_Veranstaltung">
-    <!--<Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Default}"/>
-    </Page.Resources>-->
+
     <Grid>
         <Grid Margin="0,32,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="20"/>
@@ -27,7 +25,8 @@
                 <RowDefinition Height="20"/>
             </Grid.RowDefinitions>
 
-            <local:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False"/>
+            <local:Uc_Veranstaltung Grid.Row="1" Grid.Column="1" x:Name="felder" IsEnabled="False" Grid.ColumnSpan="2"/>
+            
             <DataGrid  Name="data" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3" MouseDoubleClick="Item_MouseDoubleClick" />
 
             <UniformGrid Grid.Row="3" Grid.Column="1" Rows="1">

@@ -15,6 +15,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Settings()
         {
             InitializeComponent();
+            tb_background.Text = Settings.Default.Background.ToString();
+            tb_foreground.Text = Settings.Default.Foreground.ToString();
+            tb_Color1.Text = Settings.Default.Color1.ToString();
+            tb_Color2.Text = Settings.Default.Color2.ToString();
             MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             if (currentWindow.GetUserID() != 1) //User - ID 1 --> admin
             {
@@ -86,9 +90,14 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             HiddenUserverwaltung.NavigationService.Navigate(new Page_Logins());
         }
 
-        private void ChangeConnectionString_Click(object sender, RoutedEventArgs e)
+        private void lordicon_click(object sender, RoutedEventArgs e)
         {
-            ContextHelper.ChangeDatabase();
+            Process.Start("https://lordicon.com/");
+        }
+
+        private void flaticon_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://www.flaticon.com/");
         }
     }
 }
