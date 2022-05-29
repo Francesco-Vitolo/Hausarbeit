@@ -25,16 +25,21 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             DateTime time = DateTime.Now;
             int timeString = int.Parse(time.TimeOfDay.Hours.ToString());
             if (timeString < 12)
+            {
                 begruessungsString = "Guten Morgen";
+            }
             else if (timeString >= 18)
+            {
                 begruessungsString = "Guten Abend";
+            }
             else
-                begruessungsString = "Guten Mittag";
-
+            {
+                begruessungsString = "Guten Tag";
+            }
             var currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             VinothekContext ctx = ContextHelper.GetContext();
-            Benutzer b = ctx.Benutzer.Find(currentWindow.GetUserID());
-            begrueßung.Text = begruessungsString + "\n" + b;
+            Benutzer user = ctx.Benutzer.Find(currentWindow.GetUserID());
+            begrueßung.Text = begruessungsString + "\n" + user;
         }
         private void Button_Übersicht(object sender, RoutedEventArgs e)
         {
@@ -46,9 +51,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             NavigationService.Navigate(new Page_Kundensicht());
         }
-        private void Dokumentation_Click(object sender, RoutedEventArgs e) 
+        private void Dokumentation_Click(object sender, RoutedEventArgs e)
         {
-            Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit/blob/main/README.md");
+            Process.Start("https://github.com/Francesco-Vitolo/Hausarbeit");
         }       
         private void Settings_Click(object sender, RoutedEventArgs e)
         {

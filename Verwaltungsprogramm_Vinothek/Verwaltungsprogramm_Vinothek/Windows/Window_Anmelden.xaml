@@ -9,7 +9,7 @@
     <Grid>
         <local:Uc_Titlebar/>
         <StackPanel HorizontalAlignment="Stretch" Margin="5">
-            <Image Source="..\Images\Logo.png" Margin="0,70,0,20" Width="400"/>
+            <Image Source="..\Images\Logo.png" Margin="0,70,0,20"/>
             <TextBox Height="50" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Name="tb_username" />
             <PasswordBox HorizontalContentAlignment="Center" Height="50" VerticalContentAlignment="Center" x:Name="tb_pw" Margin="5,0"/>
             <Button Height="50" Content="Anmelden" Click="Button_Click_Anmelden" Style="{StaticResource Button_Default}" Width="auto" x:Name="btn_Anmelden"/>

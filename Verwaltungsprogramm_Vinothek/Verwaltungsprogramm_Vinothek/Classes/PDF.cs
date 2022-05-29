@@ -31,7 +31,7 @@ namespace Verwaltungsprogramm_Vinothek
         public byte[] CreateFromProd(Produkt prod)
         {
             filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{Rand.Next(0, 1000)}.pdf";
-            this.Prod = prod;
+            Prod = prod;
             Create();
             return SaveAndShow();
         }
@@ -71,14 +71,15 @@ namespace Verwaltungsprogramm_Vinothek
         {
             Page = Document.AddPage();
             Gfx = XGraphics.FromPdfPage(Page);
-            Tf = new XTextFormatter(Gfx); //für Absatz
+            Tf = new XTextFormatter(Gfx); //Absatz automatisch
             PosY = 120;
             if (Prod.Picture != null)
             {
                 XImage image = ImageConverter.BinaryToXImage(Prod.Picture);
                 Gfx.DrawImage(image, 460, 100, 90, 300);
             }
-            Gfx.DrawString($"{Prod.Name}", Ueberschrift, XBrushes.Black, new XRect(0, 40, Page.Width, Page.Height), XStringFormats.TopCenter);
+            Gfx.DrawString($"{Prod.Name}", Ueberschrift, XBrushes.Black, 
+                new XRect(0, 40, Page.Width, Page.Height), XStringFormats.TopCenter);
             Drawing($"Bezeichnung: {Prod.Qualitätssiegel}");
             if (Prod.Produzent.Region != "")
             {
@@ -89,8 +90,10 @@ namespace Verwaltungsprogramm_Vinothek
             Drawing($"Rebsorte(n): {Prod.Rebsorten}");
             Drawing($"Geschmack: {Prod.Geschmack}");
             Drawing($"Alkoholgehalt: {Prod.Alkoholgehalt} % vol.");
-            Gfx.DrawString($"Beschreibung:", Font, XBrushes.Black, new XRect(40, PosY + 100, Page.Width, Page.Height), XStringFormats.TopLeft);
-            Tf.DrawString($"{Prod.Beschreibung}", Font, XBrushes.Black, new XRect(40, PosY + 160, Page.Width - 100, Page.Height), XStringFormats.TopLeft);
+            Gfx.DrawString($"Beschreibung:", Font, XBrushes.Black, 
+                new XRect(40, PosY + 100, Page.Width, Page.Height), XStringFormats.TopLeft);
+            Tf.DrawString($"{Prod.Beschreibung}", Font, XBrushes.Black, 
+                new XRect(40, PosY + 160, Page.Width - 100, Page.Height), XStringFormats.TopLeft);
             try
             {
                 Gfx.DrawImage(XImage.FromFile(@"..\Images\Logo.png"), 380, 740, 200, 80);
@@ -101,14 +104,20 @@ namespace Verwaltungsprogramm_Vinothek
         private void Drawing(string s)
         {
             PosY = PosY + 30;
-            Gfx.DrawString(s, Font, XBrushes.Black, new XRect(40, PosY, Page.Width, Page.Height), XStringFormats.TopLeft);
-        }       
+            Gfx.DrawString(s, Font, XBrushes.Black, 
+                new XRect(40, PosY, Page.Width, Page.Height), XStringFormats.TopLeft);
+        }
         private byte[] SaveAndShow()
         {
-            Document.Save(filename);
-            Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
-            WPDF.Show();
-            return File.ReadAllBytes(filename);
+            try
+            {
+                Document.Save(filename);
+                Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+                WPDF.Show();
+                return File.ReadAllBytes(filename);
+            }
+            catch { }
+            return null;
         }
     }
 }

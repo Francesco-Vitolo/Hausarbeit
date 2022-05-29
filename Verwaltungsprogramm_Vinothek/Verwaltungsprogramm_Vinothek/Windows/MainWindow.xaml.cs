@@ -20,13 +20,19 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private double Scale { get; set; } = 1;
         private Benutzer User { get; }
+
+        private string tmpDirectory = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\tmp";
         public MainWindow(Benutzer user) //user wird weitergegeben
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            this.User = user;
-            tb_username.DataContext = this.User;
+            User = user;
             Frame_Main.Content = new Page_MainMenu();
+
+            if (!Directory.Exists(tmpDirectory))
+            {
+                Directory.CreateDirectory(tmpDirectory);
+            }
         }
 
         private void Button_Click_Expander(object sender, RoutedEventArgs e) //Expander = Menü an der Seite
@@ -92,6 +98,19 @@ namespace Verwaltungsprogramm_Vinothek
         public int GetUserID() //user - ID für Nutzerverwaltung (nur bei Admin)
         {
             return User.ID_Benutzer;
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            if (Directory.Exists(tmpDirectory))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(tmpDirectory);
+                foreach (FileInfo file in directoryInfo.GetFiles())
+                {
+                    file.Delete();
+                }
+                Directory.Delete(tmpDirectory);
+            }
         }
     }
 }

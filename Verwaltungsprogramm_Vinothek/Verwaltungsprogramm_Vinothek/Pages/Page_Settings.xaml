@@ -65,7 +65,7 @@
             </WrapPanel>
 
             <StackPanel VerticalAlignment="Bottom"  Grid.ColumnSpan="3" Grid.Row="6">
-                <TextBlock Text="Icons used from:" FontSize="14"/>
+                <TextBlock Text="Icons von:" FontSize="14"/>
                 <TextBlock Text="https://lordicon.com/" FontSize="14"/>
                 <TextBlock Text="https://www.flaticon.com/free-icons/" FontSize="14"/>
             </StackPanel>

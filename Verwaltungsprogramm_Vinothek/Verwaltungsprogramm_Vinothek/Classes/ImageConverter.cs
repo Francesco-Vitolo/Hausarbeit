@@ -29,7 +29,7 @@ namespace Verwaltungsprogramm_Vinothek
 
             MemoryStream ms = new MemoryStream();
             imageToConvert.Save(ms, bmpFormat);
-            return ms.ToArray();         
+            return ms.ToArray();
         }
 
         public static byte[] ConvertImageFromClipboard(Image img)

@@ -3,13 +3,10 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
       mc:Ignorable="d" 
       d:DesignHeight="1100" d:DesignWidth="1900"
-      Title="Page_Grid_List" KeyUp="Page_KeyUp" >
-    <!--<Page.Resources>
-        <Style TargetType="Button" BasedOn="{StaticResource Button_Style_With_Animation}"/>
-    </Page.Resources>-->
+      Title="Page_Grid_List" KeyUp="Page_KeyUp">
+    
     <Grid x:Name="Grid_Liste">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>

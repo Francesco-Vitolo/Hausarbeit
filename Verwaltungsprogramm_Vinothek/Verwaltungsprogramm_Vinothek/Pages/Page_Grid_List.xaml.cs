@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -142,7 +140,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             {
                 NavigationService.Navigate(new Page_Add_Veranstaltung());
             }
-            //CollectionView.Refresh();
         }
 
         private void Delete_Click(object sender, RoutedEventArgs e)
@@ -240,8 +237,6 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             }
             Ctx.SaveChanges();
             Refresh_Click(null, null);            
-            //CollectionView.MoveCurrentTo(DuplicateObj);
-            //datagrid.ScrollIntoView(DuplicateObj);
         }
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren

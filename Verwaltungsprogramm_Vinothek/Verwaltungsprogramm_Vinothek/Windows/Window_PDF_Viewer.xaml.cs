@@ -1,18 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Verwaltungsprogramm_Vinothek
 {
@@ -25,7 +12,7 @@ namespace Verwaltungsprogramm_Vinothek
         {
             InitializeComponent();
             Style = FindResource("Window_Default") as Style;
-            var uri = new Uri(path); //Muss umgewnadelt werden, weil Fehler falls Umlaut
+            var uri = new Uri(path);    //Muss umgewnadelt werden, weil Fehler falls Umlaut
             pdfWebViewer.Navigate(uri);
             Focus();
         }

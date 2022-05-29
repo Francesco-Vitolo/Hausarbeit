@@ -23,6 +23,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         private Window_Messagebox WM { get; set; }
         private ICollectionView CollectionView { get; }
 
+        private Random Rand { get; set; }
+
         public Page_Produkt(ICollectionView collectionView)
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             CollectionView = collectionView;
             Produkt = (Produkt)CollectionView.CurrentItem;
             DataContext = Produkt;
+            Rand = new Random();
         }
 
         private void UmschaltenBearbeiten_Click(object sender, RoutedEventArgs e)
@@ -110,11 +113,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             if (Produkt.PDF_file != null)
             {
-                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin.pdf"; //temporäre Datei wird erstellt
+                string tempfile = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\tmp\tmp_{Rand.Next(0,1000)}.pdf"; //temporäre Datei wird erstellt
                 File.WriteAllBytes(tempfile, Produkt.PDF_file);
                 WPDF = new Window_PDF_Viewer(tempfile);
                 WPDF.ShowDialog();
-                await Timer(1000);      //PDF noch nicht freigegeben, deshalb timer
+                await Timer(5000);      //PDF noch nicht freigegeben, deshalb timer
                 File.Delete(tempfile); //löschen
             }
             else

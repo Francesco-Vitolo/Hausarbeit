@@ -21,7 +21,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         }
 
         private void Button_Click_SaveChanges(object sender, RoutedEventArgs e)
-        {            
+        {   
             var tbs = felderProdukt.GetTbs(); //Uc_Produkt alle Textboxen
 
             NewProd.Name = tbs[0].Text.Trim(); //Leerzeichen abschneiden

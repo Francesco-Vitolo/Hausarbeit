@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Verwaltungsprogramm_Vinothek.User_Controls"
         xmlns:properties="clr-namespace:Verwaltungsprogramm_Vinothek.Properties"      
         mc:Ignorable="d"
-        Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel">
+        Title="MainWindow" PreviewMouseWheel="Window_PreviewMouseWheel" Closed="Window_Closed">
 
     <Grid>
         <local:Uc_Titlebar/>
@@ -65,9 +65,5 @@
         </Expander>
 
         <Label Name="label_zoom" Content="{Binding }" HorizontalAlignment="Right" VerticalAlignment="Bottom"/>
-        <WrapPanel  VerticalAlignment="Top" HorizontalAlignment="Right" Margin="5,30">
-            <Label Content="Eingeloggt als:"/>
-            <TextBlock x:Name="tb_username" Text="{Binding username}" VerticalAlignment="Center"/>
-        </WrapPanel>
     </Grid>
 </Window>

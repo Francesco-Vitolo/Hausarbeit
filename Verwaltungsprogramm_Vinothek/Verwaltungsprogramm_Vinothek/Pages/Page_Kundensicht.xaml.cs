@@ -12,9 +12,6 @@ using System.Windows.Media.Imaging;
 
 namespace Verwaltungsprogramm_Vinothek.Pages
 {
-    /// <summary>
-    /// Interaktionslogik für Page_Kundensicht.xaml
-    /// </summary>
     public partial class Page_Kundensicht : Page
     {
         private List<string> Tempfiles { get; set; } //Liste, falls User zu schnell ist --> Datei noch nicht gelöscht
@@ -32,7 +29,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             var listProdukte = ctx.Produkt.Where(
                 x => x.Aktiv == true
                 && x.Picture != null
-                && x.PDF_file != null).ToList(); //Wenn Bild vorhanden und Produkt aktiv ist
+                && x.PDF_file != null).ToList(); //Wenn Bild und PDF vorhanden und Produkt aktiv ist
 
             foreach (var prod in listProdukte)
             {
@@ -62,14 +59,12 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 expanderInfos.Visibility = Visibility.Visible;
                 expanderInfos.IsExpanded = true;
 
-                Tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\Moin_{Random.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
+                Tempfiles.Add( $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\tmp\tmp_{Random.Next(0,1000)}.pdf"); //temporäre Datei wird erstellt
                 string tempfile = Tempfiles.LastOrDefault();
                 File.WriteAllBytes(tempfile, prod.PDF_file);
                 pdfBrowser.Navigate(tempfile);
             };
-
             maingrid.Children.Add(btn);
-            
         }
 
         private void Page_KeyUp(object sender, KeyEventArgs e) //STRG + e --> Programm wird neu gestartet (Passwort eingeben)
