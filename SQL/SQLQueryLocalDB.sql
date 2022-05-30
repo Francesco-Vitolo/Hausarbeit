@@ -29,10 +29,6 @@ IF OBJECT_ID('Benutzer') IS NOT NULL
   DROP TABLE Benutzer;
 GO
 
---IF OBJECT_ID('Pictures') IS NOT NULL
---  DROP TABLE Pictures;
---GO
-
 CREATE TABLE Produzent (
   ID_Produzent int PRIMARY KEY IDENTITY(2000,1), 
   Name nvarchar(50),
@@ -43,11 +39,6 @@ CREATE TABLE Produzent (
   Telefon nvarchar(50), -- wegen z.B. +49
   Hektar int,
 );
-
---CREATE TABLE Pictures (
---	ID_Picture int PRIMARY KEY identity (9000,1),
---	Picture varbinary(max)
---);
 
 CREATE TABLE Produkt (
   ID_Produkt int PRIMARY KEY IDENTITY(9000,1), 
@@ -69,10 +60,6 @@ CREATE TABLE Produkt (
   CONSTRAINT fk_Produzent FOREIGN KEY (ID_Produzent)
   REFERENCES Produzent(ID_Produzent)
   ON DELETE NO ACTION,
-
-  --ID_Picture int,
-  --CONSTRAINT fk_bild FOREIGN KEY (ID_Picture)
-  --REFERENCES Pictures(ID_Picture),
 );
 
 CREATE TABLE Event (
@@ -170,45 +157,7 @@ Insert into Produzent values
 ('Weingut28'        ,'Italien','Veneto',  'Adresse',			'max@mustermann.de',  2375678910, 15),
 ('Weingut29'        ,'Italien','Veneto',  'Adresse',			'max@mustermann.de',  12375678910, 15),
 ('Weingut30'        ,'Italien','Veneto',  'Adresse',			'max@mustermann.de',  2375678910, 15),																																																							
-('Alberto Ravazzi'			,'Italien','', 'Adresse',			'4max@mustermann.de', 12375678910, 15),
-('Tenuta Asinara'			,'Italien','', 'Adresse',			'5max@mustermann.de', 12375678910, 15),
-('Beltrame'					,'Italien','', 'Adresse',			'5max@mustermann.de', 12375678910, 15),
-('Bernadeschi'				,'Italien','', 'Adresse',			'4max@mustermann.de', 12375678910, 15),
-('Bibi Graetz'				,'Italien','', 'Adresse',			'2max@mustermann.de', 12375678910, 15),
-('Bulgarini'				,'Italien','Gardasee', 'Adresse',	'3max@mustermann.de', 12375678910, 15),
-('Ca dei Frati'				,'Italien','Gardasee', 'Adresse',	'8max@mustermann.de', 12375678910, 15),
-('Cantina Albea'			,'Italien','', 'Adresse',			'2max@mustermann.de', 12375678910, 15),
-('Cantina Tomaso Gianolio'        ,'Italien','Veneto',	'Adresse',			'9max@mustermann.de', 12375678910, 15),
-('Bricco Lagotto'        ,'Italien','Veneto',  'Adresse',	'5max@mustermann.de', 12375678910, 15),
 ('Weingut49'        ,'Italien','Veneto',  'Adresse',			'3max@mustermann.de', 12375678910, 15);
-
-
-
-Insert into Produkt
-(
-Name,
-Art,
-Qualit‰tssiegel,
-Rebsorten,
-Geschmack,
-Alkoholgehalt,
-Jahrgang,
-Beschreibung,
-Preis,
-Aktiv,
-ID_Produzent,
-Picture)
-values 
-('010',				'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	14.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\Lugana_Bulgarini_010.jpg', SINGLE_BLOB) AS IMAGE)),
-('Indolente',		'Rotwein','DOCG','','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',			10.90,1, 2001,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\indolente.png', SINGLE_BLOB) AS IMAGE)),
-('i Frati',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	22.90,1, 2006,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\Lugana_Ca_Dei_Frati.jpg', SINGLE_BLOB) AS IMAGE)),
-('Wein_1',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\Lugana_Bulgarini.jpg', SINGLE_BLOB) AS IMAGE)),
-('Wein_2',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	16.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\Cavalchina_Bardolino.jpg', SINGLE_BLOB) AS IMAGE)),
-('Wein_3',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	17.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\cereja.png', SINGLE_BLOB) AS IMAGE)),
-('Wein_4',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	18.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\cerviolo.jpg', SINGLE_BLOB) AS IMAGE)),
-('Wein_5',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	19.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\Diffidente.png', SINGLE_BLOB) AS IMAGE)),
-('Wein_6',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	20.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\dueterre.jpg', SINGLE_BLOB) AS IMAGE)),
-('Wein_7',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	21.90,1, 2005,(SELECT * FROM OPENROWSET(BULK 'C:\Users\Francesco\Desktop\Bilder\VillaBarbi.png', SINGLE_BLOB) AS IMAGE));
 
 
 Insert into Produkt
@@ -225,12 +174,7 @@ Preis,
 Aktiv,
 ID_Produzent)
 values 
-('Prezioso',		'Rotwein','DOCG','','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',			100.90,1, 2000),
-('Tazzelenghe',		'Rotwein','DOCG','','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',			11.90,1, 2002),
-('Governo',			'Rotwein','DOCG','','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',			12.90,1, 2003),
-('Casamatta',		'Rotwein','DOCG','','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',			13.90,1, 2004),
-('i Frati',			'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2006  ),
-('A te',			'Weiﬂwein','DOCG','Roero Arneis','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptu',23.90,1, 2000),	
+
 ('011',				'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2005  ),
 ('012',				'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2005  ),
 ('013',				'Weiﬂwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2005  ),
@@ -244,11 +188,21 @@ values
 ('021',				'Cremant','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2002  ),
 ('022',				'Metodo classico','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2007 ),
 ('023',				'Spuamnte','DOC','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2004  ),
-('024',				'Weiﬂwein','IGT','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2001);
+('024',				'Weiﬂwein','IGT','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2001),
+('025',				'RosÈwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2008  ),
+('026',				'Cremant','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2002  ),
+('027',				'Metodo classico','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2007 ),
+('028',				'Spuamnte','DOC','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2004  ),
+('029',				'Weiﬂwein','IGT','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2001),
+('030',				'RosÈwein','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2008  ),
+('031',				'Cremant','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2002  ),
+('032',				'Metodo classico','DOCG','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2007 ),
+('033',				'Spuamnte','DOC','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2004  ),
+('034',				'Weiﬂwein','IGT','Lugana','trocken',14,2020,'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.',	15.90,1, 2001);
 
 INSERT INTO Event
 Values
-('Weinprobe',20,'2022-02-02','19:00'),
+('Weinkarte-April',20,'2022-02-02','00:00'),
 ('Weinprobe',8,'2022-04-13','18:00'),
 ('Weinprobe',150,'2022-06-05','19:00'),
 ('Weinprobe',8,'2022-09-06','19:00'),
@@ -271,23 +225,3 @@ INSERT INTO EventPos Values
 (3001,9005),
 (3002,9006),
 (3003,9007);
-
-
-
-
-
---SELECT * FROM EventPos;
-
---SELECT P1.Name, P2.Name, Rebsorten FROM Produkt P1
---JOIN Produzent P2 
---on P1.ID_Produzent = P2.ID_Produzent;
-
---Declare @id int;
-
---select @id = ID_Produzent from Produkt
---where ID_Produkt = 1000;
-
---Select * from Produzent 
---where ID_Produzent = @id;
-
---select * from Produzent

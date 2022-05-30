@@ -16,11 +16,7 @@ namespace Verwaltungsprogramm_Vinothek
     {
         private VinothekContext Ctx { get; set; }
         private Benutzer User { get; set; }
-        public double Progress
-        {
-            get { return progressBar.Value; }
-            set { progressBar.Value = value; }
-        }
+
         public Window_Anmelden()
         {
             InitializeComponent();
@@ -28,14 +24,14 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeContext();
             SetButtonFarbe();
             SetDirectory();
-            Demo();
             tb_username.Focus();
         }
-        private void Demo()
-        {
-            tb_username.Text = "admin";
-            tb_pw.Password = "admin";
-        }
+
+        //private void Demo()
+        //{
+        //    tb_username.Text = "admin";
+        //    tb_pw.Password = "admin";
+        //}
 
         private void InitializeContext()
         {
@@ -44,7 +40,7 @@ namespace Verwaltungsprogramm_Vinothek
         }
         private void SetDirectory()
         {
-            if (Settings.Default.PDF_Directory == null)
+            if (Settings.Default.PDF_Directory == "")
                 Settings.Default.PDF_Directory = Environment.SpecialFolder.MyDocuments.ToString();
             Settings.Default.Save();
         }
@@ -70,7 +66,6 @@ namespace Verwaltungsprogramm_Vinothek
             string pw = Encrypt.GetHash(tb_pw.Password);
             if (Ctx.Benutzer.Any(x => x.username == username && x.Passwort == pw))
             {
-                //ProgressBar();
                 btn_Anmelden.IsEnabled = false;
                 User = Ctx.Benutzer.FirstOrDefault(x => x.username == username && x.Passwort == pw);
                 Logins login = new Logins();
@@ -89,23 +84,6 @@ namespace Verwaltungsprogramm_Vinothek
         {
             if (e.Key == Key.Enter)
                 Button_Click_Anmelden(null, null);
-        }
-
-        //private async void ProgressBar()
-        //{
-        //    await ProgressBarTask();
-           
-        //}
-        private Task ProgressBarTask()
-        {
-            return Task.Run(() =>
-            {
-                for (int i = 1; i <= 100; i++)
-                {
-                    System.Threading.Thread.Sleep(2);
-                    Dispatcher.Invoke(() => Progress = i);
-                }
-            });
         }
     }
 }

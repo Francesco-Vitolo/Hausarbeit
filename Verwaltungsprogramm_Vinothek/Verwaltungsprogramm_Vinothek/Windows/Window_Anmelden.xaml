@@ -15,6 +15,5 @@
             <Button Height="50" Content="Anmelden" Click="Button_Click_Anmelden" Style="{StaticResource Button_Default}" Width="auto" x:Name="btn_Anmelden"/>
             <TextBlock x:Name="Alert" Text="Login fehlgeschlagen" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="Hidden"/>
         </StackPanel>
-        <ProgressBar VerticalAlignment="Bottom" Name="progressBar" Height="20"/>
     </Grid>
 </Window>
