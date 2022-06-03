@@ -15,10 +15,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         public Page_Settings()
         {
             InitializeComponent();
-            tb_background.Text = Settings.Default.Background.ToString();
-            tb_foreground.Text = Settings.Default.Foreground.ToString();
-            tb_Color1.Text = Settings.Default.Color1.ToString();
-            tb_Color2.Text = Settings.Default.Color2.ToString();
+            ClrPcker_Background.SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.Default.Background.ToString());
+            ClrPcker_Foreground.SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.Default.Foreground.ToString());
+            ClrPcker_BtnColor1.SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.Default.Color1.ToString());
+            ClrPcker_BtnColor2.SelectedColor = (Color)ColorConverter.ConvertFromString(Settings.Default.Color2.ToString());
             MainWindow currentWindow = Application.Current.Windows.OfType<MainWindow>().LastOrDefault();
             if (currentWindow.GetUserID() != 1) //User - ID 1 --> admin
             {
@@ -33,7 +33,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             Settings.Default.PDF_Directory = Files.SelectPdfDir();
             Settings.Default.Save();
         }
-     
+
         private void Button_User(object sender, RoutedEventArgs e) //Userverwaltung
         {
             HiddenUserverwaltung.NavigationService.Navigate(new Page_User());
@@ -42,7 +42,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             try
             {
-                Settings.Default.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_background.Text);
+                Settings.Default.Background = (SolidColorBrush)new BrushConverter().ConvertFrom(ClrPcker_Background.SelectedColorText);
                 Settings.Default.Save();
             }
             catch { }
@@ -53,7 +53,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             try
             {
-                Settings.Default.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_foreground.Text);
+                Settings.Default.Foreground = (SolidColorBrush)new BrushConverter().ConvertFrom(ClrPcker_Foreground.SelectedColorText);
                 Settings.Default.Save();
             }
             catch { }
@@ -64,10 +64,10 @@ namespace Verwaltungsprogramm_Vinothek.Pages
         {
             try
             {
-                Settings.Default.Color1 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color1.Text); //Farben 1 und 2 werden gespeichert
-                Settings.Default.Color2 = (SolidColorBrush)new BrushConverter().ConvertFrom(tb_Color2.Text);
-                Color brush1 = (Color)ColorConverter.ConvertFromString(tb_Color1.Text);
-                Color brush2 = (Color)ColorConverter.ConvertFromString(tb_Color2.Text);
+                Settings.Default.Color1 = (SolidColorBrush)new BrushConverter().ConvertFrom(ClrPcker_BtnColor1.SelectedColorText);
+                Settings.Default.Color2 = (SolidColorBrush)new BrushConverter().ConvertFrom(ClrPcker_BtnColor2.SelectedColorText);
+                Color brush1 = (Color)ColorConverter.ConvertFromString(ClrPcker_BtnColor1.SelectedColorText);
+                Color brush2 = (Color)ColorConverter.ConvertFromString(ClrPcker_BtnColor2.SelectedColorText);
                 LinearGradientBrush gradient = new LinearGradientBrush()
                 {
                     StartPoint = new Point(0, 0),
@@ -79,10 +79,6 @@ namespace Verwaltungsprogramm_Vinothek.Pages
                 Settings.Default.Save();
             }
             catch { }
-        }
-        private void ColorPickerLink_Click(object sender, RoutedEventArgs e)
-        {
-            Process.Start("https://g.co/kgs/M1YyXm");
         }
 
         private void Button_Logins(object sender, RoutedEventArgs e)
