@@ -67,6 +67,9 @@
                 <Image Source="..\Images\duplicate.png"/>
             </Button>
             <Separator/>
+            <Button x:Name="ExcelBtn" Click="Excel_Click" ToolTip="Excel - Datei">
+                <Image Source="..\Images\Excel_logo.png"/>
+            </Button>
         </UniformGrid>
         <DataGrid x:Name="datagrid" Grid.Row="2" Grid.Column="1" KeyUp="Datagrid_KeyDel" MouseDoubleClick="SelectItem_DoubleClick"/>
     </Grid>

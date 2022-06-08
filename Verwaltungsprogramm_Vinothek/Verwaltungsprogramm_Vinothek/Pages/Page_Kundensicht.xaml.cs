@@ -54,8 +54,7 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             btn.Content = img;
             btn.Style = FindResource("Button_Kunden") as Style;
             btn.Click += (sender, args) =>      //Event für Button wird erzeugt
-            {
-                expanderInfos.DataContext = prod; //Infos zum Produkt im Expander
+            {               
                 expanderInfos.Visibility = Visibility.Visible;
                 expanderInfos.IsExpanded = true;
 

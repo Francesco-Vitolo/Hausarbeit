@@ -28,6 +28,8 @@ namespace Verwaltungsprogramm_Vinothek.Windows
             TotalItemsGrid = CollectionView.Cast<object>().Count().ToString();
             labelResults.DataContext = TotalItemsGrid;
             tbSearch.Focus();
+            if (GridType != "ListeProdukte")
+                ExcelBtn.IsEnabled = false;
         }
 
         private void CreateDG()
@@ -45,7 +47,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                 case "ListeProduzenten":
                     CreateDataGrid.Produzent(ref datagrid);
                     CreateDataGrid.ProduzentFilter(ref cb_filter);
-                    Filteroptions =  CreateDataGrid.GetFilterNamesProduzenten();
+                    Filteroptions = CreateDataGrid.GetFilterNamesProduzenten();
                     CollectionView = CollectionViewSource.GetDefaultView(Ctx.Produzent.Local.OrderBy(x => x.Name));
                     datagrid.DataContext = CollectionView;
                     break;
@@ -236,7 +238,7 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     break;
             }
             Ctx.SaveChanges();
-            Refresh_Click(null, null);            
+            Refresh_Click(null, null);
         }
 
         private void cb_filter_DropDownClosed(object sender, EventArgs e) //Sortieren
@@ -287,6 +289,11 @@ namespace Verwaltungsprogramm_Vinothek.Windows
                     Duplicate_Click(null, null);
                 }
             }
+        }
+
+        private void Excel_Click(object sender, RoutedEventArgs e)
+        {
+           Excel.Create();
         }
     }
 }

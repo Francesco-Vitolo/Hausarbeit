@@ -37,9 +37,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             EVNT_POS = Ctx.EventPos.Where(x => x.ID_Veranstaltung == veranstaltung.ID_Veranstaltung).ToList(); //Liste mit EPs wird gefüllt
             foreach (var ep in EVNT_POS)
             {
-                PRODS.Add(Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt)); 
+                PRODS.Add(Ctx.Produkt.FirstOrDefault(x => x.ID_Produkt == ep.ID_Produkt));
             }
-            data.DataContext = PRODS;           
+            data.DataContext = PRODS;
         }
 
         private void Item_MouseDoubleClick(object sender, MouseButtonEventArgs e)

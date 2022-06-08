@@ -24,14 +24,15 @@ namespace Verwaltungsprogramm_Vinothek
             InitializeContext();
             SetButtonFarbe();
             SetDirectory();
+            Demo();
             tb_username.Focus();
         }
 
-        //private void Demo()
-        //{
-        //    tb_username.Text = "admin";
-        //    tb_pw.Password = "admin";
-        //}
+        private void Demo()
+        {
+            tb_username.Text = "admin";
+            tb_pw.Password = "admin";
+        }
 
         private void InitializeContext()
         {
