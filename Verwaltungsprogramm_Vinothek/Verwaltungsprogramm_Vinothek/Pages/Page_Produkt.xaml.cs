@@ -54,7 +54,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void saveChanges_Click(object sender, RoutedEventArgs e)
         {
-            Ctx.SaveChanges();
+            //Ctx.SaveChanges();
+            btn_create_pdf_Click(null, null);
             NavigationService.GoBack();
         }
 
@@ -106,8 +107,8 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             byte[] byteArrayPDF = pdf.CreateFromProd(Produkt);
             Produkt.PDF_file = byteArrayPDF;
             Ctx.SaveChanges();
-            WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.filename}");
-            WM.Show();
+            //WM = new Window_Messagebox($"Eine PDF - Datei wurde erstellt:\n{pdf.filename}");
+            //WM.Show();
         }
         private async void btn_show_pdf_Click(object sender, RoutedEventArgs e) 
         {

@@ -31,7 +31,8 @@ namespace Verwaltungsprogramm_Vinothek
 
             if (!Directory.Exists(tmpDirectory))
             {
-                Directory.CreateDirectory(tmpDirectory);
+                DirectoryInfo di = Directory.CreateDirectory(tmpDirectory);
+                di.Attributes = FileAttributes.Directory | FileAttributes.Hidden;
             }
         }
 

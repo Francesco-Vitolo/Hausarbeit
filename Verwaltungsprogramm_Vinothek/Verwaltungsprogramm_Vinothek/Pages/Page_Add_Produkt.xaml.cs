@@ -52,6 +52,9 @@ namespace Verwaltungsprogramm_Vinothek.Pages
             else
             {
                 Ctx.Produkt.Add(NewProd);
+                PDF pdf = new PDF();
+                byte[] byteArrayPDF = pdf.CreateFromProd(NewProd);
+                NewProd.PDF_file = byteArrayPDF;
                 Ctx.SaveChanges();
                 NavigationService.GoBack();
             }

@@ -141,8 +141,11 @@ namespace Verwaltungsprogramm_Vinothek.Pages
 
         private void CreatePDF_Click(object sender, RoutedEventArgs e)
         {
-            PDF pdf = new PDF();
-            pdf.CreateFromEvent(PRODS, Veranstaltung); //PDF zum Event wird erstellt
+            if(PRODS.Count > 0)
+            {
+                PDF pdf = new PDF();
+                bool success = pdf.CreateFromEvent(PRODS, Veranstaltung); //PDF zum Event wird erstellt
+            }
         }
     }
 }

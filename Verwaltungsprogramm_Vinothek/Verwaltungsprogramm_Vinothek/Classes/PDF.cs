@@ -30,13 +30,13 @@ namespace Verwaltungsprogramm_Vinothek
         }
         public byte[] CreateFromProd(Produkt prod)
         {
-            filename = $@"{Properties.Settings.Default.PDF_Directory}\{prod.Name}_{Rand.Next(0, 1000)}.pdf";
+            filename = $@"{Environment.GetFolderPath(Environment.SpecialFolder.UserProfile)}\tmp\{ prod.Name}_{Rand.Next(0, 1000)}.pdf";
             Prod = prod;
             Create();
-            return SaveAndShow();
+            return Save();
         }
 
-        public byte[] CreateFromEvent(List<Produkt> produkte, Event veranstaltung)
+        public bool CreateFromEvent(List<Produkt> produkte, Event veranstaltung)
         {
             Veranstaltung = veranstaltung;
             CreateDeckblatt();
@@ -48,7 +48,16 @@ namespace Verwaltungsprogramm_Vinothek
                 Prod = aktuellesProd;
                 Create();
             }
-            return SaveAndShow();
+            try
+            {
+                string eventFilename = $@"{Properties.Settings.Default.PDF_Directory}\{veranstaltung.Name}_{Rand.Next(0, 1000)}.pdf";
+                Document.Save(eventFilename);
+                Window_PDF_Viewer WPDF = new Window_PDF_Viewer(eventFilename);
+                WPDF.Show();
+                return true;
+            }
+            catch { }
+            return false;
         }
 
         private void CreateDeckblatt()
@@ -107,13 +116,13 @@ namespace Verwaltungsprogramm_Vinothek
             Gfx.DrawString(s, Font, XBrushes.Black, 
                 new XRect(40, PosY, Page.Width, Page.Height), XStringFormats.TopLeft);
         }
-        private byte[] SaveAndShow()
+        private byte[] Save()
         {
             try
             {
                 Document.Save(filename);
-                Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
-                WPDF.Show();
+                //Window_PDF_Viewer WPDF = new Window_PDF_Viewer(filename);
+                //WPDF.Show();
                 return File.ReadAllBytes(filename);
             }
             catch { }

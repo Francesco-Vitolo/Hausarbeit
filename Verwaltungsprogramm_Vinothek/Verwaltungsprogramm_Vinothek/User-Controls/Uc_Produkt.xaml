@@ -36,7 +36,7 @@
         
         <TextBlock Grid.Column="3" Grid.Row="0" Text="Produzent"/>
         <TextBlock Grid.Column="3" Grid.Row="1" Text="Geschmack"/>
-        <TextBlock Grid.Column="3" Grid.Row="2" Text="Alkoholgehalt"/>
+        <TextBlock Grid.Column="3" Grid.Row="2" Text="Alkohol"/>
         <TextBlock Grid.Column="3" Grid.Row="3" Text="Preis"/>
 
         <TextBox Grid.Column="4" Grid.Row="0" Text="{Binding Produzent.Name}" IsEnabled="False" x:Name="tb_prod" MaxLength="50"/>

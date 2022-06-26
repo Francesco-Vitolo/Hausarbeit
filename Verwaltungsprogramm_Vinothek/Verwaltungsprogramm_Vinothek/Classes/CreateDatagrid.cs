@@ -57,8 +57,18 @@ namespace Verwaltungsprogramm_Vinothek
             foreach (var name in dict)
             {
                 Binding b = new Binding(name.Value);
-                if (name.Key == "Datum") 
+                if (name.Key == "Datum")
                     b.StringFormat = "dd.MM.yyyy";
+                else if (name.Key == "Aktiv")
+                {
+                    DataGridCheckBoxColumn columnCb = new DataGridCheckBoxColumn()
+                    {
+                        Header = name.Key,
+                        Binding = b,                        
+                    };
+                    datagrid.Columns.Add(columnCb);
+                    break;
+                }
                 DataGridTextColumn column = new DataGridTextColumn()
                 {
                     Header = name.Key,

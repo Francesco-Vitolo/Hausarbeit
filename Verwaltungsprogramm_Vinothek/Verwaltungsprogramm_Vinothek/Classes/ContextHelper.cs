@@ -24,26 +24,6 @@ namespace Verwaltungsprogramm_Vinothek
             Context.SaveChanges();
         }
 
-        public static void ChangeDatabase()
-        {
-            var config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var connectionStringsSection = (ConnectionStringsSection)config.GetSection("connectionStrings");
-            connectionStringsSection.ConnectionStrings["VinothekContext"].ConnectionString =
-            @"metadata=res://*/Vinothek.csdl|res://*/Vinothek.ssdl|res://*/Vinothek.msl;
-            provider=System.Data.SqlClient;
-            provider connection string=&quot;
-            Data Source=localhost; 
-            initial catalog=DB_Vinothek;
-	        integrated security=true;
-	        MultipleActiveResultSets=True
-	        App=EntityFramework&quot;""providerName = ""System.Data.SqlClient"" />";
-            config.Save(ConfigurationSaveMode.Full);
-            ConfigurationManager.RefreshSection("connectionStrings");
-            //Context = new VinothekContext();
-            //Context.Database.Connection.ConnectionString = Context.Database.Connection.ConnectionString.Replace("(LocalDb)\\MSSQLLocalDB", $"{newConn}");
-            //LoadTables();
-            //SaveChanges();
-        }
         public static void LoadTables()
         {
             Context.Benutzer.Load();
